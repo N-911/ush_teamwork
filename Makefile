@@ -3,20 +3,29 @@ NAME = ush
 INC = ush.h
 
 SRC = mx_builtin_commands.c \
+    mx_cd.c\
+    mx_pwd.c \
+    mx_export.c \
+    mx_unset.c \
     mx_check_parce_errors.c \
     mx_count_char_arr.c \
     mx_count_chr_quote.c \
+    mx_count_options.c \
     mx_get_char_index_quote.c \
     mx_init_shell.c \
     mx_jobs_functions.c \
     mx_launch_job.c \
     mx_launch_process.c \
     mx_loop.c \
+    mx_normalization.c \
     mx_parce_tokens.c \
     mx_print_colored.c \
     mx_print_strarr_in_line.c \
+    mx_push_export.c \
     mx_read_line.c \
     mx_set_buff_zero.c \
+    mx_set_data.c \
+    mx_set_variable.c \
     mx_signal.c \
     mx_split_line.c \
     mx_strdup_arr.c \
@@ -33,20 +42,29 @@ SRC = mx_builtin_commands.c \
     ush_main.c
 
 OBJ = mx_builtin_commands.o \
+    mx_cd.o \
+    mx_pwd.o \
+    mx_export.o \
+    mx_unset.o \
     mx_check_parce_errors.o \
     mx_count_char_arr.o \
     mx_count_chr_quote.o \
+    mx_count_options.o \
     mx_get_char_index_quote.o \
     mx_init_shell.o \
     mx_jobs_functions.o \
     mx_launch_job.o \
     mx_launch_process.o \
     mx_loop.o \
+    mx_normalization.o \
     mx_parce_tokens.o \
     mx_print_colored.o \
     mx_print_strarr_in_line.o \
+    mx_push_export.o \
     mx_read_line.o \
     mx_set_buff_zero.o \
+    mx_set_data.o \
+    mx_set_variable.o \
     mx_signal.o \
     mx_split_line.o \
     mx_strdup_arr.o \

@@ -5,7 +5,7 @@ int main(int argc, char **argv) {
     (void)argc;
     (void)argv;
 
-    extern char **environ;
+    //extern char **environ;
     t_shell *m_s = mx_init_shell(argc, argv);
   // Run command loop.
     mx_ush_loop(m_s);

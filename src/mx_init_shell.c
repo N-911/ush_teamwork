@@ -2,6 +2,9 @@
 /* Make sure the shell is running interactively as the foreground job
    before proceeding. */
 
+static char *get_pwd();
+static char *get_shlvl();
+
 t_shell *mx_init_shell(int argc, char **argv) {
     pid_t shell_pgid;
 //  struct termios shell_tmodes;
@@ -11,12 +14,17 @@ t_shell *mx_init_shell(int argc, char **argv) {
 
     m_s->argc = argc;
     m_s->argv = argv;
-    m_s->builtin_list = (char **) malloc(sizeof(char *) * 5);
+    m_s->builtin_list = (char **) malloc(sizeof(char *) * 10);
     m_s->builtin_list[0] = "echo";
     m_s->builtin_list[1] = "jobs";
     m_s->builtin_list[2] = "fg";
     m_s->builtin_list[3] = "exit";
-    m_s->builtin_list[4] = NULL;
+    m_s->builtin_list[4] = "cd";
+    m_s->builtin_list[5] = "pwd";
+    m_s->builtin_list[6] = "export";
+    m_s->builtin_list[7] = "unset";
+    m_s->builtin_list[8] = "which";
+    m_s->builtin_list[9] = NULL;
     m_s->job_control = (char **) malloc(sizeof(char *) * 4);
     m_s->job_control[0] = "jobs";
     m_s->job_control[1] = "fg";
@@ -24,6 +32,16 @@ t_shell *mx_init_shell(int argc, char **argv) {
     m_s->job_control[3] = NULL;
 
     m_s->max_number_job = 2;
+
+    m_s->pwd = get_pwd();//PWD for further work
+    setenv("PWD", m_s->pwd, 1);
+    setenv("OLDPWD", m_s->pwd, 1);
+    char *shlvl = get_shlvl();
+    setenv("SHLVL", shlvl, 1);
+    free(shlvl);
+
+    m_s->exported = mx_set_export();
+    m_s->variables = mx_set_variables();
 
     /* See if we are running interactively.  */
     shell_is_interactive = isatty(shell_terminal);
@@ -62,4 +80,35 @@ t_shell *mx_init_shell(int argc, char **argv) {
         }
      }
     return m_s;
+}
+
+static char *get_shlvl() {
+    char *shlvl = NULL;
+
+    shlvl = getenv("SHLVL");
+    int lvl = atoi(shlvl);
+    lvl++;
+    shlvl = mx_itoa(lvl);
+    
+    return shlvl;
+}
+
+
+static char *get_pwd() {
+    char *pwd = getenv("PWD");
+    char *link = malloc(256);
+    char *cur_dir = getcwd(NULL, 256);
+    char *read_link = NULL;
+
+    readlink(pwd, link, 256);
+    if (link[0] != '/')
+        read_link = mx_normalization(link, "");
+    else
+        read_link = strdup(link);
+    if (strstr(cur_dir, read_link) && strcmp(link, "") != 0)
+        pwd = getenv("PWD");
+    else
+        pwd = strdup(cur_dir);
+    free(link);
+    return pwd;
 }

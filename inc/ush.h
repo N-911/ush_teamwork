@@ -88,6 +88,23 @@ typedef struct s_input {
     struct s_input *next;
 } t_input;
 
+typedef struct cd_s  {
+    int s;
+    int L;
+    int P;
+} cd_t;
+
+typedef struct pwd_s  {
+    int L;
+    int P;
+} pwd_t;
+
+typedef struct  s_export {
+    char *name;
+    char *value;
+    struct s_export *next;
+} t_export;
+
 typedef struct s_process {
     char *fullpath;  //for execve
     char **argv;
@@ -103,7 +120,7 @@ typedef struct s_process {
     int fd_out;
     int type;               // COMMAND_BUILTIN = index in m_s->builtin_list; default = 0
     //  char completed;        // true if process has completed
-    //   char stopped;          // true if process has stopped
+    //  char stopped;          // true if process has stopped
     struct s_process *next;     // next process in pipeline
 //    t_ast			*ast;  //ast tree
 } t_process;
@@ -140,6 +157,9 @@ typedef struct s_shell {
     struct termios t_custom;
     bool custom_terminal;
     pid_t shell_pgid;
+    char *pwd;
+    t_export *exported;
+    t_export *variables;
 } t_shell;
 
 
@@ -195,6 +215,10 @@ int mx_exit(t_shell *m_s, t_process *p);
 int mx_echo(t_shell *m_s, t_process *p);
 int mx_jobs(t_shell *m_s, t_process *p);
 int mx_fg(t_shell *m_s, t_process *p);
+int mx_cd(t_shell *m_s, t_process *p);
+int mx_pwd(t_shell *m_s, t_process *p);
+int mx_export(t_shell *m_s, t_process *p);
+int mx_unset(t_shell *m_s, t_process *p);
 
 //      SIGNALS
 void sigchld_handler(int signum);
@@ -225,6 +249,12 @@ int mx_get_pgid_by_job_id(t_shell *m_s, int job_id);
 //      OTHER
 void mx_printstr(const char *s);
 void mx_printerr(const char *s);
+char *mx_normalization (char *point, char *pwd);
+void mx_push_export(t_export **list, void *name, void *value);
+t_export *mx_set_variables();
+t_export *mx_set_export();
+int mx_count_options(char **args, char *options, char *command, char *error);
+void mx_set_variable(t_export *export, char *name, char *value);
 
 
 #endif

@@ -2,7 +2,8 @@
 
 void mx_launch_job(t_shell *m_s, t_job *job) {
     //pid_t shell_pgid;
-    int (*builtin_functions[])(t_shell *m_s, t_process *p) = {&mx_echo, &mx_jobs, &mx_fg, &mx_exit, NULL};
+    int (*builtin_functions[])(t_shell *m_s, t_process *p) = {&mx_echo, &mx_jobs, &mx_fg, &mx_exit, 
+        &mx_cd, &mx_pwd, &mx_export, &mx_unset, &mx_which, NULL};
 //    pid_t wpid;
     setbuf(stdout, NULL); /* установить небуферизованный режим */
     int status;
