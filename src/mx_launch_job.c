@@ -18,7 +18,6 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     int outfile = 1;
     int errfile = 2;
     infile = job->stdin;
-
 //  job control
     mx_check_jobs(m_s);
     job_id = mx_insert_job(m_s, job);            //insert process to job control

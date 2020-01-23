@@ -6,5 +6,5 @@ C_FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacO
 
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/snikolayen/git_911/ush/inc -I/Users/snikolayen/git_911/ush/libmx/inc 
+C_INCLUDES = -I/Users/snikolayen/ush_team/inc -I/Users/snikolayen/ush_team/libmx/inc 
 

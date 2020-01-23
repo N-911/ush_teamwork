@@ -8,44 +8,44 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/snikolayen/git_911/ush/cmake-build-debug"/>
+				<Option working_dir="/Users/snikolayen/ush_team/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/snikolayen/git_911/ush/cmake-build-debug"/>
+				<Option working_dir="/Users/snikolayen/ush_team/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/snikolayen/git_911/ush/cmake-build-debug"/>
+				<Option working_dir="/Users/snikolayen/ush_team/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ush">
-				<Option output="/Users/snikolayen/git_911/ush/cmake-build-debug/ush" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/snikolayen/git_911/ush/cmake-build-debug"/>
+				<Option output="/Users/snikolayen/ush_team/cmake-build-debug/ush" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/snikolayen/ush_team/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/snikolayen/git_911/ush/inc"/>
-					<Add directory="/Users/snikolayen/git_911/ush/libmx/inc"/>
+					<Add directory="/Users/snikolayen/ush_team/inc"/>
+					<Add directory="/Users/snikolayen/ush_team/libmx/inc"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -53,21 +53,21 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 ush"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 ush"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ush/fast">
-				<Option output="/Users/snikolayen/git_911/ush/cmake-build-debug/ush" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/snikolayen/git_911/ush/cmake-build-debug"/>
+				<Option output="/Users/snikolayen/ush_team/cmake-build-debug/ush" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/snikolayen/ush_team/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/snikolayen/git_911/ush/inc"/>
-					<Add directory="/Users/snikolayen/git_911/ush/libmx/inc"/>
+					<Add directory="/Users/snikolayen/ush_team/inc"/>
+					<Add directory="/Users/snikolayen/ush_team/libmx/inc"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
@@ -75,236 +75,236 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 ush/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/git_911/ush/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 ush/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/snikolayen/ush_team/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/snikolayen/git_911/ush/inc/ush.h">
+		<Unit filename="/Users/snikolayen/ush_team/inc/ush.h">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/inc/libmx.h">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/inc/libmx.h">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_atoi.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_atoi.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_bubble_sort.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_bubble_sort.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_clear_list.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_clear_list.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_count_substr.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_count_substr.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_count_words.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_count_words.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_create_node.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_create_node.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_del_strarr.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_del_strarr.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_file_to_str.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_file_to_str.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_foreach.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_foreach.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_get_char_index.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_get_char_index.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_get_sub_index.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_get_sub_index.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_isalpha.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_isalpha.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_isdigit.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_isdigit.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_isspace.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_isspace.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_itoa.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_itoa.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_list_size.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_list_size.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_memcpy.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_memcpy.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_pop_back.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_pop_back.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_pop_front.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_pop_front.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_pow.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_pow.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_printchar.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_printchar.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_printerr.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_printerr.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_printint.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_printint.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_printstr.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_printstr.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_printstr_color.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_printstr_color.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_push_back.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_push_back.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_push_front.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_push_front.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_realloc.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_realloc.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_str_reverse.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_str_reverse.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_strcat.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_strcat.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_strcmp.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_strcmp.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_strcpy.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_strcpy.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_strdel.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_strdel.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_strdup.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_strdup.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_strjoin.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_strjoin.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_strlen.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_strlen.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_strncmp.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_strncmp.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_strncpy.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_strncpy.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_strndup.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_strndup.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_strnew.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_strnew.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_strsplit.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_strsplit.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_strstr.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_strstr.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/libmx/src/mx_swap_char.c">
+		<Unit filename="/Users/snikolayen/ush_team/libmx/src/mx_swap_char.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_builtin_commands.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_builtin_commands.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_check_parce_errors.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_check_parce_errors.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_count_char_arr.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_count_char_arr.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_count_chr_quote.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_count_chr_quote.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_get_char_index_quote.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_get_char_index_quote.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_init_shell.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_init_shell.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_jobs_functions.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_jobs_functions.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_launch_job.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_launch_job.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_launch_process.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_launch_process.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_loop.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_loop.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_parce_tokens.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_parce_tokens.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_print_colored.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_print_colored.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_print_strarr_in_line.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_print_strarr_in_line.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_read_line.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_read_line.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_set_buff_zero.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_set_buff_zero.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_signal.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_signal.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_split_line.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_split_line.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_strdup_arr.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_strdup_arr.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_strjoin_free.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_strjoin_free.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_strlen_arr.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_strlen_arr.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_strsplit_quote.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_strsplit_quote.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_strtok.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_strtok.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_strtrim_quote.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_strtrim_quote.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_terminal.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_terminal.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_ush_clear_list.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_ush_clear_list.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_ush_parsed_input.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_ush_parsed_input.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_ush_push_back.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_ush_push_back.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/mx_ush_read_line.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_ush_read_line.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/src/ush_main.c">
+		<Unit filename="/Users/snikolayen/ush_team/src/ush_main.c">
 			<Option target="ush"/>
 		</Unit>
-		<Unit filename="/Users/snikolayen/git_911/ush/CMakeLists.txt">
+		<Unit filename="/Users/snikolayen/ush_team/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
