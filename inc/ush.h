@@ -25,8 +25,7 @@
 #include <curses.h>
 #include <malloc/malloc.h>
 
-#include "../libmx/inc/libmx.h"
-
+#include "libmx/inc/libmx.h"
 
 #define LSH_RL_BUFSIZE 1024
 #define LSH_TOK_BUFSIZE 64
@@ -99,6 +98,7 @@ typedef struct s_process {
     int status;  //status RUNNING DONE SUSPENDED CONTINUED TERMINATED
     int foreground;
     int pipe;
+    char *delim;
     int fd_in;
     int fd_out;
     int type;               // COMMAND_BUILTIN = index in m_s->builtin_list; default = 0
@@ -184,8 +184,8 @@ void mx_set_buff_zero(void *s, size_t n);
 char *mx_read_line2(void);
 char **mx_ush_split_line(char *line);
 t_job *mx_create_job(t_shell *m_s, t_input *list);
+t_process *mx_create_list_process(t_shell *m_s, t_input *list);
 void mx_ush_loop(t_shell *m_s);
-//int mx_launch_process(t_shell *m_s, int job_id, t_process *p, int infile, int outfile, int errfile);
 int mx_launch_process(t_shell *m_s, t_process *p, pid_t pgid, int infile, int outfile, int errfile);
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
 void mx_launch_job(t_shell *m_s, t_job *job);
@@ -221,6 +221,7 @@ void mx_destroy_jobs(t_shell *m_s, int id);
 int mx_wait_pid(t_shell *m_s, int pid);
 int mx_wait_job(t_shell *m_s, int id);
 int mx_get_pgid_by_job_id(t_shell *m_s, int job_id);
+int mx_is_job_completed(t_shell *m_s, int id);
 
 //      OTHER
 void mx_printstr(const char *s);

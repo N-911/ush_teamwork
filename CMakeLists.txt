@@ -1,12 +1,15 @@
 cmake_minimum_required(VERSION 3.15)
-project(ush C)
+project(ush_team)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
+include_directories(.)
 include_directories(inc)
+include_directories(libmx)
 include_directories(libmx/inc)
+include_directories(libmx/src)
 
-add_executable(ush
+add_executable(ush_team
         inc/ush.h
         libmx/inc/libmx.h
         libmx/src/mx_atoi.c
@@ -52,6 +55,8 @@ add_executable(ush
         libmx/src/mx_strsplit.c
         libmx/src/mx_strstr.c
         libmx/src/mx_swap_char.c
+        libmx/libmx.a
+        libmx/Makefile
         src/mx_builtin_commands.c
         src/mx_check_parce_errors.c
         src/mx_count_char_arr.c
