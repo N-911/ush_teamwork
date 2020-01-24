@@ -1,5 +1,10 @@
 #include "ush.h"
 
+void sig_handler(int signal) {
+    int a = 0;
+    a += signal;
+    printf("\n");
+}
 
 void install_handler (void) {
     struct sigaction setup_action;

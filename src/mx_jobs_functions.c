@@ -31,10 +31,8 @@ int mx_is_job_completed(t_shell *m_s, int id) {
             return 0;
         }
     }
-
     return 1;
 }
-
 
 int mx_get_next_job_id(t_shell *m_s) {
     for (int i = 1; i < m_s->max_number_job; i++) {
@@ -96,7 +94,6 @@ void mx_print_process_in_job(t_shell *m_s, int id) {
         printf("\n");
     }
 }
-
 
 int mx_get_proc_count(t_shell *m_s, int job_id, int filter) {
     t_process *proc;
@@ -209,28 +206,29 @@ void mx_set_process_status(t_shell *m_s, int pid, int status) {
 }
 
     //  [1] +	done	ls -la src
-int mx_print_job_status(t_shell *m_s, int id) {
+int mx_print_job_status(t_shell *m_s, int job_id) {
     t_process *proc;
     const char* status[] = { "running", "done", "suspended", "continued", "terminated" };
 
-    if (id > JOBS_NUMBER || m_s->jobs[id] == NULL)
+    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
         return -1;
-    printf("[%d]  %c ", id, m_s->jobs[id]->mark_job_id);
-    for (proc = m_s->jobs[id]->first_process; proc != NULL; proc = proc->next) {
+    printf("[%d]  %c ", job_id, m_s->jobs[job_id]->mark_job_id);
+    for (proc = m_s->jobs[job_id]->first_process; proc != NULL; proc = proc->next) {
         printf("%s\t", status[proc->status]);
+        /*
         for (int i = 0; proc->argv[i] != NULL; i++) {
             printf("%s ", proc->argv[i]);
         }
+         */
         if (proc->next != NULL) {
             printf("| ");
         } else {
             printf("\n");
         }
+
     }
     return 0;
 }
-
-
 
 
 int mx_get_job_id_by_pid(t_shell *m_s, int pid) {
@@ -256,12 +254,6 @@ int mx_get_pgid_by_job_id(t_shell *m_s, int job_id) {
     return m_s->jobs[job_id]->pgid;
 }
 
-/*
-
-int mx_get_recent_job(t_shell *m_s)
-
-}
-*/
 
 int mx_set_job_status(t_shell *m_s, int job_id, int status) {
     t_process *proc;

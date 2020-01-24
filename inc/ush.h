@@ -197,6 +197,7 @@ int mx_jobs(t_shell *m_s, t_process *p);
 int mx_fg(t_shell *m_s, t_process *p);
 
 //      SIGNALS
+void sig_handler(int signal);
 void sigchld_handler(int signum);
 //void mx_sig_handler(int signal);
 //void sig_usr(int signo);

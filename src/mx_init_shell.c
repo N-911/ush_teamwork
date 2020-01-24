@@ -29,17 +29,25 @@ t_shell *mx_init_shell(int argc, char **argv) {
     shell_is_interactive = isatty(shell_terminal);
 //    mx_terminal_init(m_s);
     if (shell_is_interactive) {
-        // Loop until we are in the foreground.
-       // while (tcgetpgrp(shell_terminal) != (shell_pgid = getpgrp()))
-       //     kill(-shell_pgid, SIGTTIN);
+       // Loop until we are in the foreground.
+        while (tcgetpgrp(shell_terminal) != (shell_pgid = getpgrp()))
+            kill(-shell_pgid, SIGTTIN);
         /* Ignore interactive and job-control signals.  */
-        //  (void)signal(SIGINT, sigint_handler);
+       //  (void)signal(SIGINT, sigint_handler);
+/*
+        struct sigaction sigint_action = {
+                .sa_handler = &sig_handler,
+                .sa_flags = 0
+      };
 
+        sigemptyset(&sigint_action.sa_mask);
+        sigaction(SIGINT, &sigint_action, NULL);
+*/
         signal(SIGINT, SIG_IGN);
         signal(SIGTSTP, SIG_IGN);
         signal(SIGTTIN, SIG_IGN);
         signal(SIGTTOU, SIG_IGN);
-        signal(SIGCHLD, SIG_IGN);
+ //       signal(SIGCHLD, SIG_IGN);
         /* Put ourselves in our own process group.  */
         shell_pgid = getpid();
         printf("parent shell_pgid %d\n", shell_pgid);

@@ -63,10 +63,14 @@ static t_process *create_process(t_shell *m_s, t_input *list) {
     p->argv = list->args;
     p->delim = list->delim;
     p->foreground = 1;
-    for (int i = 0; p->argv[i] != NULL; i++)
+    for (int i = 0; p->argv[i] != NULL; i++) {
         if (strcmp(p->argv[i], "&") == 0)
             p->foreground = 0;
-    p->pipe = 0;
+    }
+    if (strcmp(p->delim, "|") == 0)
+        p->pipe = 1;
+    else
+        p->pipe = 0;
     if ((index = mx_builtin_commands_idex(m_s, p->argv[0])) == -1) {
         p->type = 0;      //COMMAND_BUILTIN = index;   default = 0
     } else

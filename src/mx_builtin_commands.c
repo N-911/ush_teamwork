@@ -42,7 +42,7 @@ int mx_fg(t_shell *m_s, t_process *p) {
 
     if (p->argv[1]) {
         //  if (p->arg_command[0] == '%') {
-        job_id = atoi(p->arg_command);
+        job_id = atoi(p->argv[1]);
 //        else
 //            job_id = mx_get_recent_job(m_s); //most recently placed in the background, find '+'
         //}
@@ -50,6 +50,7 @@ int mx_fg(t_shell *m_s, t_process *p) {
     //       else {
 //            pid = atoi((p->arg_command[1]));
     pid = mx_get_pgid_by_job_id(m_s, job_id);
+    printf("pid suspended process %d\n", pid);
 //    if (kill(-pid, SIGCONT) < 0) {
     if (kill(-0, SIGCONT) < 0) {
         mx_printerr("fg: job not found: ");
@@ -60,7 +61,7 @@ int mx_fg(t_shell *m_s, t_process *p) {
 
     tcsetpgrp(0, pid);
     if (job_id > 0) {
-        mx_set_process_status(m_s, job_id, STATUS_CONTINUED);
+        mx_set_process_status(m_s, pid, STATUS_CONTINUED);
         mx_print_job_status(m_s, job_id);
         if (mx_wait_job(m_s, job_id) >= 0)
             mx_remove_job(m_s, job_id);
