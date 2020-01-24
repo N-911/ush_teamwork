@@ -115,6 +115,7 @@ t_job *mx_create_job(t_shell *m_s, t_input *list) {
     else
         new_job->foreground = BACKGROUND;
     //  new_job->pgid = getpid();
+    new_job->job_id = -1;
     new_job->pgid = 0;
     new_job->stdin = 0;
     new_job->stdout = 1;

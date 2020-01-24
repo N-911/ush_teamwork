@@ -22,10 +22,12 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
 //  job control
     mx_check_jobs(m_s);
     job_id = mx_insert_job(m_s, job);            //insert process to job control
+
     for (p = m_s->jobs[job_id]->first_process; p; p = p->next) {  //list of process in job
-        if (p->next) {
+        if (p->pipe) {  //if pipe !!!!!
             if (pipe(mypipe) < 0) {
                 perror("pipe");
+                mx_remove_job(m_s, job_id);
                 exit(1);
             }
             outfile = mypipe[1];
@@ -60,16 +62,16 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
                         job->pgid = child_pid;
                     setpgid(child_pid, job->pgid);
                 }
-                /*
+
                 if (job->first_process->foreground == FOREGROUND) {
                     tcsetpgrp(0, job->pgid);
-                    mx_wait_job(m_s, job->job_id);
+                    status = mx_wait_job(m_s, job->job_id);
                     signal(SIGTTOU, SIG_IGN);
                     tcsetpgrp(0, getpid());
                     signal(SIGTTOU, SIG_DFL);
                     mx_print_job_status(m_s, job_id);
                 }
-                 */
+
                 if (infile != job->stdin)
                     close(infile);
                 if (outfile != job->stdout)
@@ -78,10 +80,11 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
             }
         }
     }
+/*
     if (shell_is_interactive) {
 //    if (job->first_process->foreground == FOREGROUND) {
         tcsetpgrp(0, job->pgid);
-        mx_wait_job(m_s, job->job_id);
+        status = mx_wait_job(m_s, job->job_id);
         signal(SIGTTOU, SIG_IGN);
         tcsetpgrp(0, getpid());
         signal(SIGTTOU, SIG_DFL);
@@ -91,7 +94,8 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
             mx_remove_job(m_s, job_id);
         }
     }
-    else if (status >= 0 && job->foreground == FOREGROUND) {
+*/
+    if (status >= 0 && job->foreground == FOREGROUND) {
         //mx_print_process_in_job(m_s, job->job_id);
         mx_remove_job(m_s, job->job_id);
     }

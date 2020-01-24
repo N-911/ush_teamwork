@@ -122,30 +122,29 @@ int mx_wait_job(t_shell *m_s, int job_id) {
     int wait_count = 0;
     int status = 0;
 
-    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL) {
+    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
         return -1;
-    }
-    //  wait_pid = waitpid(-m_s->jobs[id]->pgid, &status, WUNTRACED);
-
+    printf("shell->jobs[id]->pgid %d\n", m_s->jobs[job_id]->pgid);
     //WUNTRACED флаг, чтобы запросить информацию состояния остановленных процессов также как процессов, которые завершились
-   // while ((wait_pid = waitpid(-1, &status, WNOHANG | WUNTRACED | WCONTINUED)) > 0) {
-    while (wait_count < proc_count) {
+    do {
         wait_pid = waitpid(-m_s->jobs[job_id]->pgid, &status, WUNTRACED);
+        wait_count++;
+        printf("wait_pid = %d\n", wait_pid);
+
         if (WIFEXITED(status)) {
             mx_set_process_status(m_s, wait_pid, STATUS_DONE);
 //            mx_set_process_status(m_s, m_s->jobs[job_id]->pgid, STATUS_DONE);
-            wait_count++;
         } else if (WIFSIGNALED(status)) {
-            mx_set_process_status(m_s, m_s->jobs[job_id]->pgid, STATUS_TERMINATED);
+            mx_set_process_status(m_s, wait_pid, STATUS_TERMINATED);
         } else if (WSTOPSIG(status)) {
             status = -1;
-            mx_set_process_status(m_s, m_s->jobs[job_id]->pgid, STATUS_SUSPENDED);
-            write(1, "suspended\n", 10);
+            mx_set_process_status(m_s, wait_pid, STATUS_SUSPENDED);
+            write(1, "suspended ==\n", 10);
             if (wait_count == proc_count) {
                 mx_print_job_status(m_s, job_id);
             }
         }
-    }
+    } while (wait_count < proc_count);
     return status;
 }
 
