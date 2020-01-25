@@ -20,7 +20,7 @@ typedef struct  s_job {
 } t_job;
 */
 
-int mx_is_job_completed(t_shell *m_s, int id) {
+int mx_job_completed(t_shell *m_s, int id) {
     t_process *proc;
 
     if (id > JOBS_NUMBER || m_s->jobs[id] == NULL) {
@@ -114,7 +114,7 @@ int mx_get_proc_count(t_shell *m_s, int job_id, int filter) {
 
 
 int mx_wait_job(t_shell *m_s, int job_id) {
-    int proc_count = mx_get_proc_count(m_s, job_id, PROC_FILTER_REMAINING);
+    int proc_count;
     int wait_pid = -1;
     int wait_count = 0;
     int status = 0;
@@ -123,20 +123,21 @@ int mx_wait_job(t_shell *m_s, int job_id) {
         return -1;
     printf("shell->jobs[id]->pgid %d\n", m_s->jobs[job_id]->pgid);
     //WUNTRACED флаг, чтобы запросить информацию состояния остановленных процессов также как процессов, которые завершились
+    proc_count = mx_get_proc_count(m_s, job_id, PROC_FILTER_REMAINING);
+
     do {
         wait_pid = waitpid(-m_s->jobs[job_id]->pgid, &status, WUNTRACED);
         wait_count++;
         printf("wait_pid = %d\n", wait_pid);
 
-        if (WIFEXITED(status)) {
+        if (WIFEXITED(status))
             mx_set_process_status(m_s, wait_pid, STATUS_DONE);
-//            mx_set_process_status(m_s, m_s->jobs[job_id]->pgid, STATUS_DONE);
-        } else if (WIFSIGNALED(status)) {
+        else if (WIFSIGNALED(status))
             mx_set_process_status(m_s, wait_pid, STATUS_TERMINATED);
-        } else if (WSTOPSIG(status)) {
+        else if (WSTOPSIG(status)) {
             status = -1;
             mx_set_process_status(m_s, wait_pid, STATUS_SUSPENDED);
-            write(1, "suspended ==\n", 10);
+           // write(1, "suspended ==\n", 10);
             if (wait_count == proc_count) {
                 mx_print_job_status(m_s, job_id);
             }
@@ -148,23 +149,29 @@ int mx_wait_job(t_shell *m_s, int job_id) {
 
 void mx_check_jobs(t_shell *m_s) {
     int status;
-    pid_t pid;  //!!
+    pid_t pid;  // waitpid return pid child process
     int job_id;
 
-//pid == -1 Ожидает завершения любого дочернего процесса. В данном случае
+// Значение pid -1 или WAIT_ANY информация состояния для любого дочернего процесса
+// значение pid 0 или WAIT_MYPGRP запрашивает информацию для любого дочернего процесса
+// в той же самой группе процесса как вызывающий процесс
+// значение -pgid запрашивает информацию для любого дочернего процесса, чей ID группы - pgid.
+
     while ((pid = waitpid(-1, &status, WNOHANG | WUNTRACED | WCONTINUED)) > 0) {
         mx_printstr("pid=");
         mx_printint(pid);
         mx_printstr("\n");
         if (WIFEXITED(status)) {
             mx_set_process_status(m_s, pid, STATUS_DONE);
-        } else if (WIFSTOPPED(status)) {
+        }
+        else if (WIFSTOPPED(status)) {
             mx_set_process_status(m_s, pid, STATUS_SUSPENDED);
-        } else if (WIFCONTINUED(status)) {
+        }
+        else if (WIFCONTINUED(status)) {
             mx_set_process_status(m_s, pid, STATUS_CONTINUED);
         }
         job_id = mx_get_job_id_by_pid(m_s, pid);
-        if (job_id > 0 && mx_is_job_completed(m_s, job_id)) {
+        if (job_id > 0 && mx_job_completed(m_s, job_id)) {
             mx_print_job_status(m_s, job_id);
             mx_remove_job(m_s, job_id);
         }
@@ -178,9 +185,11 @@ int mx_wait_pid(t_shell *m_s, int pid) {
     waitpid(pid, &status, WUNTRACED);
     if (WIFEXITED(status)) {
         mx_set_process_status(m_s, pid, STATUS_DONE);
-    } else if (WIFSIGNALED(status)) {
+    }
+    else if (WIFSIGNALED(status)) {
         mx_set_process_status(m_s, pid, STATUS_TERMINATED);
-    } else if (WSTOPSIG(status)) {
+    }
+    else if (WSTOPSIG(status)) {
         status = -1;
         mx_set_process_status(m_s, pid, STATUS_SUSPENDED);
     }
@@ -215,13 +224,15 @@ int mx_print_job_status(t_shell *m_s, int job_id) {
     printf("[%d]  %c ", job_id, m_s->jobs[job_id]->mark_job_id);
     for (proc = m_s->jobs[job_id]->first_process; proc != NULL; proc = proc->next) {
         printf("%s\t", status[proc->status]);
-        /*
+        printf("%s", proc->argv[0]);
+
+/*
         for (int i = 0; proc->argv[i] != NULL; i++) {
             printf("%s ", proc->argv[i]);
         }
-         */
+*/
         if (proc->next != NULL) {
-            printf("| ");
+            printf(" | ");
         } else {
             printf("\n");
         }

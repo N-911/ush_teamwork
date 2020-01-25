@@ -49,10 +49,11 @@ int mx_fg(t_shell *m_s, t_process *p) {
     }
     //       else {
 //            pid = atoi((p->arg_command[1]));
+    printf("job_id %d\n", job_id);
     pid = mx_get_pgid_by_job_id(m_s, job_id);
     printf("pid suspended process %d\n", pid);
 //    if (kill(-pid, SIGCONT) < 0) {
-    if (kill(-0, SIGCONT) < 0) {
+    if (kill(-pid, SIGCONT) < 0) {
         mx_printerr("fg: job not found: ");
         mx_printerr(mx_itoa(pid));
         mx_printerr("\n");

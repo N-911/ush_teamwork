@@ -212,17 +212,21 @@ void WAIT_CHILD(void);
 int mx_get_next_job_id(t_shell *m_s);
 int mx_insert_job(t_shell *m_s, t_job *job);
 void mx_remove_job(t_shell *m_s, int id);
-void mx_print_process_in_job(t_shell *m_s, int id);
 int mx_get_proc_count(t_shell *m_s, int job_id, int filter);
-int mx_print_job_status(t_shell *m_s, int id);
 void mx_set_process_status(t_shell *m_s, int pid, int status);
-void mx_check_jobs(t_shell *m_s);
 int mx_get_job_id_by_pid(t_shell *m_s, int pid);
-void mx_destroy_jobs(t_shell *m_s, int id);
-int mx_wait_pid(t_shell *m_s, int pid);
-int mx_wait_job(t_shell *m_s, int id);
 int mx_get_pgid_by_job_id(t_shell *m_s, int job_id);
-int mx_is_job_completed(t_shell *m_s, int id);
+int mx_job_completed(t_shell *m_s, int id);
+
+void mx_print_process_in_job(t_shell *m_s, int id);
+int mx_print_job_status(t_shell *m_s, int id);
+
+void mx_check_jobs(t_shell *m_s);  //waitpid any process
+int mx_wait_pid(t_shell *m_s, int pid);  //waitpid process by pid
+int mx_wait_job(t_shell *m_s, int id);  //waitpid process in job group
+
+void mx_destroy_jobs(t_shell *m_s, int id);  //free job memory
+
 
 //      OTHER
 void mx_printstr(const char *s);

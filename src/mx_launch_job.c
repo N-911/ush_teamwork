@@ -20,7 +20,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     int errfile = 2;
     infile = job->stdin;
 //  job control
-    mx_check_jobs(m_s);
+//    mx_check_jobs(m_s);
     job_id = mx_insert_job(m_s, job);            //insert process to job control
 
     for (p = m_s->jobs[job_id]->first_process; p; p = p->next) {  //list of process in job
@@ -54,7 +54,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
                 //parrent process
             }
             else {
-               // WAIT_CHILD();
+                //WAIT_CHILD();
                 mx_printstr("parent process\n");
                 p->pid = child_pid;  //PID CHILD
                 if (shell_is_interactive) {  //!!!!
@@ -97,7 +97,8 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
 */
     if (status >= 0 && job->foreground == FOREGROUND) {
         //mx_print_process_in_job(m_s, job->job_id);
-        mx_remove_job(m_s, job->job_id);
+        if (mx_job_completed(m_s, job_id))
+            mx_remove_job(m_s, job->job_id);
     }
 
     else if (job->foreground == BACKGROUND) {
