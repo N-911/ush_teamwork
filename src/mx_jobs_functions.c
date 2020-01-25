@@ -224,19 +224,14 @@ int mx_print_job_status(t_shell *m_s, int job_id) {
     printf("[%d]  %c ", job_id, m_s->jobs[job_id]->mark_job_id);
     for (proc = m_s->jobs[job_id]->first_process; proc != NULL; proc = proc->next) {
         printf("%s\t", status[proc->status]);
-        printf("%s", proc->argv[0]);
+        printf("%s", proc->command);
 
 /*
         for (int i = 0; proc->argv[i] != NULL; i++) {
             printf("%s ", proc->argv[i]);
         }
 */
-        if (proc->next != NULL) {
-            printf(" | ");
-        } else {
-            printf("\n");
-        }
-
+        (proc->next != NULL) ? printf(" | ") : printf("\n");
     }
     return 0;
 }

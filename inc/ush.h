@@ -186,7 +186,8 @@ char **mx_ush_split_line(char *line);
 t_job *mx_create_job(t_shell *m_s, t_input *list);
 t_process *mx_create_list_process(t_shell *m_s, t_input *list);
 void mx_ush_loop(t_shell *m_s);
-int mx_launch_process(t_shell *m_s, t_process *p, pid_t pgid, int infile, int outfile, int errfile);
+int mx_launch_process(t_shell *m_s, t_process *p, int job_id, int infile, int outfile, int errfile);
+//int mx_launch_process(t_shell *m_s, t_process *p, pid_t pgid, int infile, int outfile, int errfile);
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
 void mx_launch_job(t_shell *m_s, t_job *job);
 

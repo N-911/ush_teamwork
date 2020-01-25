@@ -16,7 +16,8 @@ int mx_jobs(t_shell *m_s, t_process *p) {
             mx_print_job_status(m_s, i);
         }
     }
-    return p->exit_code;
+    p->exit_code = 0;
+    return 0;
 }
 
 int mx_exit(t_shell *m_s, t_process *p) {
@@ -36,8 +37,7 @@ int mx_exit(t_shell *m_s, t_process *p) {
 
 
 int mx_fg(t_shell *m_s, t_process *p) {
-////    if  !job_id
-    pid_t pid = 0;
+    pid_t pgid = 0;
     int job_id = 0;
 
     if (p->argv[1]) {
@@ -50,24 +50,24 @@ int mx_fg(t_shell *m_s, t_process *p) {
     //       else {
 //            pid = atoi((p->arg_command[1]));
     printf("job_id %d\n", job_id);
-    pid = mx_get_pgid_by_job_id(m_s, job_id);
-    printf("pid suspended process %d\n", pid);
-//    if (kill(-pid, SIGCONT) < 0) {
-    if (kill(-pid, SIGCONT) < 0) {
+    pgid = mx_get_pgid_by_job_id(m_s, job_id);
+    printf("pid suspended process %d\n", pgid);
+
+    if (kill(-pgid, SIGCONT) < 0) {
         mx_printerr("fg: job not found: ");
-        mx_printerr(mx_itoa(pid));
+        mx_printerr(mx_itoa(pgid));
         mx_printerr("\n");
         return -1;
     }
 
-    tcsetpgrp(0, pid);
+    tcsetpgrp(0, pgid);
     if (job_id > 0) {
-        mx_set_process_status(m_s, pid, STATUS_CONTINUED);
+        mx_set_process_status(m_s, pgid, STATUS_CONTINUED);
         mx_print_job_status(m_s, job_id);
         if (mx_wait_job(m_s, job_id) >= 0)
             mx_remove_job(m_s, job_id);
     } else
-        mx_wait_pid(m_s, pid);
+        mx_wait_pid(m_s, pgid);
     signal(SIGTTOU, SIG_IGN);  //Запись в управляющий терминал процессом из группы процессов фонового режима.
     tcsetpgrp(0, getpid());
     signal(SIGTTOU, SIG_DFL);  //

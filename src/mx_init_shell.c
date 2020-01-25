@@ -30,8 +30,8 @@ t_shell *mx_init_shell(int argc, char **argv) {
 //    mx_terminal_init(m_s);
     if (shell_is_interactive) {
        // Loop until we are in the foreground.
-        while (tcgetpgrp(shell_terminal) != (shell_pgid = getpgrp()))
-            kill(-shell_pgid, SIGTTIN);
+    //    while (tcgetpgrp(shell_terminal) != (shell_pgid = getpgrp()))
+    //        kill(-shell_pgid, SIGTTIN);
         /* Ignore interactive and job-control signals.  */
        //  (void)signal(SIGINT, sigint_handler);
 /*

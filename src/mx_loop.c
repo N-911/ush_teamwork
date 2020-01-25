@@ -62,6 +62,7 @@ static t_process *create_process(t_shell *m_s, t_input *list) {
         return NULL;
     p->argv = list->args;
     p->delim = list->delim;
+    p->command = mx_strdup(list->args[0]);
     p->foreground = 1;
     for (int i = 0; p->argv[i] != NULL; i++) {
         if (strcmp(p->argv[i], "&") == 0)
