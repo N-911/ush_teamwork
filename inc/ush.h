@@ -99,6 +99,17 @@ typedef struct pwd_s  {
     int P;
 } pwd_t;
 
+typedef struct which_s  {
+    int s;
+    int a;
+} which_t;
+
+typedef struct env_s  {
+    int i;
+    int u;
+    int P;
+} env_t;
+
 typedef struct  s_export {
     char *name;
     char *value;
@@ -113,16 +124,22 @@ typedef struct s_process {
     char *arg_command;
     pid_t pid;
     int exit_code;
+    char *path;
+    char **env;
     int status;  //status RUNNING DONE SUSPENDED CONTINUED TERMINATED
     int foreground;
     int pipe;
     int fd_in;
     int fd_out;
-    int type;               // COMMAND_BUILTIN = index in m_s->builtin_list; default = 0
+    int type;              // COMMAND_BUILTIN = index in m_s->builtin_list; default = 0
     //  char completed;        // true if process has completed
     //  char stopped;          // true if process has stopped
     struct s_process *next;     // next process in pipeline
 //    t_ast			*ast;  //ast tree
+    pid_t pgid;
+    int infile;
+    int outfile;
+    int errfile;
 } t_process;
 
 // A job is a pipeline of processes.
@@ -206,7 +223,8 @@ char **mx_ush_split_line(char *line);
 t_job *mx_create_job(t_shell *m_s, t_input *list);
 void mx_ush_loop(t_shell *m_s);
 //int mx_launch_process(t_shell *m_s, int job_id, t_process *p, int infile, int outfile, int errfile);
-int mx_launch_process(t_shell *m_s, t_process *p, pid_t pgid, int infile, int outfile, int errfile);
+//int mx_launch_process(t_shell *m_s, t_process *p, pid_t pgid, int infile, int outfile, int errfile);
+int mx_launch_process(t_shell *m_s, t_process *p, char *path, char **env);
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
 void mx_launch_job(t_shell *m_s, t_job *job);
 
@@ -219,6 +237,8 @@ int mx_cd(t_shell *m_s, t_process *p);
 int mx_pwd(t_shell *m_s, t_process *p);
 int mx_export(t_shell *m_s, t_process *p);
 int mx_unset(t_shell *m_s, t_process *p);
+int mx_which(t_shell *m_s, t_process *p);
+int mx_env(t_shell *m_s, t_process *p);
 
 //      SIGNALS
 void sigchld_handler(int signum);
@@ -255,6 +275,7 @@ t_export *mx_set_variables();
 t_export *mx_set_export();
 int mx_count_options(char **args, char *options, char *command, char *error);
 void mx_set_variable(t_export *export, char *name, char *value);
-
+char mx_get_type(struct stat file_stat);
+int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env);
 
 #endif

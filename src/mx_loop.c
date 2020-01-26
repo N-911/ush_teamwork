@@ -48,6 +48,7 @@ static void print_list(t_input *parsed_line) {
 */
 
 t_job *mx_create_job(t_shell *m_s, t_input *list) {
+    extern char **environ;
     int index = 0;
     // t_input *l;
     t_job *new_job = NULL;
@@ -57,6 +58,8 @@ t_job *mx_create_job(t_shell *m_s, t_input *list) {
     first_p = (t_process *) malloc(sizeof(t_process));
     first_p->argv = list->args;
     first_p->foreground = 1;
+    // first_p->path = getenv("PATH");
+    // first_p->env = environ;
     for (int i = 0; first_p->argv[i] != NULL; i++) {
         if (strcmp(first_p->argv[i], "&") == 0)
             first_p->foreground = 0;

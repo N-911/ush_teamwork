@@ -7,6 +7,10 @@ SRC = mx_builtin_commands.c \
     mx_pwd.c \
     mx_export.c \
     mx_unset.c \
+    mx_which.c \
+    mx_env.c \
+    mx_get_type.c \
+    mx_launch_bin.c \
     mx_check_parce_errors.c \
     mx_count_char_arr.c \
     mx_count_chr_quote.c \
@@ -46,6 +50,10 @@ OBJ = mx_builtin_commands.o \
     mx_pwd.o \
     mx_export.o \
     mx_unset.o \
+    mx_which.o \
+    mx_env.o \
+    mx_get_type.o \
+    mx_launch_bin.o \
     mx_check_parce_errors.o \
     mx_count_char_arr.o \
     mx_count_chr_quote.o \

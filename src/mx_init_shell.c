@@ -14,7 +14,7 @@ t_shell *mx_init_shell(int argc, char **argv) {
 
     m_s->argc = argc;
     m_s->argv = argv;
-    m_s->builtin_list = (char **) malloc(sizeof(char *) * 10);
+    m_s->builtin_list = (char **) malloc(sizeof(char *) * 11);
     m_s->builtin_list[0] = "echo";
     m_s->builtin_list[1] = "jobs";
     m_s->builtin_list[2] = "fg";
@@ -24,7 +24,8 @@ t_shell *mx_init_shell(int argc, char **argv) {
     m_s->builtin_list[6] = "export";
     m_s->builtin_list[7] = "unset";
     m_s->builtin_list[8] = "which";
-    m_s->builtin_list[9] = NULL;
+    m_s->builtin_list[9] = "env";
+    m_s->builtin_list[10] = NULL;
     m_s->job_control = (char **) malloc(sizeof(char *) * 4);
     m_s->job_control[0] = "jobs";
     m_s->job_control[1] = "fg";
@@ -53,7 +54,7 @@ t_shell *mx_init_shell(int argc, char **argv) {
         /* Ignore interactive and job-control signals.  */
         //  (void)signal(SIGINT, sigint_handler);
 
-        signal(SIGINT, SIG_DFL);
+        signal(SIGINT, SIG_IGN);
         signal(SIGQUIT, SIG_IGN);
         signal(SIGTSTP, SIG_IGN);
         signal(SIGTTIN, SIG_IGN);
