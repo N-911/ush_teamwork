@@ -29,8 +29,6 @@ int mx_env(t_shell *m_s, t_process *p) {
             if (path)
                 free(path);
             path = strdup(head_1->value);
-            // path = mx_strjoin(path, head_1->value);
-            // path = mx_strjoin(path, ":");
         }
         head_1 = head_1->next;
     }

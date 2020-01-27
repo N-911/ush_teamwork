@@ -2,7 +2,7 @@
 
 static char *replace_sub(char *str, char *sub, char *replace);
 static int count_args(char **args, int n_options);
-static void change_dir(char *point, cd_t cd_options, t_shell *m_s);
+static void change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code);
 static char *chpwd(char **args, int n_options, t_shell *m_s);
 static void fill_options(int n_options, cd_t *cd_options, char **args);
 static int check_path(char *point, cd_t cd_options); 
@@ -12,8 +12,8 @@ int mx_cd(t_shell *m_s, t_process *p) {
 	int n_options = mx_count_options(p->argv, "sLP", "cd", " [-s] [-L|-P] [dir]");
 	int n_args = count_args(p->argv, n_options);
 	char *point = NULL;
+	int exit_code = 1;
 
-	mx_set_variable(m_s->variables, "?", "1");
 	fill_options(n_options, &cd_options, p->argv);
 	if (n_options >= 0 && n_args < 3) {
 		if (n_args == 0) {
@@ -35,13 +35,13 @@ int mx_cd(t_shell *m_s, t_process *p) {
 				point = strdup(p->argv[n_options + 1]);
 		}
 		if (point) {
-			change_dir(point, cd_options, m_s);
+			change_dir(point, cd_options, m_s, &exit_code);
 		}
 	}
-	return 1;
+	return exit_code;
 }
 
-static void change_dir(char *point, cd_t cd_options, t_shell *m_s) {
+static void change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code) {
 	char *link = malloc(256);
 	char *dir = mx_normalization(point, m_s->pwd);
 	int flag = check_path(point, cd_options);
@@ -62,7 +62,7 @@ static void change_dir(char *point, cd_t cd_options, t_shell *m_s) {
 			setenv("OLDPWD", m_s->pwd, 1);
 			setenv("PWD", dir, 1);
 			m_s->pwd = dir;
-			mx_set_variable(m_s->variables, "?", "0");
+			*exit_code = 0;
 		}
 	}
 }

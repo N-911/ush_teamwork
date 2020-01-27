@@ -77,6 +77,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
                 p->infile = mypipe[0];
             }
         }
+        mx_set_variable(m_s->variables, "?", mx_itoa(p->exit_code));
     }
 
     if (status >= 0 && job->foreground == FOREGROUND) {

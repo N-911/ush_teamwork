@@ -3,32 +3,29 @@
 static int count_args(char **args, int n_options);
 static int check_identifier(char *arg);
 static void delete_name(t_export **list, char *arg);
-static void unset_or_error(t_shell *m_s, char *arg);
+static void unset_or_error(t_shell *m_s, char *arg, int *exit_code);
 
 int mx_unset(t_shell *m_s, t_process *p) {
     int n_options = mx_count_options(p->argv, "", "unset",
      " [name ...] ");
     int n_args = count_args(p->argv, n_options);
     int i = 0;
+    int exit_code = 0;
 
-    if (n_options <  0) {
-        mx_set_variable(m_s->variables, "?", "1");
+    if (n_options <  0)
         return 1;
-    }
     if (n_args == 1) {
-        mx_set_variable(m_s->variables, "?", "1");
         mx_printerr("unset: not enough arguments\n");
         return 1;
     }
     else {
-        mx_set_variable(m_s->variables, "?", "0");
         i = n_options + 1;
         while (p->argv[i] != NULL) {
-            unset_or_error(m_s, p->argv[i]);
+            unset_or_error(m_s, p->argv[i], &exit_code);
             i++;
         }
     }
-  	return 1;
+  	return exit_code;
 }
 
 
@@ -70,11 +67,10 @@ static void delete_name(t_export **list, char *arg) {
     }
 }
 
-static void unset_or_error(t_shell *m_s, char *arg) {
+static void unset_or_error(t_shell *m_s, char *arg, int *exit_code) {
     int flag = check_identifier(arg);
 
     if (flag) {
-        mx_set_variable(m_s->variables, "?", "1");
         mx_printerr("ush: unset: `");
         mx_printerr(arg);
         mx_printerr("': not a valid identifier\n");
@@ -83,6 +79,7 @@ static void unset_or_error(t_shell *m_s, char *arg) {
         delete_name(&m_s->exported, arg);
         delete_name(&m_s->variables, arg);
         unsetenv(arg);
+        exit_code = 0;
     }
 }
 

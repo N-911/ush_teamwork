@@ -7,29 +7,27 @@ static void export_value(t_export *export, char *name, char *value);
 static void print_export(t_export *export);
 static void get_data (char *arg, char **name, 
     char **value, t_export *variables);
-static void export_or_error(char *arg, t_export *export, t_export *variables);
+static void export_or_error(char *arg, t_export *export, t_export *variables, int *exit_code);
 
 int mx_export(t_shell *m_s, t_process *p) {
     int n_options = mx_count_options(p->argv, "p", "export",
      " [name[=value] ...] or export -p");
     int n_args = count_args(p->argv, n_options);
     int i = 0;
+    int exit_code = 1;
 
-    mx_set_variable(m_s->variables, "?", "0");
-    if (n_options <  0) {
-        mx_set_variable(m_s->variables, "?", "1");
+    if (n_options <  0)
         return 1;
-    }
     if (n_args == 1) 
         print_export(m_s->exported);
     else {
         i = n_options + 1;
         while (p->argv[i] != NULL) {
-            export_or_error(p->argv[i], m_s->exported, m_s->variables);
+            export_or_error(p->argv[i], m_s->exported, m_s->variables, &exit_code);
             i++;
         }
     }
-  	return 1;
+  	return exit_code;
 }
 
 static char *strdup_from(char *str, int index) {
@@ -117,11 +115,10 @@ static void get_data (char *arg, char **name, char **value, t_export *variables)
     }
 }
 
-static void export_or_error(char *arg, t_export *export, t_export *variables) {
+static void export_or_error(char *arg, t_export *export, t_export *variables, int *exit_code) {
     int flag = check_identifier(arg);
 
     if (flag) {
-        mx_set_variable(variables, "?", "1");
         mx_printerr("ush: export: `");
         mx_printerr(arg);
         mx_printerr("': not a valid identifier\n");
@@ -136,6 +133,7 @@ static void export_or_error(char *arg, t_export *export, t_export *variables) {
         }
         export_value(export, name, value);
         export_value(variables, name, value);
+        exit_code = 0;
     }
 }
 

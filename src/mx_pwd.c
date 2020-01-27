@@ -8,7 +8,7 @@ int mx_pwd(t_shell *m_s, t_process *p) {
 	pwd_t pwd_options = {0, 0};
 	int n_options = mx_count_options(p->argv, "LP", "pwd", " [-LP]");
 	int n_args = count_args(p->argv, n_options);
-	mx_set_variable(m_s->variables, "?", "1");
+	int exit_code = 1;
 
 	fill_options(n_options, &pwd_options, p->argv);
 	if (n_options <  0) return 1;
@@ -18,7 +18,7 @@ int mx_pwd(t_shell *m_s, t_process *p) {
 	}
 	dir = getcwd(NULL, 20000);
 	if(dir != NULL) {
-		mx_set_variable(m_s->variables, "?", "0");
+		exit_code = 0;
 		if (pwd_options.P < 0) {
 			printf("%s\n", m_s->pwd);
 		} 
@@ -30,7 +30,7 @@ int mx_pwd(t_shell *m_s, t_process *p) {
 	else {
 		perror("ush: pwd");
 	}
-    return 1;
+    return exit_code;
 }
 
 static void fill_options(int n_options, pwd_t *pwd_options, char ** args) {

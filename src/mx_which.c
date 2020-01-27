@@ -8,8 +8,8 @@ static void check_builtin (char **list, char *command, t_list **output, int *fla
 int mx_which(t_shell *m_s, t_process *p) {
 	which_t which_options = {0, 0};
 	int n_options = mx_count_options(p->argv, "as", "which", " [-as] program ...");
+	int exit_code = 1;
 
-	mx_set_variable(m_s->variables, "?", "0");
 	fill_options(n_options, &which_options, p->argv);
 	if (n_options < 0) 
 		return 1;
@@ -22,10 +22,10 @@ int mx_which(t_shell *m_s, t_process *p) {
         check_path(arr, p->argv[i], &output, &flag);
         if (!which_options.s)
         	print_path(output, flag, p->argv[i], which_options);
-        if (!flag)
-        	mx_set_variable(m_s->variables, "?", "1");
+        if (flag)
+        	exit_code = 0;
 	}
-    return 1;
+    return exit_code;
 }
 
 static void fill_options(int n_options, which_t *which_options, char **args) {
