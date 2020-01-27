@@ -25,7 +25,8 @@
 #include <curses.h>
 #include <malloc/malloc.h>
 
-#include "../libmx/inc/libmx.h"
+//#include "../libmx/inc/libmx.h"
+#include "libmx/inc/libmx.h"
 
 
 #define LSH_RL_BUFSIZE 1024
@@ -129,6 +130,7 @@ typedef struct s_process {
     int status;  //status RUNNING DONE SUSPENDED CONTINUED TERMINATED
     int foreground;
     int pipe;
+    char *delim;
     int fd_in;
     int fd_out;
     int type;              // COMMAND_BUILTIN = index in m_s->builtin_list; default = 0
@@ -156,6 +158,7 @@ typedef struct s_job {
     int stdin;  // standard i/o channels
     int stdout;  // standard i/o channels
     int stderr;  // standard i/o channels
+    struct s_job *next;  //next job separated by ";" "&&" "||"
 } t_job;
 
 typedef struct s_shell {
@@ -218,13 +221,14 @@ void mx_print_color(char *macros, char *str);
 void mx_set_buff_zero(void *s, size_t n);
 
 //      LOOP
-char *mx_read_line2(void);
+//char *mx_read_line2(void);
 char **mx_ush_split_line(char *line);
 t_job *mx_create_job(t_shell *m_s, t_input *list);
 void mx_ush_loop(t_shell *m_s);
-//int mx_launch_process(t_shell *m_s, int job_id, t_process *p, int infile, int outfile, int errfile);
-//int mx_launch_process(t_shell *m_s, t_process *p, pid_t pgid, int infile, int outfile, int errfile);
-int mx_launch_process(t_shell *m_s, t_process *p, char *path, char **env);
+
+int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
+                      int infile, int outfile, int errfile);
+//int mx_launch_process(t_shell *m_s, t_process *p, char *path, char **env);
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
 void mx_launch_job(t_shell *m_s, t_job *job);
 
@@ -255,16 +259,20 @@ void WAIT_CHILD(void);
 int mx_get_next_job_id(t_shell *m_s);
 int mx_insert_job(t_shell *m_s, t_job *job);
 void mx_remove_job(t_shell *m_s, int id);
-void mx_print_process_in_job(t_shell *m_s, int id);
 int mx_get_proc_count(t_shell *m_s, int job_id, int filter);
-int mx_print_job_status(t_shell *m_s, int id);
 void mx_set_process_status(t_shell *m_s, int pid, int status);
-void mx_check_jobs(t_shell *m_s);
 int mx_get_job_id_by_pid(t_shell *m_s, int pid);
-void mx_destroy_jobs(t_shell *m_s, int id);
-int mx_wait_pid(t_shell *m_s, int pid);
-int mx_wait_job(t_shell *m_s, int id);
 int mx_get_pgid_by_job_id(t_shell *m_s, int job_id);
+int mx_job_completed(t_shell *m_s, int id);
+
+void mx_print_process_in_job(t_shell *m_s, int id);
+int mx_print_job_status(t_shell *m_s, int id);
+
+void mx_check_jobs(t_shell *m_s);  //waitpid any process
+int mx_wait_pid(t_shell *m_s, int pid);  //waitpid process by pid
+int mx_wait_job(t_shell *m_s, int id);  //waitpid process in job group
+
+void mx_destroy_jobs(t_shell *m_s, int id);  //free job memory
 
 //      OTHER
 void mx_printstr(const char *s);
