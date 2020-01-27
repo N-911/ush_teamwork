@@ -39,7 +39,7 @@ int mx_get_next_job_id(t_shell *m_s) {
         if (m_s->jobs[i] == NULL) {
             m_s->max_number_job++;
             return i;
-        }
+            mx_print_job_status}
     }
     return -1;
 }
@@ -53,7 +53,7 @@ int mx_insert_job(t_shell *m_s, t_job *job) {
     job->job_id = id;
     job->mark_job_id = 43;
     m_s->jobs[id] = job;
-    write(1, "job insert\n", strlen("job insert\n"));
+   // write(1, "job insert\n", strlen("job insert\n"));
     return id;
 }
 
@@ -64,7 +64,7 @@ void mx_remove_job(t_shell *m_s, int id) {
     if (id == m_s->max_number_job - 1)
         m_s->max_number_job--;
     m_s->jobs[id] = NULL;
-    write(1, "job remove\n", strlen("job remove\n"));
+   // write(1, "job remove\n", strlen("job remove\n"));
 }
 
 void mx_destroy_jobs(t_shell *m_s, int id) {
@@ -121,14 +121,14 @@ int mx_wait_job(t_shell *m_s, int job_id) {
 
     if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
         return -1;
-    printf("shell->jobs[id]->pgid %d\n", m_s->jobs[job_id]->pgid);
+   // printf("shell->jobs[id]->pgid %d\n", m_s->jobs[job_id]->pgid);
     //WUNTRACED флаг, чтобы запросить информацию состояния остановленных процессов также как процессов, которые завершились
     proc_count = mx_get_proc_count(m_s, job_id, PROC_FILTER_REMAINING);
 
     do {
         wait_pid = waitpid(-m_s->jobs[job_id]->pgid, &status, WUNTRACED);
         wait_count++;
-        printf("wait_pid = %d\n", wait_pid);
+     //   printf("wait_pid = %d\n", wait_pid);
 
         if (WIFEXITED(status))
             mx_set_process_status(m_s, wait_pid, STATUS_DONE);

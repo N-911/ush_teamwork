@@ -60,1107 +60,1107 @@ include CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_atoi.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_atoi.c.o: ../libmx/src/mx_atoi.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_atoi.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_atoi.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_atoi.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_atoi.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_atoi.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_atoi.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_atoi.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_atoi.c > CMakeFiles/ush_team.dir/libmx/src/mx_atoi.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_atoi.c > CMakeFiles/ush_team.dir/libmx/src/mx_atoi.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_atoi.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_atoi.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_atoi.c -o CMakeFiles/ush_team.dir/libmx/src/mx_atoi.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_atoi.c -o CMakeFiles/ush_team.dir/libmx/src/mx_atoi.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_bubble_sort.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_bubble_sort.c.o: ../libmx/src/mx_bubble_sort.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_bubble_sort.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_bubble_sort.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_bubble_sort.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_bubble_sort.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_bubble_sort.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_bubble_sort.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_bubble_sort.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_bubble_sort.c > CMakeFiles/ush_team.dir/libmx/src/mx_bubble_sort.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_bubble_sort.c > CMakeFiles/ush_team.dir/libmx/src/mx_bubble_sort.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_bubble_sort.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_bubble_sort.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_bubble_sort.c -o CMakeFiles/ush_team.dir/libmx/src/mx_bubble_sort.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_bubble_sort.c -o CMakeFiles/ush_team.dir/libmx/src/mx_bubble_sort.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_clear_list.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_clear_list.c.o: ../libmx/src/mx_clear_list.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_clear_list.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_clear_list.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_clear_list.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_clear_list.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_clear_list.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_clear_list.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_clear_list.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_clear_list.c > CMakeFiles/ush_team.dir/libmx/src/mx_clear_list.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_clear_list.c > CMakeFiles/ush_team.dir/libmx/src/mx_clear_list.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_clear_list.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_clear_list.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_clear_list.c -o CMakeFiles/ush_team.dir/libmx/src/mx_clear_list.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_clear_list.c -o CMakeFiles/ush_team.dir/libmx/src/mx_clear_list.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_count_substr.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_count_substr.c.o: ../libmx/src/mx_count_substr.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_count_substr.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_count_substr.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_count_substr.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_count_substr.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_count_substr.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_count_substr.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_count_substr.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_count_substr.c > CMakeFiles/ush_team.dir/libmx/src/mx_count_substr.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_count_substr.c > CMakeFiles/ush_team.dir/libmx/src/mx_count_substr.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_count_substr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_count_substr.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_count_substr.c -o CMakeFiles/ush_team.dir/libmx/src/mx_count_substr.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_count_substr.c -o CMakeFiles/ush_team.dir/libmx/src/mx_count_substr.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_count_words.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_count_words.c.o: ../libmx/src/mx_count_words.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_count_words.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_count_words.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_count_words.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_count_words.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_count_words.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_count_words.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_count_words.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_count_words.c > CMakeFiles/ush_team.dir/libmx/src/mx_count_words.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_count_words.c > CMakeFiles/ush_team.dir/libmx/src/mx_count_words.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_count_words.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_count_words.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_count_words.c -o CMakeFiles/ush_team.dir/libmx/src/mx_count_words.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_count_words.c -o CMakeFiles/ush_team.dir/libmx/src/mx_count_words.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_create_node.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_create_node.c.o: ../libmx/src/mx_create_node.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_create_node.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_create_node.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_create_node.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_create_node.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_create_node.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_create_node.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_create_node.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_create_node.c > CMakeFiles/ush_team.dir/libmx/src/mx_create_node.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_create_node.c > CMakeFiles/ush_team.dir/libmx/src/mx_create_node.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_create_node.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_create_node.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_create_node.c -o CMakeFiles/ush_team.dir/libmx/src/mx_create_node.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_create_node.c -o CMakeFiles/ush_team.dir/libmx/src/mx_create_node.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_del_strarr.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_del_strarr.c.o: ../libmx/src/mx_del_strarr.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_del_strarr.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_del_strarr.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_del_strarr.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_del_strarr.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_del_strarr.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_del_strarr.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_del_strarr.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_del_strarr.c > CMakeFiles/ush_team.dir/libmx/src/mx_del_strarr.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_del_strarr.c > CMakeFiles/ush_team.dir/libmx/src/mx_del_strarr.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_del_strarr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_del_strarr.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_del_strarr.c -o CMakeFiles/ush_team.dir/libmx/src/mx_del_strarr.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_del_strarr.c -o CMakeFiles/ush_team.dir/libmx/src/mx_del_strarr.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_file_to_str.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_file_to_str.c.o: ../libmx/src/mx_file_to_str.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_file_to_str.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_file_to_str.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_file_to_str.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_file_to_str.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_file_to_str.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_file_to_str.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_file_to_str.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_file_to_str.c > CMakeFiles/ush_team.dir/libmx/src/mx_file_to_str.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_file_to_str.c > CMakeFiles/ush_team.dir/libmx/src/mx_file_to_str.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_file_to_str.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_file_to_str.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_file_to_str.c -o CMakeFiles/ush_team.dir/libmx/src/mx_file_to_str.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_file_to_str.c -o CMakeFiles/ush_team.dir/libmx/src/mx_file_to_str.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_foreach.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_foreach.c.o: ../libmx/src/mx_foreach.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_foreach.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_foreach.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_foreach.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_foreach.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_foreach.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_foreach.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_foreach.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_foreach.c > CMakeFiles/ush_team.dir/libmx/src/mx_foreach.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_foreach.c > CMakeFiles/ush_team.dir/libmx/src/mx_foreach.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_foreach.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_foreach.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_foreach.c -o CMakeFiles/ush_team.dir/libmx/src/mx_foreach.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_foreach.c -o CMakeFiles/ush_team.dir/libmx/src/mx_foreach.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_get_char_index.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_get_char_index.c.o: ../libmx/src/mx_get_char_index.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_get_char_index.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_get_char_index.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_get_char_index.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_get_char_index.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_get_char_index.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_get_char_index.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_get_char_index.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_get_char_index.c > CMakeFiles/ush_team.dir/libmx/src/mx_get_char_index.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_get_char_index.c > CMakeFiles/ush_team.dir/libmx/src/mx_get_char_index.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_get_char_index.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_get_char_index.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_get_char_index.c -o CMakeFiles/ush_team.dir/libmx/src/mx_get_char_index.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_get_char_index.c -o CMakeFiles/ush_team.dir/libmx/src/mx_get_char_index.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_get_sub_index.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_get_sub_index.c.o: ../libmx/src/mx_get_sub_index.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_get_sub_index.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_get_sub_index.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_get_sub_index.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_get_sub_index.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_get_sub_index.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_get_sub_index.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_get_sub_index.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_get_sub_index.c > CMakeFiles/ush_team.dir/libmx/src/mx_get_sub_index.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_get_sub_index.c > CMakeFiles/ush_team.dir/libmx/src/mx_get_sub_index.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_get_sub_index.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_get_sub_index.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_get_sub_index.c -o CMakeFiles/ush_team.dir/libmx/src/mx_get_sub_index.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_get_sub_index.c -o CMakeFiles/ush_team.dir/libmx/src/mx_get_sub_index.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_isalpha.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_isalpha.c.o: ../libmx/src/mx_isalpha.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_isalpha.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_isalpha.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_isalpha.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_isalpha.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_isalpha.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_isalpha.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_isalpha.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_isalpha.c > CMakeFiles/ush_team.dir/libmx/src/mx_isalpha.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_isalpha.c > CMakeFiles/ush_team.dir/libmx/src/mx_isalpha.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_isalpha.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_isalpha.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_isalpha.c -o CMakeFiles/ush_team.dir/libmx/src/mx_isalpha.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_isalpha.c -o CMakeFiles/ush_team.dir/libmx/src/mx_isalpha.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_isdigit.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_isdigit.c.o: ../libmx/src/mx_isdigit.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_isdigit.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_isdigit.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_isdigit.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_isdigit.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_isdigit.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_isdigit.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_isdigit.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_isdigit.c > CMakeFiles/ush_team.dir/libmx/src/mx_isdigit.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_isdigit.c > CMakeFiles/ush_team.dir/libmx/src/mx_isdigit.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_isdigit.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_isdigit.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_isdigit.c -o CMakeFiles/ush_team.dir/libmx/src/mx_isdigit.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_isdigit.c -o CMakeFiles/ush_team.dir/libmx/src/mx_isdigit.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_isspace.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_isspace.c.o: ../libmx/src/mx_isspace.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_isspace.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_isspace.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_isspace.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_isspace.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_isspace.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_isspace.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_isspace.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_isspace.c > CMakeFiles/ush_team.dir/libmx/src/mx_isspace.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_isspace.c > CMakeFiles/ush_team.dir/libmx/src/mx_isspace.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_isspace.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_isspace.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_isspace.c -o CMakeFiles/ush_team.dir/libmx/src/mx_isspace.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_isspace.c -o CMakeFiles/ush_team.dir/libmx/src/mx_isspace.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_itoa.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_itoa.c.o: ../libmx/src/mx_itoa.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_itoa.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_itoa.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_itoa.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_itoa.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_itoa.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_itoa.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_itoa.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_itoa.c > CMakeFiles/ush_team.dir/libmx/src/mx_itoa.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_itoa.c > CMakeFiles/ush_team.dir/libmx/src/mx_itoa.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_itoa.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_itoa.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_itoa.c -o CMakeFiles/ush_team.dir/libmx/src/mx_itoa.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_itoa.c -o CMakeFiles/ush_team.dir/libmx/src/mx_itoa.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_list_size.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_list_size.c.o: ../libmx/src/mx_list_size.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_list_size.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_list_size.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_list_size.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_list_size.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_list_size.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_list_size.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_list_size.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_list_size.c > CMakeFiles/ush_team.dir/libmx/src/mx_list_size.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_list_size.c > CMakeFiles/ush_team.dir/libmx/src/mx_list_size.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_list_size.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_list_size.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_list_size.c -o CMakeFiles/ush_team.dir/libmx/src/mx_list_size.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_list_size.c -o CMakeFiles/ush_team.dir/libmx/src/mx_list_size.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_memcpy.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_memcpy.c.o: ../libmx/src/mx_memcpy.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_memcpy.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_memcpy.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_memcpy.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_memcpy.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_memcpy.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_memcpy.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_memcpy.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_memcpy.c > CMakeFiles/ush_team.dir/libmx/src/mx_memcpy.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_memcpy.c > CMakeFiles/ush_team.dir/libmx/src/mx_memcpy.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_memcpy.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_memcpy.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_memcpy.c -o CMakeFiles/ush_team.dir/libmx/src/mx_memcpy.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_memcpy.c -o CMakeFiles/ush_team.dir/libmx/src/mx_memcpy.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_pop_back.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_pop_back.c.o: ../libmx/src/mx_pop_back.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_pop_back.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_pop_back.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_pop_back.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_pop_back.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_pop_back.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_pop_back.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_pop_back.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_pop_back.c > CMakeFiles/ush_team.dir/libmx/src/mx_pop_back.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_pop_back.c > CMakeFiles/ush_team.dir/libmx/src/mx_pop_back.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_pop_back.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_pop_back.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_pop_back.c -o CMakeFiles/ush_team.dir/libmx/src/mx_pop_back.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_pop_back.c -o CMakeFiles/ush_team.dir/libmx/src/mx_pop_back.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_pop_front.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_pop_front.c.o: ../libmx/src/mx_pop_front.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_pop_front.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_pop_front.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_pop_front.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_pop_front.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_pop_front.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_pop_front.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_pop_front.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_pop_front.c > CMakeFiles/ush_team.dir/libmx/src/mx_pop_front.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_pop_front.c > CMakeFiles/ush_team.dir/libmx/src/mx_pop_front.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_pop_front.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_pop_front.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_pop_front.c -o CMakeFiles/ush_team.dir/libmx/src/mx_pop_front.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_pop_front.c -o CMakeFiles/ush_team.dir/libmx/src/mx_pop_front.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_pow.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_pow.c.o: ../libmx/src/mx_pow.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_pow.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_pow.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_pow.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_pow.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_pow.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_pow.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_pow.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_pow.c > CMakeFiles/ush_team.dir/libmx/src/mx_pow.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_pow.c > CMakeFiles/ush_team.dir/libmx/src/mx_pow.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_pow.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_pow.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_pow.c -o CMakeFiles/ush_team.dir/libmx/src/mx_pow.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_pow.c -o CMakeFiles/ush_team.dir/libmx/src/mx_pow.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printchar.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_printchar.c.o: ../libmx/src/mx_printchar.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_printchar.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_printchar.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_printchar.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_printchar.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_printchar.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printchar.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_printchar.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_printchar.c > CMakeFiles/ush_team.dir/libmx/src/mx_printchar.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_printchar.c > CMakeFiles/ush_team.dir/libmx/src/mx_printchar.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printchar.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_printchar.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_printchar.c -o CMakeFiles/ush_team.dir/libmx/src/mx_printchar.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_printchar.c -o CMakeFiles/ush_team.dir/libmx/src/mx_printchar.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printerr.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_printerr.c.o: ../libmx/src/mx_printerr.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_printerr.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_printerr.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_printerr.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_printerr.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_printerr.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printerr.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_printerr.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_printerr.c > CMakeFiles/ush_team.dir/libmx/src/mx_printerr.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_printerr.c > CMakeFiles/ush_team.dir/libmx/src/mx_printerr.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printerr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_printerr.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_printerr.c -o CMakeFiles/ush_team.dir/libmx/src/mx_printerr.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_printerr.c -o CMakeFiles/ush_team.dir/libmx/src/mx_printerr.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printint.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_printint.c.o: ../libmx/src/mx_printint.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_printint.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_printint.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_printint.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_printint.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_printint.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printint.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_printint.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_printint.c > CMakeFiles/ush_team.dir/libmx/src/mx_printint.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_printint.c > CMakeFiles/ush_team.dir/libmx/src/mx_printint.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printint.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_printint.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_printint.c -o CMakeFiles/ush_team.dir/libmx/src/mx_printint.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_printint.c -o CMakeFiles/ush_team.dir/libmx/src/mx_printint.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printstr.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_printstr.c.o: ../libmx/src/mx_printstr.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_printstr.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_printstr.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_printstr.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_printstr.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_printstr.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printstr.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_printstr.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_printstr.c > CMakeFiles/ush_team.dir/libmx/src/mx_printstr.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_printstr.c > CMakeFiles/ush_team.dir/libmx/src/mx_printstr.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printstr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_printstr.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_printstr.c -o CMakeFiles/ush_team.dir/libmx/src/mx_printstr.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_printstr.c -o CMakeFiles/ush_team.dir/libmx/src/mx_printstr.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printstr_color.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_printstr_color.c.o: ../libmx/src/mx_printstr_color.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_printstr_color.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_printstr_color.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_printstr_color.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_printstr_color.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_printstr_color.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printstr_color.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_printstr_color.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_printstr_color.c > CMakeFiles/ush_team.dir/libmx/src/mx_printstr_color.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_printstr_color.c > CMakeFiles/ush_team.dir/libmx/src/mx_printstr_color.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_printstr_color.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_printstr_color.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_printstr_color.c -o CMakeFiles/ush_team.dir/libmx/src/mx_printstr_color.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_printstr_color.c -o CMakeFiles/ush_team.dir/libmx/src/mx_printstr_color.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_push_back.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_push_back.c.o: ../libmx/src/mx_push_back.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_push_back.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_push_back.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_push_back.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_push_back.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_push_back.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_push_back.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_push_back.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_push_back.c > CMakeFiles/ush_team.dir/libmx/src/mx_push_back.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_push_back.c > CMakeFiles/ush_team.dir/libmx/src/mx_push_back.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_push_back.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_push_back.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_push_back.c -o CMakeFiles/ush_team.dir/libmx/src/mx_push_back.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_push_back.c -o CMakeFiles/ush_team.dir/libmx/src/mx_push_back.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_push_front.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_push_front.c.o: ../libmx/src/mx_push_front.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_push_front.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_push_front.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_push_front.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_push_front.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_push_front.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_push_front.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_push_front.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_push_front.c > CMakeFiles/ush_team.dir/libmx/src/mx_push_front.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_push_front.c > CMakeFiles/ush_team.dir/libmx/src/mx_push_front.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_push_front.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_push_front.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_push_front.c -o CMakeFiles/ush_team.dir/libmx/src/mx_push_front.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_push_front.c -o CMakeFiles/ush_team.dir/libmx/src/mx_push_front.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_realloc.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_realloc.c.o: ../libmx/src/mx_realloc.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_realloc.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_realloc.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_realloc.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_realloc.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_realloc.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_realloc.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_realloc.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_realloc.c > CMakeFiles/ush_team.dir/libmx/src/mx_realloc.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_realloc.c > CMakeFiles/ush_team.dir/libmx/src/mx_realloc.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_realloc.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_realloc.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_realloc.c -o CMakeFiles/ush_team.dir/libmx/src/mx_realloc.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_realloc.c -o CMakeFiles/ush_team.dir/libmx/src/mx_realloc.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_str_reverse.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_str_reverse.c.o: ../libmx/src/mx_str_reverse.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_str_reverse.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_str_reverse.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_str_reverse.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_str_reverse.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_str_reverse.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_str_reverse.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_str_reverse.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_str_reverse.c > CMakeFiles/ush_team.dir/libmx/src/mx_str_reverse.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_str_reverse.c > CMakeFiles/ush_team.dir/libmx/src/mx_str_reverse.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_str_reverse.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_str_reverse.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_str_reverse.c -o CMakeFiles/ush_team.dir/libmx/src/mx_str_reverse.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_str_reverse.c -o CMakeFiles/ush_team.dir/libmx/src/mx_str_reverse.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strcat.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_strcat.c.o: ../libmx/src/mx_strcat.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_strcat.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strcat.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strcat.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strcat.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strcat.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strcat.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_strcat.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strcat.c > CMakeFiles/ush_team.dir/libmx/src/mx_strcat.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strcat.c > CMakeFiles/ush_team.dir/libmx/src/mx_strcat.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strcat.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_strcat.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strcat.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strcat.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strcat.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strcat.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strcmp.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_strcmp.c.o: ../libmx/src/mx_strcmp.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_strcmp.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strcmp.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strcmp.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strcmp.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strcmp.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strcmp.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_strcmp.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strcmp.c > CMakeFiles/ush_team.dir/libmx/src/mx_strcmp.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strcmp.c > CMakeFiles/ush_team.dir/libmx/src/mx_strcmp.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strcmp.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_strcmp.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strcmp.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strcmp.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strcmp.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strcmp.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strcpy.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_strcpy.c.o: ../libmx/src/mx_strcpy.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_strcpy.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strcpy.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strcpy.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strcpy.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strcpy.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strcpy.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_strcpy.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strcpy.c > CMakeFiles/ush_team.dir/libmx/src/mx_strcpy.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strcpy.c > CMakeFiles/ush_team.dir/libmx/src/mx_strcpy.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strcpy.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_strcpy.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strcpy.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strcpy.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strcpy.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strcpy.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strdel.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_strdel.c.o: ../libmx/src/mx_strdel.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_strdel.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strdel.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strdel.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strdel.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strdel.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strdel.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_strdel.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strdel.c > CMakeFiles/ush_team.dir/libmx/src/mx_strdel.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strdel.c > CMakeFiles/ush_team.dir/libmx/src/mx_strdel.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strdel.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_strdel.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strdel.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strdel.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strdel.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strdel.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strdup.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_strdup.c.o: ../libmx/src/mx_strdup.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_strdup.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strdup.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strdup.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strdup.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strdup.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strdup.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_strdup.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strdup.c > CMakeFiles/ush_team.dir/libmx/src/mx_strdup.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strdup.c > CMakeFiles/ush_team.dir/libmx/src/mx_strdup.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strdup.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_strdup.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strdup.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strdup.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strdup.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strdup.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strjoin.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_strjoin.c.o: ../libmx/src/mx_strjoin.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_strjoin.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strjoin.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strjoin.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strjoin.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strjoin.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strjoin.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_strjoin.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strjoin.c > CMakeFiles/ush_team.dir/libmx/src/mx_strjoin.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strjoin.c > CMakeFiles/ush_team.dir/libmx/src/mx_strjoin.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strjoin.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_strjoin.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strjoin.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strjoin.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strjoin.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strjoin.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strlen.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_strlen.c.o: ../libmx/src/mx_strlen.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_strlen.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strlen.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strlen.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strlen.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strlen.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strlen.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_strlen.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strlen.c > CMakeFiles/ush_team.dir/libmx/src/mx_strlen.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strlen.c > CMakeFiles/ush_team.dir/libmx/src/mx_strlen.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strlen.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_strlen.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strlen.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strlen.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strlen.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strlen.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strncmp.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_strncmp.c.o: ../libmx/src/mx_strncmp.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_strncmp.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strncmp.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strncmp.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strncmp.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strncmp.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strncmp.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_strncmp.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strncmp.c > CMakeFiles/ush_team.dir/libmx/src/mx_strncmp.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strncmp.c > CMakeFiles/ush_team.dir/libmx/src/mx_strncmp.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strncmp.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_strncmp.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strncmp.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strncmp.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strncmp.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strncmp.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strncpy.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_strncpy.c.o: ../libmx/src/mx_strncpy.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_strncpy.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strncpy.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strncpy.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strncpy.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strncpy.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strncpy.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_strncpy.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strncpy.c > CMakeFiles/ush_team.dir/libmx/src/mx_strncpy.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strncpy.c > CMakeFiles/ush_team.dir/libmx/src/mx_strncpy.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strncpy.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_strncpy.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strncpy.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strncpy.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strncpy.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strncpy.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strndup.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_strndup.c.o: ../libmx/src/mx_strndup.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_strndup.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strndup.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strndup.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strndup.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strndup.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strndup.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_strndup.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strndup.c > CMakeFiles/ush_team.dir/libmx/src/mx_strndup.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strndup.c > CMakeFiles/ush_team.dir/libmx/src/mx_strndup.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strndup.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_strndup.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strndup.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strndup.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strndup.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strndup.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strnew.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_strnew.c.o: ../libmx/src/mx_strnew.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_strnew.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strnew.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strnew.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strnew.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strnew.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strnew.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_strnew.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strnew.c > CMakeFiles/ush_team.dir/libmx/src/mx_strnew.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strnew.c > CMakeFiles/ush_team.dir/libmx/src/mx_strnew.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strnew.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_strnew.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strnew.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strnew.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strnew.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strnew.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strsplit.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_strsplit.c.o: ../libmx/src/mx_strsplit.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_strsplit.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strsplit.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strsplit.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strsplit.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strsplit.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strsplit.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_strsplit.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strsplit.c > CMakeFiles/ush_team.dir/libmx/src/mx_strsplit.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strsplit.c > CMakeFiles/ush_team.dir/libmx/src/mx_strsplit.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strsplit.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_strsplit.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strsplit.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strsplit.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strsplit.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strsplit.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strstr.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_strstr.c.o: ../libmx/src/mx_strstr.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_strstr.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strstr.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strstr.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_strstr.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_strstr.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strstr.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_strstr.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strstr.c > CMakeFiles/ush_team.dir/libmx/src/mx_strstr.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_strstr.c > CMakeFiles/ush_team.dir/libmx/src/mx_strstr.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_strstr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_strstr.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strstr.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strstr.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_strstr.c -o CMakeFiles/ush_team.dir/libmx/src/mx_strstr.c.s
 
 CMakeFiles/ush_team.dir/libmx/src/mx_swap_char.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/libmx/src/mx_swap_char.c.o: ../libmx/src/mx_swap_char.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building C object CMakeFiles/ush_team.dir/libmx/src/mx_swap_char.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_swap_char.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_swap_char.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/libmx/src/mx_swap_char.c.o   -c /Users/snikolayen/ush_team/libmx/src/mx_swap_char.c
 
 CMakeFiles/ush_team.dir/libmx/src/mx_swap_char.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/libmx/src/mx_swap_char.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_swap_char.c > CMakeFiles/ush_team.dir/libmx/src/mx_swap_char.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/libmx/src/mx_swap_char.c > CMakeFiles/ush_team.dir/libmx/src/mx_swap_char.c.i
 
 CMakeFiles/ush_team.dir/libmx/src/mx_swap_char.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/libmx/src/mx_swap_char.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_swap_char.c -o CMakeFiles/ush_team.dir/libmx/src/mx_swap_char.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/libmx/src/mx_swap_char.c -o CMakeFiles/ush_team.dir/libmx/src/mx_swap_char.c.s
 
 CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.o: ../src/mx_builtin_commands.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building C object CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.o   -c /Users/snikolayen/ush_team/src/mx_builtin_commands.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.o   -c /Users/snikolayen/ush_team/src/mx_builtin_commands.c
 
 CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_builtin_commands.c > CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_builtin_commands.c > CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.i
 
 CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_builtin_commands.c -o CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_builtin_commands.c -o CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.s
 
 CMakeFiles/ush_team.dir/src/mx_cd.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_cd.c.o: ../src/mx_cd.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building C object CMakeFiles/ush_team.dir/src/mx_cd.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_cd.c.o   -c /Users/snikolayen/ush_team/src/mx_cd.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_cd.c.o   -c /Users/snikolayen/ush_team/src/mx_cd.c
 
 CMakeFiles/ush_team.dir/src/mx_cd.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_cd.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_cd.c > CMakeFiles/ush_team.dir/src/mx_cd.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_cd.c > CMakeFiles/ush_team.dir/src/mx_cd.c.i
 
 CMakeFiles/ush_team.dir/src/mx_cd.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_cd.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_cd.c -o CMakeFiles/ush_team.dir/src/mx_cd.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_cd.c -o CMakeFiles/ush_team.dir/src/mx_cd.c.s
 
 CMakeFiles/ush_team.dir/src/mx_check_parce_errors.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_check_parce_errors.c.o: ../src/mx_check_parce_errors.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building C object CMakeFiles/ush_team.dir/src/mx_check_parce_errors.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_check_parce_errors.c.o   -c /Users/snikolayen/ush_team/src/mx_check_parce_errors.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_check_parce_errors.c.o   -c /Users/snikolayen/ush_team/src/mx_check_parce_errors.c
 
 CMakeFiles/ush_team.dir/src/mx_check_parce_errors.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_check_parce_errors.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_check_parce_errors.c > CMakeFiles/ush_team.dir/src/mx_check_parce_errors.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_check_parce_errors.c > CMakeFiles/ush_team.dir/src/mx_check_parce_errors.c.i
 
 CMakeFiles/ush_team.dir/src/mx_check_parce_errors.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_check_parce_errors.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_check_parce_errors.c -o CMakeFiles/ush_team.dir/src/mx_check_parce_errors.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_check_parce_errors.c -o CMakeFiles/ush_team.dir/src/mx_check_parce_errors.c.s
 
 CMakeFiles/ush_team.dir/src/mx_count_char_arr.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_count_char_arr.c.o: ../src/mx_count_char_arr.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building C object CMakeFiles/ush_team.dir/src/mx_count_char_arr.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_count_char_arr.c.o   -c /Users/snikolayen/ush_team/src/mx_count_char_arr.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_count_char_arr.c.o   -c /Users/snikolayen/ush_team/src/mx_count_char_arr.c
 
 CMakeFiles/ush_team.dir/src/mx_count_char_arr.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_count_char_arr.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_count_char_arr.c > CMakeFiles/ush_team.dir/src/mx_count_char_arr.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_count_char_arr.c > CMakeFiles/ush_team.dir/src/mx_count_char_arr.c.i
 
 CMakeFiles/ush_team.dir/src/mx_count_char_arr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_count_char_arr.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_count_char_arr.c -o CMakeFiles/ush_team.dir/src/mx_count_char_arr.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_count_char_arr.c -o CMakeFiles/ush_team.dir/src/mx_count_char_arr.c.s
 
 CMakeFiles/ush_team.dir/src/mx_count_chr_quote.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_count_chr_quote.c.o: ../src/mx_count_chr_quote.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building C object CMakeFiles/ush_team.dir/src/mx_count_chr_quote.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_count_chr_quote.c.o   -c /Users/snikolayen/ush_team/src/mx_count_chr_quote.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_count_chr_quote.c.o   -c /Users/snikolayen/ush_team/src/mx_count_chr_quote.c
 
 CMakeFiles/ush_team.dir/src/mx_count_chr_quote.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_count_chr_quote.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_count_chr_quote.c > CMakeFiles/ush_team.dir/src/mx_count_chr_quote.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_count_chr_quote.c > CMakeFiles/ush_team.dir/src/mx_count_chr_quote.c.i
 
 CMakeFiles/ush_team.dir/src/mx_count_chr_quote.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_count_chr_quote.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_count_chr_quote.c -o CMakeFiles/ush_team.dir/src/mx_count_chr_quote.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_count_chr_quote.c -o CMakeFiles/ush_team.dir/src/mx_count_chr_quote.c.s
 
 CMakeFiles/ush_team.dir/src/mx_count_options.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_count_options.c.o: ../src/mx_count_options.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building C object CMakeFiles/ush_team.dir/src/mx_count_options.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_count_options.c.o   -c /Users/snikolayen/ush_team/src/mx_count_options.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_count_options.c.o   -c /Users/snikolayen/ush_team/src/mx_count_options.c
 
 CMakeFiles/ush_team.dir/src/mx_count_options.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_count_options.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_count_options.c > CMakeFiles/ush_team.dir/src/mx_count_options.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_count_options.c > CMakeFiles/ush_team.dir/src/mx_count_options.c.i
 
 CMakeFiles/ush_team.dir/src/mx_count_options.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_count_options.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_count_options.c -o CMakeFiles/ush_team.dir/src/mx_count_options.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_count_options.c -o CMakeFiles/ush_team.dir/src/mx_count_options.c.s
 
 CMakeFiles/ush_team.dir/src/mx_env.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_env.c.o: ../src/mx_env.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building C object CMakeFiles/ush_team.dir/src/mx_env.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_env.c.o   -c /Users/snikolayen/ush_team/src/mx_env.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_env.c.o   -c /Users/snikolayen/ush_team/src/mx_env.c
 
 CMakeFiles/ush_team.dir/src/mx_env.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_env.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_env.c > CMakeFiles/ush_team.dir/src/mx_env.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_env.c > CMakeFiles/ush_team.dir/src/mx_env.c.i
 
 CMakeFiles/ush_team.dir/src/mx_env.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_env.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_env.c -o CMakeFiles/ush_team.dir/src/mx_env.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_env.c -o CMakeFiles/ush_team.dir/src/mx_env.c.s
 
 CMakeFiles/ush_team.dir/src/mx_export.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_export.c.o: ../src/mx_export.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building C object CMakeFiles/ush_team.dir/src/mx_export.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_export.c.o   -c /Users/snikolayen/ush_team/src/mx_export.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_export.c.o   -c /Users/snikolayen/ush_team/src/mx_export.c
 
 CMakeFiles/ush_team.dir/src/mx_export.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_export.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_export.c > CMakeFiles/ush_team.dir/src/mx_export.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_export.c > CMakeFiles/ush_team.dir/src/mx_export.c.i
 
 CMakeFiles/ush_team.dir/src/mx_export.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_export.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_export.c -o CMakeFiles/ush_team.dir/src/mx_export.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_export.c -o CMakeFiles/ush_team.dir/src/mx_export.c.s
 
 CMakeFiles/ush_team.dir/src/mx_get_char_index_quote.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_get_char_index_quote.c.o: ../src/mx_get_char_index_quote.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building C object CMakeFiles/ush_team.dir/src/mx_get_char_index_quote.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_get_char_index_quote.c.o   -c /Users/snikolayen/ush_team/src/mx_get_char_index_quote.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_get_char_index_quote.c.o   -c /Users/snikolayen/ush_team/src/mx_get_char_index_quote.c
 
 CMakeFiles/ush_team.dir/src/mx_get_char_index_quote.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_get_char_index_quote.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_get_char_index_quote.c > CMakeFiles/ush_team.dir/src/mx_get_char_index_quote.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_get_char_index_quote.c > CMakeFiles/ush_team.dir/src/mx_get_char_index_quote.c.i
 
 CMakeFiles/ush_team.dir/src/mx_get_char_index_quote.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_get_char_index_quote.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_get_char_index_quote.c -o CMakeFiles/ush_team.dir/src/mx_get_char_index_quote.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_get_char_index_quote.c -o CMakeFiles/ush_team.dir/src/mx_get_char_index_quote.c.s
 
 CMakeFiles/ush_team.dir/src/mx_get_type.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_get_type.c.o: ../src/mx_get_type.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building C object CMakeFiles/ush_team.dir/src/mx_get_type.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_get_type.c.o   -c /Users/snikolayen/ush_team/src/mx_get_type.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_get_type.c.o   -c /Users/snikolayen/ush_team/src/mx_get_type.c
 
 CMakeFiles/ush_team.dir/src/mx_get_type.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_get_type.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_get_type.c > CMakeFiles/ush_team.dir/src/mx_get_type.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_get_type.c > CMakeFiles/ush_team.dir/src/mx_get_type.c.i
 
 CMakeFiles/ush_team.dir/src/mx_get_type.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_get_type.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_get_type.c -o CMakeFiles/ush_team.dir/src/mx_get_type.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_get_type.c -o CMakeFiles/ush_team.dir/src/mx_get_type.c.s
 
 CMakeFiles/ush_team.dir/src/mx_init_shell.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_init_shell.c.o: ../src/mx_init_shell.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building C object CMakeFiles/ush_team.dir/src/mx_init_shell.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_init_shell.c.o   -c /Users/snikolayen/ush_team/src/mx_init_shell.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_init_shell.c.o   -c /Users/snikolayen/ush_team/src/mx_init_shell.c
 
 CMakeFiles/ush_team.dir/src/mx_init_shell.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_init_shell.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_init_shell.c > CMakeFiles/ush_team.dir/src/mx_init_shell.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_init_shell.c > CMakeFiles/ush_team.dir/src/mx_init_shell.c.i
 
 CMakeFiles/ush_team.dir/src/mx_init_shell.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_init_shell.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_init_shell.c -o CMakeFiles/ush_team.dir/src/mx_init_shell.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_init_shell.c -o CMakeFiles/ush_team.dir/src/mx_init_shell.c.s
 
 CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.o: ../src/mx_jobs_functions.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building C object CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.o   -c /Users/snikolayen/ush_team/src/mx_jobs_functions.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.o   -c /Users/snikolayen/ush_team/src/mx_jobs_functions.c
 
 CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_jobs_functions.c > CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_jobs_functions.c > CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.i
 
 CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_jobs_functions.c -o CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_jobs_functions.c -o CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.s
 
 CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o: ../src/mx_launch_bin.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building C object CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o   -c /Users/snikolayen/ush_team/src/mx_launch_bin.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o   -c /Users/snikolayen/ush_team/src/mx_launch_bin.c
 
 CMakeFiles/ush_team.dir/src/mx_launch_bin.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_launch_bin.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_launch_bin.c > CMakeFiles/ush_team.dir/src/mx_launch_bin.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_launch_bin.c > CMakeFiles/ush_team.dir/src/mx_launch_bin.c.i
 
 CMakeFiles/ush_team.dir/src/mx_launch_bin.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_launch_bin.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_launch_bin.c -o CMakeFiles/ush_team.dir/src/mx_launch_bin.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_launch_bin.c -o CMakeFiles/ush_team.dir/src/mx_launch_bin.c.s
 
 CMakeFiles/ush_team.dir/src/mx_launch_job.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_launch_job.c.o: ../src/mx_launch_job.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building C object CMakeFiles/ush_team.dir/src/mx_launch_job.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_launch_job.c.o   -c /Users/snikolayen/ush_team/src/mx_launch_job.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_launch_job.c.o   -c /Users/snikolayen/ush_team/src/mx_launch_job.c
 
 CMakeFiles/ush_team.dir/src/mx_launch_job.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_launch_job.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_launch_job.c > CMakeFiles/ush_team.dir/src/mx_launch_job.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_launch_job.c > CMakeFiles/ush_team.dir/src/mx_launch_job.c.i
 
 CMakeFiles/ush_team.dir/src/mx_launch_job.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_launch_job.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_launch_job.c -o CMakeFiles/ush_team.dir/src/mx_launch_job.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_launch_job.c -o CMakeFiles/ush_team.dir/src/mx_launch_job.c.s
 
 CMakeFiles/ush_team.dir/src/mx_launch_process.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_launch_process.c.o: ../src/mx_launch_process.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building C object CMakeFiles/ush_team.dir/src/mx_launch_process.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_launch_process.c.o   -c /Users/snikolayen/ush_team/src/mx_launch_process.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_launch_process.c.o   -c /Users/snikolayen/ush_team/src/mx_launch_process.c
 
 CMakeFiles/ush_team.dir/src/mx_launch_process.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_launch_process.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_launch_process.c > CMakeFiles/ush_team.dir/src/mx_launch_process.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_launch_process.c > CMakeFiles/ush_team.dir/src/mx_launch_process.c.i
 
 CMakeFiles/ush_team.dir/src/mx_launch_process.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_launch_process.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_launch_process.c -o CMakeFiles/ush_team.dir/src/mx_launch_process.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_launch_process.c -o CMakeFiles/ush_team.dir/src/mx_launch_process.c.s
 
 CMakeFiles/ush_team.dir/src/mx_loop.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_loop.c.o: ../src/mx_loop.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building C object CMakeFiles/ush_team.dir/src/mx_loop.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_loop.c.o   -c /Users/snikolayen/ush_team/src/mx_loop.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_loop.c.o   -c /Users/snikolayen/ush_team/src/mx_loop.c
 
 CMakeFiles/ush_team.dir/src/mx_loop.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_loop.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_loop.c > CMakeFiles/ush_team.dir/src/mx_loop.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_loop.c > CMakeFiles/ush_team.dir/src/mx_loop.c.i
 
 CMakeFiles/ush_team.dir/src/mx_loop.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_loop.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_loop.c -o CMakeFiles/ush_team.dir/src/mx_loop.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_loop.c -o CMakeFiles/ush_team.dir/src/mx_loop.c.s
 
 CMakeFiles/ush_team.dir/src/mx_normalization.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_normalization.c.o: ../src/mx_normalization.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building C object CMakeFiles/ush_team.dir/src/mx_normalization.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_normalization.c.o   -c /Users/snikolayen/ush_team/src/mx_normalization.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_normalization.c.o   -c /Users/snikolayen/ush_team/src/mx_normalization.c
 
 CMakeFiles/ush_team.dir/src/mx_normalization.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_normalization.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_normalization.c > CMakeFiles/ush_team.dir/src/mx_normalization.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_normalization.c > CMakeFiles/ush_team.dir/src/mx_normalization.c.i
 
 CMakeFiles/ush_team.dir/src/mx_normalization.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_normalization.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_normalization.c -o CMakeFiles/ush_team.dir/src/mx_normalization.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_normalization.c -o CMakeFiles/ush_team.dir/src/mx_normalization.c.s
 
 CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.o: ../src/mx_parce_tokens.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building C object CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.o   -c /Users/snikolayen/ush_team/src/mx_parce_tokens.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.o   -c /Users/snikolayen/ush_team/src/mx_parce_tokens.c
 
 CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_parce_tokens.c > CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_parce_tokens.c > CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.i
 
 CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_parce_tokens.c -o CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_parce_tokens.c -o CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.s
 
 CMakeFiles/ush_team.dir/src/mx_print_colored.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_print_colored.c.o: ../src/mx_print_colored.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building C object CMakeFiles/ush_team.dir/src/mx_print_colored.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_print_colored.c.o   -c /Users/snikolayen/ush_team/src/mx_print_colored.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_print_colored.c.o   -c /Users/snikolayen/ush_team/src/mx_print_colored.c
 
 CMakeFiles/ush_team.dir/src/mx_print_colored.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_print_colored.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_print_colored.c > CMakeFiles/ush_team.dir/src/mx_print_colored.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_print_colored.c > CMakeFiles/ush_team.dir/src/mx_print_colored.c.i
 
 CMakeFiles/ush_team.dir/src/mx_print_colored.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_print_colored.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_print_colored.c -o CMakeFiles/ush_team.dir/src/mx_print_colored.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_print_colored.c -o CMakeFiles/ush_team.dir/src/mx_print_colored.c.s
 
 CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.o: ../src/mx_print_strarr_in_line.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building C object CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.o   -c /Users/snikolayen/ush_team/src/mx_print_strarr_in_line.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.o   -c /Users/snikolayen/ush_team/src/mx_print_strarr_in_line.c
 
 CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_print_strarr_in_line.c > CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_print_strarr_in_line.c > CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.i
 
 CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_print_strarr_in_line.c -o CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_print_strarr_in_line.c -o CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.s
 
 CMakeFiles/ush_team.dir/src/mx_push_export.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_push_export.c.o: ../src/mx_push_export.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building C object CMakeFiles/ush_team.dir/src/mx_push_export.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_push_export.c.o   -c /Users/snikolayen/ush_team/src/mx_push_export.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_push_export.c.o   -c /Users/snikolayen/ush_team/src/mx_push_export.c
 
 CMakeFiles/ush_team.dir/src/mx_push_export.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_push_export.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_push_export.c > CMakeFiles/ush_team.dir/src/mx_push_export.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_push_export.c > CMakeFiles/ush_team.dir/src/mx_push_export.c.i
 
 CMakeFiles/ush_team.dir/src/mx_push_export.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_push_export.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_push_export.c -o CMakeFiles/ush_team.dir/src/mx_push_export.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_push_export.c -o CMakeFiles/ush_team.dir/src/mx_push_export.c.s
 
 CMakeFiles/ush_team.dir/src/mx_pwd.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_pwd.c.o: ../src/mx_pwd.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building C object CMakeFiles/ush_team.dir/src/mx_pwd.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_pwd.c.o   -c /Users/snikolayen/ush_team/src/mx_pwd.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_pwd.c.o   -c /Users/snikolayen/ush_team/src/mx_pwd.c
 
 CMakeFiles/ush_team.dir/src/mx_pwd.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_pwd.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_pwd.c > CMakeFiles/ush_team.dir/src/mx_pwd.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_pwd.c > CMakeFiles/ush_team.dir/src/mx_pwd.c.i
 
 CMakeFiles/ush_team.dir/src/mx_pwd.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_pwd.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_pwd.c -o CMakeFiles/ush_team.dir/src/mx_pwd.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_pwd.c -o CMakeFiles/ush_team.dir/src/mx_pwd.c.s
 
 CMakeFiles/ush_team.dir/src/mx_read_line.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_read_line.c.o: ../src/mx_read_line.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building C object CMakeFiles/ush_team.dir/src/mx_read_line.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_read_line.c.o   -c /Users/snikolayen/ush_team/src/mx_read_line.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_read_line.c.o   -c /Users/snikolayen/ush_team/src/mx_read_line.c
 
 CMakeFiles/ush_team.dir/src/mx_read_line.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_read_line.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_read_line.c > CMakeFiles/ush_team.dir/src/mx_read_line.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_read_line.c > CMakeFiles/ush_team.dir/src/mx_read_line.c.i
 
 CMakeFiles/ush_team.dir/src/mx_read_line.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_read_line.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_read_line.c -o CMakeFiles/ush_team.dir/src/mx_read_line.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_read_line.c -o CMakeFiles/ush_team.dir/src/mx_read_line.c.s
 
 CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.o: ../src/mx_set_buff_zero.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building C object CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.o   -c /Users/snikolayen/ush_team/src/mx_set_buff_zero.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.o   -c /Users/snikolayen/ush_team/src/mx_set_buff_zero.c
 
 CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_set_buff_zero.c > CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_set_buff_zero.c > CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.i
 
 CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_set_buff_zero.c -o CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_set_buff_zero.c -o CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.s
 
 CMakeFiles/ush_team.dir/src/mx_set_data.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_set_data.c.o: ../src/mx_set_data.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building C object CMakeFiles/ush_team.dir/src/mx_set_data.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_set_data.c.o   -c /Users/snikolayen/ush_team/src/mx_set_data.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_set_data.c.o   -c /Users/snikolayen/ush_team/src/mx_set_data.c
 
 CMakeFiles/ush_team.dir/src/mx_set_data.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_set_data.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_set_data.c > CMakeFiles/ush_team.dir/src/mx_set_data.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_set_data.c > CMakeFiles/ush_team.dir/src/mx_set_data.c.i
 
 CMakeFiles/ush_team.dir/src/mx_set_data.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_set_data.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_set_data.c -o CMakeFiles/ush_team.dir/src/mx_set_data.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_set_data.c -o CMakeFiles/ush_team.dir/src/mx_set_data.c.s
 
 CMakeFiles/ush_team.dir/src/mx_set_variable.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_set_variable.c.o: ../src/mx_set_variable.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building C object CMakeFiles/ush_team.dir/src/mx_set_variable.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_set_variable.c.o   -c /Users/snikolayen/ush_team/src/mx_set_variable.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_set_variable.c.o   -c /Users/snikolayen/ush_team/src/mx_set_variable.c
 
 CMakeFiles/ush_team.dir/src/mx_set_variable.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_set_variable.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_set_variable.c > CMakeFiles/ush_team.dir/src/mx_set_variable.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_set_variable.c > CMakeFiles/ush_team.dir/src/mx_set_variable.c.i
 
 CMakeFiles/ush_team.dir/src/mx_set_variable.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_set_variable.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_set_variable.c -o CMakeFiles/ush_team.dir/src/mx_set_variable.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_set_variable.c -o CMakeFiles/ush_team.dir/src/mx_set_variable.c.s
 
 CMakeFiles/ush_team.dir/src/mx_signal.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_signal.c.o: ../src/mx_signal.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building C object CMakeFiles/ush_team.dir/src/mx_signal.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_signal.c.o   -c /Users/snikolayen/ush_team/src/mx_signal.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_signal.c.o   -c /Users/snikolayen/ush_team/src/mx_signal.c
 
 CMakeFiles/ush_team.dir/src/mx_signal.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_signal.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_signal.c > CMakeFiles/ush_team.dir/src/mx_signal.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_signal.c > CMakeFiles/ush_team.dir/src/mx_signal.c.i
 
 CMakeFiles/ush_team.dir/src/mx_signal.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_signal.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_signal.c -o CMakeFiles/ush_team.dir/src/mx_signal.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_signal.c -o CMakeFiles/ush_team.dir/src/mx_signal.c.s
 
 CMakeFiles/ush_team.dir/src/mx_split_line.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_split_line.c.o: ../src/mx_split_line.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building C object CMakeFiles/ush_team.dir/src/mx_split_line.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_split_line.c.o   -c /Users/snikolayen/ush_team/src/mx_split_line.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_split_line.c.o   -c /Users/snikolayen/ush_team/src/mx_split_line.c
 
 CMakeFiles/ush_team.dir/src/mx_split_line.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_split_line.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_split_line.c > CMakeFiles/ush_team.dir/src/mx_split_line.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_split_line.c > CMakeFiles/ush_team.dir/src/mx_split_line.c.i
 
 CMakeFiles/ush_team.dir/src/mx_split_line.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_split_line.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_split_line.c -o CMakeFiles/ush_team.dir/src/mx_split_line.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_split_line.c -o CMakeFiles/ush_team.dir/src/mx_split_line.c.s
 
 CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.o: ../src/mx_strdup_arr.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building C object CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.o   -c /Users/snikolayen/ush_team/src/mx_strdup_arr.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.o   -c /Users/snikolayen/ush_team/src/mx_strdup_arr.c
 
 CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_strdup_arr.c > CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_strdup_arr.c > CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.i
 
 CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_strdup_arr.c -o CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_strdup_arr.c -o CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.s
 
 CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.o: ../src/mx_strjoin_free.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building C object CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.o   -c /Users/snikolayen/ush_team/src/mx_strjoin_free.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.o   -c /Users/snikolayen/ush_team/src/mx_strjoin_free.c
 
 CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_strjoin_free.c > CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_strjoin_free.c > CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.i
 
 CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_strjoin_free.c -o CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_strjoin_free.c -o CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.s
 
 CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.o: ../src/mx_strlen_arr.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building C object CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.o   -c /Users/snikolayen/ush_team/src/mx_strlen_arr.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.o   -c /Users/snikolayen/ush_team/src/mx_strlen_arr.c
 
 CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_strlen_arr.c > CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_strlen_arr.c > CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.i
 
 CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_strlen_arr.c -o CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_strlen_arr.c -o CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.s
 
 CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.o: ../src/mx_strsplit_quote.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building C object CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.o   -c /Users/snikolayen/ush_team/src/mx_strsplit_quote.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.o   -c /Users/snikolayen/ush_team/src/mx_strsplit_quote.c
 
 CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_strsplit_quote.c > CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_strsplit_quote.c > CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.i
 
 CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_strsplit_quote.c -o CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_strsplit_quote.c -o CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.s
 
 CMakeFiles/ush_team.dir/src/mx_strtok.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_strtok.c.o: ../src/mx_strtok.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building C object CMakeFiles/ush_team.dir/src/mx_strtok.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strtok.c.o   -c /Users/snikolayen/ush_team/src/mx_strtok.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strtok.c.o   -c /Users/snikolayen/ush_team/src/mx_strtok.c
 
 CMakeFiles/ush_team.dir/src/mx_strtok.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_strtok.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_strtok.c > CMakeFiles/ush_team.dir/src/mx_strtok.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_strtok.c > CMakeFiles/ush_team.dir/src/mx_strtok.c.i
 
 CMakeFiles/ush_team.dir/src/mx_strtok.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_strtok.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_strtok.c -o CMakeFiles/ush_team.dir/src/mx_strtok.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_strtok.c -o CMakeFiles/ush_team.dir/src/mx_strtok.c.s
 
 CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.o: ../src/mx_strtrim_quote.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building C object CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.o   -c /Users/snikolayen/ush_team/src/mx_strtrim_quote.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.o   -c /Users/snikolayen/ush_team/src/mx_strtrim_quote.c
 
 CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_strtrim_quote.c > CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_strtrim_quote.c > CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.i
 
 CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_strtrim_quote.c -o CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_strtrim_quote.c -o CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.s
 
 CMakeFiles/ush_team.dir/src/mx_terminal.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_terminal.c.o: ../src/mx_terminal.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building C object CMakeFiles/ush_team.dir/src/mx_terminal.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_terminal.c.o   -c /Users/snikolayen/ush_team/src/mx_terminal.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_terminal.c.o   -c /Users/snikolayen/ush_team/src/mx_terminal.c
 
 CMakeFiles/ush_team.dir/src/mx_terminal.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_terminal.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_terminal.c > CMakeFiles/ush_team.dir/src/mx_terminal.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_terminal.c > CMakeFiles/ush_team.dir/src/mx_terminal.c.i
 
 CMakeFiles/ush_team.dir/src/mx_terminal.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_terminal.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_terminal.c -o CMakeFiles/ush_team.dir/src/mx_terminal.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_terminal.c -o CMakeFiles/ush_team.dir/src/mx_terminal.c.s
 
 CMakeFiles/ush_team.dir/src/mx_unset.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_unset.c.o: ../src/mx_unset.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building C object CMakeFiles/ush_team.dir/src/mx_unset.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_unset.c.o   -c /Users/snikolayen/ush_team/src/mx_unset.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_unset.c.o   -c /Users/snikolayen/ush_team/src/mx_unset.c
 
 CMakeFiles/ush_team.dir/src/mx_unset.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_unset.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_unset.c > CMakeFiles/ush_team.dir/src/mx_unset.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_unset.c > CMakeFiles/ush_team.dir/src/mx_unset.c.i
 
 CMakeFiles/ush_team.dir/src/mx_unset.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_unset.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_unset.c -o CMakeFiles/ush_team.dir/src/mx_unset.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_unset.c -o CMakeFiles/ush_team.dir/src/mx_unset.c.s
 
 CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.o: ../src/mx_ush_clear_list.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building C object CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.o   -c /Users/snikolayen/ush_team/src/mx_ush_clear_list.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.o   -c /Users/snikolayen/ush_team/src/mx_ush_clear_list.c
 
 CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_ush_clear_list.c > CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_ush_clear_list.c > CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.i
 
 CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_ush_clear_list.c -o CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_ush_clear_list.c -o CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.s
 
 CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.o: ../src/mx_ush_parsed_input.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building C object CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.o   -c /Users/snikolayen/ush_team/src/mx_ush_parsed_input.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.o   -c /Users/snikolayen/ush_team/src/mx_ush_parsed_input.c
 
 CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_ush_parsed_input.c > CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_ush_parsed_input.c > CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.i
 
 CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_ush_parsed_input.c -o CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_ush_parsed_input.c -o CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.s
 
 CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.o: ../src/mx_ush_push_back.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building C object CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.o   -c /Users/snikolayen/ush_team/src/mx_ush_push_back.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.o   -c /Users/snikolayen/ush_team/src/mx_ush_push_back.c
 
 CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_ush_push_back.c > CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_ush_push_back.c > CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.i
 
 CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_ush_push_back.c -o CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_ush_push_back.c -o CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.s
 
 CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.o: ../src/mx_ush_read_line.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building C object CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.o   -c /Users/snikolayen/ush_team/src/mx_ush_read_line.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.o   -c /Users/snikolayen/ush_team/src/mx_ush_read_line.c
 
 CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_ush_read_line.c > CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_ush_read_line.c > CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.i
 
 CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_ush_read_line.c -o CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_ush_read_line.c -o CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.s
 
 CMakeFiles/ush_team.dir/src/mx_which.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_which.c.o: ../src/mx_which.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building C object CMakeFiles/ush_team.dir/src/mx_which.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_which.c.o   -c /Users/snikolayen/ush_team/src/mx_which.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_which.c.o   -c /Users/snikolayen/ush_team/src/mx_which.c
 
 CMakeFiles/ush_team.dir/src/mx_which.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_which.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_which.c > CMakeFiles/ush_team.dir/src/mx_which.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_which.c > CMakeFiles/ush_team.dir/src/mx_which.c.i
 
 CMakeFiles/ush_team.dir/src/mx_which.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_which.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_which.c -o CMakeFiles/ush_team.dir/src/mx_which.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_which.c -o CMakeFiles/ush_team.dir/src/mx_which.c.s
 
 CMakeFiles/ush_team.dir/src/ush_main.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/ush_main.c.o: ../src/ush_main.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building C object CMakeFiles/ush_team.dir/src/ush_main.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/ush_main.c.o   -c /Users/snikolayen/ush_team/src/ush_main.c
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/ush_main.c.o   -c /Users/snikolayen/ush_team/src/ush_main.c
 
 CMakeFiles/ush_team.dir/src/ush_main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/ush_main.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/ush_main.c > CMakeFiles/ush_team.dir/src/ush_main.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/ush_main.c > CMakeFiles/ush_team.dir/src/ush_main.c.i
 
 CMakeFiles/ush_team.dir/src/ush_main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/ush_main.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/ush_main.c -o CMakeFiles/ush_team.dir/src/ush_main.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/ush_main.c -o CMakeFiles/ush_team.dir/src/ush_main.c.s
 
 # Object files for target ush_team
 ush_team_OBJECTS = \

@@ -6,6 +6,8 @@ static void print_error(char *command, char *error);
 
 int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
         int infile, int outfile, int errfile) {
+//    int (*builtin_functions[])(t_shell *m_s, t_process *p) = {&mx_echo, &mx_jobs, &mx_fg, &mx_exit,
+//         &mx_cd, &mx_pwd, &mx_export, &mx_unset, &mx_which, &mx_env, NULL};
     int status = 0;
     pid_t child_pid;
     pid_t pgid = m_s->jobs[job_id]->pgid;
@@ -21,7 +23,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
         //child process
     else if (child_pid == 0) {
         //TELL_PARENT(getpgid(0));
-        mx_printstr("child \n");
+    //    mx_printstr("child \n");
         if (shell_is_interactive) {
             p->pid = getpid();
             if (pgid > 0)
@@ -37,7 +39,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
             signal(SIGTSTP, SIG_DFL);
             signal(SIGTTIN, SIG_DFL);
             signal(SIGTTOU, SIG_DFL);
-            signal(SIGCHLD, SIG_DFL);
+           // signal(SIGCHLD, SIG_DFL);
         }
         if (infile != STDIN_FILENO) {
             dup2(infile, STDIN_FILENO);
@@ -61,12 +63,12 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
             // perror("execvp");
             _exit(EXIT_FAILURE);
         }
-        _exit(EXIT_SUCCESS);
+            _exit(EXIT_SUCCESS);
     }
         //parrent process
     else {
         //WAIT_CHILD();
-        mx_printstr("parent\n");
+//        mx_printstr("parent\n");
         p->pid = child_pid;  //PID CHILD
         if (shell_is_interactive) {
             if (!pgid)
@@ -79,7 +81,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
             signal(SIGTTOU, SIG_IGN);
             tcsetpgrp(0, getpid());
             signal(SIGTTOU, SIG_DFL);
-            mx_print_job_status(m_s, job_id);
+           // mx_print_job_status(m_s, job_id);
 //            if (job_id > 0 && mx_job_completed(m_s, job_id)) {
 //                //mx_print_job_status(m_s, job_id);
 //                mx_remove_job(m_s, job_id);

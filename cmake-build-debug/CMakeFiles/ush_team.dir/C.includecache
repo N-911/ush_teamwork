@@ -55,8 +55,8 @@ curses.h
 -
 malloc/malloc.h
 -
-../libmx/inc/libmx.h
-../libmx/inc/libmx.h
+libmx/inc/libmx.h
+../inc/libmx/inc/libmx.h
 
 ../libmx/inc/libmx.h
 errno.h
