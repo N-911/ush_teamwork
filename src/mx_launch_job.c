@@ -17,9 +17,10 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     int errfile = 2;
     infile = job->stdin;
     mx_check_jobs(m_s);
-    job_id = mx_insert_job(m_s, job);            //insert process to job control
+   // job_id = mx_insert_job(m_s, job);            //insert process to job control
+    job_id = 0;            //insert process to job control
     job->pgid= getpid();
-    for (p = m_s->jobs[job_id]->first_process; p; p = p->next) {  //list of process in job
+    for (p = job->first_process; p; p = p->next) {  //list of process in job
         if (p->pipe) {  //if pipe !!!!!
             if (pipe(mypipe) < 0) {
                 perror("pipe");
@@ -30,7 +31,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         } else
             outfile = job->stdout;
 
-        if (p->type
+        if (p->type)
             status = (builtin_functions[p->type](m_s, p));
         // mx_set_process_status(m_s, pid, STATUS_DONE);
         else
@@ -47,7 +48,6 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         if (mx_job_completed(m_s, job_id))
             mx_remove_job(m_s, job_id);
     }
-
     else if (job->foreground == BACKGROUND) {
        // if (kill (-job->pgid, SIGCONT) < 0)
         //    perror ("kill (SIGCONT)");

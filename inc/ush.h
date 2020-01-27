@@ -122,6 +122,7 @@ typedef struct s_job {
     int stdin;  // standard i/o channels
     int stdout;  // standard i/o channels
     int stderr;  // standard i/o channels
+    struct s_job *next;  //next job
 } t_job;
 
 typedef struct s_shell {

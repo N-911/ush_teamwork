@@ -29,6 +29,10 @@ void mx_ush_loop(t_shell *m_s) {
             mx_printstr("foreground - ");
             mx_printint(new_job->first_process->foreground);
             mx_printstr("\n");
+            t_job *c_job;
+            for (c_job = new_job; c_job; c_job = new_job->next)
+                mx_launch_job(m_s, c_job);
+
             mx_launch_job(m_s, new_job);
             //m_s->exit_code = status;
             //destroy_job;

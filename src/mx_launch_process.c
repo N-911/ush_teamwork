@@ -66,6 +66,8 @@ int mx_launch_process(t_shell *m_s, t_process *p, int  job_id, int infile, int o
             if (!pgid)
                 pgid = child_pid;
             setpgid(child_pid, pgid);
+            if (p->foreground)
+                tcsetpgrp(STDIN_FILENO, pgid);
         }
 
         if (m_s->jobs[job_id]->foreground == FOREGROUND) {

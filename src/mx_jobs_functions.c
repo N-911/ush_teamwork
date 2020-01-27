@@ -217,7 +217,7 @@ void mx_set_process_status(t_shell *m_s, int pid, int status) {
     //  [1] +	done	ls -la src
 int mx_print_job_status(t_shell *m_s, int job_id) {
     t_process *proc;
-    const char* status[] = { "running", "done", "suspended", "continued", "terminated" };
+    const char* status[] = { "running", "done", "suspended", "continued", "terminated" }; // exit
 
     if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
         return -1;
@@ -265,7 +265,7 @@ int mx_set_job_status(t_shell *m_s, int job_id, int status) {
     t_process *proc;
 
     if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL) {
-        return -1;
+        return -1 mx_print_job_status;
     }
     for (proc = m_s->jobs[job_id]->first_process; proc != NULL; proc = proc->next) {
         if (proc->status != STATUS_DONE) {
