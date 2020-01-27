@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.15)
-project(ush C)
+project(ush_team)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
 include_directories(inc)
 include_directories(libmx/inc)
 
-add_executable(ush
+add_executable(ush_team
         inc/ush.h
         libmx/inc/libmx.h
         libmx/src/mx_atoi.c
@@ -52,21 +52,34 @@ add_executable(ush
         libmx/src/mx_strsplit.c
         libmx/src/mx_strstr.c
         libmx/src/mx_swap_char.c
+        libmx/libmx.a
+        libmx/Makefile
         src/mx_builtin_commands.c
+        src/mx_cd.c
         src/mx_check_parce_errors.c
         src/mx_count_char_arr.c
         src/mx_count_chr_quote.c
+        src/mx_count_options.c
+        src/mx_env.c
+        src/mx_export.c
         src/mx_get_char_index_quote.c
+        src/mx_get_type.c
         src/mx_init_shell.c
         src/mx_jobs_functions.c
+        src/mx_launch_bin.c
         src/mx_launch_job.c
         src/mx_launch_process.c
         src/mx_loop.c
+        src/mx_normalization.c
         src/mx_parce_tokens.c
         src/mx_print_colored.c
         src/mx_print_strarr_in_line.c
+        src/mx_push_export.c
+        src/mx_pwd.c
         src/mx_read_line.c
         src/mx_set_buff_zero.c
+        src/mx_set_data.c
+        src/mx_set_variable.c
         src/mx_signal.c
         src/mx_split_line.c
         src/mx_strdup_arr.c
@@ -76,8 +89,12 @@ add_executable(ush
         src/mx_strtok.c
         src/mx_strtrim_quote.c
         src/mx_terminal.c
+        src/mx_unset.c
         src/mx_ush_clear_list.c
         src/mx_ush_parsed_input.c
         src/mx_ush_push_back.c
         src/mx_ush_read_line.c
-        src/ush_main.c)
+        src/mx_which.c
+        src/ush_main.c
+        Makefile
+        README.md)

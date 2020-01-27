@@ -54,12 +54,12 @@ t_shell *mx_init_shell(int argc, char **argv) {
         /* Ignore interactive and job-control signals.  */
         //  (void)signal(SIGINT, sigint_handler);
 
-        signal(SIGINT, SIG_IGN);
+        signal(SIGINT, SIG_DFL);
         signal(SIGQUIT, SIG_IGN);
         signal(SIGTSTP, SIG_IGN);
         signal(SIGTTIN, SIG_IGN);
         signal(SIGTTOU, SIG_IGN);
-        signal(SIGCHLD, SIG_IGN);
+      //  signal(SIGCHLD, SIG_IGN);
         /* Put ourselves in our own process group.  */
         shell_pgid = getpid();
         printf("parent shell_pgid %d\n", shell_pgid);
