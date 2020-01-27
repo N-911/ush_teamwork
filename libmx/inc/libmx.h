@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
-
+#include <ctype.h>
 #define BLK   "\x1B[30m"
 #define RED   "\x1B[31m"
 #define GRN   "\x1B[32m"

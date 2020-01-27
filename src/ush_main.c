@@ -10,6 +10,6 @@ int main(int argc, char **argv) {
   // Run command loop.
     mx_ush_loop(m_s);
   // Perform any shutdown/cleanup.
-    system ("leaks -q pathfinder");
+    system ("leaks -q ush");
     return EXIT_SUCCESS;
 }
