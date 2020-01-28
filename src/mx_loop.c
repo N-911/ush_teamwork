@@ -10,7 +10,7 @@ void mx_ush_loop(t_shell *m_s) {
         // if (!mx_ush_read_line())
         //      exit(0);
         line = mx_ush_read_line();
-        if (line == NULL) {
+        if (line[0] == '\0') {
             mx_check_jobs(m_s);
             continue;
         } else if (line[0] != '\n') {

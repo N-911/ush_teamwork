@@ -14,18 +14,20 @@ t_shell *mx_init_shell(int argc, char **argv) {
 
     m_s->argc = argc;
     m_s->argv = argv;
-    m_s->builtin_list = (char **) malloc(sizeof(char *) * 11);
-    m_s->builtin_list[0] = "echo";
-    m_s->builtin_list[1] = "jobs";
-    m_s->builtin_list[2] = "fg";
-    m_s->builtin_list[3] = "exit";
-    m_s->builtin_list[4] = "cd";
-    m_s->builtin_list[5] = "pwd";
-    m_s->builtin_list[6] = "export";
-    m_s->builtin_list[7] = "unset";
-    m_s->builtin_list[8] = "which";
-    m_s->builtin_list[9] = "env";
-    m_s->builtin_list[10] = NULL;
+    m_s->builtin_list = (char **) malloc(sizeof(char *) * 12);
+    m_s->builtin_list[0] = "env";
+    m_s->builtin_list[1] = "export";
+    m_s->builtin_list[2] = "unset";
+    m_s->builtin_list[3] = "echo";  // not full
+    m_s->builtin_list[4] = "jobs";
+    m_s->builtin_list[5] = "fg";
+    m_s->builtin_list[6] = "bg";
+    m_s->builtin_list[7] = "cd";
+    m_s->builtin_list[8] = "pwd";
+    m_s->builtin_list[9] = "which";
+    m_s->builtin_list[10] = "exit";
+    m_s->builtin_list[11] = NULL;
+
     m_s->job_control = (char **) malloc(sizeof(char *) * 4);
     m_s->job_control[0] = "jobs";
     m_s->job_control[1] = "fg";
@@ -50,7 +52,7 @@ t_shell *mx_init_shell(int argc, char **argv) {
     if (shell_is_interactive) {
         // Loop until we are in the foreground.
         while (tcgetpgrp(shell_terminal) != (shell_pgid = getpgrp()))
-            kill(-shell_pgid, SIGTTIN);
+           kill(-shell_pgid, SIGTTIN);
         /* Ignore interactive and job-control signals.  */
         //  (void)signal(SIGINT, sigint_handler);
 

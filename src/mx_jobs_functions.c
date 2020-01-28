@@ -39,7 +39,7 @@ int mx_get_next_job_id(t_shell *m_s) {
         if (m_s->jobs[i] == NULL) {
             m_s->max_number_job++;
             return i;
-            mx_print_job_status}
+        }
     }
     return -1;
 }
@@ -214,6 +214,19 @@ void mx_set_process_status(t_shell *m_s, int pid, int status) {
     }
 }
 
+int mx_set_job_status(t_shell *m_s, int job_id, int status) {
+    t_process *p;
+
+    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
+        return -1;
+    for (p = m_s->jobs[job_id]->first_process; p != NULL; p = p->next) {
+        if (p->status != STATUS_DONE)
+            p->status = status;
+    }
+    return 0;
+}
+
+
 //  [1] +	done	ls -la src
 int mx_print_job_status(t_shell *m_s, int job_id) {
     t_process *proc;
@@ -223,7 +236,7 @@ int mx_print_job_status(t_shell *m_s, int job_id) {
         return -1;
     printf("[%d]  %c ", job_id, m_s->jobs[job_id]->mark_job_id);
     for (proc = m_s->jobs[job_id]->first_process; proc != NULL; proc = proc->next) {
-        printf("%s\t", status[proc->status]);
+        printf("%s  ", status[proc->status]);
         printf("%s", proc->command);
 
 /*
@@ -260,20 +273,6 @@ int mx_get_pgid_by_job_id(t_shell *m_s, int job_id) {
     return m_s->jobs[job_id]->pgid;
 }
 
-
-int mx_set_job_status(t_shell *m_s, int job_id, int status) {
-    t_process *proc;
-
-    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL) {
-        return -1;
-    }
-    for (proc = m_s->jobs[job_id]->first_process; proc != NULL; proc = proc->next) {
-        if (proc->status != STATUS_DONE) {
-            proc->status = status;
-        }
-    }
-    return 0;
-}
 
 void mx_print_exit(int status) {
     if (WIFEXITED(status))

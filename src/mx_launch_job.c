@@ -1,3 +1,4 @@
+//#include <inc/ush.h>
 #include "ush.h"
 
 void mx_launch_job(t_shell *m_s, t_job *job) {
@@ -6,8 +7,9 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     char **env = environ;
     char *path = getenv("PATH");
 
-    int (*builtin_functions[])(t_shell *m_s, t_process *p) = {&mx_echo, &mx_jobs, &mx_fg, &mx_exit,
-       &mx_cd, &mx_pwd, &mx_export, &mx_unset, &mx_which, &mx_env, NULL};
+    int (*builtin_functions[])(t_shell *m_s, t_process *p) = {&mx_env, &mx_export, &mx_unset,
+        &mx_echo, &mx_jobs, &mx_fg, &mx_bg, &mx_cd, &mx_pwd, &mx_which, &mx_exit, NULL};
+
 //    pid_t wpid;
     setbuf(stdout, NULL); /* установить небуферизованный режим */
     int status;
@@ -38,7 +40,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
 
         if (p->type) {
             if ((status = builtin_functions[p->type](m_s, p)) >= 0)
-
+                p->status = 1;
 
                 mx_remove_job(m_s, job_id);
         }
@@ -58,9 +60,9 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
             mx_remove_job(m_s, job_id);
     }
     else if (job->foreground == BACKGROUND) {
-        // if (kill (-job->pgid, SIGCONT) < 0)
-        //    perror ("kill (SIGCONT)");
-        //mx_print_process_in_job(m_s, job->job_id);
+         if (kill (-job->pgid, SIGCONT) < 0)
+            perror ("kill (SIGCONT)");
+        mx_print_process_in_job(m_s, job->job_id);
     }
     //return status;
 }
