@@ -7,7 +7,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     char **env = environ;
     char *path = getenv("PATH");
 
-    int (*builtin_functions[])(t_shell *m_s, t_process *p) = {&mx_env, &mx_export, &mx_unset,
+    int (*builtin_functions[])(t_shell *m_s, t_process *p) = {&mx_env, &mx_env, &mx_export, &mx_unset,
         &mx_echo, &mx_jobs, &mx_fg, &mx_bg, &mx_cd, &mx_pwd, &mx_which, &mx_exit, NULL};
 
 //    pid_t wpid;

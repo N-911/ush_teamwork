@@ -107,17 +107,17 @@ typedef struct env_s  {
     int P;
 } env_t;
 
-typedef struct s_env_builtin  {
-    env_t env_options;
-    t_export *env_list;
-    t_export *env_params;
-} t_env_builtin;
-
 typedef struct  s_export {
     char *name;
     char *value;
     struct s_export *next;
 } t_export;
+
+typedef struct s_env_builtin  {
+    env_t env_options;
+    t_export *env_list;
+    t_export *env_params;
+} t_env_builtin;
 
 typedef struct s_process {
     char *fullpath;  //for execve

@@ -8,7 +8,6 @@ static void set_data(t_export **export, int n_options, int n_variables, char *ar
 static void delete_name(t_export **list, char *arg);
 
 int mx_env(t_shell *m_s, t_process *p) {
-	//t_env_builtin env;
     env_t env_options = {0, 0, 0};
     t_export *env_params = NULL;
     int n_options = count_options(p->argv, &env_options, &env_params);
@@ -35,7 +34,7 @@ int mx_env(t_shell *m_s, t_process *p) {
         head_1 = head_1->next;
     }
 
-    if (n_options < 0) 
+    if (n_options < 0 || n_variables < 0) 
         return 1;
     if (n_args == 0) {
         t_export *head = env_list;
@@ -80,8 +79,12 @@ static int count_variables(char **args, int n_options) {
     int n_variables = 0;
 
     for (int i = n_options + 1; args[i] != NULL; i++) {
-        if (mx_get_char_index(args[i],'=') <= 0)
+        if (mx_get_char_index(args[i],'=') < 0)
             break;
+        if (mx_get_char_index(args[i],'=') == 0) {
+            printf("env: setenv %s: Invalid argument\n", args[i]);
+            return -1;
+        }
         n_variables++;
     }
     return n_variables;
