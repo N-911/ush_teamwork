@@ -62,7 +62,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     else if (job->foreground == BACKGROUND) {
          if (kill (-job->pgid, SIGCONT) < 0)
             perror ("kill (SIGCONT)");
-        mx_print_process_in_job(m_s, job->job_id);
+        mx_print_pid_process_in_job(m_s, job->job_id);
     }
     //return status;
 }

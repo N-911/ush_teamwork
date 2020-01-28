@@ -772,9 +772,22 @@ CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.s"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_jobs_functions.c -o CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.s
 
+CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.o: CMakeFiles/ush_team.dir/flags.make
+CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.o: ../src/mx_jobs_functions_wait.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building C object CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.o   -c /Users/snikolayen/ush_team/src/mx_jobs_functions_wait.c
+
+CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/snikolayen/ush_team/src/mx_jobs_functions_wait.c > CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.i
+
+CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/snikolayen/ush_team/src/mx_jobs_functions_wait.c -o CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.s
+
 CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o: ../src/mx_launch_bin.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building C object CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building C object CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o   -c /Users/snikolayen/ush_team/src/mx_launch_bin.c
 
 CMakeFiles/ush_team.dir/src/mx_launch_bin.c.i: cmake_force
@@ -787,7 +800,7 @@ CMakeFiles/ush_team.dir/src/mx_launch_bin.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_launch_job.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_launch_job.c.o: ../src/mx_launch_job.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building C object CMakeFiles/ush_team.dir/src/mx_launch_job.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building C object CMakeFiles/ush_team.dir/src/mx_launch_job.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_launch_job.c.o   -c /Users/snikolayen/ush_team/src/mx_launch_job.c
 
 CMakeFiles/ush_team.dir/src/mx_launch_job.c.i: cmake_force
@@ -800,7 +813,7 @@ CMakeFiles/ush_team.dir/src/mx_launch_job.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_launch_process.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_launch_process.c.o: ../src/mx_launch_process.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building C object CMakeFiles/ush_team.dir/src/mx_launch_process.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building C object CMakeFiles/ush_team.dir/src/mx_launch_process.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_launch_process.c.o   -c /Users/snikolayen/ush_team/src/mx_launch_process.c
 
 CMakeFiles/ush_team.dir/src/mx_launch_process.c.i: cmake_force
@@ -813,7 +826,7 @@ CMakeFiles/ush_team.dir/src/mx_launch_process.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_loop.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_loop.c.o: ../src/mx_loop.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building C object CMakeFiles/ush_team.dir/src/mx_loop.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building C object CMakeFiles/ush_team.dir/src/mx_loop.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_loop.c.o   -c /Users/snikolayen/ush_team/src/mx_loop.c
 
 CMakeFiles/ush_team.dir/src/mx_loop.c.i: cmake_force
@@ -826,7 +839,7 @@ CMakeFiles/ush_team.dir/src/mx_loop.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_normalization.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_normalization.c.o: ../src/mx_normalization.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building C object CMakeFiles/ush_team.dir/src/mx_normalization.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building C object CMakeFiles/ush_team.dir/src/mx_normalization.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_normalization.c.o   -c /Users/snikolayen/ush_team/src/mx_normalization.c
 
 CMakeFiles/ush_team.dir/src/mx_normalization.c.i: cmake_force
@@ -839,7 +852,7 @@ CMakeFiles/ush_team.dir/src/mx_normalization.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.o: ../src/mx_parce_tokens.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building C object CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building C object CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.o   -c /Users/snikolayen/ush_team/src/mx_parce_tokens.c
 
 CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.i: cmake_force
@@ -852,7 +865,7 @@ CMakeFiles/ush_team.dir/src/mx_parce_tokens.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_print_colored.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_print_colored.c.o: ../src/mx_print_colored.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building C object CMakeFiles/ush_team.dir/src/mx_print_colored.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building C object CMakeFiles/ush_team.dir/src/mx_print_colored.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_print_colored.c.o   -c /Users/snikolayen/ush_team/src/mx_print_colored.c
 
 CMakeFiles/ush_team.dir/src/mx_print_colored.c.i: cmake_force
@@ -865,7 +878,7 @@ CMakeFiles/ush_team.dir/src/mx_print_colored.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.o: ../src/mx_print_strarr_in_line.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building C object CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building C object CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.o   -c /Users/snikolayen/ush_team/src/mx_print_strarr_in_line.c
 
 CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.i: cmake_force
@@ -878,7 +891,7 @@ CMakeFiles/ush_team.dir/src/mx_print_strarr_in_line.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_push_export.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_push_export.c.o: ../src/mx_push_export.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building C object CMakeFiles/ush_team.dir/src/mx_push_export.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building C object CMakeFiles/ush_team.dir/src/mx_push_export.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_push_export.c.o   -c /Users/snikolayen/ush_team/src/mx_push_export.c
 
 CMakeFiles/ush_team.dir/src/mx_push_export.c.i: cmake_force
@@ -891,7 +904,7 @@ CMakeFiles/ush_team.dir/src/mx_push_export.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_pwd.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_pwd.c.o: ../src/mx_pwd.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building C object CMakeFiles/ush_team.dir/src/mx_pwd.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building C object CMakeFiles/ush_team.dir/src/mx_pwd.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_pwd.c.o   -c /Users/snikolayen/ush_team/src/mx_pwd.c
 
 CMakeFiles/ush_team.dir/src/mx_pwd.c.i: cmake_force
@@ -904,7 +917,7 @@ CMakeFiles/ush_team.dir/src/mx_pwd.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_read_line.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_read_line.c.o: ../src/mx_read_line.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building C object CMakeFiles/ush_team.dir/src/mx_read_line.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building C object CMakeFiles/ush_team.dir/src/mx_read_line.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_read_line.c.o   -c /Users/snikolayen/ush_team/src/mx_read_line.c
 
 CMakeFiles/ush_team.dir/src/mx_read_line.c.i: cmake_force
@@ -917,7 +930,7 @@ CMakeFiles/ush_team.dir/src/mx_read_line.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.o: ../src/mx_set_buff_zero.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building C object CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building C object CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.o   -c /Users/snikolayen/ush_team/src/mx_set_buff_zero.c
 
 CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.i: cmake_force
@@ -930,7 +943,7 @@ CMakeFiles/ush_team.dir/src/mx_set_buff_zero.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_set_data.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_set_data.c.o: ../src/mx_set_data.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building C object CMakeFiles/ush_team.dir/src/mx_set_data.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building C object CMakeFiles/ush_team.dir/src/mx_set_data.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_set_data.c.o   -c /Users/snikolayen/ush_team/src/mx_set_data.c
 
 CMakeFiles/ush_team.dir/src/mx_set_data.c.i: cmake_force
@@ -943,7 +956,7 @@ CMakeFiles/ush_team.dir/src/mx_set_data.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_set_variable.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_set_variable.c.o: ../src/mx_set_variable.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building C object CMakeFiles/ush_team.dir/src/mx_set_variable.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building C object CMakeFiles/ush_team.dir/src/mx_set_variable.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_set_variable.c.o   -c /Users/snikolayen/ush_team/src/mx_set_variable.c
 
 CMakeFiles/ush_team.dir/src/mx_set_variable.c.i: cmake_force
@@ -956,7 +969,7 @@ CMakeFiles/ush_team.dir/src/mx_set_variable.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_signal.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_signal.c.o: ../src/mx_signal.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building C object CMakeFiles/ush_team.dir/src/mx_signal.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building C object CMakeFiles/ush_team.dir/src/mx_signal.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_signal.c.o   -c /Users/snikolayen/ush_team/src/mx_signal.c
 
 CMakeFiles/ush_team.dir/src/mx_signal.c.i: cmake_force
@@ -969,7 +982,7 @@ CMakeFiles/ush_team.dir/src/mx_signal.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_split_line.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_split_line.c.o: ../src/mx_split_line.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building C object CMakeFiles/ush_team.dir/src/mx_split_line.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building C object CMakeFiles/ush_team.dir/src/mx_split_line.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_split_line.c.o   -c /Users/snikolayen/ush_team/src/mx_split_line.c
 
 CMakeFiles/ush_team.dir/src/mx_split_line.c.i: cmake_force
@@ -982,7 +995,7 @@ CMakeFiles/ush_team.dir/src/mx_split_line.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.o: ../src/mx_strdup_arr.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building C object CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building C object CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.o   -c /Users/snikolayen/ush_team/src/mx_strdup_arr.c
 
 CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.i: cmake_force
@@ -995,7 +1008,7 @@ CMakeFiles/ush_team.dir/src/mx_strdup_arr.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.o: ../src/mx_strjoin_free.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building C object CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building C object CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.o   -c /Users/snikolayen/ush_team/src/mx_strjoin_free.c
 
 CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.i: cmake_force
@@ -1008,7 +1021,7 @@ CMakeFiles/ush_team.dir/src/mx_strjoin_free.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.o: ../src/mx_strlen_arr.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building C object CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building C object CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.o   -c /Users/snikolayen/ush_team/src/mx_strlen_arr.c
 
 CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.i: cmake_force
@@ -1021,7 +1034,7 @@ CMakeFiles/ush_team.dir/src/mx_strlen_arr.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.o: ../src/mx_strsplit_quote.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building C object CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building C object CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.o   -c /Users/snikolayen/ush_team/src/mx_strsplit_quote.c
 
 CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.i: cmake_force
@@ -1034,7 +1047,7 @@ CMakeFiles/ush_team.dir/src/mx_strsplit_quote.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_strtok.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_strtok.c.o: ../src/mx_strtok.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building C object CMakeFiles/ush_team.dir/src/mx_strtok.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building C object CMakeFiles/ush_team.dir/src/mx_strtok.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strtok.c.o   -c /Users/snikolayen/ush_team/src/mx_strtok.c
 
 CMakeFiles/ush_team.dir/src/mx_strtok.c.i: cmake_force
@@ -1047,7 +1060,7 @@ CMakeFiles/ush_team.dir/src/mx_strtok.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.o: ../src/mx_strtrim_quote.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building C object CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building C object CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.o   -c /Users/snikolayen/ush_team/src/mx_strtrim_quote.c
 
 CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.i: cmake_force
@@ -1060,7 +1073,7 @@ CMakeFiles/ush_team.dir/src/mx_strtrim_quote.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_terminal.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_terminal.c.o: ../src/mx_terminal.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building C object CMakeFiles/ush_team.dir/src/mx_terminal.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building C object CMakeFiles/ush_team.dir/src/mx_terminal.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_terminal.c.o   -c /Users/snikolayen/ush_team/src/mx_terminal.c
 
 CMakeFiles/ush_team.dir/src/mx_terminal.c.i: cmake_force
@@ -1073,7 +1086,7 @@ CMakeFiles/ush_team.dir/src/mx_terminal.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_unset.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_unset.c.o: ../src/mx_unset.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building C object CMakeFiles/ush_team.dir/src/mx_unset.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building C object CMakeFiles/ush_team.dir/src/mx_unset.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_unset.c.o   -c /Users/snikolayen/ush_team/src/mx_unset.c
 
 CMakeFiles/ush_team.dir/src/mx_unset.c.i: cmake_force
@@ -1086,7 +1099,7 @@ CMakeFiles/ush_team.dir/src/mx_unset.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.o: ../src/mx_ush_clear_list.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building C object CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building C object CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.o   -c /Users/snikolayen/ush_team/src/mx_ush_clear_list.c
 
 CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.i: cmake_force
@@ -1099,7 +1112,7 @@ CMakeFiles/ush_team.dir/src/mx_ush_clear_list.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.o: ../src/mx_ush_parsed_input.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building C object CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building C object CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.o   -c /Users/snikolayen/ush_team/src/mx_ush_parsed_input.c
 
 CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.i: cmake_force
@@ -1112,7 +1125,7 @@ CMakeFiles/ush_team.dir/src/mx_ush_parsed_input.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.o: ../src/mx_ush_push_back.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building C object CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building C object CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.o   -c /Users/snikolayen/ush_team/src/mx_ush_push_back.c
 
 CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.i: cmake_force
@@ -1125,7 +1138,7 @@ CMakeFiles/ush_team.dir/src/mx_ush_push_back.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.o: ../src/mx_ush_read_line.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building C object CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building C object CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.o   -c /Users/snikolayen/ush_team/src/mx_ush_read_line.c
 
 CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.i: cmake_force
@@ -1138,7 +1151,7 @@ CMakeFiles/ush_team.dir/src/mx_ush_read_line.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/mx_which.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/mx_which.c.o: ../src/mx_which.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building C object CMakeFiles/ush_team.dir/src/mx_which.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building C object CMakeFiles/ush_team.dir/src/mx_which.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/mx_which.c.o   -c /Users/snikolayen/ush_team/src/mx_which.c
 
 CMakeFiles/ush_team.dir/src/mx_which.c.i: cmake_force
@@ -1151,7 +1164,7 @@ CMakeFiles/ush_team.dir/src/mx_which.c.s: cmake_force
 
 CMakeFiles/ush_team.dir/src/ush_main.c.o: CMakeFiles/ush_team.dir/flags.make
 CMakeFiles/ush_team.dir/src/ush_main.c.o: ../src/ush_main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building C object CMakeFiles/ush_team.dir/src/ush_main.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building C object CMakeFiles/ush_team.dir/src/ush_main.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ush_team.dir/src/ush_main.c.o   -c /Users/snikolayen/ush_team/src/ush_main.c
 
 CMakeFiles/ush_team.dir/src/ush_main.c.i: cmake_force
@@ -1219,6 +1232,7 @@ ush_team_OBJECTS = \
 "CMakeFiles/ush_team.dir/src/mx_get_type.c.o" \
 "CMakeFiles/ush_team.dir/src/mx_init_shell.c.o" \
 "CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.o" \
+"CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.o" \
 "CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o" \
 "CMakeFiles/ush_team.dir/src/mx_launch_job.c.o" \
 "CMakeFiles/ush_team.dir/src/mx_launch_process.c.o" \
@@ -1308,6 +1322,7 @@ ush_team: CMakeFiles/ush_team.dir/src/mx_get_char_index_quote.c.o
 ush_team: CMakeFiles/ush_team.dir/src/mx_get_type.c.o
 ush_team: CMakeFiles/ush_team.dir/src/mx_init_shell.c.o
 ush_team: CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.o
+ush_team: CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.o
 ush_team: CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o
 ush_team: CMakeFiles/ush_team.dir/src/mx_launch_job.c.o
 ush_team: CMakeFiles/ush_team.dir/src/mx_launch_process.c.o
@@ -1340,7 +1355,7 @@ ush_team: CMakeFiles/ush_team.dir/src/mx_which.c.o
 ush_team: CMakeFiles/ush_team.dir/src/ush_main.c.o
 ush_team: CMakeFiles/ush_team.dir/build.make
 ush_team: CMakeFiles/ush_team.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Linking C executable ush_team"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Linking C executable ush_team"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ush_team.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

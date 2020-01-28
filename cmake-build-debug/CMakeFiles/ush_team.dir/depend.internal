@@ -178,6 +178,10 @@ CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.o
  ../inc/ush.h
  ../libmx/inc/libmx.h
  /Users/snikolayen/ush_team/src/mx_jobs_functions.c
+CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.o
+ ../inc/ush.h
+ ../libmx/inc/libmx.h
+ /Users/snikolayen/ush_team/src/mx_jobs_functions_wait.c
 CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o
  ../inc/ush.h
  ../libmx/inc/libmx.h

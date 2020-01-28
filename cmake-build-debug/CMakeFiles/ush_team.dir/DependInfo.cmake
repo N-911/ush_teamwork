@@ -59,6 +59,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/snikolayen/ush_team/src/mx_get_type.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_get_type.c.o"
   "/Users/snikolayen/ush_team/src/mx_init_shell.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_init_shell.c.o"
   "/Users/snikolayen/ush_team/src/mx_jobs_functions.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.o"
+  "/Users/snikolayen/ush_team/src/mx_jobs_functions_wait.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.o"
   "/Users/snikolayen/ush_team/src/mx_launch_bin.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o"
   "/Users/snikolayen/ush_team/src/mx_launch_job.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_launch_job.c.o"
   "/Users/snikolayen/ush_team/src/mx_launch_process.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_launch_process.c.o"

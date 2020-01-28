@@ -54,6 +54,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/ush_team.dir/src/mx_get_type.c.o"
   "CMakeFiles/ush_team.dir/src/mx_init_shell.c.o"
   "CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.o"
+  "CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.o"
   "CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o"
   "CMakeFiles/ush_team.dir/src/mx_launch_job.c.o"
   "CMakeFiles/ush_team.dir/src/mx_launch_process.c.o"

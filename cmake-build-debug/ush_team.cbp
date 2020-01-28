@@ -275,6 +275,9 @@
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_jobs_functions.c">
 			<Option target="ush_team"/>
 		</Unit>
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_jobs_functions_wait.c">
+			<Option target="ush_team"/>
+		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_launch_bin.c">
 			<Option target="ush_team"/>
 		</Unit>

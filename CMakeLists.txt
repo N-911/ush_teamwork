@@ -70,6 +70,8 @@ add_executable(ush_team
     src/mx_get_type.c
     src/mx_init_shell.c
     src/mx_jobs_functions.c
+    src/mx_jobs_functions_wait.c
+    src/mx_jobs_functions_print.c
     src/mx_launch_bin.c
     src/mx_launch_job.c
     src/mx_launch_process.c

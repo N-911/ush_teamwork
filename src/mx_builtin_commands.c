@@ -11,11 +11,15 @@ int mx_builtin_commands_idex(t_shell *m_s, char *command) {
 }
 
 int mx_jobs(t_shell *m_s, t_process *p) {
-    for (int i = 0; i < JOBS_NUMBER; i++) {
-        if (m_s->jobs[i] != NULL) {
-            mx_print_job_status(m_s, i);
+    if (p->argv[1] == NULL) {
+        for (int i = 0; i < JOBS_NUMBER; i++) {
+            if (m_s->jobs[i] != NULL) {
+                mx_print_job_status(m_s, i);
+            }
         }
     }
+// else check argv[1] strcp in all jobs in all processes
+
     p->exit_code = 0;
     return 0;
 }
