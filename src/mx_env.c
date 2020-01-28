@@ -8,11 +8,13 @@ static void set_data(t_export **export, int n_options, int n_variables, char *ar
 static void delete_name(t_export **list, char *arg);
 
 int mx_env(t_shell *m_s, t_process *p) {
+	//t_env_builtin env;
     env_t env_options = {0, 0, 0};
     t_export *env_params = NULL;
     int n_options = count_options(p->argv, &env_options, &env_params);
     int n_variables = count_variables(p->argv, n_options);
     int n_args = count_args(p->argv, n_variables + n_options);
+    int exit_code = 1;
 
   	extern char** environ;
     t_export *env_list = NULL;
@@ -71,8 +73,7 @@ int mx_env(t_shell *m_s, t_process *p) {
         p->argv = args_arr;
         mx_launch_bin(m_s, p, path, env_arr);
     }
-    mx_set_variable(m_s->variables, "?", "0");
-  	return 1;
+  	return exit_code;
 }
 
 static int count_variables(char **args, int n_options) {
