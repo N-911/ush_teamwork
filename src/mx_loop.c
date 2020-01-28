@@ -10,7 +10,7 @@ void mx_ush_loop(t_shell *m_s) {
         // if (!mx_ush_read_line())
         //      exit(0);
         line = mx_ush_read_line();
-        if (line == NULL) {
+        if (line[0] == '\0') {
             mx_check_jobs(m_s);
             continue;
         } else if (line[0] != '\n') {
@@ -18,12 +18,12 @@ void mx_ush_loop(t_shell *m_s) {
             parsed_line = mx_ush_parsed_line(line);
             //print_list(parsed_line);
             new_job = mx_create_job(m_s, parsed_line);
-            mx_printstr("type - ");
-            mx_printint(new_job->first_process->type);
-            mx_printstr("\n");
-            mx_printstr("foreground - ");
-            mx_printint(new_job->first_process->foreground);
-            mx_printstr("\n");
+           // mx_printstr("type - ");
+            //mx_printint(new_job->first_process->type);
+            //mx_printstr("\n");
+            //mx_printstr("foreground - ");
+            //mx_printint(new_job->first_process->foreground);
+            //mx_printstr("\n");
             mx_launch_job(m_s, new_job);
             //m_s->exit_code = status;
             //destroy_job;
