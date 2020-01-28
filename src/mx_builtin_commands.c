@@ -11,11 +11,15 @@ int mx_builtin_commands_idex(t_shell *m_s, char *command) {
 }
 
 int mx_jobs(t_shell *m_s, t_process *p) {
-    for (int i = 0; i < JOBS_NUMBER; i++) {
-        if (m_s->jobs[i] != NULL) {
-            mx_print_job_status(m_s, i);
+    if (p->argv[1] == NULL) {
+        for (int i = 0; i < JOBS_NUMBER; i++) {
+            if (m_s->jobs[i] != NULL) {
+                mx_print_job_status(m_s, i);
+            }
         }
     }
+// else check argv[1] strcp in all jobs in all processes
+
     p->exit_code = 0;
     return 0;
 }
@@ -62,7 +66,7 @@ int mx_fg(t_shell *m_s, t_process *p) {
 
     tcsetpgrp(0, pgid);
     if (job_id > 0) {
-        mx_set_process_status(m_s, pgid, STATUS_CONTINUED);
+        mx_set_job_status(m_s, job_id, STATUS_CONTINUED);
         mx_print_job_status(m_s, job_id);
         if (mx_wait_job(m_s, job_id) >= 0)
             mx_remove_job(m_s, job_id);
@@ -73,6 +77,37 @@ int mx_fg(t_shell *m_s, t_process *p) {
     signal(SIGTTOU, SIG_DFL);  //
     return 0;
 }
+
+
+int mx_bg(t_shell *m_s, t_process *p) {
+    pid_t pgid = 0;
+    int job_id = 0;
+
+    if (p->argv[1]) {
+        //  if (p->arg_command[0] == '%') {
+        job_id = atoi(p->argv[1]);
+//        else
+//            job_id = mx_get_recent_job(m_s); //most recently placed in the background, find '+'
+        //}
+    }
+    //       else {
+//            pid = atoi((p->arg_command[1]));
+    printf("job_id %d\n", job_id);
+    pgid = mx_get_pgid_by_job_id(m_s, job_id);
+    printf("pid background process %d\n", pgid);
+    if (kill(-pgid, SIGCONT) < 0) {
+        mx_printerr("fg: job not found: ");
+        mx_printerr(mx_itoa(pgid));
+        mx_printerr("\n");
+        return -1;
+    }
+    if (job_id > 0) {
+        mx_set_job_status(m_s, job_id, STATUS_CONTINUED);
+        mx_print_job_status(m_s, job_id);
+    }
+    return 0;
+}
+
 
 int mx_echo(t_shell *m_s, t_process *p) {
     int exit_code = 0;

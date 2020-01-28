@@ -18,6 +18,8 @@ SRC = mx_builtin_commands.c \
     mx_get_char_index_quote.c \
     mx_init_shell.c \
     mx_jobs_functions.c \
+    mx_jobs_functions_wait.c \
+    mx_jobs_functions_print.c \
     mx_launch_job.c \
     mx_launch_process.c \
     mx_loop.c \
@@ -61,6 +63,8 @@ OBJ = mx_builtin_commands.o \
     mx_get_char_index_quote.o \
     mx_init_shell.o \
     mx_jobs_functions.o \
+    mx_jobs_functions_wait.o \
+    mx_jobs_functions_print.o \
     mx_launch_job.o \
     mx_launch_process.o \
     mx_loop.o \

@@ -28,12 +28,9 @@
 //#include "../libmx/inc/libmx.h"
 #include "libmx/inc/libmx.h"
 
-
 #define LSH_RL_BUFSIZE 1024
 #define LSH_TOK_BUFSIZE 64
 #define LSH_TOK_DELIM " \t\r\n\a"
-#define PROMPT "u$h> "
-#define PROMPT_LEN 5
 #define USH_TOK_BUFSIZE 64
 #define USH_TOK_DELIM " \t\r\n\a"
 #define PARSE_DELIM ";|&><"
@@ -44,18 +41,17 @@
 
 //  JOBS
 #define JOBS_NUMBER 20
-#define PIPE 2
-#define COMMAND_BUILTIN 1
 #define STATUS_RUNNING 0
 #define STATUS_DONE 1
 #define STATUS_SUSPENDED 2
 #define STATUS_CONTINUED 3
 #define STATUS_TERMINATED 4
-#define PROC_FILTER_ALL 0
-#define PROC_FILTER_DONE 1
-#define PROC_FILTER_REMAINING 2
+#define FILTER_ALL 0
+#define FILTER_DONE 1
+#define FILTER_IN_PROGRESS 2
 #define FOREGROUND 1
 #define BACKGROUND 0
+#define MAX_LEN 10
 
 //  JOB STATUS
 #define STATUS_RUN "running"
@@ -173,9 +169,8 @@ typedef struct s_shell {
     char	**envp;  //not used
     int		exit_code;  //return if exit
     t_job   *jobs[JOBS_NUMBER];     //arr jobs
-    int max_number_job;
-    char **builtin_list;
-    char **job_control;
+    int max_number_job;  // number of added jobs + 1
+    char **builtin_list;  // buildin functions
     char **history;
     int history_count;
     int history_index;
@@ -188,7 +183,6 @@ typedef struct s_shell {
     t_export *variables;
 } t_shell;
 
-
 static volatile sig_atomic_t sigflag; // устанавливается обработчиком  в ненулевое значение
 static sigset_t newmask, oldmask, zeromask;
 
@@ -199,8 +193,7 @@ void mx_terminal_init(t_shell *m_s);
 void mx_termios_save(t_shell *m_s);
 void termios_restore(t_shell *m_s);
 
-//  PARSE
-
+//      PARSE
 bool mx_check_parce_errors(char *line);
 char *mx_ush_read_line(void);
 char *mx_strtok(char *s, const char *delim);
@@ -227,28 +220,28 @@ void mx_print_color(char *macros, char *str);
 void mx_set_buff_zero(void *s, size_t n);
 
 //      LOOP
-//char *mx_read_line2(void);
-char **mx_ush_split_line(char *line);
+//char *mx_read_line2(void);  // delete
+char **mx_ush_split_line(char *line);  // delete
 t_job *mx_create_job(t_shell *m_s, t_input *list);
 void mx_ush_loop(t_shell *m_s);
-
 int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
                       int infile, int outfile, int errfile);
-//int mx_launch_process(t_shell *m_s, t_process *p, char *path, char **env);
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
 void mx_launch_job(t_shell *m_s, t_job *job);
 
 //      BUILTIN COMMANDS
-int mx_exit(t_shell *m_s, t_process *p);
+int mx_env(t_shell *m_s, t_process *p);
 int mx_echo(t_shell *m_s, t_process *p);
 int mx_jobs(t_shell *m_s, t_process *p);
 int mx_fg(t_shell *m_s, t_process *p);
+int mx_bg(t_shell *m_s, t_process *p);
 int mx_cd(t_shell *m_s, t_process *p);
 int mx_pwd(t_shell *m_s, t_process *p);
 int mx_export(t_shell *m_s, t_process *p);
 int mx_unset(t_shell *m_s, t_process *p);
 int mx_which(t_shell *m_s, t_process *p);
-int mx_env(t_shell *m_s, t_process *p);
+int mx_exit(t_shell *m_s, t_process *p);
+
 
 //      SIGNALS
 void sigchld_handler(int signum);
@@ -267,11 +260,13 @@ int mx_insert_job(t_shell *m_s, t_job *job);
 void mx_remove_job(t_shell *m_s, int id);
 int mx_get_proc_count(t_shell *m_s, int job_id, int filter);
 void mx_set_process_status(t_shell *m_s, int pid, int status);
-int mx_get_job_id_by_pid(t_shell *m_s, int pid);
-int mx_get_pgid_by_job_id(t_shell *m_s, int job_id);
-int mx_job_completed(t_shell *m_s, int id);
+int mx_set_job_status(t_shell *m_s, int job_id, int status);
 
-void mx_print_process_in_job(t_shell *m_s, int id);
+int mx_job_id_by_pid(t_shell *m_s, int pid);
+int mx_get_pgid_by_job_id(t_shell *m_s, int job_id);
+int mx_job_completed(t_shell *m_s, int job_id);
+
+void mx_print_pid_process_in_job(t_shell *m_s, int id);  // only if foreground execution
 int mx_print_job_status(t_shell *m_s, int id);
 
 void mx_check_jobs(t_shell *m_s);  //waitpid any process
