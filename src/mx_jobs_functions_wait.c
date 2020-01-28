@@ -53,6 +53,7 @@ int mx_wait_job(t_shell *m_s, int job_id) {
         else if (WSTOPSIG(status)) {
             status = -1;
             mx_set_process_status(m_s, wait_pid, STATUS_SUSPENDED);
+            //mx_set_variable(m_s->variables, "!", wait_pid);
             if (wait_count == proc_count) {
                 mx_print_job_status(m_s, job_id);
             }

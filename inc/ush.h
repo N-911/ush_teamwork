@@ -115,6 +115,9 @@ typedef struct  s_export {
 
 typedef struct s_env_builtin  {
     env_t env_options;
+    int n_options;
+    int n_variables;
+    int n_args;
     t_export *env_list;
     t_export *env_params;
 } t_env_builtin;

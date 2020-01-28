@@ -14,6 +14,7 @@ int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env) {
     if (pid == 0) {
         char **arr = mx_strsplit(path, ':');
         char *command = p->argv[0];
+        printf("COMMANd = %s\n", command);
         path  = check_path(arr, command);
         if(!path)
             path = strdup(command);

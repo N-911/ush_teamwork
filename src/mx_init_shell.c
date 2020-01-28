@@ -14,20 +14,19 @@ t_shell *mx_init_shell(int argc, char **argv) {
 
     m_s->argc = argc;
     m_s->argv = argv;
-    m_s->builtin_list = (char **) malloc(sizeof(char *) * 13);
-    m_s->builtin_list[0] = "aaaa";
-    m_s->builtin_list[1] = "env";
-    m_s->builtin_list[2] = "export";
-    m_s->builtin_list[3] = "unset";
-    m_s->builtin_list[4] = "echo";  // not full
-    m_s->builtin_list[5] = "jobs";
-    m_s->builtin_list[6] = "fg";
-    m_s->builtin_list[7] = "bg";
-    m_s->builtin_list[8] = "cd";
-    m_s->builtin_list[9] = "pwd";
-    m_s->builtin_list[10] = "which";
-    m_s->builtin_list[11] = "exit";
-    m_s->builtin_list[12] = NULL;
+    m_s->builtin_list = (char **) malloc(sizeof(char *) * 12);
+    m_s->builtin_list[0] = "env";
+    m_s->builtin_list[1] = "export";
+    m_s->builtin_list[2] = "unset";
+    m_s->builtin_list[3] = "echo";  // not full
+    m_s->builtin_list[4] = "jobs";
+    m_s->builtin_list[5] = "fg";
+    m_s->builtin_list[6] = "bg";
+    m_s->builtin_list[7] = "cd";
+    m_s->builtin_list[8] = "pwd";
+    m_s->builtin_list[9] = "which";
+    m_s->builtin_list[10] = "exit";
+    m_s->builtin_list[11] = NULL;
 
     m_s->max_number_job = 2;
     m_s->pwd = get_pwd();//PWD for further work

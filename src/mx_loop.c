@@ -67,7 +67,7 @@ static t_process *create_process(t_shell *m_s, t_input *list) {
     else
         p->pipe = 0;
     if ((index = mx_builtin_commands_idex(m_s, p->argv[0])) == -1) {
-        p->type = 0;      //COMMAND_BUILTIN = index;   default = 0
+        p->type = -1;      //COMMAND_BUILTIN = index;   default = 0
     } else
         p->type = index;
     p->next = NULL;
