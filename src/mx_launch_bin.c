@@ -6,7 +6,7 @@ static void print_error(char *command, char *error);
 
 int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env) {
     pid_t pid;
-    int status;
+    int status = 1;
     m_s->history_index = 0;
     char *const *envp = env;
 
@@ -33,7 +33,7 @@ int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env) {
     else { // Родительский процесс
         wait(&status);
     }
-    return (p->exit_code);
+    return status;
 }
 
 

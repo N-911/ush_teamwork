@@ -120,6 +120,7 @@ typedef struct s_env_builtin  {
     int n_args;
     t_export *env_list;
     t_export *env_params;
+    char *path;
 } t_env_builtin;
 
 typedef struct s_process {
