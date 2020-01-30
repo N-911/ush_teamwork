@@ -1,7 +1,7 @@
 #include "ush.h"
 
 static char *check_path(char **arr, char *command);
-static char *get_error(char **name, char *command);
+static char *get_error(char **name, char *command, int *status);
 static void print_error(char *command, char *error);
 
 int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env) {
@@ -14,16 +14,14 @@ int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env) {
     if (pid == 0) {
         char **arr = mx_strsplit(path, ':');
         char *command = p->argv[0];
-        printf("COMMANd = %s\n", command);
+        //printf("COMMANd = %s\n", command);
         path  = check_path(arr, command);
         if(!path)
             path = strdup(command);
-        char *error = get_error(&path, command);
-        error = NULL;
-        env = NULL;
+        char *error = get_error(&path, command, &status);
         if (execve(path, p->argv, envp) < 0) {
             print_error(command, error);
-            _exit(EXIT_FAILURE);
+            _exit(status);
         }
         exit(0);
     }
@@ -31,9 +29,10 @@ int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env) {
         perror("env ");
     } 
     else { // Родительский процесс
-        wait(&status);
+        waitpid(pid, &status, 0);
     }
-    return status;
+    
+    return WEXITSTATUS(status);
 }
 
 
@@ -61,18 +60,20 @@ static char *check_path(char **arr, char *command) {
     return name;
 }
 
-static char *get_error(char **name, char *command) {
+static char *get_error(char **name, char *command, int *status) {
     char *error = NULL;
 
+    *status = 127;
     if (strstr(command, "/")) {
         *name = command;
         struct stat buff;
         if (lstat(*name, &buff) < 0) {
-            error = strdup(": No such file or directory\n");
+            error = NULL;//strdup(": No such file or directory\n");
         }
         else {
             if (mx_get_type(buff) == 'd') {
                 error = strdup(": is a directory\n");
+                *status = 126; 
             }
         }
     } 

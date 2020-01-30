@@ -1,7 +1,7 @@
 #include "ush.h"
 
 static char *check_path(char **arr, char *command);
-static char *get_error(char **name, char *command);
+static char *get_error(char **name, char *command, int *status);
 static void print_error(char *command, char *error);
 
 int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
@@ -56,14 +56,14 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
         char **arr = mx_strsplit(path, ':');
         char *command = p->argv[0];
         path  = check_path(arr, command);
-        char *error = get_error(&path, command);
+        char *error = get_error(&path, command, &status);
 
         if (execve(path, p->argv, env) < 0) {
+            //printf("%d\n", errno);
             print_error(command, error);
-            // perror("execvp");
-            _exit(EXIT_FAILURE);
+            _exit(status);
         }
-            _exit(EXIT_SUCCESS);
+        _exit(EXIT_SUCCESS);
     }
         //parrent process
     else {
@@ -89,7 +89,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
         }
 
     }
-    return (p->exit_code);
+    return (WEXITSTATUS(status));
 }
 
 
@@ -117,18 +117,20 @@ static char *check_path(char **arr, char *command) {
     return name;
 }
 
-static char *get_error(char **name, char *command) {
+static char *get_error(char **name, char *command, int *status) {
     char *error = NULL;
 
+    *status = 127;
     if (strstr(command, "/")) {
         *name = command;
         struct stat buff;
         if (lstat(*name, &buff) < 0) {
-            error = strdup(": No such file or directory\n");
+            error = NULL;//strdup(": No such file or directory\n");
         }
         else {
             if (mx_get_type(buff) == 'd') {
                 error = strdup(": is a directory\n");
+                *status = 126; 
             }
         }
     } 

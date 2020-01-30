@@ -45,7 +45,7 @@ t_shell *mx_init_shell(int argc, char **argv) {
            kill(-shell_pgid, SIGTTIN);
         /* Ignore interactive and job-control signals.  */
         //  (void)signal(SIGINT, sigint_handler);
-        signal(SIGINT, SIG_DFL);
+        signal(SIGINT, SIG_IGN);
         signal(SIGQUIT, SIG_IGN);
         signal(SIGTSTP, SIG_IGN);
         signal(SIGTTIN, SIG_IGN);
