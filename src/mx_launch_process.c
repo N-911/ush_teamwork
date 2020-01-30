@@ -59,7 +59,6 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
         char *error = get_error(&path, command, &status);
 
         if (execve(path, p->argv, env) < 0) {
-            //printf("%d\n", errno);
             print_error(command, error);
             _exit(status);
         }
