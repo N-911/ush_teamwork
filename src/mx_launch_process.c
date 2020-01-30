@@ -89,7 +89,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
         }
 
     }
-    return (WEXITSTATUS(status));
+    return status >> 8;//WEXITSTATUS(status)
 }
 
 

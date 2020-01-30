@@ -32,7 +32,7 @@ int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env) {
         waitpid(pid, &status, 0);
     }
     
-    return WEXITSTATUS(status);
+    return status >> 8;//WEXITSTATUS(status);
 }
 
 
