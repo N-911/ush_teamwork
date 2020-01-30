@@ -25,18 +25,24 @@ int mx_jobs(t_shell *m_s, t_process *p) {
 }
 
 int mx_exit(t_shell *m_s, t_process *p) {
-//    kill (getpid(), SIGTSTP);
-    int exit_code_s = m_s->exit_code;
-    exit_code_s +=1;
+    int exit_code = m_s->exit_code;
 
-    int exit_code;
-    if ((p->argv[1] != NULL) && atoi(p->argv[1]))
-        exit_code = atoi(p->argv[1]);
-    else
-        exit_code = p->exit_code;
-    //free all!!!
+    if(p->argv[1] != NULL && p->argv[2] != NULL) {
+        mx_printerr("ush: exit: too many arguments\n");
+        return 1;
+    }
+    if (p->argv[1] != NULL) {
+        if (atoi(p->argv[1])) {
+            exit_code = atoi(p->argv[1]);
+        }
+        else {
+            mx_printerr("ush: exit: ");
+            mx_printerr(p->argv[1]);
+            mx_printerr(": numeric argument required\n");
+            exit_code = 255;
+        }
+    }
     exit(exit_code);
-    return (exit_code);
 }
 
 
