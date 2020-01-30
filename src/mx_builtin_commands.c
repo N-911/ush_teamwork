@@ -126,25 +126,3 @@ int mx_bg(t_shell *m_s, t_process *p) {
     }
     return 0;
 }
-
-
-int mx_echo(t_shell *m_s, t_process *p) {
-    int exit_code = 0;
-    int exit_code_s = m_s->exit_code;
-    exit_code_s += 1;
-
-    if (!p->argv[1])
-        mx_printstr("\n");
-    else if (strcmp(p->argv[1], "-n") == 0) {
-        if (p->argv[2]) {
-            mx_printstr(p->argv[2]);
-            mx_printstr("%");
-            mx_printstr("\n");
-        }
-    }
-    else {
-        mx_printstr(p->argv[1]);
-        mx_printstr("\n");
-    }
-    return exit_code;
-}

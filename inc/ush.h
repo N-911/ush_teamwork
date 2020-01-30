@@ -96,6 +96,12 @@ typedef struct pwd_s  {
     int P;
 } pwd_t;
 
+typedef struct echo_s  {
+    int n;
+    int e;
+    int E;
+} echo_t;
+
 typedef struct which_s  {
     int s;
     int a;
