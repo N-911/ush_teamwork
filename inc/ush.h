@@ -24,6 +24,8 @@
 #include <term.h>
 #include <curses.h>
 #include <malloc/malloc.h>
+#include <limits.h>
+#include <stdlib.h>
 
 //#include "../libmx/inc/libmx.h"
 #include "libmx/inc/libmx.h"

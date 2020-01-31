@@ -83,19 +83,12 @@ static char *get_shlvl() {
 
 static char *get_pwd() {
     char *pwd = getenv("PWD");
-    char *link = malloc(256);
     char *cur_dir = getcwd(NULL, 256);
-    char *read_link = NULL;
+    char *read_link = realpath(pwd, NULL);
 
-    readlink(pwd, link, 256);
-    if (link[0] != '/')
-        read_link = mx_normalization(link, "");
-    else
-        read_link = strdup(link);
-    if (strstr(cur_dir, read_link) && strcmp(link, "") != 0)
+    if (strcmp(cur_dir, read_link) == 0)
         pwd = getenv("PWD");
     else
         pwd = strdup(cur_dir);
-    free(link);
     return pwd;
 }

@@ -89,7 +89,7 @@ static char *replace_sub(char *str, char *sub, char *replace) {
 	char *buff_1 = strndup(str, index);
 	char *buff_2;
 
-    for(int i = 0; i < index + mx_strlen(sub); i++){
+    for (int i = 0; i < index + mx_strlen(sub); i++) {
         str++;
     }
     buff_2 = strdup(str);

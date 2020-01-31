@@ -77,8 +77,6 @@ static char *get_error(char **name, char *command, int *status) {
             }
         }
     } 
-    else
-        error = strdup(": command not found\n");
     return error;
 }
 

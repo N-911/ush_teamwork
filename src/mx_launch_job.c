@@ -52,7 +52,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         if (outfile != job->stdout)
             close(outfile);
         infile = mypipe[0];
-        printf("STATUS($?) = %d\n", status);
+        //printf("STATUS($?) = %d\n", status);
         mx_set_variable(m_s->variables, "?", mx_itoa(status));
     }
 
