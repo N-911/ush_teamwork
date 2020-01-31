@@ -27,14 +27,15 @@ static char *get_end_usual_quote_func(char *s, const char *delim, char *end) {
         end = s + mx_get_char_index(s + 1, '\'') + 2;
         if (!isdelim(*end))
             end += strcspn(end, delim);
-    } else
+    }
+    else
         end = s + strcspn(s, delim);
     if (mx_strncmp(end, " ()", 3) == 0)  // Find the end of the function.
         end = get_end_func(end);
     return end;
 }
 
-static char *strtok_tmp(char *s, const char *delim, char **save_ptr) {
+static char *strtok_tmp (char *s, const char *delim, char **save_ptr) {
     char *end = NULL;
 
     if (s == NULL)
@@ -55,8 +56,8 @@ static char *strtok_tmp(char *s, const char *delim, char **save_ptr) {
     return s;
 }
 
-char *mx_strtok(char *s, const char *delim) {
-    static char *olds;
+char *mx_strtok (char *s, const char *delim) {
+        static char *olds;
 
-    return strtok_tmp(s, delim, &olds);
-}
+        return strtok_tmp (s, delim, &olds);
+    }

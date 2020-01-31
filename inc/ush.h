@@ -10,9 +10,9 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <dirent.h>
-#include <sys/types.h> /* определения типов */ 
+#include <sys/types.h> /* определения типов */
 #include <sys/ioctl.h>
-#include <sys/stat.h> /* структура, возвращаемая stat */ 
+#include <sys/stat.h> /* структура, возвращаемая stat */
 #include <grp.h>
 #include <sys/acl.h>
 #include <sys/xattr.h>
@@ -21,19 +21,15 @@
 #include <sys/param.h>     //   const MAXPATHLEN      PATH_MAX
 #include <termios.h>
 #include <signal.h>
-#include <term.h>
+#include <term.h>  // compile with flags -ltermcap or -lncurses
 #include <curses.h>
 #include <malloc/malloc.h>
 
-//#include "../libmx/inc/libmx.h"
 #include "libmx/inc/libmx.h"
 
 #define LSH_RL_BUFSIZE 1024
 #define LSH_TOK_BUFSIZE 64
 #define LSH_TOK_DELIM " \t\r\n\a"
-#define USH_TOK_BUFSIZE 64
-#define USH_TOK_DELIM " \t\r\n\a"
-#define PARSE_DELIM ";|&><"
 
 //  EXIT
 #define EXIT_FAILURE 1
@@ -79,11 +75,40 @@
 #define DIR_T "\x1B[0;30;42m"
 #define DIR_X "\033[0;30;43m"
 
-typedef struct s_input {
+//      Abstract Syntax Tree
+#define PARSE_DELIM ";|&><"
+#define USH_TOK_DELIM " \t\r\n\a"
+
+#define IS_SEP(x) (!mx_strcmp(x, ";"))
+#define IS_AND(x) (!mx_strcmp(x, "&&"))
+#define IS_OR(x) (!mx_strcmp(x, "||"))
+#define IS_PIPE(x) (!mx_strcmp(x, "|"))
+#define IS_R_INPUT(x) (!mx_strcmp(x, ">"))  // redirections
+#define IS_R_INPUT_DBL(x) (!mx_strcmp(x, ">>"))
+#define IS_R_OUTPUT(x) (!mx_strcmp(x, "<"))
+#define IS_R_OUTPUT_DBL(x) (!mx_strcmp(x, "<<"))
+#define IS_SEP_FIRST_LWL(x) (x == SEP || x == AND || x == OR)
+
+enum e_type {
+    SEP,
+    AND,
+    OR,
+    PIPE,
+    R_INPUT,
+    R_INPUT_DBL,
+    R_OUTPUT,
+    R_OUTPUT_DBL,
+    NUL
+};
+
+typedef struct s_ast {
+    char *line;  // useless after parse
     char **args;
-    char *delim;
-    struct s_input *next;
-} t_input;
+    int type;
+    struct s_ast *next;
+    struct s_ast *left;  // doesn't use
+    struct s_ast *parent;  // doesn't use
+} t_ast;
 
 typedef struct cd_s  {
     int s;
@@ -126,7 +151,7 @@ typedef struct s_process {
     int status;  //status RUNNING DONE SUSPENDED CONTINUED TERMINATED
     int foreground;
     int pipe;
-    char *delim;
+    int delim;
     int fd_in;
     int fd_out;
     int type;              // COMMAND_BUILTIN = index in m_s->builtin_list; default = 0
@@ -180,6 +205,51 @@ typedef struct s_shell {
 static volatile sig_atomic_t sigflag; // устанавливается обработчиком  в ненулевое значение
 static sigset_t newmask, oldmask, zeromask;
 
+/*
+*  ---------------------------------------------- Abstract Syntax Tree
+*/
+void ast_print(t_ast **ast);  // mx_ast_creation.c
+
+t_ast **mx_ast_creation(char *line);
+t_ast *mx_ush_parsed_line(char *line);
+t_ast **mx_ast_parse(t_ast *parsed_line);
+void mx_ast_push_back(t_ast **head, char *line, int type);
+void mx_ast_clear_list(t_ast **list);
+void mx_ast_clear_all(t_ast ***list);  // mx_ast_clear_list.c
+
+bool mx_check_parce_errors(char *line);
+char *mx_ush_read_line(void);
+char *mx_strtok (char *s, const char *delim);
+char **mx_parce_tokens(char *line);
+/*
+*  ---------------------------------------------- filters
+*/
+void mx_filters(t_ast **ast);
+char *mx_subst_tilde(char *s);
+/*
+*  ---------------------------------------------- quote managing
+*/
+int mx_get_char_index_quote(const char *str, char *c);
+int mx_count_chr_quote(const char *str, char *c);
+char *mx_strtrim_quote(char *s);
+/*
+*  ---------------------------------------------- move to LIBMX
+*/
+//  libmx1.c
+char *mx_strjoin_free(char *s1, char const *s2);
+int mx_strlen_arr(char **s);
+char **mx_strdup_arr(char **str);
+void mx_print_strarr_in_line(char **res, const char *delim);
+void mx_set_buff_zero(void *s, size_t n);
+//  libmx2.c
+void mx_printerr_red(char *c);
+void mx_print_color(char *macros, char *str);
+int mx_get_char_index_reverse(const char *str, char c);
+bool mx_isdelim (char c, char *delim);
+/*
+*  ----------------------------------------------
+*/
+
 t_shell *mx_init_shell(int argc, char **argv);
 
 //      TERMINAL
@@ -187,36 +257,10 @@ void mx_terminal_init(t_shell *m_s);
 void mx_termios_save(t_shell *m_s);
 void termios_restore(t_shell *m_s);
 
-//      PARSE
-bool mx_check_parce_errors(char *line);
-char *mx_ush_read_line(void);
-char *mx_strtok(char *s, const char *delim);
-char **mx_parce_tokens(char *line);
-void mx_ush_push_back(t_input **list, char **arg, char *d);
-void mx_ush_clear_list(t_input **list);
-t_input *mx_ush_parsed_line(char *line);
-/*
-*  ---------------------------------------------- quote managing
-*/
-int mx_get_char_index_quote(const char *str, char *c);
-int mx_count_chr_quote(const char *str, char *c);
-char *mx_strtrim_quote(const char *s);
-char **mx_strsplit_quote(const char *s, char *c);
-/*
-*  ---------------------------------------------- move to LIBMX
-*/
-char *mx_strjoin_free(char *s1, char const *s2);
-int mx_strlen_arr(char **s);
-char **mx_strdup_arr(char **str);
-void mx_print_strarr_in_line(char **res, const char *delim);
-void mx_printerr_red(char *c);
-void mx_print_color(char *macros, char *str);
-void mx_set_buff_zero(void *s, size_t n);
-
 //      LOOP
 //char *mx_read_line2(void);  // delete
-char **mx_ush_split_line(char *line);  // delete
-t_job *mx_create_job(t_shell *m_s, t_input *list);
+// char **mx_ush_split_line(char *line);  // delete
+t_job *mx_create_job(t_shell *m_s, t_ast *list);
 void mx_ush_loop(t_shell *m_s);
 int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
                       int infile, int outfile, int errfile);

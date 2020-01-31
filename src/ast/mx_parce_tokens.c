@@ -3,14 +3,15 @@
 // malloc and realloc
 static char **create_tokens(char **tokens, int *bufsize) {
     if (tokens == NULL) {
-        tokens = malloc((*bufsize) * sizeof(char *));
+        tokens = malloc((*bufsize) * sizeof(char*));
         if (!tokens) {
             mx_printerr_red("ush: allocation error\n");
             exit(EXIT_FAILURE);
         }
-    } else {
-        (*bufsize) += USH_TOK_BUFSIZE;
-        tokens = realloc(tokens, (*bufsize) * sizeof(char *));
+    }
+    else {
+        (*bufsize) += 64;
+        tokens = realloc(tokens, (*bufsize) * sizeof(char*));
         if (!tokens) {
             mx_printerr_red("ush: allocation error\n");
             exit(EXIT_FAILURE);
@@ -21,7 +22,7 @@ static char **create_tokens(char **tokens, int *bufsize) {
 
 char **mx_parce_tokens(char *line) {
     int position = 0;
-    int bufsize = USH_TOK_BUFSIZE;
+    int bufsize = 64;
     char **tokens = NULL;
     char *token;
 
