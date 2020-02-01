@@ -36,12 +36,10 @@ SRC_PARSER = libmx1.c \
     mx_ast_parse.c \
     mx_ast_push_back.c \
     mx_check_parce_errors.c \
-    mx_count_chr_quote.c \
     mx_filters.c \
-    mx_get_char_index_quote.c \
     mx_parce_tokens.c \
     mx_strtok.c \
-    mx_strtrim_quote.c \
+    mx_quote_manage.c \
     mx_subst_tilde.c \
     mx_ush_parsed_line.c \
     mx_ush_read_line.c
@@ -80,12 +78,10 @@ OBJ_PARSER = libmx1.o \
     mx_ast_parse.o \
     mx_ast_push_back.o \
     mx_check_parce_errors.o \
-    mx_count_chr_quote.o \
     mx_filters.o \
-    mx_get_char_index_quote.o \
     mx_parce_tokens.o \
+    mx_quote_manage.o \
     mx_strtok.o \
-    mx_strtrim_quote.o \
     mx_subst_tilde.o \
     mx_ush_parsed_line.o \
     mx_ush_read_line.o

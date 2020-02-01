@@ -1,6 +1,7 @@
 #include "ush.h"
-
-// malloc and realloc
+/*
+* malloc and realloc line if nesessary
+*/
 static char **create_tokens(char **tokens, int *bufsize) {
     if (tokens == NULL) {
         tokens = malloc((*bufsize) * sizeof(char*));
@@ -19,7 +20,9 @@ static char **create_tokens(char **tokens, int *bufsize) {
     }
     return tokens;
 }
-
+/*
+* get array of pointers to separate tokens in line
+*/
 char **mx_parce_tokens(char *line) {
     int position = 0;
     int bufsize = 64;

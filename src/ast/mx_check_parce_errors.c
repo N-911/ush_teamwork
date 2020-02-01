@@ -13,20 +13,11 @@ static bool check_quote(char *line) {
         mx_printerr("Unmatched \".\n");
         return true;
     }
-    else if (mx_count_chr_quote(line, "&") % 2 != 0) {
-        mx_printerr("Unmatched &. Usage: &&\n");
-        return true;
-    }
     return false;
 }
-
 /*
-*  check for error:
-*  - of third <<< >>> &&& ||| <<| ets
-*  - of \n - .\n ..\n
-*  - of diff delim <> >< >| etc
+*  print parse error
 */
-
 static bool print_parse_error(char *c, int k) {
     mx_printerr("u$h: parse error near `");
     write(2, c, k);
@@ -34,7 +25,8 @@ static bool print_parse_error(char *c, int k) {
     return true;
 }
 /*
-*  operator |> and |<>
+*  check wrong combinations of operators (like |> and |<>)
+*  check third delim like <<< >>> &&& ||| <<| ets
 */
 static bool check_parse_auditor(char *line, int i) {
     int i2;
@@ -54,7 +46,7 @@ static bool check_parse_auditor(char *line, int i) {
     return false;
 }
 /*
-*  operator at the end
+*  check operator at the end (in there no cmd after operator) .\n ..\n
 */
 static bool check_parse(char *line) {
     int i = 0;
@@ -73,8 +65,14 @@ static bool check_parse(char *line) {
     }
     return false;
 }
+/*
+*  check all possible errors of parsing,
+*  check if line begins of delimeters "|&"
+*/
+bool mx_check_parce_errors(char *line) {
+    if (!line || check_quote(line) || check_parse(line))
+        return true;
 
-static bool check_first(char *line) {
     if (line[0] && mx_isdelim(line[0], "|&")) {
         if (line[1]) {
             if (!mx_isdelim(line[1], "|&"))
@@ -83,12 +81,5 @@ static bool check_first(char *line) {
                 return print_parse_error(&line[0], 2);
         }
     }
-    return false;
-}
-
-bool mx_check_parce_errors(char *line) {
-    if (!line || check_first(line)
-        || check_quote(line) || check_parse(line))
-        return true;
     return false;
 }

@@ -1,5 +1,7 @@
 #include "ush.h"
-
+/*
+*  read line from stdin except last char ('\n')
+*/
 char *mx_ush_read_line(void) {
     char *line = NULL;
     char *res = NULL;

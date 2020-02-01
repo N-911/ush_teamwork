@@ -1,5 +1,7 @@
 #include "ush.h"
-
+/*
+*  convert delimeter in int-value
+*/
 static int get_type(char *delim) {
     if (!delim)
         return NUL;
@@ -21,7 +23,9 @@ static int get_type(char *delim) {
         return R_OUTPUT_DBL;
     return NUL;
 }
-
+/*
+*  get delimeter like a string and convert in int-value
+*/
 static int get_delim(char *line, int *pos) {
     char *delim = NULL;
     int type = 0;
@@ -38,7 +42,9 @@ static int get_delim(char *line, int *pos) {
     mx_strdel(&delim);
     return type;
 }
-
+/*
+*  get one command and delimeter after it
+*/
 static char *get_token_and_delim(char *line, int *i, int *type) {
     int pos = 0;
     char *tmp;
@@ -55,12 +61,14 @@ static char *get_token_and_delim(char *line, int *i, int *type) {
     }
     else {
         tmp = mx_strdup(line);
-        *type = NUL;
+        *type = SEP;
         *i += mx_strlen(line);
     }
     return tmp;
 }
-
+/*
+*  get list of all commands and delimeters (operators)
+*/
 t_ast *mx_ush_parsed_line(char *line) {
     t_ast *res = NULL;
     int type = 0;

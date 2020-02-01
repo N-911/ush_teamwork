@@ -1,5 +1,7 @@
 #include "ush.h"
-
+/*
+*  count separators of first lewel (;, && , ||)
+*/
 static int count_sep_first_lwl(t_ast *q) {
     int i = 1;
 
@@ -8,7 +10,9 @@ static int count_sep_first_lwl(t_ast *q) {
             i++;
     return i;
 }
-
+/*
+*  create ast (array of lists) from parsed_line (list)
+*/
 t_ast **mx_ast_parse(t_ast *parsed_line) {
     t_ast *q = parsed_line;
     int k = count_sep_first_lwl(q);

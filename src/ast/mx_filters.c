@@ -1,5 +1,7 @@
 #include "ush.h"
-
+/*
+*  filter one string
+*/
 char **filter_one(char *arg) {
     int i = 0;
     char *tmp = mx_strdup(arg);
@@ -20,7 +22,9 @@ char **filter_one(char *arg) {
     args = NULL;
     return res;
 }
-
+/*
+*  parse by USH_TOK_DELIM, subst ~, $, trim'' ""
+*/
 void mx_filters(t_ast **ast) {
     for (int i = 0; ast[i]; i++) {
         for (t_ast *q = ast[i]; q; q = q->next) {

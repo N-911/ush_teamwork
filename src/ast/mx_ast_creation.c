@@ -1,5 +1,7 @@
 #include "ush.h"
-
+/*
+*  print one ast-list (one job)
+*/
 static void print_list(t_ast *parsed_line) {
     for (t_ast *q = parsed_line; q; q = q->next) {
         mx_printstr("proc  == ");
@@ -16,7 +18,9 @@ static void print_list(t_ast *parsed_line) {
         mx_printstr("\n");
     }
 }
-
+/*
+*  print array of ast-lists (all jobs)
+*/
 void ast_print(t_ast **ast) {
     char *j = NULL;
     for (int i = 0; ast[i]; i++) {
@@ -29,17 +33,19 @@ void ast_print(t_ast **ast) {
     }
     mx_print_color(YEL, "-----\n");
 }
-
+/*
+*  create ast from parsed_line
+*/
 t_ast **mx_ast_creation(char *line) {
     t_ast **ast = NULL;
     t_ast *parsed_line = NULL;
 
     if (!(parsed_line = mx_ush_parsed_line(line))) {  // parse and print
-        mx_printerr("parse error\n");
+        // mx_printerr("parsed_line is NULL\n");
         return NULL;
     }
     if (!(ast = mx_ast_parse(parsed_line)) || !(*ast)) {
-        mx_printerr("ast error\n");
+        // mx_printerr("ast is NULL\n");
         return NULL;
     }
     mx_filters(ast);

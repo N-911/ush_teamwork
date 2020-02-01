@@ -1,5 +1,7 @@
 #include "ush.h"
-
+/*
+*  get char index outside of the quote
+*/
 int mx_get_char_index_quote(const char *str, char *c) {
     char *s = (char *)str;
     int i = 0;

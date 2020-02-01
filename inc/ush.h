@@ -75,10 +75,14 @@
 #define DIR_T "\x1B[0;30;42m"
 #define DIR_X "\033[0;30;43m"
 
-//      Abstract Syntax Tree
+/*
+*  ---------------------------------------------- Abstract Syntax Tree
+*/
+/* Operators and delimeters for parse tokens */
 #define PARSE_DELIM ";|&><"
 #define USH_TOK_DELIM " \t\r\n\a"
 
+/* Macroces for recognizing delimeters */
 #define IS_SEP(x) (!mx_strcmp(x, ";"))
 #define IS_AND(x) (!mx_strcmp(x, "&&"))
 #define IS_OR(x) (!mx_strcmp(x, "||"))
@@ -89,6 +93,7 @@
 #define IS_R_OUTPUT_DBL(x) (!mx_strcmp(x, "<<"))
 #define IS_SEP_FIRST_LWL(x) (x == SEP || x == AND || x == OR)
 
+/* Types of operators */
 enum e_type {
     SEP,
     AND,
@@ -101,13 +106,14 @@ enum e_type {
     NUL
 };
 
+/* For creation Abstract Syntax Tree */
 typedef struct s_ast {
-    char *line;  // useless after parse
-    char **args;
-    int type;
+    char *line;  // one cmd with args
+    char **args;  // one cmd with args
+    int type;  // type of delim after cmd (last -> ;)
     struct s_ast *next;
-    struct s_ast *left;  // doesn't use
-    struct s_ast *parent;  // doesn't use
+    struct s_ast *left;  // don't used
+    struct s_ast *parent;  // don't used
 } t_ast;
 
 typedef struct cd_s  {
@@ -140,7 +146,7 @@ typedef struct  s_export {
 
 typedef struct s_process {
     char *fullpath;  //for execve
-    char **argv;
+    char **argv;    // gets in create_job.c
     // char **envp;
     char *command;
     char *arg_command;
@@ -150,8 +156,8 @@ typedef struct s_process {
     char **env;
     int status;  //status RUNNING DONE SUSPENDED CONTINUED TERMINATED
     int foreground;
-    int pipe;
-    int delim;
+    int pipe;  // gets in create_job.c
+    int delim;  // gets in create_job.c
     int fd_in;
     int fd_out;
     int type;              // COMMAND_BUILTIN = index in m_s->builtin_list; default = 0
@@ -184,7 +190,7 @@ typedef struct s_job {
 
 typedef struct s_shell {
     int     argc;
-    char    **argv;
+    char    **argv;  // check usage, becouse the same in process    ??????
     char	**envp;  //not used
     int		exit_code;  //return if exit
     t_job   *jobs[JOBS_NUMBER];     //arr jobs
@@ -208,29 +214,45 @@ static sigset_t newmask, oldmask, zeromask;
 /*
 *  ---------------------------------------------- Abstract Syntax Tree
 */
-void ast_print(t_ast **ast);  // mx_ast_creation.c
-
+/* print array of ast-lists (all jobs) */               // mx_ast_creation.c
+void ast_print(t_ast **ast);
+/* get parsed_line -> get ast (array of lists) -> use filters */
 t_ast **mx_ast_creation(char *line);
+/* get list of all commands and delimeters (operators) */
 t_ast *mx_ush_parsed_line(char *line);
+/* create ast (array of lists) from parsed_line (list) */
 t_ast **mx_ast_parse(t_ast *parsed_line);
+/* std push_back and create_node in it */
 void mx_ast_push_back(t_ast **head, char *line, int type);
+/* clear one lists (parsed_line) */
 void mx_ast_clear_list(t_ast **list);
-void mx_ast_clear_all(t_ast ***list);  // mx_ast_clear_list.c
-
+/* clear array of lists (Abstract Syntax Tree) */       // mx_ast_clear_list.c
+void mx_ast_clear_all(t_ast ***list);
+/* check all possible errors of parsing */
 bool mx_check_parce_errors(char *line);
+/* read line from stdin except last char ('\n') */
 char *mx_ush_read_line(void);
-char *mx_strtok (char *s, const char *delim);
-char **mx_parce_tokens(char *line);
 /*
-*  ---------------------------------------------- filters
+*  ---------------------------------------------- FILTERS
 */
-void mx_filters(t_ast **ast);
+/* parse by USH_TOK_DELIM, subst ~, $, trim'' "" */
+void mx_filters(t_ast **ast);  //
+/* like std strtok return one token, but in loop you can get all of them,
+*  unlike std - works correct with '', "" and func () { x; } */
+char *mx_strtok (char *s, const char *delim);
+/* get array of pointers to separate tokens in line,
+*  do not strdup input line, but "cut" existing line with '\0' */
+char **mx_parce_tokens(char *line);
+/* subst ~ (tilde) */
 char *mx_subst_tilde(char *s);
 /*
-*  ---------------------------------------------- quote managing
+*  ---------------------------------------------- mx_quote_manage.c
 */
+/* get char index (outside of the quote) */
 int mx_get_char_index_quote(const char *str, char *c);
+/* count chars (outside of the quote) */
 int mx_count_chr_quote(const char *str, char *c);
+/* trim all ' and " in quote */
 char *mx_strtrim_quote(char *s);
 /*
 *  ---------------------------------------------- move to LIBMX
@@ -260,8 +282,8 @@ void termios_restore(t_shell *m_s);
 //      LOOP
 //char *mx_read_line2(void);  // delete
 // char **mx_ush_split_line(char *line);  // delete
-t_job *mx_create_job(t_shell *m_s, t_ast *list);
-void mx_ush_loop(t_shell *m_s);
+t_job *mx_create_job(t_shell *m_s, t_ast *list);  // create one job from ast
+void mx_ush_loop(t_shell *m_s);  // create ast -> create jobs -> ...
 int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
                       int infile, int outfile, int errfile);
 int mx_builtin_commands_idex(t_shell *m_s, char *command);

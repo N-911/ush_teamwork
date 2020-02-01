@@ -1,5 +1,7 @@
 #include "ush.h"
-
+/*
+*  check if prefix is correct login or not
+*/
 static char *add_login(char *s, char *home, char *prefix) {
     char *path = NULL;
     int i = mx_get_char_index_reverse(home, '/');
@@ -20,7 +22,9 @@ static char *add_login(char *s, char *home, char *prefix) {
         return path;
     }
 }
-
+/*
+*  prefix - all after ~ and before char '/' or '\0' (example: ~mboiko/)
+*/
 static char *get_prefix(char *s) {
     char *prefix = NULL;
     int sleshpos = mx_get_char_index(&s[1], '/');
@@ -33,7 +37,9 @@ static char *get_prefix(char *s) {
     }
     return prefix;
 }
-
+/*
+*  substitutiont tilde in different ways
+*/
 static char *expantion(char *s) {
     char *res = NULL;
     char *prefix = get_prefix(s);
@@ -54,7 +60,9 @@ static char *expantion(char *s) {
     }
     return res;
 }
-
+/*
+*  substitutiont tilde
+*/
 char *mx_subst_tilde(char *s) {
     char *res = NULL;
 
