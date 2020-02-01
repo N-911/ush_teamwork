@@ -86,7 +86,7 @@ static char *get_pwd() {
     char *cur_dir = getcwd(NULL, 256);
     char *read_link = realpath(pwd, NULL);
 
-    if (strcmp(cur_dir, read_link) == 0)
+    if (read_link && strcmp(cur_dir, read_link) == 0)
         pwd = getenv("PWD");
     else
         pwd = strdup(cur_dir);
