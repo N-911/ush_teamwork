@@ -1,6 +1,8 @@
 //#include <inc/ush.h>
 #include "ush.h"
 
+static int get_flag(char **args);
+
 void mx_launch_job(t_shell *m_s, t_job *job) {
     //pid_t shell_pgid;
     extern char **environ;
@@ -38,9 +40,9 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         } else
             outfile = job->stdout;
         //============Tестовая хуйня, переделать==========//
-        /**/if (mx_get_char_index(p->argv[0],'=') > 0) {/**/
+        /**/int flag = get_flag(p->argv);               /**/
+        /**/if (flag) {                                 /**/
         /**/	status = mx_set_parametr(p->argv,m_s);	/**/
-        /**/	//printf("\n");							/**/
         /**/}											/**/
         //===============================================//
         else if (p->type != -1) {
@@ -73,3 +75,16 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     }
     //return status;
 }
+
+static int get_flag(char **args) {
+    int flag = 1;
+
+    for (int i = 0; args[i] != NULL; i++) {
+        if (mx_get_char_index(args[i],'=') <= 0) {
+            flag--;
+            break;
+        }
+    }
+    return flag;
+}
+

@@ -3,6 +3,7 @@
 static int count_options(char **args);
 static char *replace_substr(const char *str, const char *sub, const char *replace);
 static void fill_options(char **args, echo_t *echo_options, int n_options);
+static char *replace_slash(const char *str);
 
 int mx_echo(t_shell *m_s, t_process *p) {
     int exit_code = m_s->exit_code;
@@ -13,7 +14,8 @@ int mx_echo(t_shell *m_s, t_process *p) {
 
     fill_options(p->argv, &echo_options, n_options);
     for(int i = n_options + 1; p->argv[i] != NULL; i++) {
-    	if (echo_options.e) {
+    	if (!echo_options.E) {
+            p->argv[i] = replace_slash(p->argv[i]);
     		for (int j = 0; sequenses[j] != NULL; j++) {
     			if (strstr(p->argv[i],sequenses[j])) {
 	    			p->argv[i] = replace_substr(p->argv[i],sequenses[j], escape[j]);
@@ -44,12 +46,22 @@ static int count_options(char **args) {
 	return n_options;
 }
 
-// static char *replace_slash(const char *str) {
-//     char *res = mx_strdup(str);
-    
-//     return res;
-// }
 
+static char *replace_slash(const char *str) {
+    char *res = (char *)malloc(mx_strlen(str));
+    int len = 0;
+
+    for (int i = 0; i < mx_strlen(str); i++) {
+        if (str[i] == '\\' && str[i + 1] == '\\') {
+            i++;
+        }
+        res[len] = str[i];
+        len++;
+    }
+    res[len] = '\0';
+    
+    return res;
+}
 static char *replace_substr(const char *str, const char *sub, const char *replace) {
     char *res = mx_strdup(str);
     char *buff1 = mx_strnew(mx_strlen(str));
