@@ -18,7 +18,12 @@ void sigchld_handler(int signum) {
 }
 
 void mx_sig_handler(int signal) {
-    printf("%d\n", signal);
+    if (signal == SIGTSTP)
+        printf("\n");
+    if (signal == SIGINT){
+        printf("\n%s%s%s", GRN, "u$h> ", RESET);
+    }
+    //printf("%d\n", signal);
 }
 
 void sig_usr(int signo) {

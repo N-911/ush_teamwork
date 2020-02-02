@@ -1,7 +1,7 @@
 #include "ush.h"
 
 static int count_options(char **args);
-static char *replace_sub(char *str, char *sub, char *replace);
+static char *replace_substr(const char *str, const char *sub, const char *replace);
 static void fill_options(char **args, echo_t *echo_options, int n_options);
 
 int mx_echo(t_shell *m_s, t_process *p) {
@@ -16,11 +16,11 @@ int mx_echo(t_shell *m_s, t_process *p) {
     	if (echo_options.e) {
     		for (int j = 0; sequenses[j] != NULL; j++) {
     			if (strstr(p->argv[i],sequenses[j])) {
-	    			p->argv[i] = replace_sub(p->argv[i],sequenses[j], escape[j]);
+	    			p->argv[i] = replace_substr(p->argv[i],sequenses[j], escape[j]);
     			}
     		}
     	}
-    	mx_printstr(p->argv[i]);
+    	printf("%s",p->argv[i]);
     	if (p->argv[i + 1])
     		mx_printstr(" ");
     }
@@ -44,24 +44,31 @@ static int count_options(char **args) {
 	return n_options;
 }
 
-static char *replace_sub(char *str, char *sub, char *replace) {
-	char *result;
-	int index = mx_get_substr_index(str,sub);
-	char *buff_1 = strndup(str, index);
-	char *buff_2;
+// static char *replace_slash(const char *str) {
+//     char *res = mx_strdup(str);
+    
+//     return res;
+// }
 
-    for (int i = 0; i < index + mx_strlen(sub); i++) {
-        str++;
+static char *replace_substr(const char *str, const char *sub, const char *replace) {
+    char *res = mx_strdup(str);
+    char *buff1 = mx_strnew(mx_strlen(str));
+    char *buff2 = mx_strnew(mx_strlen(str));
+    while(mx_strstr(res,sub) != NULL) {
+        int i = mx_get_substr_index(res,sub);
+        mx_strncpy(buff1, res, i);
+        for(int j = 0; j < i + mx_strlen(sub); j++){
+            res++;
+        }
+        mx_strcpy(buff2,res);
+        res = "";
+        res = mx_strjoin(res, buff1);
+        res = mx_strjoin(res, replace);
+        res = mx_strjoin(res, buff2);
     }
-    buff_2 = strdup(str);
-    result = mx_strjoin(buff_1, replace);
-    char *tmp = mx_strjoin(result,buff_2);
-    free(result);
-    result = strdup(tmp);
-    free(tmp);
-    free(buff_1);
-    free(buff_2);
-    return(result);
+    free(buff1);
+    free(buff2);
+    return res;
 }
 
 static void fill_options(char **args, echo_t *echo_options, int n_options) {

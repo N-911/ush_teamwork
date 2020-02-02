@@ -37,8 +37,13 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
             outfile = mypipe[1];
         } else
             outfile = job->stdout;
-
-        if (p->type != -1) {
+        //============Tестовая хуйня, переделать==========//
+        /**/if (mx_get_char_index(p->argv[0],'=') > 0) {/**/
+        /**/	status = mx_set_parametr(p->argv,m_s);	/**/
+        /**/	//printf("\n");							/**/
+        /**/}											/**/
+        //===============================================//
+        else if (p->type != -1) {
             if ((status = builtin_functions[p->type](m_s, p)) >= 0)
                 p->status = 1;
 

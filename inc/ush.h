@@ -26,6 +26,8 @@
 #include <malloc/malloc.h>
 #include <limits.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <termios.h>
 
 #include "libmx/inc/libmx.h"
 
@@ -323,7 +325,7 @@ int mx_exit(t_shell *m_s, t_process *p);
 
 //      SIGNALS
 void sigchld_handler(int signum);
-//void mx_sig_handler(int signal);
+void mx_sig_handler(int signal);
 //void sig_usr(int signo);
 void TELL_WAIT(void);
 void TELL_PARENT(pid_t pid);
@@ -364,5 +366,7 @@ int mx_count_options(char **args, char *options, char *command, char *error);
 void mx_set_variable(t_export *export, char *name, char *value);
 char mx_get_type(struct stat file_stat);
 int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env);
+int mx_set_parametr(char **args,  t_shell *m_s);
+
 
 #endif
