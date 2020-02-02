@@ -11,7 +11,23 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="231a84a8-684e-4b8a-8236-bfbaca780c22" name="Default Changelist" comment="" />
+    <list default="true" id="231a84a8-684e-4b8a-8236-bfbaca780c22" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/mx_exit.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mx_jobs_stack.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/ush.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/ush.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_builtin_commands.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_builtin_commands.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_init_shell.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_init_shell.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions_print.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions_print.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_launch_job.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_job.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_launch_process.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_process.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_signal.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_signal.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ush" beforeDir="false" afterPath="$PROJECT_DIR$/ush" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,6 +101,8 @@
       <workItem from="1580141273442" duration="4519000" />
       <workItem from="1580191413281" duration="4790000" />
       <workItem from="1580197948376" duration="11022000" />
+      <workItem from="1580644326278" duration="37000" />
+      <workItem from="1580644467974" duration="4612000" />
     </task>
     <task id="LOCAL-00001" summary="-test_snikolayen">
       <created>1579768232701</created>
@@ -146,14 +164,14 @@
     <option name="LAST_COMMIT_MESSAGE" value="snikolayen_test_jobs" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="89" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580198006450">
+    <state x="89" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580648262088">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="89" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1580198006450" />
-    <state x="219" y="294" key="CommitChangelistDialog2" timestamp="1579972335331">
+    <state x="89" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1580648262088" />
+    <state x="219" y="294" key="CommitChangelistDialog2" timestamp="1580651058083">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="219" y="294" key="CommitChangelistDialog2/0.23.2560.1337@0.23.2560.1337" timestamp="1579972335331" />
+    <state x="219" y="294" key="CommitChangelistDialog2/0.23.2560.1337@0.23.2560.1337" timestamp="1580651058083" />
     <state width="1233" height="262" key="GridCell.Tab.0.bottom" timestamp="1580204926456">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -186,14 +204,14 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1233" height="262" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1580204926457" />
-    <state width="640" height="171" key="ImportCMakeProjectWizard.bottomPanel" timestamp="1580128081334">
+    <state width="640" height="164" key="ImportCMakeProjectWizard.bottomPanel" timestamp="1580644358149">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="640" height="171" key="ImportCMakeProjectWizard.bottomPanel/0.23.2560.1337@0.23.2560.1337" timestamp="1580128081334" />
-    <state width="640" height="399" key="ImportCMakeProjectWizard.topPanel" timestamp="1580128081334">
+    <state width="640" height="164" key="ImportCMakeProjectWizard.bottomPanel/0.23.2560.1337@0.23.2560.1337" timestamp="1580644358149" />
+    <state width="640" height="384" key="ImportCMakeProjectWizard.topPanel" timestamp="1580644358149">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="640" height="399" key="ImportCMakeProjectWizard.topPanel/0.23.2560.1337@0.23.2560.1337" timestamp="1580128081334" />
+    <state width="640" height="384" key="ImportCMakeProjectWizard.topPanel/0.23.2560.1337@0.23.2560.1337" timestamp="1580644358149" />
     <state x="225" y="431" key="Vcs.Push.Dialog.v2" timestamp="1579972340328">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -253,7 +271,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_jobs_functions_wait.c</url>
-          <line>10</line>
+          <line>9</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>

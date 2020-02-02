@@ -25,7 +25,7 @@ void mx_check_jobs(t_shell *m_s) {
         }
         job_id = mx_job_id_by_pid(m_s, pid);
         if (job_id > 0 && mx_job_completed(m_s, job_id)) {
-            mx_print_job_status(m_s, job_id);
+            mx_print_job_status(m_s, job_id, 0);
             mx_remove_job(m_s, job_id);
         }
     }
@@ -46,16 +46,17 @@ int mx_wait_job(t_shell *m_s, int job_id) {
     while (wait_count < proc_count) {
         wait_pid = waitpid(-m_s->jobs[job_id]->pgid, &status, WUNTRACED);
         wait_count++;
-        if (WIFEXITED(status))
+        if (WIFEXITED(status)) {
             mx_set_process_status(m_s, wait_pid, STATUS_DONE);
+            //  mx_pop_from_stack(m_s, job_id);
+        }
         else if (WIFSIGNALED(status))
             mx_set_process_status(m_s, wait_pid, STATUS_TERMINATED);
         else if (WSTOPSIG(status)) {
             status = -1;
             mx_set_process_status(m_s, wait_pid, STATUS_SUSPENDED);
-            //mx_set_variable(m_s->variables, "!", wait_pid);
             if (wait_count == proc_count) {
-                mx_print_job_status(m_s, job_id);
+                mx_print_job_status(m_s, job_id, 0);
             }
         }
     }
@@ -100,6 +101,7 @@ int mx_get_proc_count(t_shell *m_s, int job_id, int filter) {
 void mx_set_process_status(t_shell *m_s, int pid, int status) {
     int i;
     t_process *proc;
+    int job_id = mx_job_id_by_pid(m_s, pid);
 
     for (i = 1; i < m_s->max_number_job; i++) {
         if (m_s->jobs[i] == NULL) {
@@ -108,10 +110,14 @@ void mx_set_process_status(t_shell *m_s, int pid, int status) {
         for (proc = m_s->jobs[i]->first_process; proc != NULL; proc = proc->next) {
             if (proc->pid == pid) {
                 proc->status = status;
+                if (status == STATUS_SUSPENDED) {
+                    if (m_s->jobs_stack->prev_last && m_s->jobs_stack->last)
+                        m_s->jobs_stack->prev_last = m_s->jobs_stack->last;
+                    m_s->jobs_stack->last = job_id;
+
+                }
                 break;
             }
         }
     }
 }
-
-

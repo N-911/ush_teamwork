@@ -2,18 +2,13 @@
 #include "ush.h"
 
 void mx_launch_job(t_shell *m_s, t_job *job) {
-    //pid_t shell_pgid;
     extern char **environ;
     char **env = environ;
     char *path = getenv("PATH");
-
     int (*builtin_functions[])(t_shell *m_s, t_process *p) = {&mx_env, &mx_export, &mx_unset,
         &mx_echo, &mx_jobs, &mx_fg, &mx_bg, &mx_cd, &mx_pwd, &mx_which, &mx_exit, NULL};
-
-//    pid_t wpid;
     setbuf(stdout, NULL); /* установить небуферизованный режим */
     int status;
-  //  int shell_terminal = STDIN_FILENO;
     int job_id;  // for job contoll
 //    int shell_is_interactive = isatty(shell_terminal);
 //    tcsetattr(STDIN_FILENO, TCSANOW, &m_s->t_original);
@@ -28,6 +23,18 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     job_id = mx_insert_job(m_s, job);  // insert process to job control
     job->pgid= getpid();
     for (p = m_s->jobs[job_id]->first_process; p; p = p->next) {  // list of process in job
+        if (m_s->exit_flag == 1 && !(p->type == 10))
+            m_s->exit_flag = 0;
+        if (p->next != NULL && p->input_path != NULL) {
+            /*
+            if ((infile = open(p->input_path, O_RDONLY)) < 0) {
+                mx_remove_job(m_s, job_id);
+                printf("$h: no such file or directory: %s\n", p->input_path);
+                //perror("");
+                exit(1);
+            }
+             */
+        }
         if (p->pipe) {
             if (pipe(mypipe) < 0) {
                 perror("pipe");
@@ -43,11 +50,16 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         /**/	//printf("\n");							/**/
         /**/}											/**/
         //===============================================//
-        else if (p->type != -1) {
-            if ((status = builtin_functions[p->type](m_s, p)) >= 0)
-                p->status = 1;
-
+        if (p->type != -1 ) {
+            if(p->type == 4 || p->type == 5 || p->type == 6) {
                 mx_remove_job(m_s, job_id);
+            }
+            if ((status = builtin_functions[p->type](m_s, p)) >= 0) {
+                p->status = 1;
+                if (p->type != 4 || p->type != 5 || p->type != 6) {
+                    mx_remove_job(m_s, job_id);
+                }
+            }
         }
         else
             status = mx_launch_process(m_s, p, job_id, path, env, infile, outfile, errfile);
@@ -57,8 +69,6 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         if (outfile != job->stdout)
             close(outfile);
         infile = mypipe[0];
-        //printf("STATUS($?) = %d\n", status);
-        mx_set_variable(m_s->variables, "?", mx_itoa(status));
     }
 
     if (status >= 0 && job->foreground == FOREGROUND) {
@@ -67,9 +77,11 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
             mx_remove_job(m_s, job_id);
     }
     else if (job->foreground == BACKGROUND) {
-         if (kill (-job->pgid, SIGCONT) < 0)
+        if (kill (-job->pgid, SIGCONT) < 0)
             perror ("kill (SIGCONT)");
         mx_print_pid_process_in_job(m_s, job->job_id);
+
+        mx_destroy_jobs(m_s, job_id);
     }
     //return status;
 }
