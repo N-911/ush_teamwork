@@ -11,6 +11,8 @@ SRC = mx_builtin_commands.c \
     mx_env.c \
     mx_echo.c \
     mx_set_parametr.c \
+    mx_nbr_to_hex.c \
+    mx_hex_to_nbr.c \
     mx_get_type.c \
     mx_launch_bin.c \
     mx_count_options.c \
@@ -55,6 +57,8 @@ OBJ = mx_builtin_commands.o \
     mx_env.o \
     mx_echo.o \
     mx_set_parametr.o \
+    mx_nbr_to_hex.o \
+    mx_hex_to_nbr.o \
     mx_get_type.o \
     mx_launch_bin.o \
     mx_count_options.o \

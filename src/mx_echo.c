@@ -3,7 +3,7 @@
 static int count_options(char **args);
 static char *replace_substr(const char *str, const char *sub, const char *replace);
 static void fill_options(char **args, echo_t *echo_options, int n_options);
-static char *replace_slash(const char *str);
+static char *replace_slash(const char *str, echo_t *echo_options);
 
 int mx_echo(t_shell *m_s, t_process *p) {
     int exit_code = m_s->exit_code;
@@ -15,7 +15,7 @@ int mx_echo(t_shell *m_s, t_process *p) {
     fill_options(p->argv, &echo_options, n_options);
     for(int i = n_options + 1; p->argv[i] != NULL; i++) {
     	if (!echo_options.E) {
-            p->argv[i] = replace_slash(p->argv[i]);
+            p->argv[i] = replace_slash(p->argv[i], &echo_options);
     		for (int j = 0; sequenses[j] != NULL; j++) {
     			if (strstr(p->argv[i],sequenses[j])) {
 	    			p->argv[i] = replace_substr(p->argv[i],sequenses[j], escape[j]);
@@ -23,6 +23,8 @@ int mx_echo(t_shell *m_s, t_process *p) {
     		}
     	}
     	printf("%s",p->argv[i]);
+        if(strstr(p->argv[i],"\\c"))
+            break;
     	if (p->argv[i + 1])
     		mx_printstr(" ");
     }
@@ -47,13 +49,34 @@ static int count_options(char **args) {
 }
 
 
-static char *replace_slash(const char *str) {
+static char *replace_slash(const char *str, echo_t *echo_options) {
     char *res = (char *)malloc(mx_strlen(str));
     int len = 0;
 
     for (int i = 0; i < mx_strlen(str); i++) {
         if (str[i] == '\\' && str[i + 1] == '\\') {
             i++;
+        }
+        if (str[i] == '\\' && str[i + 1] == 'e') {
+            if (str[i + 2] != '\\')
+                i += 3;
+            else
+                i+= 2;
+        }
+        if (str[i] == '\\' && str[i + 1] == 'c') {
+            echo_options->n = 1;
+            break;
+        }
+        if (str[i] == '\\' && str[i + 1] == 'x') {
+            if (!str[i + 2]) {
+                i += 2;
+            }
+            else {
+                char rep = mx_hex_to_nbr(strndup(str + i + 2, 2));
+                res[len] = rep;
+                len++;
+                i += 4;
+            }
         }
         res[len] = str[i];
         len++;

@@ -367,6 +367,8 @@ void mx_set_variable(t_export *export, char *name, char *value);
 char mx_get_type(struct stat file_stat);
 int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env);
 int mx_set_parametr(char **args,  t_shell *m_s);
+char *mx_nbr_to_hex(unsigned long nbr);
+unsigned long mx_hex_to_nbr(const char *hex);
 
 
 #endif

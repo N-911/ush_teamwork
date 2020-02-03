@@ -5,7 +5,7 @@ void mx_ush_loop(t_shell *m_s) {
     t_ast **ast = NULL;
 //    int status = 1;
     while (1) {
-        printf("\r%s%s%s", GRN, "u$h> ", RESET);
+        printf("%s%s%s", GRN, "u$h> ", RESET);
         // if (!mx_ush_read_line())
         //      exit(0);
         line = mx_ush_read_line();
