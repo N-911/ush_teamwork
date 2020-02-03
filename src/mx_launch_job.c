@@ -37,7 +37,8 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
                 exit(1);
             }
             outfile = mypipe[1];
-        } else
+        } 
+        else
             outfile = job->stdout;
         //============Tестовая хуйня, переделать==========//
         /**/int flag = get_flag(p->argv);               /**/
@@ -46,10 +47,24 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         /**/}											/**/
         //===============================================//
         else if (p->type != -1) {
-            if ((status = builtin_functions[p->type](m_s, p)) >= 0)
-                p->status = 1;
+            p->outfile = outfile;
+            if (p->pipe) {
+                pid_t pid;
+                int status;
 
-                mx_remove_job(m_s, job_id);
+                pid = fork();
+                if (pid == 0) {
+                    status = builtin_functions[p->type](m_s, p);
+                    exit (status);
+                }
+                else { // Родительский процесс
+                    wait(&status);
+                }   
+            }
+            else {
+                if ((status = builtin_functions[p->type](m_s, p)) >= 0)
+                    p->status = 1;
+            }
         }
         else
             status = mx_launch_process(m_s, p, job_id, path, env, infile, outfile, errfile);
@@ -62,7 +77,6 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         //printf("STATUS($?) = %d\n", status);
         mx_set_variable(m_s->variables, "?", mx_itoa(status));
     }
-
     if (status >= 0 && job->foreground == FOREGROUND) {
         //mx_print_process_in_job(m_s, job->job_id);
         if (mx_job_completed(m_s, job_id))
