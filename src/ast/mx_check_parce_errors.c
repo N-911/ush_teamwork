@@ -53,7 +53,8 @@ static bool check_parse(char *line) {
 
     while (line) {
         if ((i = mx_get_char_index_quote(line, PARSE_DELIM)) >= 0) {
-            if (line[i + 1] == '\0' && line[i] != ';')
+            if ((line[i + 1] == '\0' && line[i] != ';' && line[i] != '&')
+            || mx_strcmp(&line[i], "&&") == 0)
                 return print_parse_error("\\n", 2);
             if (line[i + 1])
                 if (check_parse_auditor(line, i))
@@ -67,15 +68,15 @@ static bool check_parse(char *line) {
 }
 /*
 *  check all possible errors of parsing,
-*  check if line begins of delimeters "|&"
+*  check if line begins of delimeters "|&><"
 */
 bool mx_check_parce_errors(char *line) {
     if (!line || check_quote(line) || check_parse(line))
         return true;
 
-    if (line[0] && mx_isdelim(line[0], "|&")) {
+    if (line[0] && mx_isdelim(line[0], "|&><")) {
         if (line[1]) {
-            if (!mx_isdelim(line[1], "|&"))
+            if (!mx_isdelim(line[1], "|&><"))
                 return print_parse_error(&line[0], 1);
             else
                 return print_parse_error(&line[0], 2);

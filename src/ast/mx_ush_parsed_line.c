@@ -7,6 +7,8 @@ static int get_type(char *delim) {
         return NUL;
     if (IS_SEP(delim))
         return SEP;
+    else if (IS_FON(delim))
+        return FON;
     else if (IS_AND(delim))
         return AND;
     else if (IS_OR(delim))
@@ -47,17 +49,18 @@ static int get_delim(char *line, int *pos) {
 */
 static char *get_token_and_delim(char *line, int *i, int *type) {
     int pos = 0;
-    char *tmp;
+    char *tmp = NULL;
 
-    if ((pos = mx_get_char_index_quote(line, PARSE_DELIM)) > 0) {
+    if ((pos = mx_get_char_index_quote(&line[pos], PARSE_DELIM)) > 0) {
         tmp = mx_strndup(line, pos);
         *type = get_delim(line + pos, &pos);
         *i += pos;
     }
-    else if (pos == 0) {
-        tmp = mx_strnew(0);
-        *type = get_delim(line, &pos);
-        *i += pos;
+    else if (pos == 0) {  // in case >> << < >
+        // tmp = mx_strdup("first_arg_is_empty");
+        // *type = get_delim(line, &pos);
+        // *i += pos;
+        (*i)++;
     }
     else {
         tmp = mx_strdup(line);
@@ -78,8 +81,8 @@ t_ast *mx_ush_parsed_line(char *line) {
         return NULL;
     int i = 0;
     while (line[i]) {
-        tmp = get_token_and_delim(&line[i], &i, &type);
-        mx_ast_push_back(&res, tmp, type);
+        if ((tmp = get_token_and_delim(&line[i], &i, &type)))
+            mx_ast_push_back(&res, tmp, type);
         mx_strdel(&tmp);
     }
     return res;

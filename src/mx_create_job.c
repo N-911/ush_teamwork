@@ -1,29 +1,46 @@
 #include "ush.h"
 
+static t_process *init_process(void) {
+    t_process *p = (t_process *)malloc(sizeof(t_process));
+    if (!p)
+        return NULL;
+    p->input_path = NULL;
+    p->output_path = NULL;
+    p->redir_delim = 0;
+    p->foreground = 1;
+    p->pipe = 0;
+    p->next = NULL;
+    return p;
+}
+
 static t_process *create_process(t_shell *m_s, t_ast *list) {
     t_process *p;
+    t_ast *tmp;
     int index = 0;
 
-    p = (t_process *)malloc(sizeof(t_process));
+    p = init_process();
     if (!p)
         return NULL;
     p->argv = list->args;
     p->delim = list->type;
     p->command = mx_strdup(list->args[0]);
-    p->foreground = 1;
-    for (int i = 0; p->argv[i] != NULL; i++) {
-        if (strcmp(p->argv[i], "&") == 0)
-            p->foreground = 0;
+    if (list->left) {
+        tmp = list->left;
+        p->redir_delim = tmp->type;
+        if (IS_REDIR_INP(tmp->type))
+            p->input_path = mx_strdup(tmp->args[0]);
+        else if (IS_REDIR_OUTP(tmp->type))
+            p->output_path = mx_strdup(tmp->args[0]);
     }
+    if (p->delim == FON)
+        p->foreground = 0;
     if (p->delim == PIPE)
         p->pipe = 1;
-    else
-        p->pipe = 0;
+
     if ((index = mx_builtin_commands_idex(m_s, p->argv[0])) == -1) {
         p->type = -1;      //COMMAND_BUILTIN = index;   default = -1
     } else
         p->type = index;
-    p->next = NULL;
     return p;
 }
 

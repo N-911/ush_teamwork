@@ -21,7 +21,12 @@ t_ast **mx_ast_parse(t_ast *parsed_line) {
 
     ast[i] = NULL;
     for (; q; q = q->next) {
-        mx_ast_push_back(&ast[i], q->line, q->type);
+        if (IS_REDIRECTION(q->type)) {
+            mx_ast_push_back_redirection(&ast[i], &q);
+            for (; IS_REDIRECTION(q->type); q = q->next) {}
+        }
+        else
+            mx_ast_push_back(&ast[i], q->line, q->type);
         if (IS_SEP_FIRST_LWL(q->type) || q->type == NUL)
             ast[++i] = NULL;
     }

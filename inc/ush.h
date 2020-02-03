@@ -88,6 +88,7 @@
 
 /* Macroces for recognizing delimeters */
 #define IS_SEP(x) (!mx_strcmp(x, ";"))
+#define IS_FON(x) (!mx_strcmp(x, "&"))
 #define IS_AND(x) (!mx_strcmp(x, "&&"))
 #define IS_OR(x) (!mx_strcmp(x, "||"))
 #define IS_PIPE(x) (!mx_strcmp(x, "|"))
@@ -95,11 +96,15 @@
 #define IS_R_INPUT_DBL(x) (!mx_strcmp(x, ">>"))
 #define IS_R_OUTPUT(x) (!mx_strcmp(x, "<"))
 #define IS_R_OUTPUT_DBL(x) (!mx_strcmp(x, "<<"))
-#define IS_SEP_FIRST_LWL(x) (x == SEP || x == AND || x == OR)
+#define IS_SEP_FIRST_LWL(x) (x == SEP || x == FON)
+#define IS_REDIR_INP(x) (x == R_INPUT || x == R_INPUT_DBL)
+#define IS_REDIR_OUTP(x) (x == R_OUTPUT || x == R_OUTPUT_DBL)
+#define IS_REDIRECTION(x) (IS_REDIR_INP(x) || IS_REDIR_OUTP(x))
 
 /* Types of operators */
 enum e_type {
     SEP,
+    FON,
     AND,
     OR,
     PIPE,
@@ -116,7 +121,7 @@ typedef struct s_ast {
     char **args;  // one cmd with args
     int type;  // type of delim after cmd (last -> ;)
     struct s_ast *next;
-    struct s_ast *left;  // don't used
+    struct s_ast *left;  // for redirections
     struct s_ast *parent;  // don't used
 } t_ast;
 
@@ -182,6 +187,7 @@ typedef struct s_process {
     char *arg_command;
     char *input_path;  // < <<
     char *output_path;  // > >>
+    int redir_delim;  // <, <<, >, >> from e_type
     pid_t pid;
     int exit_code;
     char *path;
@@ -255,6 +261,8 @@ t_ast *mx_ush_parsed_line(char *line);
 t_ast **mx_ast_parse(t_ast *parsed_line);
 /* std push_back and create_node in it */
 void mx_ast_push_back(t_ast **head, char *line, int type);
+/* std push_back left for redirection */
+void mx_ast_push_back_redirection(t_ast **head, t_ast **list);
 /* clear one lists (parsed_line) */
 void mx_ast_clear_list(t_ast **list);
 /* clear array of lists (Abstract Syntax Tree) */       // mx_ast_clear_list.c

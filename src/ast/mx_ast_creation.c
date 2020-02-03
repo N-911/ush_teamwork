@@ -13,6 +13,27 @@ static void print_list(t_ast *parsed_line) {
             mx_printstr("\n");
         }
 
+        if (q->left) {
+            for (t_ast *r = q->left; r; r = r->next) {
+                mx_printstr("redir == ");
+
+                if (r->type == R_INPUT)
+                    mx_printstr("> ");
+                else if (r->type == R_INPUT_DBL)
+                    mx_printstr(">> ");
+                else if (r->type == R_OUTPUT)
+                    mx_printstr("< ");
+                else if (r->type == R_OUTPUT_DBL)
+                    mx_printstr("<< ");
+
+                if (r->args)
+                    mx_print_strarr_in_line(r->args, " ");
+                else {
+                    mx_printstr(r->line);
+                    mx_printstr("\n");
+                }
+            }
+        }
         mx_printstr("delim == ");
         mx_printint(q->type);
         mx_printstr("\n");

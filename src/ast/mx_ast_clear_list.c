@@ -13,7 +13,7 @@ void mx_ast_clear_list(t_ast **list) {
         if (q->args)
             mx_del_strarr(&q->args);
         if (q->left)
-            mx_printstr("left exists\n");
+            mx_ast_clear_list(&q->left);
         tmp = q->next;
         free(q);
         q = tmp;

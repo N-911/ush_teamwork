@@ -29,6 +29,9 @@ void mx_filters(t_ast **ast) {
     for (int i = 0; ast[i]; i++) {
         for (t_ast *q = ast[i]; q; q = q->next) {
             q->args = filter_one(q->line);
+            if (q->left)
+                for (t_ast *l = q->left; l; l = l->next)
+                    l->args = filter_one(l->line);
         }
     }
 }
