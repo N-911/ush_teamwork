@@ -8,10 +8,6 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     extern char **environ;
     char **env = environ;
     char *path = getenv("PATH");
-
-    int (*builtin_functions[])(t_shell *m_s, t_process *p) = {&mx_env, &mx_export, &mx_unset,
-        &mx_echo, &mx_jobs, &mx_fg, &mx_bg, &mx_cd, &mx_pwd, &mx_which, &mx_exit, NULL};
-
 //    pid_t wpid;
     setbuf(stdout, NULL); /* установить небуферизованный режим */
     int status;
@@ -40,6 +36,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         } 
         else
             outfile = job->stdout;
+        p->outfile = outfile;
         //============Tестовая хуйня, переделать==========//
         /**/int flag = get_flag(p->argv);               /**/
         /**/if (flag) {                                 /**/
@@ -47,24 +44,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         /**/}											/**/
         //===============================================//
         else if (p->type != -1) {
-            p->outfile = outfile;
-            if (p->pipe) {
-                pid_t pid;
-                int status;
-
-                pid = fork();
-                if (pid == 0) {
-                    status = builtin_functions[p->type](m_s, p);
-                    exit (status);
-                }
-                else { // Родительский процесс
-                    wait(&status);
-                }   
-            }
-            else {
-                if ((status = builtin_functions[p->type](m_s, p)) >= 0)
-                    p->status = 1;
-            }
+            status = mx_launch_builtin(m_s, p);
         }
         else
             status = mx_launch_process(m_s, p, job_id, path, env, infile, outfile, errfile);

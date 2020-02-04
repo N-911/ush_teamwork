@@ -20,14 +20,14 @@ int mx_pwd(t_shell *m_s, t_process *p) {
 	if(dir != NULL) {
 		exit_code = 0;
 		if (pwd_options.P < 0) {
-			write(p->outfile, m_s->pwd, mx_strlen(m_s->pwd));
-			write(p->outfile,"\n", 1);
-			//fprintf(p->outfile,"%s\n", m_s->pwd);
+			//write(p->outfile, m_s->pwd, mx_strlen(m_s->pwd));
+			//write(p->outfile,"\n", 1);
+			printf("%s\n", m_s->pwd);
 		} 
 		else {
-			write(p->outfile, dir, mx_strlen(dir));
-			write(p->outfile,"\n", 1);
-			//fprintf(stream, "%s\n", dir);
+			//write(p->outfile, dir, mx_strlen(dir));
+			//write(p->outfile,"\n", 1);
+			printf("%s\n", dir);
 		}
 		free(dir);
 	}
