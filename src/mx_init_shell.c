@@ -28,7 +28,9 @@ t_shell *mx_init_shell(int argc, char **argv) {
     m_s->builtin_list[10] = "exit";
     m_s->builtin_list[11] = NULL;
 
-    m_s->max_number_job = 2;
+    m_s->max_number_job = 1;
+    m_s->exit_flag = 0;
+    mx_init_jobs_stack(m_s);
     m_s->pwd = get_pwd();//PWD for further work
     setenv("PWD", m_s->pwd, 1);
     setenv("OLDPWD", m_s->pwd, 1);
@@ -45,9 +47,9 @@ t_shell *mx_init_shell(int argc, char **argv) {
            kill(-shell_pgid, SIGTTIN);
         /* Ignore interactive and job-control signals.  */
         //  (void)signal(SIGINT, sigint_handler);
-        signal(SIGINT, SIG_IGN);
-        signal(SIGQUIT, SIG_IGN);
-        signal(SIGTSTP, SIG_IGN);
+        signal(SIGINT, SIG_DFL);  // Control-C
+        signal(SIGQUIT, SIG_IGN);  // 'Control-\'
+        signal(SIGTSTP, mx_sig_h);  // Control-Z
         signal(SIGTTIN, SIG_IGN);
         signal(SIGTTOU, SIG_IGN);
       //  signal(SIGCHLD, SIG_IGN);

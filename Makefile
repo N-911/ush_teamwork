@@ -19,6 +19,7 @@ SRC = mx_builtin_commands.c \
     mx_count_options.c \
     mx_create_job.c \
     mx_init_shell.c \
+    mx_jobs_stack.c \
     mx_jobs_functions.c \
     mx_jobs_functions_wait.c \
     mx_jobs_functions_print.c \
@@ -32,6 +33,7 @@ SRC = mx_builtin_commands.c \
     mx_set_variable.c \
     mx_signal.c \
     mx_terminal.c \
+    mx_exit.c \
     ush_main.c
 
 SRC_PARSER = libmx1.c \
@@ -46,6 +48,7 @@ SRC_PARSER = libmx1.c \
     mx_strtok.c \
     mx_quote_manage.c \
     mx_subst_tilde.c \
+    mx_subst_dollar.c \
     mx_ush_parsed_line.c \
     mx_ush_read_line.c
 
@@ -66,6 +69,7 @@ OBJ = mx_builtin_commands.o \
     mx_count_options.o \
     mx_create_job.o \
     mx_init_shell.o \
+    mx_jobs_stack.o \
     mx_jobs_functions.o \
     mx_jobs_functions_wait.o \
     mx_jobs_functions_print.o \
@@ -79,6 +83,7 @@ OBJ = mx_builtin_commands.o \
     mx_set_variable.o \
     mx_signal.o \
     mx_terminal.o \
+    mx_exit.o \
     ush_main.o
 
 OBJ_PARSER = libmx1.o \
@@ -93,6 +98,7 @@ OBJ_PARSER = libmx1.o \
     mx_quote_manage.o \
     mx_strtok.o \
     mx_subst_tilde.o \
+    mx_subst_dollar.o \
     mx_ush_parsed_line.o \
     mx_ush_read_line.o
 

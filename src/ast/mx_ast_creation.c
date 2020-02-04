@@ -5,14 +5,26 @@
 static void print_list(t_ast *parsed_line) {
     for (t_ast *q = parsed_line; q; q = q->next) {
         mx_printstr("proc  == ");
-
         if (q->args)
             mx_print_strarr_in_line(q->args, " ");
-        else {
-            mx_printstr(q->line);
-            mx_printstr("\n");
-        }
 
+        if (q->left) {
+            for (t_ast *r = q->left; r; r = r->next) {
+                mx_printstr("redir == ");
+
+                if (r->type == R_INPUT)
+                    mx_printstr("> ");
+                else if (r->type == R_INPUT_DBL)
+                    mx_printstr(">> ");
+                else if (r->type == R_OUTPUT)
+                    mx_printstr("< ");
+                else if (r->type == R_OUTPUT_DBL)
+                    mx_printstr("<< ");
+
+                if (r->args)
+                    mx_print_strarr_in_line(r->args, " ");
+            }
+        }
         mx_printstr("delim == ");
         mx_printint(q->type);
         mx_printstr("\n");
@@ -36,11 +48,11 @@ void ast_print(t_ast **ast) {
 /*
 *  create ast from parsed_line
 */
-t_ast **mx_ast_creation(char *line) {
+t_ast **mx_ast_creation(char *line, t_shell *m_s) {
     t_ast **ast = NULL;
     t_ast *parsed_line = NULL;
 
-    if (!(parsed_line = mx_ush_parsed_line(line))) {  // parse and print
+    if (!(parsed_line = mx_ush_parsed_line(line, m_s->variables))) {  // parse and print
         // mx_printerr("parsed_line is NULL\n");
         return NULL;
     }
@@ -48,7 +60,6 @@ t_ast **mx_ast_creation(char *line) {
         // mx_printerr("ast is NULL\n");
         return NULL;
     }
-    mx_filters(ast);
     mx_ast_clear_list(&parsed_line);  // clear leeks
     return ast;
 }

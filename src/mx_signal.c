@@ -26,6 +26,34 @@ void mx_sig_handler(int signal) {
     //printf("%d\n", signal);
 }
 
+void mx_sig_h(int signal) {
+    if (signal == SIGTSTP)
+        printf("\n");
+    if (signal == SIGINT)
+        printf("\n");
+    // printf("%d\n", signal);
+/*
+ * handler fo exit
+ * sig_int_flag = 1;        // установить флаг для проверки if exit
+ *
+    if (signo == SIGINT)
+    {
+        if (g_sh->state == STATE_READ)
+        {
+            ft_bzero(g_sh->buffer, g_sh->bufsize);
+            g_sh->buf_i = 0;
+            g_sh->input_size = 0;
+            ft_printf(STDOUT_FILENO, "\n");
+            display_shell_prompt(g_sh);
+        }
+        else if (g_sh->state == STATE_EXEC)
+        {
+        }
+    }
+    */
+
+}
+
 void sig_usr(int signo) {
     int a = 0;
     a += signo;

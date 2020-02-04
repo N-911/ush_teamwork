@@ -1,8 +1,8 @@
 #include "ush.h"
 /*
-*  filter one string
+*  parse by USH_TOK_DELIM, subst ~, $, trim'' ""
 */
-char **filter_one(char *arg) {
+char **mx_filters(char *arg, t_export *variables) {
     int i = 0;
     char *tmp = mx_strdup(arg);
     char **args = mx_parce_tokens(arg);
@@ -10,25 +10,16 @@ char **filter_one(char *arg) {
 
     for (; args[i]; i++) {
         res[i] = mx_strdup(args[i]);
-        res[i] = mx_subst_tilde(res[i]);  // exp ~
-        // substr $
-        if (mx_get_char_index(res[i], '\'') >= 0
-            || mx_get_char_index(res[i], '\"') >= 0)
-            res[i] = mx_strtrim_quote(res[i]);
+        if (mx_get_char_index(res[i], '\"') >= 0)
+            res[i] = mx_strtrim_quote(res[i], '\"');
+        res[i] = mx_subst_tilde(res[i]);  // substr ~
+        res[i] = mx_substr_dollar(res[i], variables);  // substr $
+        if (mx_get_char_index(res[i], '\'') >= 0)
+            res[i] = mx_strtrim_quote(res[i], '\'');
     }
     res[i] = NULL;
     mx_strdel(&tmp);
     free(args);
     args = NULL;
     return res;
-}
-/*
-*  parse by USH_TOK_DELIM, subst ~, $, trim'' ""
-*/
-void mx_filters(t_ast **ast) {
-    for (int i = 0; ast[i]; i++) {
-        for (t_ast *q = ast[i]; q; q = q->next) {
-            q->args = filter_one(q->line);
-        }
-    }
 }
