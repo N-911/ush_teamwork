@@ -11,7 +11,7 @@ void mx_ush_loop(t_shell *m_s) {
             mx_check_jobs(m_s);
             continue;
         } else {
-            if ((ast = mx_ast_creation(line))) {
+            if ((ast = mx_ast_creation(line, m_s))) {
                 // ast_print(ast);  // печать дерева
                 for (int i = 0; ast[i]; i++) {
                     t_job *new_job = (t_job *) malloc(sizeof(t_job));  //create new job

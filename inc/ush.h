@@ -117,8 +117,7 @@ enum e_type {
 
 /* For creation Abstract Syntax Tree */
 typedef struct s_ast {
-    char *line;  // one cmd with args
-    char **args;  // one cmd with args
+    char **args;  // cmd with args
     int type;  // type of delim after cmd (last -> ;)
     struct s_ast *next;
     struct s_ast *left;  // for redirections
@@ -253,14 +252,14 @@ static sigset_t newmask, oldmask, zeromask;
 */
 /* print array of ast-lists (all jobs) */               // mx_ast_creation.c
 void ast_print(t_ast **ast);
-/* get parsed_line -> get ast (array of lists) -> use filters */
-t_ast **mx_ast_creation(char *line);
-/* get list of all commands and delimeters (operators) */
-t_ast *mx_ush_parsed_line(char *line);
+/* get parsed_line -> get ast (array of lists)*/
+t_ast **mx_ast_creation(char *line, t_shell *m_s);
+/* get list of all commands and delimeters (operators) -> use filters */
+t_ast *mx_ush_parsed_line(char *line, t_export *variables);
 /* create ast (array of lists) from parsed_line (list) */
 t_ast **mx_ast_parse(t_ast *parsed_line);
 /* std push_back and create_node in it */
-void mx_ast_push_back(t_ast **head, char *line, int type);
+void mx_ast_push_back(t_ast **head, char **args, int type);
 /* std push_back left for redirection */
 void mx_ast_push_back_redirection(t_ast **head, t_ast **list);
 /* clear one lists (parsed_line) */
@@ -275,7 +274,7 @@ char *mx_ush_read_line(void);
 *  ---------------------------------------------- FILTERS
 */
 /* parse by USH_TOK_DELIM, subst ~, $, trim'' "" */
-void mx_filters(t_ast **ast);  //
+char **mx_filters(char *arg, t_export *variables);
 /* like std strtok return one token, but in loop you can get all of them,
 *  unlike std - works correct with '', "" and func () { x; } */
 char *mx_strtok (char *s, const char *delim);
@@ -284,6 +283,8 @@ char *mx_strtok (char *s, const char *delim);
 char **mx_parce_tokens(char *line);
 /* subst ~ (tilde) */
 char *mx_subst_tilde(char *s);
+/* subst $ (variable) */
+char *mx_substr_dollar(char *s, t_export *variables);
 /*
 *  ---------------------------------------------- mx_quote_manage.c
 */
@@ -291,8 +292,8 @@ char *mx_subst_tilde(char *s);
 int mx_get_char_index_quote(const char *str, char *c);
 /* count chars (outside of the quote) */
 int mx_count_chr_quote(const char *str, char *c);
-/* trim all ' and " in quote */
-char *mx_strtrim_quote(char *s);
+/* trim all ' or " in quote */
+char *mx_strtrim_quote(char *s, char q_char);
 /*
 *  ---------------------------------------------- move to LIBMX
 */
