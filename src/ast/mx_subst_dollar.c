@@ -52,7 +52,7 @@ char *mx_substr_dollar(char *s, t_export *variables) {
         return NULL;
     if (mx_strcmp(s, "$") == 0)
         return s;
-    while ((pos = mx_get_char_index_quote(res, "$")) >= 0) {
+    while ((pos = mx_get_char_index_quote(res, "$")) >= 0)
         res = expantion(res, variables, pos);
     return res;
 }

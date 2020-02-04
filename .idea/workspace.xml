@@ -13,6 +13,26 @@
   <component name="ChangeListManager">
     <list default="true" id="231a84a8-684e-4b8a-8236-bfbaca780c22" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ush_team.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ush_team.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ush_team.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ush_team.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ush_team.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ush_team.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ush_team.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ush_team.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ush_team.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ush_team.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ush_team.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ush_team.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/ush_team.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/ush_team.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/ush.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/ush.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ast/mx_subst_dollar.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/ast/mx_subst_dollar.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_create_job.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_create_job.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions_print.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions_print.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_launch_job.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_job.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_launch_process.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_process.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_loop.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_loop.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ush" beforeDir="false" afterPath="$PROJECT_DIR$/ush" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +109,7 @@
       <workItem from="1580197948376" duration="11022000" />
       <workItem from="1580644326278" duration="37000" />
       <workItem from="1580644467974" duration="5320000" />
+      <workItem from="1580819518026" duration="1443000" />
     </task>
     <task id="LOCAL-00001" summary="-test_snikolayen">
       <created>1579768232701</created>
@@ -240,12 +261,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_loop.c</url>
-          <line>19</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/mx_loop.c</url>
-          <line>26</line>
+          <line>20</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -255,13 +271,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_loop.c</url>
-          <line>33</line>
+          <line>27</line>
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/mx_loop.c</url>
-          <line>136</line>
-          <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_jobs_functions_wait.c</url>

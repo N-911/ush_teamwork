@@ -1608,6 +1608,33 @@ src/ast/mx_strtok.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_strtok.c.s
 .PHONY : src/ast/mx_strtok.c.s
 
+src/ast/mx_subst_dollar.o: src/ast/mx_subst_dollar.c.o
+
+.PHONY : src/ast/mx_subst_dollar.o
+
+# target to build an object file
+src/ast/mx_subst_dollar.c.o:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_subst_dollar.c.o
+.PHONY : src/ast/mx_subst_dollar.c.o
+
+src/ast/mx_subst_dollar.i: src/ast/mx_subst_dollar.c.i
+
+.PHONY : src/ast/mx_subst_dollar.i
+
+# target to preprocess a source file
+src/ast/mx_subst_dollar.c.i:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_subst_dollar.c.i
+.PHONY : src/ast/mx_subst_dollar.c.i
+
+src/ast/mx_subst_dollar.s: src/ast/mx_subst_dollar.c.s
+
+.PHONY : src/ast/mx_subst_dollar.s
+
+# target to generate assembly for a file
+src/ast/mx_subst_dollar.c.s:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_subst_dollar.c.s
+.PHONY : src/ast/mx_subst_dollar.c.s
+
 src/ast/mx_subst_tilde.o: src/ast/mx_subst_tilde.c.o
 
 .PHONY : src/ast/mx_subst_tilde.o
@@ -1851,6 +1878,33 @@ src/mx_env.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_env.c.s
 .PHONY : src/mx_env.c.s
 
+src/mx_exit.o: src/mx_exit.c.o
+
+.PHONY : src/mx_exit.o
+
+# target to build an object file
+src/mx_exit.c.o:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_exit.c.o
+.PHONY : src/mx_exit.c.o
+
+src/mx_exit.i: src/mx_exit.c.i
+
+.PHONY : src/mx_exit.i
+
+# target to preprocess a source file
+src/mx_exit.c.i:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_exit.c.i
+.PHONY : src/mx_exit.c.i
+
+src/mx_exit.s: src/mx_exit.c.s
+
+.PHONY : src/mx_exit.s
+
+# target to generate assembly for a file
+src/mx_exit.c.s:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_exit.c.s
+.PHONY : src/mx_exit.c.s
+
 src/mx_export.o: src/mx_export.c.o
 
 .PHONY : src/mx_export.o
@@ -2012,6 +2066,33 @@ src/mx_jobs_functions_wait.s: src/mx_jobs_functions_wait.c.s
 src/mx_jobs_functions_wait.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.s
 .PHONY : src/mx_jobs_functions_wait.c.s
+
+src/mx_jobs_stack.o: src/mx_jobs_stack.c.o
+
+.PHONY : src/mx_jobs_stack.o
+
+# target to build an object file
+src/mx_jobs_stack.c.o:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_jobs_stack.c.o
+.PHONY : src/mx_jobs_stack.c.o
+
+src/mx_jobs_stack.i: src/mx_jobs_stack.c.i
+
+.PHONY : src/mx_jobs_stack.i
+
+# target to preprocess a source file
+src/mx_jobs_stack.c.i:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_jobs_stack.c.i
+.PHONY : src/mx_jobs_stack.c.i
+
+src/mx_jobs_stack.s: src/mx_jobs_stack.c.s
+
+.PHONY : src/mx_jobs_stack.s
+
+# target to generate assembly for a file
+src/mx_jobs_stack.c.s:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_jobs_stack.c.s
+.PHONY : src/mx_jobs_stack.c.s
 
 src/mx_launch_bin.o: src/mx_launch_bin.c.o
 
@@ -2646,6 +2727,9 @@ help:
 	@echo "... src/ast/mx_strtok.o"
 	@echo "... src/ast/mx_strtok.i"
 	@echo "... src/ast/mx_strtok.s"
+	@echo "... src/ast/mx_subst_dollar.o"
+	@echo "... src/ast/mx_subst_dollar.i"
+	@echo "... src/ast/mx_subst_dollar.s"
 	@echo "... src/ast/mx_subst_tilde.o"
 	@echo "... src/ast/mx_subst_tilde.i"
 	@echo "... src/ast/mx_subst_tilde.s"
@@ -2673,6 +2757,9 @@ help:
 	@echo "... src/mx_env.o"
 	@echo "... src/mx_env.i"
 	@echo "... src/mx_env.s"
+	@echo "... src/mx_exit.o"
+	@echo "... src/mx_exit.i"
+	@echo "... src/mx_exit.s"
 	@echo "... src/mx_export.o"
 	@echo "... src/mx_export.i"
 	@echo "... src/mx_export.s"
@@ -2691,6 +2778,9 @@ help:
 	@echo "... src/mx_jobs_functions_wait.o"
 	@echo "... src/mx_jobs_functions_wait.i"
 	@echo "... src/mx_jobs_functions_wait.s"
+	@echo "... src/mx_jobs_stack.o"
+	@echo "... src/mx_jobs_stack.i"
+	@echo "... src/mx_jobs_stack.s"
 	@echo "... src/mx_launch_bin.o"
 	@echo "... src/mx_launch_bin.i"
 	@echo "... src/mx_launch_bin.s"

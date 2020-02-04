@@ -59,6 +59,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/snikolayen/ush_team/src/ast/mx_parce_tokens.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/ast/mx_parce_tokens.c.o"
   "/Users/snikolayen/ush_team/src/ast/mx_quote_manage.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/ast/mx_quote_manage.c.o"
   "/Users/snikolayen/ush_team/src/ast/mx_strtok.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/ast/mx_strtok.c.o"
+  "/Users/snikolayen/ush_team/src/ast/mx_subst_dollar.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/ast/mx_subst_dollar.c.o"
   "/Users/snikolayen/ush_team/src/ast/mx_subst_tilde.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/ast/mx_subst_tilde.c.o"
   "/Users/snikolayen/ush_team/src/ast/mx_ush_parsed_line.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/ast/mx_ush_parsed_line.c.o"
   "/Users/snikolayen/ush_team/src/ast/mx_ush_read_line.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/ast/mx_ush_read_line.c.o"
@@ -68,12 +69,14 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/snikolayen/ush_team/src/mx_create_job.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_create_job.c.o"
   "/Users/snikolayen/ush_team/src/mx_echo.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_echo.c.o"
   "/Users/snikolayen/ush_team/src/mx_env.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_env.c.o"
+  "/Users/snikolayen/ush_team/src/mx_exit.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_exit.c.o"
   "/Users/snikolayen/ush_team/src/mx_export.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_export.c.o"
   "/Users/snikolayen/ush_team/src/mx_get_type.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_get_type.c.o"
   "/Users/snikolayen/ush_team/src/mx_init_shell.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_init_shell.c.o"
   "/Users/snikolayen/ush_team/src/mx_jobs_functions.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.o"
   "/Users/snikolayen/ush_team/src/mx_jobs_functions_print.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_jobs_functions_print.c.o"
   "/Users/snikolayen/ush_team/src/mx_jobs_functions_wait.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.o"
+  "/Users/snikolayen/ush_team/src/mx_jobs_stack.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_jobs_stack.c.o"
   "/Users/snikolayen/ush_team/src/mx_launch_bin.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o"
   "/Users/snikolayen/ush_team/src/mx_launch_job.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_launch_job.c.o"
   "/Users/snikolayen/ush_team/src/mx_launch_process.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/mx_launch_process.c.o"
@@ -96,8 +99,12 @@ set(CMAKE_C_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
+  "../."
   "../inc"
+  "../libmx"
   "../libmx/inc"
+  "../libmx/src"
+  "../src"
   )
 
 # Targets to which this target links.

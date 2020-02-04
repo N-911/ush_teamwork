@@ -21,7 +21,7 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
     p = init_process();
     if (!p)
         return NULL;
-    p->argv = list->args;
+    p->argv = mx_strdup_arr(list->args);
     p->delim = list->type;
     p->command = mx_strdup(list->args[0]);
     if (list->left) {
@@ -77,13 +77,15 @@ t_process *mx_create_list_process(t_shell *m_s, t_ast *list) {
 t_job *mx_create_job(t_shell *m_s, t_ast *list) {
     t_job *new_job = (t_job *) malloc(sizeof(t_job));
     t_process *first_p = mx_create_list_process(m_s, list);
+    t_process *p;
 
     new_job->first_process = first_p;
-    if (first_p->foreground)
-        new_job->foreground = FOREGROUND;
-    else
-        new_job->foreground = BACKGROUND;
-    //  new_job->pgid = getpid();
+    new_job->foreground = FOREGROUND;
+
+    for (p = first_p; p != NULL; p = p->next) {
+        if (!p->foreground)
+            new_job->foreground = BACKGROUND;
+    }
     new_job->job_id = -1;
     new_job->pgid = 0;
     new_job->stdin = 0;
