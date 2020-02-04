@@ -1,5 +1,7 @@
 #include "ush.h"
-
+/*
+*  get variable name from string
+*/
 static char *get_var(char *s, int *v_len) {
     char *var = NULL;
     int i = 0;
@@ -19,15 +21,18 @@ static char *get_var(char *s, int *v_len) {
     }
     return var;
 }
-
+/*
+*  get value from variables
+*/
 static char *get_value(char *var, t_export *variables) {
-
     for (t_export *q = variables; q; q = q->next)
         if (mx_strcmp(var, q->name) == 0)
             return q->value;
     return NULL;
 }
-
+/*
+*  combine new string
+*/
 static char *expantion(char *s, t_export *variables, int pos) {
     char *res = NULL;
     int v_len = 0;
@@ -35,15 +40,19 @@ static char *expantion(char *s, t_export *variables, int pos) {
     char *value;
 
     res = mx_strndup(s, pos);
-    if ((var = get_var(&s[pos + 1], &v_len)))
+    if ((var = get_var(&s[pos + 1], &v_len))) {
         if ((value = get_value(var, variables)))
             res = mx_strjoin_free(res, value);
+        mx_strdel(&var);
+    }
     if (s[pos + v_len])
         res = mx_strjoin_free(res, &s[pos + 1 + v_len]);
     mx_strdel(&s);
     return res;
 }
-
+/*
+*  substitutiont dollar from variables
+*/
 char *mx_substr_dollar(char *s, t_export *variables) {
     char *res = s;
     int pos = 0;

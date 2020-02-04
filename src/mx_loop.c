@@ -30,6 +30,7 @@ void mx_ush_loop(t_shell *m_s) {
         //        termios_restore(m_s);
                 }
                 mx_ast_clear_all(&ast);  // clear leeks
+                // system ("leaks -q ush");
             }
         }
         mx_strdel(&line);
