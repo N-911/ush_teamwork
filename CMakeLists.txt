@@ -3,7 +3,6 @@ project(ush_team)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(.)
 include_directories(inc)
 include_directories(libmx)
 include_directories(libmx/inc)
@@ -83,15 +82,18 @@ add_executable(ush_team
         src/mx_exit.c
         src/mx_export.c
         src/mx_get_type.c
+        src/mx_hex_to_nbr.c
         src/mx_init_shell.c
         src/mx_jobs_functions.c
         src/mx_jobs_functions_print.c
         src/mx_jobs_functions_wait.c
         src/mx_jobs_stack.c
         src/mx_launch_bin.c
+        src/mx_launch_builtin.c
         src/mx_launch_job.c
         src/mx_launch_process.c
         src/mx_loop.c
+        src/mx_nbr_to_hex.c
         src/mx_normalization.c
         src/mx_push_export.c
         src/mx_pwd.c

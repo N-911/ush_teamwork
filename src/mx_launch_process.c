@@ -32,6 +32,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
                 pgid = p->pid;
                 setpgid(0, pgid);
             }
+
             if (p->foreground)
                 tcsetpgrp(STDIN_FILENO, pgid);
             signal(SIGINT, SIG_DFL);
@@ -70,8 +71,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
             */
     }
         //parrent process
-    else
-    {
+    else {
         //WAIT_CHILD();
         p->pid = child_pid;  //PID CHILD
         if (shell_is_interactive) {
