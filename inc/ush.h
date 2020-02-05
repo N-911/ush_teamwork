@@ -203,7 +203,6 @@ typedef struct s_process {
     int infile;
     int outfile;
     int errfile;
-    int job_id;
 } t_process;
 
 // A job is a pipeline of processes.
