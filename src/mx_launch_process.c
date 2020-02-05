@@ -9,30 +9,35 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
     int status = 0;
     pid_t child_pid;
     pid_t pgid = m_s->jobs[job_id]->pgid;
+
+
+
     p->status = STATUS_RUNNING;
     int shell_is_interactive = isatty(STDIN_FILENO);  //!!
     child_pid = fork();
+    p->pid = child_pid;
+    mx_print_color(YEL, "p->pid ");
+    mx_print_color(YEL, mx_itoa(p->pid));
+    mx_printstr("\n");
+
     //TELL_WAIT();
     if (child_pid < 0) {
         perror("error fork");
         exit(1);
     }
     else if (child_pid == 0) {
-/*
-        Implementing '&'
-        1. Notice that the '&' sign can only exist as the last token, otherwise it is misplaced
-        2. Parent does not wait for child to complete. 3. Child sends SIGCHLD on completion
-*/
         //TELL_PARENT(getpgid(0));
         if (shell_is_interactive) {
-            p->pid = getpid();
+            //p->pid = getpid();
             if (pgid > 0)
                 setpgid(0, pgid);
             else {
                 pgid = p->pid;
                 setpgid(0, pgid);
             }
-
+             mx_print_color(BLU, "pgid ");
+             mx_print_color(BLU, mx_itoa(pgid));
+             mx_printstr("\n");
             if (p->foreground)
                 tcsetpgrp(STDIN_FILENO, pgid);
             signal(SIGINT, SIG_DFL);
@@ -79,6 +84,13 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
                 pgid = child_pid;
             setpgid(child_pid, pgid);
         }
+
+        mx_print_color(YEL, "pgid ");
+        mx_print_color(YEL, mx_itoa(pgid));
+        mx_printstr("\n");
+
+
+        /*
         if (m_s->jobs[job_id]->foreground == FOREGROUND) {
             tcsetpgrp(0, pgid);
             //    status = mx_wait_job(m_s, job_id);
@@ -92,6 +104,8 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
 //                mx_remove_job(m_s, job_id);
             //          }
         }
+*/
+
     }
     return status >> 8;//WEXITSTATUS(status)
 }

@@ -18,30 +18,26 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     int errfile = 2;
     infile = job->stdin;
 
-    // mx_check_jobs(m_s);  // job control
+    int shell_is_interactive = isatty(STDIN_FILENO);  //!!
+    mx_check_jobs(m_s);  // job control
     job_id = mx_insert_job(m_s, job);  // insert job to job control
-    job->pgid = getpid();
+    //job->pgid = getpid();
+
+    m_s->jobs[job_id]->pgid = 0;
     for (p = m_s->jobs[job_id]->first_process; p; p = p->next) {  // list of process in job
     	p->job_id = job_id;
-        //------------- print info
-        mx_print_color(RED, "p->type\t\t");
-        mx_print_color(RED, mx_itoa(p->type));
-        mx_printstr("\n");
-        mx_print_color(RED, "p->foreground\t");
-        mx_print_color(RED, mx_itoa(p->foreground));
-        mx_printstr("\n");
-        //------------
+//        //------------- print info
+//        mx_print_color(RED, "p->type\t\t");
+//        mx_print_color(RED, mx_itoa(p->type));
+//        mx_printstr("\n");
+//        mx_print_color(RED, "p->foreground\t");
+//        mx_print_color(RED, mx_itoa(p->foreground));
+//        mx_printstr("\n");
+//        //------------
         if (m_s->exit_flag == 1 && !(p->type == 10))
             m_s->exit_flag = 0;
         if (p->next != NULL && p->input_path != NULL) { // redirection
-            /*
-            if ((infile = open(p->input_path, O_RDONLY)) < 0) {
-                mx_remove_job(m_s, job_id);
-                printf("$h: no such file or directory: %s\n", p->input_path);
-                //perror("");
-                exit(1);
-            }
-             */
+            //redirection
         }
         if (p->pipe) {
             if (pipe(mypipe) < 0) {
@@ -61,7 +57,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         	status = mx_set_parametr(p->argv,m_s);
         }
         else if (p->type != -1)
-            status = mx_launch_builtin(m_s, p, job_id);
+            status = mx_launch_builtin(m_s, p, job_id);  // fork own buildins
         else
             status = mx_launch_process(m_s, p, job_id, path, env, infile, outfile, errfile);
         if (infile != job->stdin)
@@ -69,14 +65,32 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         if (outfile != job->stdout)
             close(outfile);
         infile = mypipe[0];
-	    }
-	if (status >= 0 && job->foreground == FOREGROUND) {
+	}
+    if (!shell_is_interactive) {
+        mx_wait_job(m_s, job_id);
+        if (mx_job_completed(m_s, job_id))
+            mx_remove_job(m_s, job_id);
+        //if (mx_job_completed(m_s, job_id))
+         //   mx_remove_job(m_s, job_id);
+    }
+
+//    if (m_s->jobs[job_id]->foreground == FOREGROUND) {
+//        tcsetpgrp(0, pgid);
+//        //    status = mx_wait_job(m_s, job_id);
+//        status = mx_wait_job(m_s, job_id);
+//        signal(SIGTTOU, SIG_IGN);
+//        tcsetpgrp(0, getpid());
+//        signal(SIGTTOU, SIG_DFL);
+//
+//
+    if (status >= 0 && job->foreground == FOREGROUND) {
 	    mx_wait_job(m_s, job_id);
 	        //mx_print_process_in_job(m_s, job->job_id);
 	    if (mx_job_completed(m_s, job_id))
 	        mx_remove_job(m_s, job_id);
 	}
-	else if (job->foreground == BACKGROUND) {
+	else {
+	   // (job->foreground == BACKGROUND) {
 	    if (kill (-job->pgid, SIGCONT) < 0)
 	        perror ("kill (SIGCONT)");
 	    mx_print_pid_process_in_job(m_s, job->job_id);
@@ -84,7 +98,6 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         if (mx_job_completed(m_s, job_id))
             mx_remove_job(m_s, job_id);
 	}
-	//return status;
 }
 
 static int get_flag(char **args) {

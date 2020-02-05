@@ -103,10 +103,10 @@
 
 /* Types of operators */
 enum e_type {
-    SEP,
-    FON,
-    AND,
-    OR,
+    SEP, //;
+    FON, // &
+    AND, // &&
+    OR,  // ||
     PIPE,
     R_INPUT,
     R_INPUT_DBL,
