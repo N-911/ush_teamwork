@@ -209,13 +209,11 @@ typedef struct s_process {
 // A job is a pipeline of processes.
 typedef struct s_job {
     int job_id;                 //number in jobs control
-   // int mark_job_id;            // " ", "-", "+"   "+" - last added job, "-" - prev added job;
     char *command;              // command line, used for messages
     t_process *first_process;     // list of processes in this job
     pid_t pgid;                 // process group ID
     int exit_code;
     int foreground;                  // foreground = 1 or background execution = 0
-    //char notified;              // true if user told about stopped job
     struct termios tmodes;      // saved terminal modes/
     int stdin;  // standard i/o channels
     int stdout;  // standard i/o channels

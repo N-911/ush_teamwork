@@ -8,17 +8,16 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
                       int infile, int outfile, int errfile) {
     int status = 0;
     pid_t child_pid;
-    pid_t pgid = m_s->jobs[job_id]->pgid;
-
+    //pid_t pgid = m_s->jobs[job_id]->pgid;
 
 
     p->status = STATUS_RUNNING;
     int shell_is_interactive = isatty(STDIN_FILENO);  //!!
+
     child_pid = fork();
+
     p->pid = child_pid;
-    mx_print_color(YEL, "p->pid ");
-    mx_print_color(YEL, mx_itoa(p->pid));
-    mx_printstr("\n");
+
 
     //TELL_WAIT();
     if (child_pid < 0) {
@@ -27,19 +26,22 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
     }
     else if (child_pid == 0) {
         //TELL_PARENT(getpgid(0));
+//        mx_print_color(CYN, "child p->pid ");
+//        mx_print_color(CYN, mx_itoa(p->pid));
+//        mx_printstr("\n");
+
         if (shell_is_interactive) {
-            //p->pid = getpid();
-            if (pgid > 0)
-                setpgid(0, pgid);
-            else {
-                pgid = p->pid;
-                setpgid(0, pgid);
-            }
-             mx_print_color(BLU, "pgid ");
-             mx_print_color(BLU, mx_itoa(pgid));
-             mx_printstr("\n");
+            if (m_s->jobs[job_id]->pgid == 0)
+                m_s->jobs[job_id]->pgid = child_pid;
+            setpgid (child_pid, m_s->jobs[job_id]->pgid);
+
+            mx_print_color(MAG, "child\t");
+            mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
+            mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
+            mx_printstr("\n");
+
             if (p->foreground)
-                tcsetpgrp(STDIN_FILENO, pgid);
+                tcsetpgrp(STDIN_FILENO, m_s->jobs[job_id]->pgid);
             signal(SIGINT, SIG_DFL);
             signal(SIGQUIT, SIG_DFL);
             signal(SIGTSTP, SIG_DFL);
@@ -77,18 +79,20 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
     }
         //parrent process
     else {
+        p->pid = child_pid;
         //WAIT_CHILD();
-        p->pid = child_pid;  //PID CHILD
         if (shell_is_interactive) {
-            if (!pgid)
-                pgid = child_pid;
-            setpgid(child_pid, pgid);
+            pid_t pid = child_pid;
+            if (m_s->jobs[job_id]->pgid == 0)
+                m_s->jobs[job_id]->pgid = pid;
+            setpgid (pid, m_s->jobs[job_id]->pgid);
         }
-
-        mx_print_color(YEL, "pgid ");
-        mx_print_color(YEL, mx_itoa(pgid));
+        mx_print_color(YEL, "parent\t");
+        mx_print_color(YEL, "p->pid \t");
+        mx_print_color(YEL, mx_itoa(p->pid));
+        mx_print_color(YEL, "\tm_s->jobs[job_id]->pgid ");
+        mx_print_color(YEL, mx_itoa(m_s->jobs[job_id]->pgid));
         mx_printstr("\n");
-
 
         /*
         if (m_s->jobs[job_id]->foreground == FOREGROUND) {

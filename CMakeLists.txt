@@ -3,6 +3,7 @@ project(ush_team)
 
 set(CMAKE_CXX_STANDARD 14)
 
+include_directories(.)
 include_directories(inc)
 include_directories(libmx)
 include_directories(libmx/inc)

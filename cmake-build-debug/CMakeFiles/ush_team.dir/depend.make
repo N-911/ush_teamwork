@@ -178,6 +178,10 @@ CMakeFiles/ush_team.dir/src/ast/mx_strtok.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/ast/mx_strtok.c.o: ../libmx/inc/libmx.h
 CMakeFiles/ush_team.dir/src/ast/mx_strtok.c.o: ../src/ast/mx_strtok.c
 
+CMakeFiles/ush_team.dir/src/ast/mx_subst_dollar.c.o: ../inc/ush.h
+CMakeFiles/ush_team.dir/src/ast/mx_subst_dollar.c.o: ../libmx/inc/libmx.h
+CMakeFiles/ush_team.dir/src/ast/mx_subst_dollar.c.o: ../src/ast/mx_subst_dollar.c
+
 CMakeFiles/ush_team.dir/src/ast/mx_subst_tilde.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/ast/mx_subst_tilde.c.o: ../libmx/inc/libmx.h
 CMakeFiles/ush_team.dir/src/ast/mx_subst_tilde.c.o: ../src/ast/mx_subst_tilde.c
@@ -214,6 +218,10 @@ CMakeFiles/ush_team.dir/src/mx_env.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/mx_env.c.o: ../libmx/inc/libmx.h
 CMakeFiles/ush_team.dir/src/mx_env.c.o: ../src/mx_env.c
 
+CMakeFiles/ush_team.dir/src/mx_exit.c.o: ../inc/ush.h
+CMakeFiles/ush_team.dir/src/mx_exit.c.o: ../libmx/inc/libmx.h
+CMakeFiles/ush_team.dir/src/mx_exit.c.o: ../src/mx_exit.c
+
 CMakeFiles/ush_team.dir/src/mx_export.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/mx_export.c.o: ../libmx/inc/libmx.h
 CMakeFiles/ush_team.dir/src/mx_export.c.o: ../src/mx_export.c
@@ -221,6 +229,10 @@ CMakeFiles/ush_team.dir/src/mx_export.c.o: ../src/mx_export.c
 CMakeFiles/ush_team.dir/src/mx_get_type.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/mx_get_type.c.o: ../libmx/inc/libmx.h
 CMakeFiles/ush_team.dir/src/mx_get_type.c.o: ../src/mx_get_type.c
+
+CMakeFiles/ush_team.dir/src/mx_hex_to_nbr.c.o: ../inc/ush.h
+CMakeFiles/ush_team.dir/src/mx_hex_to_nbr.c.o: ../libmx/inc/libmx.h
+CMakeFiles/ush_team.dir/src/mx_hex_to_nbr.c.o: ../src/mx_hex_to_nbr.c
 
 CMakeFiles/ush_team.dir/src/mx_init_shell.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/mx_init_shell.c.o: ../libmx/inc/libmx.h
@@ -238,9 +250,17 @@ CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.o: ../libmx/inc/libmx.h
 CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.o: ../src/mx_jobs_functions_wait.c
 
+CMakeFiles/ush_team.dir/src/mx_jobs_stack.c.o: ../inc/ush.h
+CMakeFiles/ush_team.dir/src/mx_jobs_stack.c.o: ../libmx/inc/libmx.h
+CMakeFiles/ush_team.dir/src/mx_jobs_stack.c.o: ../src/mx_jobs_stack.c
+
 CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o: ../libmx/inc/libmx.h
 CMakeFiles/ush_team.dir/src/mx_launch_bin.c.o: ../src/mx_launch_bin.c
+
+CMakeFiles/ush_team.dir/src/mx_launch_builtin.c.o: ../inc/ush.h
+CMakeFiles/ush_team.dir/src/mx_launch_builtin.c.o: ../libmx/inc/libmx.h
+CMakeFiles/ush_team.dir/src/mx_launch_builtin.c.o: ../src/mx_launch_builtin.c
 
 CMakeFiles/ush_team.dir/src/mx_launch_job.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/mx_launch_job.c.o: ../libmx/inc/libmx.h
@@ -253,6 +273,10 @@ CMakeFiles/ush_team.dir/src/mx_launch_process.c.o: ../src/mx_launch_process.c
 CMakeFiles/ush_team.dir/src/mx_loop.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/mx_loop.c.o: ../libmx/inc/libmx.h
 CMakeFiles/ush_team.dir/src/mx_loop.c.o: ../src/mx_loop.c
+
+CMakeFiles/ush_team.dir/src/mx_nbr_to_hex.c.o: ../inc/ush.h
+CMakeFiles/ush_team.dir/src/mx_nbr_to_hex.c.o: ../libmx/inc/libmx.h
+CMakeFiles/ush_team.dir/src/mx_nbr_to_hex.c.o: ../src/mx_nbr_to_hex.c
 
 CMakeFiles/ush_team.dir/src/mx_normalization.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/mx_normalization.c.o: ../libmx/inc/libmx.h

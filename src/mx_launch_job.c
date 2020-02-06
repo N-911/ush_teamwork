@@ -9,7 +9,6 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     setbuf(stdout, NULL); /* установить небуферизованный режим */
     int status;
     int job_id;  // for job contoll
-//    int shell_is_interactive = isatty(shell_terminal);
 //    tcsetattr(STDIN_FILENO, TCSANOW, &m_s->t_original);
     t_process *p;
     int mypipe[2];
@@ -17,23 +16,22 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     int outfile = 1;
     int errfile = 2;
     infile = job->stdin;
-
     int shell_is_interactive = isatty(STDIN_FILENO);  //!!
+
     mx_check_jobs(m_s);  // job control
     job_id = mx_insert_job(m_s, job);  // insert job to job control
-    //job->pgid = getpid();
-
-    m_s->jobs[job_id]->pgid = 0;
     for (p = m_s->jobs[job_id]->first_process; p; p = p->next) {  // list of process in job
     	p->job_id = job_id;
-//        //------------- print info
-//        mx_print_color(RED, "p->type\t\t");
-//        mx_print_color(RED, mx_itoa(p->type));
-//        mx_printstr("\n");
-//        mx_print_color(RED, "p->foreground\t");
-//        mx_print_color(RED, mx_itoa(p->foreground));
-//        mx_printstr("\n");
-//        //------------
+
+        //------------- print info
+        mx_print_color(RED, "job :   p->type\t\t");
+        mx_print_color(RED, mx_itoa(p->type));
+        mx_print_color(RED, "\tp->foreground\t");
+        mx_print_color(RED, mx_itoa(p->foreground));
+        mx_print_color(RED, "\t job->pgid\t");
+        mx_print_color(RED,mx_itoa(m_s->jobs[job_id]->pgid));
+        mx_printstr("\n");
+        //------------
         if (m_s->exit_flag == 1 && !(p->type == 10))
             m_s->exit_flag = 0;
         if (p->next != NULL && p->input_path != NULL) { // redirection
@@ -65,36 +63,36 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         if (outfile != job->stdout)
             close(outfile);
         infile = mypipe[0];
+
 	}
     if (!shell_is_interactive) {
-        mx_wait_job(m_s, job_id);
+        status = mx_wait_job(m_s, job_id);
         if (mx_job_completed(m_s, job_id))
             mx_remove_job(m_s, job_id);
-        //if (mx_job_completed(m_s, job_id))
-         //   mx_remove_job(m_s, job_id);
     }
 
 //    if (m_s->jobs[job_id]->foreground == FOREGROUND) {
-//        tcsetpgrp(0, pgid);
-//        //    status = mx_wait_job(m_s, job_id);
+//        tcsetpgrp(0, m_s->jobs[job_id]->pgid);
 //        status = mx_wait_job(m_s, job_id);
 //        signal(SIGTTOU, SIG_IGN);
 //        tcsetpgrp(0, getpid());
 //        signal(SIGTTOU, SIG_DFL);
-//
+//    }
 //
     if (status >= 0 && job->foreground == FOREGROUND) {
-	    mx_wait_job(m_s, job_id);
-	        //mx_print_process_in_job(m_s, job->job_id);
+        tcsetpgrp (STDIN_FILENO, job->pgid);
+	    status = mx_wait_job(m_s, job_id);
+        signal(SIGTTOU, SIG_IGN);
+        tcsetpgrp(STDIN_FILENO, getpid());
+        signal(SIGTTOU, SIG_DFL);
 	    if (mx_job_completed(m_s, job_id))
 	        mx_remove_job(m_s, job_id);
 	}
-	else {
-	   // (job->foreground == BACKGROUND) {
-	    if (kill (-job->pgid, SIGCONT) < 0)
+
+	else if (job->foreground == BACKGROUND) {
+	    if (kill (-m_s->jobs[job_id]->pgid, SIGCONT) < 0)
 	        perror ("kill (SIGCONT)");
 	    mx_print_pid_process_in_job(m_s, job->job_id);
-	    // mx_destroy_jobs(m_s, job_id);
         if (mx_job_completed(m_s, job_id))
             mx_remove_job(m_s, job_id);
 	}
