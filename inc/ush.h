@@ -117,11 +117,11 @@ enum e_type {
 
 /* For creation Abstract Syntax Tree */
 typedef struct s_ast {
-    char **args;  // cmd with args
-    int type;  // type of delim after cmd (last -> ;)
+    char **args;            // cmd with args
+    int type;               // type of delim after cmd (last -> ;)
     struct s_ast *next;
-    struct s_ast *left;  // for redirections
-    struct s_ast *parent;  // don't used
+    struct s_ast *left;     // for redirections
+    struct s_ast *parent;   // delete !!!!!
 } t_ast;
 
 typedef struct cd_s  {
@@ -248,69 +248,73 @@ static volatile sig_atomic_t sigflag; // устанавливается обра
 static sigset_t newmask, oldmask, zeromask;
 
 /*
-*  ---------------------------------------------- Abstract Syntax Tree
-*/
-/* print array of ast-lists (all jobs) */               // mx_ast_creation.c
-void ast_print(t_ast **ast);
-/* get parsed_line -> get ast (array of lists)*/
+ *  ---------------------------------------------- Abstract Syntax Tree
+ * ast_print            print array of ast-lists (all jobs);
+ * mx_ast_creation      get parsed_line -> get ast (array of lists);
+ * mx_ush_parsed_line   get list of all cmds and operators -> use filters;
+ * mx_ast_parse         create ast (array of lists) from parsed_line (list);
+ * mx_ast_push_back     std push_back and create_node in it;
+ * mx_ast_push_back_redirection     std push_back left for redirection;
+ * mx_ast_clear_list    clear one lists (parsed_line);
+ * mx_ast_clear_all     clear array of lists (Abstract Syntax Tree);
+ * mx_check_parce_errors    check all possible errors of parsing;
+ * mx_ush_read_line     read line from stdin except last char ('\n');
+ */
+void ast_print(t_ast **ast);                            // mx_ast_creation.c
 t_ast **mx_ast_creation(char *line, t_shell *m_s);
-/* get list of all commands and delimeters (operators) -> use filters */
 t_ast *mx_ush_parsed_line(char *line, t_export *variables);
-/* create ast (array of lists) from parsed_line (list) */
 t_ast **mx_ast_parse(t_ast *parsed_line);
-/* std push_back and create_node in it */
 void mx_ast_push_back(t_ast **head, char **args, int type);
-/* std push_back left for redirection */
 void mx_ast_push_back_redirection(t_ast **head, t_ast **list);
-/* clear one lists (parsed_line) */
 void mx_ast_clear_list(t_ast **list);
-/* clear array of lists (Abstract Syntax Tree) */       // mx_ast_clear_list.c
-void mx_ast_clear_all(t_ast ***list);
-/* check all possible errors of parsing */
+void mx_ast_clear_all(t_ast ***list);                 // mx_ast_clear_list.c
 bool mx_check_parce_errors(char *line);
-/* read line from stdin except last char ('\n') */
 char *mx_ush_read_line(void);
 /*
-*  ---------------------------------------------- FILTERS
-*/
-/* parse by USH_TOK_DELIM, subst ~, $, trim'' "" */
-char **mx_filters(char *arg, t_export *variables);
-/* like std strtok return one token, but in loop you can get all of them,
-*  unlike std - works correct with '', "" and func () { x; } */
-char *mx_strtok (char *s, const char *delim);
-/* get array of pointers to separate tokens in line,
-*  do not strdup input line, but "cut" existing line with '\0' */
-char **mx_parce_tokens(char *line);
-/* subst ~ (tilde) */
-char *mx_subst_tilde(char *s);
-/* subst $ (variable) */
+ *  ---------------------------------------------- FILTERS
+ * mx_filters       parse by USH_TOK_DELIM, subst ~, $, trim'' "";
+ * mx_strtok        like std strtok return one token,
+ *                  unlike std - works correct with '', "" and func () { x; };
+ * mx_parce_tokens  get array of pointers to separate tokens in line,
+ *                  don't strdup input line, but "cut" existing line with '\0';
+ * mx_subst_tilde   subst ~ (tilde);
+ * mx_substr_dollar subst $ (variable);
+ */
+/* check */char **mx_filters(char *arg, t_export *variables);
+/* check */char *mx_strtok (char *s, const char *delim);
+/* check */char **mx_parce_tokens(char *line);
+/* check */char *mx_subst_tilde(char *s);
 char *mx_substr_dollar(char *s, t_export *variables);
 /*
-*  ---------------------------------------------- mx_quote_manage.c
-*/
-/* get char index (outside of the quote) */
-int mx_get_char_index_quote(const char *str, char *c);
-/* count chars (outside of the quote) */
-int mx_count_chr_quote(const char *str, char *c);
-/* trim all ' or " in quote */
-char *mx_strtrim_quote(char *s, char q_char);
+ *  ---------------------------------------------- mx_quote_manage.c
+ * mx_get_char_index_quote      get char index (outside of the quote);
+ * mx_count_chr_quote           count chars (outside of the quote);
+ * mx_strtrim_quote             trim all ' or " in quote;
+ */
+/* ? */int mx_get_char_index_quote(const char *str, char *c);
+/* check */int mx_count_chr_quote(const char *str, char *c);
+/* check */char *mx_strtrim_quote(char *s, char q_char);
 /*
-*  ---------------------------------------------- move to LIBMX
-*/
-//  libmx1.c
+ *  ---------------------------------------------- move to LIBMX
+ */
+/*
+ *  libmx1.c
+ */
 char *mx_strjoin_free(char *s1, char const *s2);
 int mx_strlen_arr(char **s);
 char **mx_strdup_arr(char **str);
 void mx_print_strarr_in_line(char **res, const char *delim);
 void mx_set_buff_zero(void *s, size_t n);
-//  libmx2.c
+/*
+ *  libmx2.c
+ */
 void mx_printerr_red(char *c);
 void mx_print_color(char *macros, char *str);
 int mx_get_char_index_reverse(const char *str, char c);
 bool mx_isdelim (char c, char *delim);
 /*
-*  ----------------------------------------------
-*/
+ *  ----------------------------------------------
+ */
 
 t_shell *mx_init_shell(int argc, char **argv);
 
