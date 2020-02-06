@@ -32,8 +32,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         //------------
         if (m_s->exit_flag == 1 && !(p->type == 10))
             m_s->exit_flag = 0;
-        if (p->input_path) { // redirection >
-            printf("aaaa\n");
+        if (p->input_path) { // redirection > >>
             int flags;
             if (p->redir_delim == R_INPUT)
                 flags = O_WRONLY|O_CREAT|O_TRUNC;
@@ -41,19 +40,25 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
                 flags = O_WRONLY|O_CREAT;
             outfile = open (p->input_path, flags , 0666);
         }
-        if (p->output_path) { // redirection <
+        if (p->output_path) { // redirection < <<
             if (p->redir_delim == R_OUTPUT) {
                 infile = open (p->output_path, O_RDONLY, 0666);
                 if (infile < 0) {
                     mx_printerr("ush :");
-                    perror("");
+                    perror(p->output_path);
                     mx_set_variable(m_s->variables, "?", "1");
                     mx_remove_job(m_s, job_id);
                     continue ;
                 }
             }
             if (p->redir_delim == R_OUTPUT_DBL) {
-                
+                char *line = mx_strjoin(p->output_path, "a");
+                while (strcmp(line , p->output_path) != 0) {
+                    printf("heredoc> ");
+                    free(line);
+                    line = NULL;
+                    line = mx_ush_read_line();
+                }
             }
         }
         if (p->pipe) {
@@ -62,8 +67,15 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
                 mx_remove_job(m_s, job_id);
                 exit(1);
             }
+            infile = mypipe[0];
             outfile = mypipe[1];
         }
+        else {
+            //infile = 0;
+            //outfile = job->stdout;
+        }
+        printf("%d\n", outfile);
+        printf("%d\n", infile);
         p->infile = infile;
         p->outfile = outfile;
         p->errfile = errfile;
