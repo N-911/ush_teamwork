@@ -103,10 +103,10 @@
 
 /* Types of operators */
 enum e_type {
-    SEP,
-    FON,
-    AND,
-    OR,
+    SEP, //;
+    FON, // &
+    AND, // &&
+    OR,  // ||
     PIPE,
     R_INPUT,
     R_INPUT_DBL,
@@ -208,13 +208,11 @@ typedef struct s_process {
 // A job is a pipeline of processes.
 typedef struct s_job {
     int job_id;                 //number in jobs control
-   // int mark_job_id;            // " ", "-", "+"   "+" - last added job, "-" - prev added job;
     char *command;              // command line, used for messages
     t_process *first_process;     // list of processes in this job
     pid_t pgid;                 // process group ID
     int exit_code;
     int foreground;                  // foreground = 1 or background execution = 0
-    //char notified;              // true if user told about stopped job
     struct termios tmodes;      // saved terminal modes/
     int stdin;  // standard i/o channels
     int stdout;  // standard i/o channels
@@ -345,6 +343,7 @@ int mx_exit(t_shell *m_s, t_process *p);
 
 //      SIGNALS
 void mx_sig_h(int signal);
+void mx_sig_handler_exit(int sig);
 void sigchld_handler(int signum);
 void mx_sig_handler(int signal);
 //void sig_usr(int signo);
@@ -398,7 +397,9 @@ int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env);
 int mx_set_parametr(char **args,  t_shell *m_s);
 char *mx_nbr_to_hex(unsigned long nbr);
 unsigned long mx_hex_to_nbr(const char *hex);
-int mx_launch_builtin(t_shell *m_s, t_process *p);
+
+int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id);
+//int mx_launch_builtin(t_shell *m_s, t_process *p);
 
 
 #endif

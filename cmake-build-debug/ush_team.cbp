@@ -311,6 +311,9 @@
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_get_type.c">
 			<Option target="ush_team"/>
 		</Unit>
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_hex_to_nbr.c">
+			<Option target="ush_team"/>
+		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_init_shell.c">
 			<Option target="ush_team"/>
 		</Unit>
@@ -329,6 +332,9 @@
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_launch_bin.c">
 			<Option target="ush_team"/>
 		</Unit>
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_launch_builtin.c">
+			<Option target="ush_team"/>
+		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_launch_job.c">
 			<Option target="ush_team"/>
 		</Unit>
@@ -336,6 +342,9 @@
 			<Option target="ush_team"/>
 		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_loop.c">
+			<Option target="ush_team"/>
+		</Unit>
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_nbr_to_hex.c">
 			<Option target="ush_team"/>
 		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_normalization.c">

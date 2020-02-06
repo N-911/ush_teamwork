@@ -103,22 +103,23 @@ int mx_fg(t_shell *m_s, t_process *p) {
     else
         job_id = m_s->jobs_stack->last;
 
-//    printf("job_id %d\n", job_id);
+    printf("job_id %d\n", job_id);
     pgid = mx_get_pgid_by_job_id(m_s, job_id);
     printf("pid suspended process %d\n", pgid);
-    if (kill(-pgid, SIGCONT) < 0) {
+    tcsetpgrp (STDIN_FILENO, pgid);
+    if (kill(- pgid, SIGCONT) < 0) {
         mx_printerr("fg: job not found: ");
         mx_printerr(mx_itoa(pgid));
         mx_printerr("\n");
         return 1;
     }
-    tcsetpgrp(0, pgid);
     if (job_id > 0) {
         mx_set_job_status(m_s, job_id, STATUS_CONTINUED);
         mx_print_job_status(m_s, job_id, 0);
         if (mx_wait_job(m_s, job_id) >= 0)
             mx_remove_job(m_s, job_id);
-    } else
+    }
+    else
         mx_wait_pid(m_s, pgid);
     signal(SIGTTOU, SIG_IGN);  //Запись в управляющий терминал процессом из группы процессов фонового режима.
     tcsetpgrp(0, getpid());

@@ -8,32 +8,34 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
                       int infile, int outfile, int errfile) {
     int status = 0;
     pid_t child_pid;
-    pid_t pgid = m_s->jobs[job_id]->pgid;
+    //pid_t pgid = m_s->jobs[job_id]->pgid;
+
+
     p->status = STATUS_RUNNING;
     int shell_is_interactive = isatty(STDIN_FILENO);  //!!
+
     child_pid = fork();
+
+    p->pid = child_pid;
+
+
     //TELL_WAIT();
     if (child_pid < 0) {
         perror("error fork");
         exit(1);
     }
     else if (child_pid == 0) {
-/*
-        Implementing '&'
-        1. Notice that the '&' sign can only exist as the last token, otherwise it is misplaced
-        2. Parent does not wait for child to complete. 3. Child sends SIGCHLD on completion
-*/
         //TELL_PARENT(getpgid(0));
         if (shell_is_interactive) {
-            p->pid = getpid();
-            if (pgid > 0)
-                setpgid(0, pgid);
-            else {
-                pgid = p->pid;
-                setpgid(0, pgid);
-            }
+            if (m_s->jobs[job_id]->pgid == 0)
+                m_s->jobs[job_id]->pgid = child_pid;
+            setpgid (child_pid, m_s->jobs[job_id]->pgid);
+//            mx_print_color(MAG, "child\t");
+//            mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
+//            mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
+//            mx_printstr("\n");
             if (p->foreground)
-                tcsetpgrp(STDIN_FILENO, pgid);
+                tcsetpgrp(STDIN_FILENO, m_s->jobs[job_id]->pgid);
             signal(SIGINT, SIG_DFL);
             signal(SIGQUIT, SIG_DFL);
             signal(SIGTSTP, SIG_DFL);
@@ -57,7 +59,6 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
         char *command = p->argv[0];
         path  = check_path(arr, command);
         char *error = get_error(&path, command, &status);
-
         if (execve(path, p->argv, env) < 0) {
             print_error(command, error);
             // perror("execvp");
@@ -71,28 +72,21 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
             */
     }
         //parrent process
-    else
-    {
+    else {
+        p->pid = child_pid;
         //WAIT_CHILD();
-        p->pid = child_pid;  //PID CHILD
         if (shell_is_interactive) {
-            if (!pgid)
-                pgid = child_pid;
-            setpgid(child_pid, pgid);
+            pid_t pid = child_pid;
+            if (m_s->jobs[job_id]->pgid == 0)
+                m_s->jobs[job_id]->pgid = pid;
+            setpgid (pid, m_s->jobs[job_id]->pgid);
         }
-        if (m_s->jobs[job_id]->foreground == FOREGROUND) {
-            tcsetpgrp(0, pgid);
-            //    status = mx_wait_job(m_s, job_id);
-            status = mx_wait_job(m_s, job_id);
-            signal(SIGTTOU, SIG_IGN);
-            tcsetpgrp(0, getpid());
-            signal(SIGTTOU, SIG_DFL);
-            // mx_print_job_status(m_s, job_id);
-//            if (job_id > 0 && mx_job_completed(m_s, job_id)) {
-//                //mx_print_job_status(m_s, job_id);
-//                mx_remove_job(m_s, job_id);
-            //          }
-        }
+//        mx_print_color(YEL, "parent\t");
+//        mx_print_color(YEL, "p->pid \t");
+//        mx_print_color(YEL, mx_itoa(p->pid));
+//        mx_print_color(YEL, "\tm_s->jobs[job_id]->pgid ");
+//        mx_print_color(YEL, mx_itoa(m_s->jobs[job_id]->pgid));
+//        mx_printstr("\n");
     }
     return status >> 8;//WEXITSTATUS(status)
 }

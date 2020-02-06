@@ -21,21 +21,20 @@ int mx_print_job_status(t_shell *m_s, int job_id, int flag) {
 
     if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
         return -1;
-    printf("[%d]", job_id);
+    printf("[%d] ", job_id);
     if (m_s->jobs_stack->last == job_id)
         printf(" %c ", 43);  // print +
     else if (m_s->jobs_stack->prev_last == job_id)
         printf(" %c ", 45);  // print -
     else
         printf(" %c ", ' ');
-
     for (p = m_s->jobs[job_id]->first_process; p != NULL; p = p->next) {
         flag ? printf("%d ", p->pid) : printf("");
         printf("%s", status[p->status]);
         len = mx_strlen(status[p->status]);
         print_spaces(MAX_LEN + 1 - len);
         mx_print_args_in_line(p->argv, " ");
-        (p->next != NULL) ? mx_printstr(" |\n ") : mx_printstr("\n");
+        (p->next != NULL) ? mx_printstr(" |\n\t") : mx_printstr("\n");
     }
     return 0;
 }

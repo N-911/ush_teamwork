@@ -26,11 +26,23 @@ void mx_sig_handler(int signal) {
     //printf("%d\n", signal);
 }
 
+void mx_sig_handler_exit(int sig) {
+    // clean all
+    signal(sig, SIG_DFL);
+    raise(sig);
+}
+
 void mx_sig_h(int signal) {
+//    (void)m_s;
     if (signal == SIGTSTP)
         printf("\n");
     if (signal == SIGINT)
         printf("\n");
+    if (signal == SIGCHLD) {
+        printf("DONE\n");
+//        mx_check_jobs(void)m_s);
+    }
+
     // printf("%d\n", signal);
 /*
  * handler fo exit

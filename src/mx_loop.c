@@ -5,10 +5,11 @@ void mx_ush_loop(t_shell *m_s) {
     t_ast **ast = NULL;
 //    int status = 1;
     while (1) {
+        mx_check_jobs(m_s);
         printf("%s%s%s", GRN, "u$h> ", RESET);
         line = mx_ush_read_line();
         if (line[0] == '\0') {
-            mx_check_jobs(m_s);
+//            mx_check_jobs(m_s);
             continue;
         } else {
             if ((ast = mx_ast_creation(line, m_s))) {
