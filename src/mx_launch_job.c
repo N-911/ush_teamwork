@@ -22,16 +22,15 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     job_id = mx_insert_job(m_s, job);  // insert job to job control
     for (p = m_s->jobs[job_id]->first_process; p; p = p->next) {  // list of process in job
     	p->job_id = job_id;
-
-        //------------- print info
-        mx_print_color(RED, "job :   p->type\t\t");
-        mx_print_color(RED, mx_itoa(p->type));
-        mx_print_color(RED, "\tp->foreground\t");
-        mx_print_color(RED, mx_itoa(p->foreground));
-        mx_print_color(RED, "\t job->pgid\t");
-        mx_print_color(RED,mx_itoa(m_s->jobs[job_id]->pgid));
-        mx_printstr("\n");
-        //------------
+//        //------------- print info
+//        mx_print_color(RED, "job :   p->type\t\t");
+//        mx_print_color(RED, mx_itoa(p->type));
+//        mx_print_color(RED, "\tp->foreground\t");
+//        mx_print_color(RED, mx_itoa(p->foreground));
+//        mx_print_color(RED, "\t job->pgid\t");
+//        mx_print_color(RED,mx_itoa(m_s->jobs[job_id]->pgid));
+//        mx_printstr("\n");
+//        //------------
         if (m_s->exit_flag == 1 && !(p->type == 10))
             m_s->exit_flag = 0;
         if (p->next != NULL && p->input_path != NULL) { // redirection
@@ -71,14 +70,6 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
             mx_remove_job(m_s, job_id);
     }
 
-//    if (m_s->jobs[job_id]->foreground == FOREGROUND) {
-//        tcsetpgrp(0, m_s->jobs[job_id]->pgid);
-//        status = mx_wait_job(m_s, job_id);
-//        signal(SIGTTOU, SIG_IGN);
-//        tcsetpgrp(0, getpid());
-//        signal(SIGTTOU, SIG_DFL);
-//    }
-//
     if (status >= 0 && job->foreground == FOREGROUND) {
         tcsetpgrp (STDIN_FILENO, job->pgid);
 	    status = mx_wait_job(m_s, job_id);
@@ -88,15 +79,15 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
 	    if (mx_job_completed(m_s, job_id))
 	        mx_remove_job(m_s, job_id);
 	}
-
-	else if (job->foreground == BACKGROUND) {
-	    if (kill (-m_s->jobs[job_id]->pgid, SIGCONT) < 0)
-	        perror ("kill (SIGCONT)");
+	if (job->foreground == BACKGROUND) {
+//	    if (kill (-m_s->jobs[job_id]->pgid, SIGCONT) < 0)
+//	        perror ("kill (SIGCONT)");
 	    mx_print_pid_process_in_job(m_s, job->job_id);
-        if (mx_job_completed(m_s, job_id))
-            mx_remove_job(m_s, job_id);
+//        if (mx_job_completed(m_s, job_id))
+//            mx_remove_job(m_s, job_id);
 	}
 }
+
 
 static int get_flag(char **args) {
     int flag = 1;

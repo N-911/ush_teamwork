@@ -26,6 +26,12 @@ void mx_sig_handler(int signal) {
     //printf("%d\n", signal);
 }
 
+void mx_sig_handler_exit(int sig) {
+    // clean all
+    signal(sig, SIG_DFL);
+    raise(sig);
+}
+
 void mx_sig_h(int signal) {
 //    (void)m_s;
     if (signal == SIGTSTP)

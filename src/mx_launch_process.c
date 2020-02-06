@@ -26,20 +26,14 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
     }
     else if (child_pid == 0) {
         //TELL_PARENT(getpgid(0));
-//        mx_print_color(CYN, "child p->pid ");
-//        mx_print_color(CYN, mx_itoa(p->pid));
-//        mx_printstr("\n");
-
         if (shell_is_interactive) {
             if (m_s->jobs[job_id]->pgid == 0)
                 m_s->jobs[job_id]->pgid = child_pid;
             setpgid (child_pid, m_s->jobs[job_id]->pgid);
-
-            mx_print_color(MAG, "child\t");
-            mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
-            mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
-            mx_printstr("\n");
-
+//            mx_print_color(MAG, "child\t");
+//            mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
+//            mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
+//            mx_printstr("\n");
             if (p->foreground)
                 tcsetpgrp(STDIN_FILENO, m_s->jobs[job_id]->pgid);
             signal(SIGINT, SIG_DFL);
@@ -87,29 +81,12 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
                 m_s->jobs[job_id]->pgid = pid;
             setpgid (pid, m_s->jobs[job_id]->pgid);
         }
-        mx_print_color(YEL, "parent\t");
-        mx_print_color(YEL, "p->pid \t");
-        mx_print_color(YEL, mx_itoa(p->pid));
-        mx_print_color(YEL, "\tm_s->jobs[job_id]->pgid ");
-        mx_print_color(YEL, mx_itoa(m_s->jobs[job_id]->pgid));
-        mx_printstr("\n");
-
-        /*
-        if (m_s->jobs[job_id]->foreground == FOREGROUND) {
-            tcsetpgrp(0, pgid);
-            //    status = mx_wait_job(m_s, job_id);
-            status = mx_wait_job(m_s, job_id);
-            signal(SIGTTOU, SIG_IGN);
-            tcsetpgrp(0, getpid());
-            signal(SIGTTOU, SIG_DFL);
-            // mx_print_job_status(m_s, job_id);
-//            if (job_id > 0 && mx_job_completed(m_s, job_id)) {
-//                //mx_print_job_status(m_s, job_id);
-//                mx_remove_job(m_s, job_id);
-            //          }
-        }
-*/
-
+//        mx_print_color(YEL, "parent\t");
+//        mx_print_color(YEL, "p->pid \t");
+//        mx_print_color(YEL, mx_itoa(p->pid));
+//        mx_print_color(YEL, "\tm_s->jobs[job_id]->pgid ");
+//        mx_print_color(YEL, mx_itoa(m_s->jobs[job_id]->pgid));
+//        mx_printstr("\n");
     }
     return status >> 8;//WEXITSTATUS(status)
 }

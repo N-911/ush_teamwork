@@ -344,6 +344,7 @@ int mx_exit(t_shell *m_s, t_process *p);
 
 //      SIGNALS
 void mx_sig_h(int signal);
+void mx_sig_handler_exit(int sig);
 void sigchld_handler(int signum);
 void mx_sig_handler(int signal);
 //void sig_usr(int signo);
