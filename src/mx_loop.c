@@ -12,23 +12,23 @@ void mx_ush_loop(t_shell *m_s) {
             continue;
         } else {
             if ((ast = mx_ast_creation(line, m_s))) {
-                // ast_print(ast);  // печать дерева
-                for (int i = 0; ast[i]; i++) {
-                    t_job *new_job = (t_job *) malloc(sizeof(t_job));  //create new job
-                    new_job = mx_create_job(m_s, ast[i]);
-                    // mx_printstr("type - ");
-                    //mx_printint(new_job->first_process->type);
-                    //mx_printstr("\n");
-                    //mx_printstr("foreground - ");
-                    //mx_printint(new_job->first_process->foreground);
-                    //mx_printstr("\n");
-                    mx_launch_job(m_s, new_job);
-                    //m_s->exit_code = status;
-                    // mx_destroy_jobs(m_s, 0);
-                    m_s->history_count = 0;
-                    //  mx_add_history(m_s, new_job);
-        //        termios_restore(m_s);
-                }
+                ast_print(ast);  // печать дерева
+        //         for (int i = 0; ast[i]; i++) {
+        //             t_job *new_job = (t_job *) malloc(sizeof(t_job));  //create new job
+        //             new_job = mx_create_job(m_s, ast[i]);
+        //             // mx_printstr("type - ");
+        //             //mx_printint(new_job->first_process->type);
+        //             //mx_printstr("\n");
+        //             //mx_printstr("foreground - ");
+        //             //mx_printint(new_job->first_process->foreground);
+        //             //mx_printstr("\n");
+        //             mx_launch_job(m_s, new_job);
+        //             //m_s->exit_code = status;
+        //             // mx_destroy_jobs(m_s, 0);
+        //             m_s->history_count = 0;
+        //             //  mx_add_history(m_s, new_job);
+        // //        termios_restore(m_s);
+        //         }
                 mx_ast_clear_all(&ast);  // clear leeks
                 // system ("leaks -q ush");
             }

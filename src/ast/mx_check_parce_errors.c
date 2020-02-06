@@ -1,23 +1,31 @@
 #include "ush.h"
 /*
-*  check if error of ' or " % 2 == 0
-*/
+ *  Check if ' or " even
+ */
 static bool check_quote(char *line) {
-    if (!line)
-        return false;
-    else if (mx_count_substr(line, "\'") % 2 != 0) {
-        mx_printerr("Unmatched '.\n");
-        return true;
+    int res = 0;
+    char *str = line;
+
+    if (str && *str) {
+        if (str[0] == '\'' || str[0] == '"' || str[0] == '`')
+            res++;
+        str++;
     }
-    else if (mx_count_substr(line, "\"") % 2 != 0) {
-        mx_printerr("Unmatched \".\n");
+    while (str && *str) {
+        if ((str[0] == '\'' || str[0] == '"' || str[0] == '`')
+            && str[-1] != '\\')
+            res++;
+        str++;
+    }
+    if (res % 2 != 0) {
+        mx_printerr("Unmatched quote.\n");
         return true;
     }
     return false;
 }
 /*
-*  print parse error
-*/
+ * Print parse error.
+ */
 static bool print_parse_error(char *c, int k) {
     mx_printerr("u$h: parse error near `");
     write(2, c, k);
@@ -25,9 +33,9 @@ static bool print_parse_error(char *c, int k) {
     return true;
 }
 /*
-*  check wrong combinations of operators (like |> and |<>)
-*  check third delim like <<< >>> &&& ||| <<| ets
-*/
+ * Check wrong combinations of operators (like |> and |<>).
+ * Check third delim like <<< >>> &&& ||| <<| ets.
+ */
 static bool check_parse_auditor(char *line, int i) {
     int i2;
     int i3;
@@ -46,8 +54,8 @@ static bool check_parse_auditor(char *line, int i) {
     return false;
 }
 /*
-*  check operator at the end (in there no cmd after operator) .\n ..\n
-*/
+ * Check operator at the end (in there no cmd after operator) .\n ..\n
+ */
 static bool check_parse(char *line) {
     int i = 0;
 
@@ -67,9 +75,9 @@ static bool check_parse(char *line) {
     return false;
 }
 /*
-*  check all possible errors of parsing,
-*  check if line begins of delimeters "|&><"
-*/
+ * Check all possible errors of parsing,
+ * Check if line begins of delimeters "|&><"
+ */
 bool mx_check_parce_errors(char *line) {
     if (!line || check_quote(line) || check_parse(line))
         return true;

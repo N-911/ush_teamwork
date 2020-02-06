@@ -1,7 +1,7 @@
 #include "ush.h"
 /*
-*  convert delimeter in int-value
-*/
+ * Convert delimeter in int-value.
+ */
 static int get_type(char *delim) {
     if (IS_SEP(delim))
         return SEP;
@@ -24,8 +24,8 @@ static int get_type(char *delim) {
     return NUL;
 }
 /*
-*  convert int-value in delimeter
-*/
+ * Convert int-value in delimeter.
+ */
 static char *get_delim_from_type(int type) {
     if (type == SEP)
         return mx_strdup(";");
@@ -48,8 +48,8 @@ static char *get_delim_from_type(int type) {
     return NULL;
 }
 /*
-*  get delimeter like a string and convert in int-value
-*/
+ * Get delimeter like a string and convert in int-value.
+ */
 static int get_delim(char *line, int *pos) {
     char *delim = NULL;
     int type = 0;
@@ -67,8 +67,8 @@ static int get_delim(char *line, int *pos) {
     return type;
 }
 /*
-*  get one command and delimeter after it
-*/
+ * Get one command and delimeter after it.
+ */
 static char *get_token_and_delim(char *line, int *i, int *type) {
     int pos = 0;
     char *tmp = NULL;
@@ -78,7 +78,7 @@ static char *get_token_and_delim(char *line, int *i, int *type) {
         *type = get_delim(line + pos, &pos);
         *i += pos;
     }
-    else if (pos == 0) {  // in case >> << < >
+    else if (pos == 0) {        // in case >> << < >
         // tmp = mx_strdup("first_arg_is_empty");
         // *type = get_delim(line, &pos);
         // *i += pos;
@@ -92,11 +92,12 @@ static char *get_token_and_delim(char *line, int *i, int *type) {
     return tmp;
 }
 /*
-*  get list of all commands and delimeters (operators) -> use filters
-*/
+ * Get list of all commands and delimeters (operators) -> use filters
+ */
 t_ast *mx_ush_parsed_line(char *line, t_export *variables) {
     t_ast *res = NULL;
     int type = 0;
+    char *delim;
     char *tmp = NULL;
     char **args = NULL;
 
@@ -109,7 +110,7 @@ t_ast *mx_ush_parsed_line(char *line, t_export *variables) {
                 mx_ast_push_back(&res, args, type);
             else if (type != SEP) {
                 mx_printerr("u$h: parse error near `");
-                char *delim = get_delim_from_type(type);
+                delim = get_delim_from_type(type);
                 write(2, delim, mx_strlen(delim));
                 mx_strdel(&delim);
                 mx_printerr("\'\n");

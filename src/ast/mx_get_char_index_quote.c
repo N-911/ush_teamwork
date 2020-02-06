@@ -10,7 +10,8 @@ int mx_get_char_index_quote(const char *str, char *c) {
     if (!str || !*str)
         return -2;
     while (s[i]) {
-        if (s[i] == '\'' || s[i] == '\"') {
+        if ((s[i] == '\'' || s[i] == '"' || s[i] == '`')
+            && (i == 0 || s[i - 1] != '\\')) {
             tmp = s[i];
             i++;
             while (s[i] && s[i] != tmp)
