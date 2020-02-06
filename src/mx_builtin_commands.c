@@ -103,6 +103,11 @@ int mx_fg(t_shell *m_s, t_process *p) {
     else
         job_id = m_s->jobs_stack->last;
 
+
+    mx_print_color(MAG, "child\t");
+          mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
+            mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
+            mx_printstr("\n");
     printf("job_id %d\n", job_id);
     pgid = mx_get_pgid_by_job_id(m_s, job_id);
     printf("pid suspended process %d\n", pgid);

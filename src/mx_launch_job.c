@@ -70,7 +70,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
             mx_remove_job(m_s, job_id);
     }
 
-    if (status >= 0 && job->foreground == FOREGROUND) {
+    else if (status >= 0 && job->foreground == FOREGROUND) {
         tcsetpgrp (STDIN_FILENO, job->pgid);
 	    status = mx_wait_job(m_s, job_id);
         signal(SIGTTOU, SIG_IGN);
@@ -79,9 +79,9 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
 	    if (mx_job_completed(m_s, job_id))
 	        mx_remove_job(m_s, job_id);
 	}
-	if (job->foreground == BACKGROUND) {
-//	    if (kill (-m_s->jobs[job_id]->pgid, SIGCONT) < 0)
-//	        perror ("kill (SIGCONT)");
+	else if (job->foreground == BACKGROUND) {
+	    if (kill (-m_s->jobs[job_id]->pgid, SIGCONT) < 0)
+	        perror ("kill (SIGCONT)");
 	    mx_print_pid_process_in_job(m_s, job->job_id);
 //        if (mx_job_completed(m_s, job_id))
 //            mx_remove_job(m_s, job_id);

@@ -73,7 +73,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
     }
         //parrent process
     else {
-        p->pid = child_pid;
+        //p->pid = child_pid;
         //WAIT_CHILD();
         if (shell_is_interactive) {
             pid_t pid = child_pid;

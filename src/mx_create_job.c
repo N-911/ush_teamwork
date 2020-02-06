@@ -77,17 +77,17 @@ t_process *mx_create_list_process(t_shell *m_s, t_ast *list) {
 t_job *mx_create_job(t_shell *m_s, t_ast *list) {
     t_job *new_job = (t_job *) malloc(sizeof(t_job));
     t_process *first_p = mx_create_list_process(m_s, list);
-//    t_process *p;
+    t_process *p;
 
     new_job->first_process = first_p;
     new_job->foreground = FOREGROUND;
-    if (!new_job->first_process->foreground)
-        new_job->foreground = BACKGROUND;
+//    if (!new_job->first_process->foreground)
+//        new_job->foreground = BACKGROUND;
 
-//    for (p = first_p; p != NULL; p = p->next) {
-//        if (!p->foreground)
-//            new_job->foreground = BACKGROUND;
-//    }
+    for (p = first_p; p != NULL; p = p->next) {
+        if (!p->foreground)
+            new_job->foreground = BACKGROUND;
+    }
     new_job->job_id = -1;
     new_job->pgid = 0;
     new_job->stdin = 0;
