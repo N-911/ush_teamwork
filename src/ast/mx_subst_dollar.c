@@ -9,7 +9,7 @@ static char *get_var(char *s, int *v_len) {
     if (!s)
         return NULL;
     if (s[0] == '{') {
-        var = mx_strndup(&s[1], mx_get_char_index(s, '}') - 1);
+        var = mx_strndup(&s[1], mx_get_char_index_ush(s, '}') - 1);
         *v_len = mx_strlen(var) + 2;
     }
     else {
@@ -43,6 +43,8 @@ static char *expantion(char *s, t_export *variables, int pos) {
     if ((var = get_var(&s[pos + 1], &v_len))) {
         if ((value = get_value(var, variables)))
             res = mx_strjoin_free(res, value);
+        else
+            res = mx_strjoin(res, var);
         mx_strdel(&var);
     }
     if (s[pos + v_len])
@@ -61,7 +63,7 @@ char *mx_substr_dollar(char *s, t_export *variables) {
         return NULL;
     if (mx_strcmp(s, "$") == 0)
         return s;
-    while ((pos = mx_get_char_index_quote(res, "$")) == 0
+    while ((pos = mx_get_char_index_quote(res, "$", "\'")) == 0
             || (pos > 0 && res[pos - 1] != '\\'))
         res = expantion(res, variables, pos);
     return res;

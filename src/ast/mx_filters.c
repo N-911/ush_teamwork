@@ -9,6 +9,8 @@ char **mx_filters(char *arg, t_export *variables) {
     char **args = mx_parce_tokens(arg);
     char **res = (char **)malloc((mx_strlen_arr(args) + 1) * sizeof(char *));
 
+    if (mx_check_allocation_error((char **)&res))
+        return NULL;
     for (; args[i]; i++) {
         res[i] = mx_strdup(args[i]);
         res[i] = mx_subst_tilde(res[i]);

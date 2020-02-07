@@ -73,7 +73,7 @@ static char *get_token_and_delim(char *line, int *i, int *type) {
     int pos = 0;
     char *tmp = NULL;
 
-    if ((pos = mx_get_char_index_quote(&line[pos], PARSE_DELIM)) > 0) {
+    if ((pos = mx_get_char_index_quote(&line[pos], PARSE_DELIM, QUOTE)) > 0) {
         tmp = mx_strndup(line, pos);
         *type = get_delim(line + pos, &pos);
         *i += pos;

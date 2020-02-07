@@ -84,6 +84,7 @@
 */
 /* Operators and delimeters for parse tokens */
 #define PARSE_DELIM ";|&><"
+#define QUOTE "\'\"`"
 #define USH_TOK_DELIM " \t\r\n\a"
 
 /* Macroces for recognizing delimeters */
@@ -96,7 +97,7 @@
 #define IS_R_INPUT_DBL(x) (!mx_strcmp(x, ">>"))
 #define IS_R_OUTPUT(x) (!mx_strcmp(x, "<"))
 #define IS_R_OUTPUT_DBL(x) (!mx_strcmp(x, "<<"))
-#define IS_SEP_FIRST_LWL(x) (x == SEP || x == FON)
+#define IS_SEP_FIRST_LWL(x) (x == SEP || x == FON || x == AND || x == OR)
 #define IS_REDIR_INP(x) (x == R_INPUT || x == R_INPUT_DBL)
 #define IS_REDIR_OUTP(x) (x == R_OUTPUT || x == R_OUTPUT_DBL)
 #define IS_REDIRECTION(x) (IS_REDIR_INP(x) || IS_REDIR_OUTP(x))
@@ -208,6 +209,7 @@ typedef struct s_process {
 // A job is a pipeline of processes.
 typedef struct s_job {
     int job_id;                 //number in jobs control
+    int job_type;           // 0 if normal, or enum &&, || of previos job
    // int mark_job_id;            // " ", "-", "+"   "+" - last added job, "-" - prev added job;
     char *command;              // command line, used for messages
     t_process *first_process;     // list of processes in this job
@@ -265,7 +267,7 @@ t_ast **mx_ast_creation(char *line, t_shell *m_s);
 t_ast *mx_ush_parsed_line(char *line, t_export *variables);
 t_ast **mx_ast_parse(t_ast *parsed_line);
 void mx_ast_push_back(t_ast **head, char **args, int type);
-void mx_ast_push_back_redirection(t_ast **head, t_ast **list);
+/* rewrite */ void mx_ast_push_back_redirection(t_ast **head, t_ast **list);
 void mx_ast_clear_list(t_ast **list);
 void mx_ast_clear_all(t_ast ***list);                 // mx_ast_clear_list.c
 bool mx_check_parce_errors(char *line);
@@ -283,17 +285,21 @@ char *mx_ush_read_line(void);
 /* check */char **mx_filters(char *arg, t_export *variables);
 /* check */char *mx_strtok (char *s, const char *delim);
 /* check */char **mx_parce_tokens(char *line);
-/* check */char *mx_subst_tilde(char *s);
+char *mx_subst_tilde(char *s);
 char *mx_substr_dollar(char *s, t_export *variables);
 /*
  *  ---------------------------------------------- mx_quote_manage.c
- * mx_get_char_index_quote      get char index (outside of the quote);
+ * mx_get_char_index_quote      get char index outside of the quote (exc is \);
+ * mx_get_char_index_ush        get char index, except isolated with \;
  * mx_count_chr_quote           count chars (outside of the quote);
+ * mx_count_chr_ush             count chars, except isolated with \;
  * mx_strtrim_quote             trim all ' or " in quote;
  */
-/* ? */int mx_get_char_index_quote(const char *str, char *c);
-/* check */int mx_count_chr_quote(const char *str, char *c);
-/* check */char *mx_strtrim_quote(char *s, char q_char);
+int mx_get_char_index_quote(const char *str, char *c, char *quote);
+int mx_get_char_index_ush(const char *str, char c);
+int mx_count_chr_quote(const char *str, char *c, char *q);
+int mx_count_chr_ush(const char *str, char c);
+/* rewrite */ char *mx_strtrim_quote(char *s, char q_char);
 /*
  *  ---------------------------------------------- move to LIBMX
  */
@@ -312,6 +318,7 @@ void mx_printerr_red(char *c);
 void mx_print_color(char *macros, char *str);
 int mx_get_char_index_reverse(const char *str, char c);
 bool mx_isdelim (char c, char *delim);
+bool mx_check_allocation_error(const void *c);
 /*
  *  ----------------------------------------------
  */

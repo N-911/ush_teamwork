@@ -7,7 +7,7 @@ static char **create_tokens(char **tokens, int *bufsize) {
         tokens = malloc((*bufsize) * sizeof(char*));
         if (!tokens) {
             mx_printerr_red("ush: allocation error\n");
-            exit(EXIT_FAILURE);
+            return NULL;
         }
     }
     else {
@@ -15,7 +15,7 @@ static char **create_tokens(char **tokens, int *bufsize) {
         tokens = realloc(tokens, (*bufsize) * sizeof(char*));
         if (!tokens) {
             mx_printerr_red("ush: allocation error\n");
-            exit(EXIT_FAILURE);
+            return NULL;
         }
     }
     return tokens;
