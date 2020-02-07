@@ -73,7 +73,6 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
             }
             outfile = mypipe[1];
         }
-        printf("%d\n", infile);
         p->infile = infile;
         p->outfile = outfile;
         p->errfile = errfile;
@@ -83,14 +82,14 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         }
         else if (p->type != -1)
             status = mx_launch_builtin(m_s, p, job_id);  // fork own buildins
-        else
+        else {
             status = mx_launch_process(m_s, p, job_id, path, env, infile, outfile, errfile);
+        }
         if (infile != job->stdin)
             close(infile);
         if (outfile != job->stdout)
             close(outfile);
         infile = mypipe[0];
-
     }
     if (!shell_is_interactive) {
         status = mx_wait_job(m_s, job_id);

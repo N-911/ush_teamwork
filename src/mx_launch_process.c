@@ -59,11 +59,12 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
         char *command = p->argv[0];
         path  = check_path(arr, command);
         char *error = get_error(&path, command, &status);
+
         if (execve(path, p->argv, env) < 0) {
             print_error(command, error);
-            // perror("execvp");
-            _exit(EXIT_FAILURE);
+            _exit(status);
         }
+        exit(status);
         /*
         if (p->foreground == BACKGROUND) {
             if (kill (-job->pgid, SIGCONT) < 0)
@@ -81,6 +82,8 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
                 m_s->jobs[job_id]->pgid = pid;
             setpgid (pid, m_s->jobs[job_id]->pgid);
         }
+
+        
 //        mx_print_color(YEL, "parent\t");
 //        mx_print_color(YEL, "p->pid \t");
 //        mx_print_color(YEL, mx_itoa(p->pid));
