@@ -58,15 +58,17 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
                 }
             }
             if (p->redir_delim == R_OUTPUT_DBL) {
-                pipe(mypipe);
-                infile = mypipe[1];
+                int fd = open (p->output_path, O_RDWR|O_CREAT|O_TRUNC , 0666);
                 char *line = "";
-                while(strcmp(line, p->output_path) != 0) {
+                while (strcmp(line, p->output_path) != 0) {
                     printf("heredoc> ");
-                    write(infile, line, mx_strlen(line));
-                    write(infile, "\n", 1);
+                    write(fd, line, mx_strlen(line));
+                    write(fd, "\n", 1);
                     line = mx_ush_read_line();
                 }
+                close (fd);
+                infile = open (p->output_path, O_RDONLY, 0666);
+                remove (p->output_path);
             }
         }
         if (p->pipe) {
@@ -77,8 +79,8 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
             }
             outfile = mypipe[1];
         } 
-        else
-            outfile = job->stdout;
+        // else
+        //     outfile = job->stdout;
         p->infile = infile;
         p->outfile = outfile;
         p->errfile = errfile;
