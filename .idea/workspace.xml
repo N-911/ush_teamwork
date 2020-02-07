@@ -15,11 +15,17 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ush_team.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ush_team.dir/C.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/ush_team" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/ush_team" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/ush.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/ush.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_builtin_commands.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_builtin_commands.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_create_job.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_create_job.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_exit.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_exit.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_init_shell.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_init_shell.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_launch_builtin.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_builtin.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_launch_job.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_job.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_launch_process.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_process.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_loop.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_loop.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_signal.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_signal.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ush" beforeDir="false" afterPath="$PROJECT_DIR$/ush" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +111,8 @@
       <workItem from="1580885868959" duration="17826000" />
       <workItem from="1580970413903" duration="16355000" />
       <workItem from="1580996027045" duration="1981000" />
-      <workItem from="1581005556073" duration="1761000" />
+      <workItem from="1581005556073" duration="2027000" />
+      <workItem from="1581057103652" duration="10923000" />
     </task>
     <task id="LOCAL-00001" summary="-test_snikolayen">
       <created>1579768232701</created>
@@ -183,38 +190,38 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="219" y="294" key="CommitChangelistDialog2/0.23.2560.1337@0.23.2560.1337" timestamp="1580992135397" />
-    <state width="1264" height="395" key="GridCell.Tab.0.bottom" timestamp="1580986467564">
+    <state width="1264" height="383" key="GridCell.Tab.0.bottom" timestamp="1581066258967">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1264" height="395" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1580986467564" />
-    <state width="1264" height="395" key="GridCell.Tab.0.center" timestamp="1580986467563">
+    <state width="1264" height="383" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1581066258967" />
+    <state width="1264" height="383" key="GridCell.Tab.0.center" timestamp="1581066258966">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1264" height="395" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1580986467563" />
-    <state width="1264" height="395" key="GridCell.Tab.0.left" timestamp="1580986467562">
+    <state width="1264" height="383" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1581066258966" />
+    <state width="1264" height="383" key="GridCell.Tab.0.left" timestamp="1581066258965">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1264" height="395" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1580986467562" />
-    <state width="1264" height="395" key="GridCell.Tab.0.right" timestamp="1580986467563">
+    <state width="1264" height="383" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1581066258965" />
+    <state width="1264" height="383" key="GridCell.Tab.0.right" timestamp="1581066258966">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1264" height="395" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1580986467563" />
-    <state width="1264" height="395" key="GridCell.Tab.1.bottom" timestamp="1580986466900">
+    <state width="1264" height="383" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1581066258966" />
+    <state width="1264" height="383" key="GridCell.Tab.1.bottom" timestamp="1581066215967">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1264" height="395" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1580986466900" />
-    <state width="1264" height="395" key="GridCell.Tab.1.center" timestamp="1580986466899">
+    <state width="1264" height="383" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1581066215967" />
+    <state width="1264" height="383" key="GridCell.Tab.1.center" timestamp="1581066215966">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1264" height="395" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1580986466899" />
-    <state width="1264" height="395" key="GridCell.Tab.1.left" timestamp="1580986466898">
+    <state width="1264" height="383" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1581066215966" />
+    <state width="1264" height="383" key="GridCell.Tab.1.left" timestamp="1581066215965">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1264" height="395" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1580986466898" />
-    <state width="1264" height="395" key="GridCell.Tab.1.right" timestamp="1580986466899">
+    <state width="1264" height="383" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1581066215965" />
+    <state width="1264" height="383" key="GridCell.Tab.1.right" timestamp="1581066215966">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="1264" height="395" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1580986466899" />
+    <state width="1264" height="383" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1581066215966" />
     <state width="640" height="164" key="ImportCMakeProjectWizard.bottomPanel" timestamp="1580644358149">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -227,10 +234,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="225" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1580651083909" />
-    <state x="330" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1580996028079">
+    <state x="330" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1581057113375">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="330" y="524" key="com.intellij.ide.util.TipDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1580996028079" />
+    <state x="330" y="524" key="com.intellij.ide.util.TipDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1581057113375" />
     <state x="493" y="615" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580109410730">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -239,10 +246,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="190" y="434" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.2560.1337@0.23.2560.1337" timestamp="1579775998237" />
-    <state x="346" y="598" width="785" height="486" key="find.popup" timestamp="1580987439702">
+    <state x="1563" y="107" width="785" height="1058" key="find.popup" timestamp="1581073839098">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="346" y="598" width="785" height="486" key="find.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1580987439702" />
+    <state x="1563" y="107" width="785" height="1058" key="find.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1581073839098" />
     <state x="305" y="326" key="run.anything.popup" timestamp="1580144306406">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -257,7 +264,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_loop.c</url>
-          <line>14</line>
+          <line>13</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -267,7 +274,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_loop.c</url>
-          <line>19</line>
+          <line>18</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -277,23 +284,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>58</line>
+          <line>63</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>56</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>33</line>
+          <line>37</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>35</line>
+          <line>40</line>
           <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
+          <line>60</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/mx_launch_builtin.c</url>
+          <line>100</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -194,7 +194,7 @@ typedef struct s_process {
     int status;  //status RUNNING DONE SUSPENDED CONTINUED TERMINATED
     int foreground;
     int pipe;  // gets in create_job.c
-    int delim;  // gets in create_job.c
+    int delim;  // gets in create_job.c (first - | || &&) (end - ; &)
     int fd_in;
     int fd_out;
     int type;              // COMMAND_BUILTIN = index in m_s->builtin_list; default = 0
@@ -208,7 +208,7 @@ typedef struct s_process {
 
 // A job is a pipeline of processes.
 typedef struct s_job {
-    int job_id;                 //number in jobs control
+    int job_id;                 //number in jobs control panel
     char *command;              // command line, used for messages
     t_process *first_process;     // list of processes in this job
     pid_t pgid;                 // process group ID
@@ -234,6 +234,7 @@ typedef struct s_shell {
     char **history;
     int history_count;
     int history_index;
+    struct termios tmodes;
     struct termios t_original;
     struct termios t_custom;
     bool custom_terminal;

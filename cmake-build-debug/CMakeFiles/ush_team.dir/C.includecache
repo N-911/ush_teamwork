@@ -6,7 +6,25 @@
 
 #IncludeRegexTransform: 
 
-../inc/ush.h
+../libmx/inc/libmx.h
+errno.h
+-
+fcntl.h
+-
+unistd.h
+-
+string.h
+-
+stdlib.h
+-
+stdbool.h
+-
+stdio.h
+-
+ctype.h
+-
+
+../ush.h
 sys/types.h
 -
 pwd.h
@@ -64,25 +82,7 @@ fcntl.h
 termios.h
 -
 libmx/inc/libmx.h
-../inc/libmx/inc/libmx.h
-
 ../libmx/inc/libmx.h
-errno.h
--
-fcntl.h
--
-unistd.h
--
-string.h
--
-stdlib.h
--
-stdbool.h
--
-stdio.h
--
-ctype.h
--
 
 /Users/snikolayen/ush_team/src/ast/libmx1.c
 ush.h

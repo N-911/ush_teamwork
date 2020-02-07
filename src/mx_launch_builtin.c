@@ -8,7 +8,6 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
     pid_t child_pid;
 
    // pid_t pgid = m_s->jobs[job_id]->pgid;
-
     p->status = STATUS_RUNNING;
     if (p->type == 4 || p->type == 5 || p->type == 6) {
         if(!p->pipe && p->foreground)
@@ -23,15 +22,18 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
             exit(1);
         }
         else if (child_pid == 0) {
-            //printf("is interactive %d\n", shell_is_interactive);
             if (shell_is_interactive) {
                 if (m_s->jobs[job_id]->pgid == 0)
                     m_s->jobs[job_id]->pgid = child_pid;
                 setpgid(child_pid, m_s->jobs[job_id]->pgid);
-                // mx_print_color(BLU, "pgid ");
-                // mx_print_color(BLU, mx_itoa(pgid));
-//                mx_printstr("\n");
-                if (p->foreground)
+                //--------------------------------------
+                mx_print_color(MAG, "child\t");
+                mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
+                mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
+                mx_printstr("\n");
+                //--------------------------------------
+
+                if (m_s->jobs[job_id]->foreground)
                     tcsetpgrp(STDIN_FILENO, m_s->jobs[job_id]->pgid);
                 signal(SIGINT, SIG_DFL);
                 signal(SIGQUIT, SIG_DFL);
@@ -61,35 +63,19 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
                     m_s->jobs[job_id]->pgid = child_pid;
                 setpgid (child_pid, m_s->jobs[job_id]->pgid);
             }
-
-//            if (kill (-pgid, SIGCONT) < 0)
-//                perror ("kill (SIGCONT)");
-
-
-           // mx_print_pid_process_in_job(m_s, job_id);
-
-           // mx_print_color(YEL, "parent\n");
-/*
-            waitpid(p->pid, &status, WUNTRACED);
-            if (WIFEXITED(status)) {
-                mx_set_process_status(m_s, pid, STATUS_DONE);
-            }
-            else if (WIFSIGNALED(status)) {
-                mx_set_process_status(m_s, pid, STATUS_TERMINATED);
-            }
-            else if (WSTOPSIG(status)) {
-                status = -1;
-                mx_set_process_status(m_s, pid, STATUS_SUSPENDED);
-            }
-            if (mx_job_completed(m_s, job_id))
-                mx_remove_job(m_s, job_id);
-//            wait(&status);
-*/            //return status;
-            }
+            //--------------------------------------
+            mx_print_color(YEL, "parent buildin \t");
+            mx_print_color(YEL, "p->pid \t");
+            mx_print_color(YEL, mx_itoa(p->pid));
+            mx_print_color(YEL, "\tm_s->jobs[job_id]->pgid ");
+            mx_print_color(YEL, mx_itoa(m_s->jobs[job_id]->pgid));
+            mx_printstr("\n");
+            //--------------------------------------
+        }
     }
     else {
         (status = builtin_functions[p->type](m_s, p));
         p->status = STATUS_DONE;
     }
-    return status >> 8;//WEXITSTATUS(status)
+    return status >> 8;  // WEXITSTATUS(status)
 }

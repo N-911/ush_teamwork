@@ -52,8 +52,7 @@ t_shell *mx_init_shell(int argc, char **argv) {
         signal(SIGTSTP, mx_sig_h);  // Control-Z
         signal(SIGTTIN, SIG_IGN);
         signal(SIGTTOU, SIG_IGN);
-     //   signal(SIGCHLD, mx_sig_h);
-        /* Put ourselves in our own process group.  */
+//        signal(SIGCHLD, mx_sig_h);
         shell_pgid = getpid();
 //        printf("parent shell_pgid %d\n", shell_pgid);
 //        printf("идентификатор группы процессов  %d\n", tcgetpgrp(shell_pgid));
@@ -65,6 +64,7 @@ t_shell *mx_init_shell(int argc, char **argv) {
         m_s->shell_pgid = shell_pgid;  //  Save default terminal attributes for shell.
         printf("shell_pgid == %d\n", m_s->shell_pgid);
         tcgetattr(shell_terminal, &m_s->t_original);
+        tcgetattr(shell_terminal,&m_s->tmodes);
         for (int i = -1; i < JOBS_NUMBER; ++i) {
             m_s->jobs[i] = NULL;
         }

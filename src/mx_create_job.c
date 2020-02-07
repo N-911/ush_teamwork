@@ -36,10 +36,10 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
         p->foreground = 0;
     if (p->delim == PIPE)
         p->pipe = 1;
-
     if ((index = mx_builtin_commands_idex(m_s, p->argv[0])) == -1) {
         p->type = -1;      //COMMAND_BUILTIN = index;   default = -1
-    } else
+    }
+    else
         p->type = index;
     return p;
 }
@@ -90,9 +90,9 @@ t_job *mx_create_job(t_shell *m_s, t_ast *list) {
     }
     new_job->job_id = -1;
     new_job->pgid = 0;
-    new_job->stdin = 0;
-    new_job->stdout = 1;
-    new_job->stderr = 2;
+    new_job->stdin = STDIN_FILENO;
+    new_job->stdout = STDOUT_FILENO;
+    new_job->stderr = STDERR_FILENO;
     return new_job;
 }
 

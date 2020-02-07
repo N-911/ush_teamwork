@@ -26,6 +26,8 @@ jobs - List background processes
 */
 
 int mx_jobs(t_shell *m_s, t_process *p) {
+    int exit_code = 0;
+
     if (p->argv[1] == NULL) {
         for (int i = 0; i < JOBS_NUMBER; i++) {
             if (m_s->jobs[i] != NULL) {
@@ -41,8 +43,8 @@ int mx_jobs(t_shell *m_s, t_process *p) {
     }
 // else check argv[1] strcp in all jobs in all processes
     p->exit_code = 0;
-//    mx_print_stack(m_s);
-    return 0;
+    mx_print_stack(m_s);
+    return exit_code;
 }
 
 /*
@@ -93,6 +95,7 @@ fg [задание]
 */
 
 int mx_fg(t_shell *m_s, t_process *p) {
+    int exit_code = 0;
     pid_t pgid = 0;
     int job_id = 0;
 
@@ -105,18 +108,19 @@ int mx_fg(t_shell *m_s, t_process *p) {
 
 
     mx_print_color(MAG, "child\t");
-          mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
-            mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
-            mx_printstr("\n");
+    mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
+    mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
+    mx_printstr("\n");
     printf("job_id %d\n", job_id);
     pgid = mx_get_pgid_by_job_id(m_s, job_id);
     printf("pid suspended process %d\n", pgid);
     tcsetpgrp (STDIN_FILENO, pgid);
+    tcsetattr (STDIN_FILENO, TCSADRAIN, &m_s->jobs[job_id]->tmodes);
     if (kill(- pgid, SIGCONT) < 0) {
         mx_printerr("fg: job not found: ");
         mx_printerr(mx_itoa(pgid));
         mx_printerr("\n");
-        return 1;
+        return -1;
     }
     if (job_id > 0) {
         mx_set_job_status(m_s, job_id, STATUS_CONTINUED);
@@ -129,11 +133,12 @@ int mx_fg(t_shell *m_s, t_process *p) {
     signal(SIGTTOU, SIG_IGN);  //Запись в управляющий терминал процессом из группы процессов фонового режима.
     tcsetpgrp(0, getpid());
     signal(SIGTTOU, SIG_DFL);  //
-    return 0;
+    return exit_code;
 }
 
 
 int mx_bg(t_shell *m_s, t_process *p) {
+    int exit_code = 0;
     pid_t pgid = 0;
     int job_id = 0;
 
@@ -156,5 +161,5 @@ int mx_bg(t_shell *m_s, t_process *p) {
         mx_set_job_status(m_s, job_id, STATUS_CONTINUED);
         mx_print_job_status(m_s, job_id, 0);
     }
-    return 0;
+    return exit_code;
 }

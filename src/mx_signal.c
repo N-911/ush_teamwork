@@ -39,7 +39,7 @@ void mx_sig_h(int signal) {
     if (signal == SIGINT)
         printf("\n");
     if (signal == SIGCHLD) {
-        printf("DONE\n");
+        printf("\n");
 //        mx_check_jobs(void)m_s);
     }
 
