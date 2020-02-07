@@ -1,5 +1,7 @@
 #include "ush.h"
-
+/*
+ * Get variable name from string.
+ */
 static char *get_var(char *s, int *v_len) {
     char *var = NULL;
     int i = 0;
@@ -7,7 +9,7 @@ static char *get_var(char *s, int *v_len) {
     if (!s)
         return NULL;
     if (s[0] == '{') {
-        var = mx_strndup(&s[1], mx_get_char_index(s, '}') - 1);
+        var = mx_strndup(&s[1], mx_get_char_index_ush(s, '}') - 1);
         *v_len = mx_strlen(var) + 2;
     }
     else {
@@ -19,15 +21,18 @@ static char *get_var(char *s, int *v_len) {
     }
     return var;
 }
-
+/*
+ * Get value from variables.
+ */
 static char *get_value(char *var, t_export *variables) {
-
     for (t_export *q = variables; q; q = q->next)
         if (mx_strcmp(var, q->name) == 0)
             return q->value;
     return NULL;
 }
-
+/*
+ * Combine new string.
+ */
 static char *expantion(char *s, t_export *variables, int pos) {
     char *res = NULL;
     int v_len = 0;
@@ -35,15 +40,21 @@ static char *expantion(char *s, t_export *variables, int pos) {
     char *value;
 
     res = mx_strndup(s, pos);
-    if ((var = get_var(&s[pos + 1], &v_len)))
+    if ((var = get_var(&s[pos + 1], &v_len))) {
         if ((value = get_value(var, variables)))
             res = mx_strjoin_free(res, value);
+        else
+            res = mx_strjoin(res, var);
+        mx_strdel(&var);
+    }
     if (s[pos + v_len])
         res = mx_strjoin_free(res, &s[pos + 1 + v_len]);
     mx_strdel(&s);
     return res;
 }
-
+/*
+ * Substitutiont dollar from variables.
+ */
 char *mx_substr_dollar(char *s, t_export *variables) {
     char *res = s;
     int pos = 0;
@@ -52,7 +63,8 @@ char *mx_substr_dollar(char *s, t_export *variables) {
         return NULL;
     if (mx_strcmp(s, "$") == 0)
         return s;
-    while ((pos = mx_get_char_index_quote(res, "$")) >= 0)
+    while ((pos = mx_get_char_index_quote(res, "$", "\'")) == 0
+            || (pos > 0 && res[pos - 1] != '\\'))
         res = expantion(res, variables, pos);
     return res;
 }

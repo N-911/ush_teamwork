@@ -8,17 +8,10 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
                       int infile, int outfile, int errfile) {
     int status = 0;
     pid_t child_pid;
-    //pid_t pgid = m_s->jobs[job_id]->pgid;
-
-
     p->status = STATUS_RUNNING;
     int shell_is_interactive = isatty(STDIN_FILENO);  //!!
-
+    
     child_pid = fork();
-
-    p->pid = child_pid;
-
-
     //TELL_WAIT();
     if (child_pid < 0) {
         perror("error fork");
@@ -30,11 +23,12 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
             if (m_s->jobs[job_id]->pgid == 0)
                 m_s->jobs[job_id]->pgid = child_pid;
             setpgid (child_pid, m_s->jobs[job_id]->pgid);
-//            mx_print_color(MAG, "child\t");
-//            mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
-//            mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
-//            mx_printstr("\n");
-            if (p->foreground)
+            // mx_print_color(MAG, "child\t");
+            // mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
+            // mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
+            // mx_printstr("\n");
+            if (m_s->jobs[job_id]->foreground)
+           // if (p->foreground)
                 tcsetpgrp(STDIN_FILENO, m_s->jobs[job_id]->pgid);
             signal(SIGINT, SIG_DFL);
             signal(SIGQUIT, SIG_DFL);
@@ -59,20 +53,11 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
         char *command = p->argv[0];
         path  = check_path(arr, command);
         char *error = get_error(&path, command, &status);
-
         if (execve(path, p->argv, env) < 0) {
             print_error(command, error);
             _exit(status);
         }
-        exit(status);
-        /*
-        if (p->foreground == BACKGROUND) {
-            if (kill (-job->pgid, SIGCONT) < 0)
-                perror ("kill (SIGCONT)");
-            _exit(EXIT_SUCCESS);
-            */
     }
-        //parrent process
     else {
         p->pid = child_pid;
         //WAIT_CHILD();
@@ -82,14 +67,12 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
                 m_s->jobs[job_id]->pgid = pid;
             setpgid (pid, m_s->jobs[job_id]->pgid);
         }
-
-        
-//        mx_print_color(YEL, "parent\t");
-//        mx_print_color(YEL, "p->pid \t");
-//        mx_print_color(YEL, mx_itoa(p->pid));
-//        mx_print_color(YEL, "\tm_s->jobs[job_id]->pgid ");
-//        mx_print_color(YEL, mx_itoa(m_s->jobs[job_id]->pgid));
-//        mx_printstr("\n");
+        // mx_print_color(YEL, "parent\t");
+        // mx_print_color(YEL, "p->pid \t");
+        // mx_print_color(YEL, mx_itoa(p->pid));
+        // mx_print_color(YEL, "\tm_s->jobs[job_id]->pgid ");
+        // mx_print_color(YEL, mx_itoa(m_s->jobs[job_id]->pgid));
+        // mx_printstr("\n");
     }
     return status >> 8;//WEXITSTATUS(status)
 }

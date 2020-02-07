@@ -82,16 +82,16 @@ int mx_wait_pid(t_shell *m_s, int pid) {
 
 
 int mx_get_proc_count(t_shell *m_s, int job_id, int filter) {
-    t_process *proc;
+    t_process *p;
     int count = 0;
 
     if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL) {
         return -1;
     }
-    for (proc = m_s->jobs[job_id]->first_process; proc != NULL; proc = proc->next) {
+    for (p = m_s->jobs[job_id]->first_process; p != NULL; p = p->next) {
         if (filter == FILTER_ALL ||
-            (filter == FILTER_DONE && proc->status == STATUS_DONE) ||
-            (filter == FILTER_IN_PROGRESS && proc->status != STATUS_DONE)) {
+            (filter == FILTER_DONE && p->status == STATUS_DONE) ||
+            (filter == FILTER_IN_PROGRESS && p->status != STATUS_DONE)) {
             count++;
         }
     }
@@ -100,16 +100,16 @@ int mx_get_proc_count(t_shell *m_s, int job_id, int filter) {
 
 void mx_set_process_status(t_shell *m_s, int pid, int status) {
     int i;
-    t_process *proc;
+    t_process *p;
     int job_id = mx_job_id_by_pid(m_s, pid);
 
     for (i = 1; i < m_s->max_number_job; i++) {
         if (m_s->jobs[i] == NULL) {
             continue;
         }
-        for (proc = m_s->jobs[i]->first_process; proc != NULL; proc = proc->next) {
-            if (proc->pid == pid) {
-                proc->status = status;
+        for (p = m_s->jobs[i]->first_process; p != NULL; p = p->next) {
+            if (p->pid == pid) {
+                p->status = status;
                 if (status == STATUS_SUSPENDED) {
                     if (m_s->jobs_stack->prev_last && m_s->jobs_stack->last)
                         m_s->jobs_stack->prev_last = m_s->jobs_stack->last;

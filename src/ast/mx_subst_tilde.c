@@ -58,6 +58,7 @@ static char *expantion(char *s) {
     else {
         res = add_login(s, home, prefix);
     }
+    mx_strdel(&prefix);
     return res;
 }
 /*

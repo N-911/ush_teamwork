@@ -5,7 +5,6 @@ int mx_exit(t_shell *m_s, t_process *p) {
     int flag = 0;
     int start = 0;
 
-
     if(p->argv[1] != NULL && p->argv[2] != NULL) {
         mx_printerr("ush: exit: too many arguments\n");
         return 1;

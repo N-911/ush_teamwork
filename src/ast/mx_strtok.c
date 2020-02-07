@@ -1,46 +1,40 @@
 #include "ush.h"
 /*
-*  check if char is delim
-*/
-static bool isdelim(char c) {
-    char *delim = USH_TOK_DELIM;
-
-    for (int i = 0; i < mx_strlen(delim); i++)
-        if (c == delim[i])
-            return true;
-    return false;
-}
-/*
 *  get end of function
 */
-static char *get_end_func(char *end) {
-    int tmp = mx_get_char_index(end, ';');
+// static char *get_end_func(char *end) {
+//     int tmp = mx_get_char_index_ush(end, '}');
+//     mx_printstr(end);
+//     mx_printint(tmp);
 
-    if (mx_strncmp(end, " () { ", 6) == 0 && tmp > -1 && end[tmp + 1] == '}') {
-        end += tmp + 2;
-        if (end && *end == ';')
-            end++;
-        return end;
-    }
-    mx_printerr_red("usage: func_name () { func_body;}");
-    return NULL;
-}
+//     if (mx_strncmp(end, " () { ", 6) == 0 && tmp > 0) {
+//         end += tmp + 2;
+//         if (end && *end == ';')
+//             end++;
+//         return end;
+//     }
+//     else
+//         mx_printerr_red("usage: function_name () { func_body;}\n");
+//     return NULL;
+// }
 /*
 *  get end of simple token, or quote, or function
 */
 static char *get_end_usual_quote_func(char *s, const char *delim, char *end) {
     char tmp;
 
-    if (*s == '\'' || *s == '\"') {  // Find the end of the token.
-        tmp = *s;
-        end = s + mx_get_char_index(s + 1, tmp) + 2;
-        if (!isdelim(*end))
-            end += strcspn(end, delim);
+    while (*s) {
+        if (mx_isdelim(*s, QUOTE)) {
+            tmp = *s;
+            s += mx_get_char_index_ush(s + 1, tmp) + 2;
+        }
+        else if (mx_isdelim(*s, (char *)delim))
+            break;
+        s++;
     }
-    else
-        end = s + strcspn(s, delim);
-    if (mx_strncmp(end, " ()", 3) == 0)  // Find the end of the function.
-        end = get_end_func(end);
+    end = s;
+    // if (mx_strncmp(end, " ()", 3) == 0)  // Find the end of the function.
+    //     end = get_end_func(end);
     return end;
 }
 /*
@@ -56,7 +50,7 @@ static char *strtok_tmp (char *s, const char *delim, char **save_ptr) {
         *save_ptr = s;
         return NULL;
     }
-    if ((end = get_end_usual_quote_func(s, delim, end)) == NULL)
+    if (!(end = get_end_usual_quote_func(s, delim, end)))
         return NULL;
     if (*end == '\0') {  // If it's last token, int tne end of the str.
         *save_ptr = end;
