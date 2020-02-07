@@ -48,11 +48,43 @@ int mx_jobs(t_shell *m_s, t_process *p) {
 /*
 fg [задание]
 
+<<<<<<< HEAD
+    if(p->argv[1] != NULL && p->argv[2] != NULL) {
+        mx_printerr("ush: exit: too many arguments\n");
+        return 1;
+    }
+    if (p->argv[1] != NULL) {
+        if (p->argv[1][0] == '+' || p->argv[1][0] == '-') {
+            if (p->argv[1][1] == '\0')
+                flag++;
+            start++;
+        }
+        for (int i = start; i < mx_strlen(p->argv[1]); i++) {
+            if(!mx_isdigit(p->argv[1][i])) {
+                flag++;
+                break;
+            }
+        }
+        if (!flag) {
+            exit_code = atoi(p->argv[1]);
+        }
+        else {
+            mx_printerr("ush: exit: ");
+            mx_printerr(p->argv[1]);
+            mx_printerr(": numeric argument required\n");
+            exit_code = 255;
+        }
+    }
+    //system ("leaks -q ush");
+    exit(exit_code);
+}
+=======
 Возобновляет работу задания в приоритетном режиме и делает это задание текущим. Если задание не указано,
 используется текущее задание командного интерпретатора. Возвращается значение статуса выхода команды,
 переведенной в приоритетный режим, или 1 если управление заданиями отключено или, при включенном
 управлении заданиями, если указано несуществующее задание или задание, запущенное при отключенном
 управлении заданиями.
+>>>>>>> master
 
 Строки %% и %+ обозначают текущее задание командного интерпретатора - последнее задание, остановленное
 при работе в приоритетном режиме или запущенное в фоновом режиме. На предыдущее задание можно сослаться
@@ -71,22 +103,23 @@ int mx_fg(t_shell *m_s, t_process *p) {
     else
         job_id = m_s->jobs_stack->last;
 
-//    printf("job_id %d\n", job_id);
+    printf("job_id %d\n", job_id);
     pgid = mx_get_pgid_by_job_id(m_s, job_id);
     printf("pid suspended process %d\n", pgid);
-    if (kill(-pgid, SIGCONT) < 0) {
+    tcsetpgrp (STDIN_FILENO, pgid);
+    if (kill(- pgid, SIGCONT) < 0) {
         mx_printerr("fg: job not found: ");
         mx_printerr(mx_itoa(pgid));
         mx_printerr("\n");
         return 1;
     }
-    tcsetpgrp(0, pgid);
     if (job_id > 0) {
         mx_set_job_status(m_s, job_id, STATUS_CONTINUED);
         mx_print_job_status(m_s, job_id, 0);
         if (mx_wait_job(m_s, job_id) >= 0)
             mx_remove_job(m_s, job_id);
-    } else
+    }
+    else
         mx_wait_pid(m_s, pgid);
     signal(SIGTTOU, SIG_IGN);  //Запись в управляющий терминал процессом из группы процессов фонового режима.
     tcsetpgrp(0, getpid());

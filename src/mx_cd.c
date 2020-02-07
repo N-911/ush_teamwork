@@ -5,7 +5,7 @@ static int count_args(char **args, int n_options);
 static void change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code);
 static char *chpwd(char **args, int n_options, t_shell *m_s);
 static void fill_options(int n_options, cd_t *cd_options, char **args);
-static int check_path(char *point, cd_t cd_options); 
+static int check_path(char *point, cd_t cd_options);
 
 int mx_cd(t_shell *m_s, t_process *p) {
 	cd_t cd_options = {0, 0, 0};
@@ -42,7 +42,7 @@ int mx_cd(t_shell *m_s, t_process *p) {
 }
 
 static void change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code) {
-	char *link = malloc(256);
+	char *link = malloc(1024);
 	char *dir = mx_normalization(point, m_s->pwd);
 	int flag = check_path(point, cd_options);
 
@@ -53,10 +53,10 @@ static void change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_cod
 			perror(point);
 		}
 		else {
-			readlink(dir, link, 256);
+			readlink(dir, link, 1024);
 			if (cd_options.P == 1 && strcmp(link, "") != 0) {
 				free(dir);
-				dir = getcwd(NULL, 256);
+				dir = getcwd(NULL, 1024);
 			}
 			free(link);
 			setenv("OLDPWD", m_s->pwd, 1);
@@ -133,10 +133,10 @@ static int check_path(char *point, cd_t cd_options) {
 
 		while (mx_get_char_index(tmp_1, '/') >= 0) {
 			idx += mx_get_char_index(tmp_1, '/');
-			char *link1 = malloc(256);
+			char *link1 = malloc(1024);
 			char *tmp_2 = strndup(point, idx);
 
-			readlink(tmp_2, link1, 256);
+			readlink(tmp_2, link1, 1024);
 			idx ++;
 			tmp_1 += mx_get_char_index(tmp_1, '/') + 1;
 			if (strcmp(link1,"") != 0) {

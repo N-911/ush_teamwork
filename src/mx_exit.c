@@ -11,7 +11,7 @@ int mx_exit(t_shell *m_s, t_process *p) {
         return 1;
     }
     if (m_s->jobs_stack->top && m_s->exit_flag == 0) {
-        mx_printerr("u$h: you have suspended jobs.\n");
+        mx_printerr("ush: you have suspended jobs.\n");
         m_s->exit_flag = 1;
         return 1;
     }
@@ -37,6 +37,6 @@ int mx_exit(t_shell *m_s, t_process *p) {
             exit_code = 255;
         }
     }
-    system("leaks -q ush");
+    //system("leaks -q ush");
     exit(exit_code);
 }

@@ -1608,6 +1608,33 @@ src/ast/mx_strtok.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_strtok.c.s
 .PHONY : src/ast/mx_strtok.c.s
 
+src/ast/mx_subst_dollar.o: src/ast/mx_subst_dollar.c.o
+
+.PHONY : src/ast/mx_subst_dollar.o
+
+# target to build an object file
+src/ast/mx_subst_dollar.c.o:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_subst_dollar.c.o
+.PHONY : src/ast/mx_subst_dollar.c.o
+
+src/ast/mx_subst_dollar.i: src/ast/mx_subst_dollar.c.i
+
+.PHONY : src/ast/mx_subst_dollar.i
+
+# target to preprocess a source file
+src/ast/mx_subst_dollar.c.i:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_subst_dollar.c.i
+.PHONY : src/ast/mx_subst_dollar.c.i
+
+src/ast/mx_subst_dollar.s: src/ast/mx_subst_dollar.c.s
+
+.PHONY : src/ast/mx_subst_dollar.s
+
+# target to generate assembly for a file
+src/ast/mx_subst_dollar.c.s:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_subst_dollar.c.s
+.PHONY : src/ast/mx_subst_dollar.c.s
+
 src/ast/mx_subst_tilde.o: src/ast/mx_subst_tilde.c.o
 
 .PHONY : src/ast/mx_subst_tilde.o
@@ -1851,6 +1878,33 @@ src/mx_env.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_env.c.s
 .PHONY : src/mx_env.c.s
 
+src/mx_exit.o: src/mx_exit.c.o
+
+.PHONY : src/mx_exit.o
+
+# target to build an object file
+src/mx_exit.c.o:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_exit.c.o
+.PHONY : src/mx_exit.c.o
+
+src/mx_exit.i: src/mx_exit.c.i
+
+.PHONY : src/mx_exit.i
+
+# target to preprocess a source file
+src/mx_exit.c.i:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_exit.c.i
+.PHONY : src/mx_exit.c.i
+
+src/mx_exit.s: src/mx_exit.c.s
+
+.PHONY : src/mx_exit.s
+
+# target to generate assembly for a file
+src/mx_exit.c.s:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_exit.c.s
+.PHONY : src/mx_exit.c.s
+
 src/mx_export.o: src/mx_export.c.o
 
 .PHONY : src/mx_export.o
@@ -1904,6 +1958,33 @@ src/mx_get_type.s: src/mx_get_type.c.s
 src/mx_get_type.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_get_type.c.s
 .PHONY : src/mx_get_type.c.s
+
+src/mx_hex_to_nbr.o: src/mx_hex_to_nbr.c.o
+
+.PHONY : src/mx_hex_to_nbr.o
+
+# target to build an object file
+src/mx_hex_to_nbr.c.o:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_hex_to_nbr.c.o
+.PHONY : src/mx_hex_to_nbr.c.o
+
+src/mx_hex_to_nbr.i: src/mx_hex_to_nbr.c.i
+
+.PHONY : src/mx_hex_to_nbr.i
+
+# target to preprocess a source file
+src/mx_hex_to_nbr.c.i:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_hex_to_nbr.c.i
+.PHONY : src/mx_hex_to_nbr.c.i
+
+src/mx_hex_to_nbr.s: src/mx_hex_to_nbr.c.s
+
+.PHONY : src/mx_hex_to_nbr.s
+
+# target to generate assembly for a file
+src/mx_hex_to_nbr.c.s:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_hex_to_nbr.c.s
+.PHONY : src/mx_hex_to_nbr.c.s
 
 src/mx_init_shell.o: src/mx_init_shell.c.o
 
@@ -2013,6 +2094,33 @@ src/mx_jobs_functions_wait.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_jobs_functions_wait.c.s
 .PHONY : src/mx_jobs_functions_wait.c.s
 
+src/mx_jobs_stack.o: src/mx_jobs_stack.c.o
+
+.PHONY : src/mx_jobs_stack.o
+
+# target to build an object file
+src/mx_jobs_stack.c.o:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_jobs_stack.c.o
+.PHONY : src/mx_jobs_stack.c.o
+
+src/mx_jobs_stack.i: src/mx_jobs_stack.c.i
+
+.PHONY : src/mx_jobs_stack.i
+
+# target to preprocess a source file
+src/mx_jobs_stack.c.i:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_jobs_stack.c.i
+.PHONY : src/mx_jobs_stack.c.i
+
+src/mx_jobs_stack.s: src/mx_jobs_stack.c.s
+
+.PHONY : src/mx_jobs_stack.s
+
+# target to generate assembly for a file
+src/mx_jobs_stack.c.s:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_jobs_stack.c.s
+.PHONY : src/mx_jobs_stack.c.s
+
 src/mx_launch_bin.o: src/mx_launch_bin.c.o
 
 .PHONY : src/mx_launch_bin.o
@@ -2039,6 +2147,33 @@ src/mx_launch_bin.s: src/mx_launch_bin.c.s
 src/mx_launch_bin.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_launch_bin.c.s
 .PHONY : src/mx_launch_bin.c.s
+
+src/mx_launch_builtin.o: src/mx_launch_builtin.c.o
+
+.PHONY : src/mx_launch_builtin.o
+
+# target to build an object file
+src/mx_launch_builtin.c.o:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_launch_builtin.c.o
+.PHONY : src/mx_launch_builtin.c.o
+
+src/mx_launch_builtin.i: src/mx_launch_builtin.c.i
+
+.PHONY : src/mx_launch_builtin.i
+
+# target to preprocess a source file
+src/mx_launch_builtin.c.i:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_launch_builtin.c.i
+.PHONY : src/mx_launch_builtin.c.i
+
+src/mx_launch_builtin.s: src/mx_launch_builtin.c.s
+
+.PHONY : src/mx_launch_builtin.s
+
+# target to generate assembly for a file
+src/mx_launch_builtin.c.s:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_launch_builtin.c.s
+.PHONY : src/mx_launch_builtin.c.s
 
 src/mx_launch_job.o: src/mx_launch_job.c.o
 
@@ -2120,6 +2255,33 @@ src/mx_loop.s: src/mx_loop.c.s
 src/mx_loop.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_loop.c.s
 .PHONY : src/mx_loop.c.s
+
+src/mx_nbr_to_hex.o: src/mx_nbr_to_hex.c.o
+
+.PHONY : src/mx_nbr_to_hex.o
+
+# target to build an object file
+src/mx_nbr_to_hex.c.o:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_nbr_to_hex.c.o
+.PHONY : src/mx_nbr_to_hex.c.o
+
+src/mx_nbr_to_hex.i: src/mx_nbr_to_hex.c.i
+
+.PHONY : src/mx_nbr_to_hex.i
+
+# target to preprocess a source file
+src/mx_nbr_to_hex.c.i:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_nbr_to_hex.c.i
+.PHONY : src/mx_nbr_to_hex.c.i
+
+src/mx_nbr_to_hex.s: src/mx_nbr_to_hex.c.s
+
+.PHONY : src/mx_nbr_to_hex.s
+
+# target to generate assembly for a file
+src/mx_nbr_to_hex.c.s:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_nbr_to_hex.c.s
+.PHONY : src/mx_nbr_to_hex.c.s
 
 src/mx_normalization.o: src/mx_normalization.c.o
 
@@ -2646,6 +2808,9 @@ help:
 	@echo "... src/ast/mx_strtok.o"
 	@echo "... src/ast/mx_strtok.i"
 	@echo "... src/ast/mx_strtok.s"
+	@echo "... src/ast/mx_subst_dollar.o"
+	@echo "... src/ast/mx_subst_dollar.i"
+	@echo "... src/ast/mx_subst_dollar.s"
 	@echo "... src/ast/mx_subst_tilde.o"
 	@echo "... src/ast/mx_subst_tilde.i"
 	@echo "... src/ast/mx_subst_tilde.s"
@@ -2673,12 +2838,18 @@ help:
 	@echo "... src/mx_env.o"
 	@echo "... src/mx_env.i"
 	@echo "... src/mx_env.s"
+	@echo "... src/mx_exit.o"
+	@echo "... src/mx_exit.i"
+	@echo "... src/mx_exit.s"
 	@echo "... src/mx_export.o"
 	@echo "... src/mx_export.i"
 	@echo "... src/mx_export.s"
 	@echo "... src/mx_get_type.o"
 	@echo "... src/mx_get_type.i"
 	@echo "... src/mx_get_type.s"
+	@echo "... src/mx_hex_to_nbr.o"
+	@echo "... src/mx_hex_to_nbr.i"
+	@echo "... src/mx_hex_to_nbr.s"
 	@echo "... src/mx_init_shell.o"
 	@echo "... src/mx_init_shell.i"
 	@echo "... src/mx_init_shell.s"
@@ -2691,9 +2862,15 @@ help:
 	@echo "... src/mx_jobs_functions_wait.o"
 	@echo "... src/mx_jobs_functions_wait.i"
 	@echo "... src/mx_jobs_functions_wait.s"
+	@echo "... src/mx_jobs_stack.o"
+	@echo "... src/mx_jobs_stack.i"
+	@echo "... src/mx_jobs_stack.s"
 	@echo "... src/mx_launch_bin.o"
 	@echo "... src/mx_launch_bin.i"
 	@echo "... src/mx_launch_bin.s"
+	@echo "... src/mx_launch_builtin.o"
+	@echo "... src/mx_launch_builtin.i"
+	@echo "... src/mx_launch_builtin.s"
 	@echo "... src/mx_launch_job.o"
 	@echo "... src/mx_launch_job.i"
 	@echo "... src/mx_launch_job.s"
@@ -2703,6 +2880,9 @@ help:
 	@echo "... src/mx_loop.o"
 	@echo "... src/mx_loop.i"
 	@echo "... src/mx_loop.s"
+	@echo "... src/mx_nbr_to_hex.o"
+	@echo "... src/mx_nbr_to_hex.i"
+	@echo "... src/mx_nbr_to_hex.s"
 	@echo "... src/mx_normalization.o"
 	@echo "... src/mx_normalization.i"
 	@echo "... src/mx_normalization.s"

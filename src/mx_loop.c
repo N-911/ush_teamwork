@@ -18,10 +18,11 @@ void mx_ush_loop(t_shell *m_s) {
     t_ast **ast = NULL;
 //    int status = 1;
     while (1) {
+        mx_check_jobs(m_s);
         printf("\r%s%s%s", GRN, "u$h> ", RESET);
         line = mx_ush_read_line();
         if (line[0] == '\0') {
-            mx_check_jobs(m_s);
+//            mx_check_jobs(m_s);
             continue;
         } else {
             if ((ast = mx_ast_creation(line, m_s))) {
@@ -30,12 +31,6 @@ void mx_ush_loop(t_shell *m_s) {
                     t_job *new_job = (t_job *) malloc(sizeof(t_job));  //create new job
                     new_job = mx_create_job(m_s, ast[i]);
                     new_job->job_type = get_job_type(ast, i);
-                    // mx_printstr("type - ");
-                    //mx_printint(new_job->first_process->type);
-                    //mx_printstr("\n");
-                    //mx_printstr("foreground - ");
-                    //mx_printint(new_job->first_process->foreground);
-                    //mx_printstr("\n");
                     mx_launch_job(m_s, new_job);
                     //m_s->exit_code = status;
                     // mx_destroy_jobs(m_s, 0);

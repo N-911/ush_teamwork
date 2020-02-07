@@ -3,8 +3,12 @@ project(ush_team)
 
 set(CMAKE_CXX_STANDARD 14)
 
+include_directories(.)
 include_directories(inc)
+include_directories(libmx)
 include_directories(libmx/inc)
+include_directories(libmx/src)
+include_directories(src)
 
 add_executable(ush_team
         inc/ush.h
@@ -66,6 +70,7 @@ add_executable(ush_team
         src/ast/mx_parce_tokens.c
         src/ast/mx_quote_manage.c
         src/ast/mx_strtok.c
+        src/ast/mx_subst_dollar.c
         src/ast/mx_subst_tilde.c
         src/ast/mx_ush_parsed_line.c
         src/ast/mx_ush_read_line.c
@@ -75,16 +80,21 @@ add_executable(ush_team
         src/mx_create_job.c
         src/mx_echo.c
         src/mx_env.c
+        src/mx_exit.c
         src/mx_export.c
         src/mx_get_type.c
+        src/mx_hex_to_nbr.c
         src/mx_init_shell.c
         src/mx_jobs_functions.c
         src/mx_jobs_functions_print.c
         src/mx_jobs_functions_wait.c
+        src/mx_jobs_stack.c
         src/mx_launch_bin.c
+        src/mx_launch_builtin.c
         src/mx_launch_job.c
         src/mx_launch_process.c
         src/mx_loop.c
+        src/mx_nbr_to_hex.c
         src/mx_normalization.c
         src/mx_push_export.c
         src/mx_pwd.c

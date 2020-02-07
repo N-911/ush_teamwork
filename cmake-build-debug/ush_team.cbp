@@ -44,8 +44,12 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/Users/snikolayen/ush_team/."/>
 					<Add directory="/Users/snikolayen/ush_team/inc"/>
+					<Add directory="/Users/snikolayen/ush_team/libmx"/>
 					<Add directory="/Users/snikolayen/ush_team/libmx/inc"/>
+					<Add directory="/Users/snikolayen/ush_team/libmx/src"/>
+					<Add directory="/Users/snikolayen/ush_team/src"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
@@ -67,8 +71,12 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/Users/snikolayen/ush_team/."/>
 					<Add directory="/Users/snikolayen/ush_team/inc"/>
+					<Add directory="/Users/snikolayen/ush_team/libmx"/>
 					<Add directory="/Users/snikolayen/ush_team/libmx/inc"/>
+					<Add directory="/Users/snikolayen/ush_team/libmx/src"/>
+					<Add directory="/Users/snikolayen/ush_team/src"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
@@ -264,6 +272,9 @@
 		<Unit filename="/Users/snikolayen/ush_team/src/ast/mx_strtok.c">
 			<Option target="ush_team"/>
 		</Unit>
+		<Unit filename="/Users/snikolayen/ush_team/src/ast/mx_subst_dollar.c">
+			<Option target="ush_team"/>
+		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/ast/mx_subst_tilde.c">
 			<Option target="ush_team"/>
 		</Unit>
@@ -291,10 +302,16 @@
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_env.c">
 			<Option target="ush_team"/>
 		</Unit>
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_exit.c">
+			<Option target="ush_team"/>
+		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_export.c">
 			<Option target="ush_team"/>
 		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_get_type.c">
+			<Option target="ush_team"/>
+		</Unit>
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_hex_to_nbr.c">
 			<Option target="ush_team"/>
 		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_init_shell.c">
@@ -309,7 +326,13 @@
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_jobs_functions_wait.c">
 			<Option target="ush_team"/>
 		</Unit>
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_jobs_stack.c">
+			<Option target="ush_team"/>
+		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_launch_bin.c">
+			<Option target="ush_team"/>
+		</Unit>
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_launch_builtin.c">
 			<Option target="ush_team"/>
 		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_launch_job.c">
@@ -319,6 +342,9 @@
 			<Option target="ush_team"/>
 		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_loop.c">
+			<Option target="ush_team"/>
+		</Unit>
+		<Unit filename="/Users/snikolayen/ush_team/src/mx_nbr_to_hex.c">
 			<Option target="ush_team"/>
 		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/mx_normalization.c">

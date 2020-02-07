@@ -5,42 +5,43 @@ static char *get_error(char **name, char *command, int *status);
 static void print_error(char *command, char *error);
 
 int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
-        int infile, int outfile, int errfile) {
+                      int infile, int outfile, int errfile) {
     int status = 0;
     pid_t child_pid;
-    pid_t pgid = m_s->jobs[job_id]->pgid;
+    //pid_t pgid = m_s->jobs[job_id]->pgid;
+
+
     p->status = STATUS_RUNNING;
     int shell_is_interactive = isatty(STDIN_FILENO);  //!!
 
     child_pid = fork();
+
+    p->pid = child_pid;
+
+
     //TELL_WAIT();
     if (child_pid < 0) {
         perror("error fork");
         exit(1);
     }
     else if (child_pid == 0) {
-/*
-        Implementing '&'
-        1. Notice that the '&' sign can only exist as the last token, otherwise it is misplaced
-        2. Parent does not wait for child to complete. 3. Child sends SIGCHLD on completion
-*/
         //TELL_PARENT(getpgid(0));
         if (shell_is_interactive) {
-            p->pid = getpid();
-            if (pgid > 0)
-                setpgid(0, pgid);
-            else {
-                pgid = p->pid;
-                setpgid(0, pgid);
-            }
+            if (m_s->jobs[job_id]->pgid == 0)
+                m_s->jobs[job_id]->pgid = child_pid;
+            setpgid (child_pid, m_s->jobs[job_id]->pgid);
+//            mx_print_color(MAG, "child\t");
+//            mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
+//            mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
+//            mx_printstr("\n");
             if (p->foreground)
-                tcsetpgrp(STDIN_FILENO, pgid);
+                tcsetpgrp(STDIN_FILENO, m_s->jobs[job_id]->pgid);
             signal(SIGINT, SIG_DFL);
             signal(SIGQUIT, SIG_DFL);
             signal(SIGTSTP, SIG_DFL);
             signal(SIGTTIN, SIG_DFL);
             signal(SIGTTOU, SIG_DFL);
-           // signal(SIGCHLD, SIG_DFL);
+            // signal(SIGCHLD, SIG_DFL);
         }
         if (infile != STDIN_FILENO) {
             dup2(infile, STDIN_FILENO);
@@ -72,27 +73,20 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
     }
         //parrent process
     else {
+        p->pid = child_pid;
         //WAIT_CHILD();
-//        mx_printstr("parent\n");
-        p->pid = child_pid;  //PID CHILD
         if (shell_is_interactive) {
-            if (!pgid)
-                pgid = child_pid;
-            setpgid(child_pid, pgid);
+            pid_t pid = child_pid;
+            if (m_s->jobs[job_id]->pgid == 0)
+                m_s->jobs[job_id]->pgid = pid;
+            setpgid (pid, m_s->jobs[job_id]->pgid);
         }
-        if (m_s->jobs[job_id]->foreground == FOREGROUND) {
-            tcsetpgrp(0, pgid);
-            status = mx_wait_job(m_s, job_id);
-            signal(SIGTTOU, SIG_IGN);
-            tcsetpgrp(0, getpid());
-            signal(SIGTTOU, SIG_DFL);
-           // mx_print_job_status(m_s, job_id);
-//            if (job_id > 0 && mx_job_completed(m_s, job_id)) {
-//                //mx_print_job_status(m_s, job_id);
-//                mx_remove_job(m_s, job_id);
-            //          }
-        }
-
+//        mx_print_color(YEL, "parent\t");
+//        mx_print_color(YEL, "p->pid \t");
+//        mx_print_color(YEL, mx_itoa(p->pid));
+//        mx_print_color(YEL, "\tm_s->jobs[job_id]->pgid ");
+//        mx_print_color(YEL, mx_itoa(m_s->jobs[job_id]->pgid));
+//        mx_printstr("\n");
     }
     return status >> 8;//WEXITSTATUS(status)
 }
@@ -114,7 +108,7 @@ static char *check_path(char **arr, char *command) {
                     break;
                 }
             }
-        closedir(dptr);
+            closedir(dptr);
         }
         i++;
     }
@@ -134,10 +128,10 @@ static char *get_error(char **name, char *command, int *status) {
         else {
             if (mx_get_type(buff) == 'd') {
                 error = strdup(": is a directory\n");
-                *status = 126; 
+                *status = 126;
             }
         }
-    } 
+    }
     else
         error = strdup(": command not found\n");
     return error;
