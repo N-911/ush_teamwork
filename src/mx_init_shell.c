@@ -34,17 +34,17 @@ t_shell *mx_init_shell(int argc, char **argv) {
     m_s->pwd = get_pwd();//PWD for further work
     setenv("PWD", m_s->pwd, 1);
     setenv("OLDPWD", m_s->pwd, 1);
-    char *shlvl = get_shlvl();
-    setenv("SHLVL", shlvl, 1);
-    free(shlvl);
+   // char *shlvl = get_shlvl();
+   // setenv("SHLVL", shlvl, 1);
+   // free(shlvl);
     m_s->exported = mx_set_export();
     m_s->variables = mx_set_variables();
     shell_is_interactive = isatty(shell_terminal);  // See if we are running interactively.
 //    mx_terminal_init(m_s);
     if (shell_is_interactive) {
         // Loop until we are in the foreground.
-        while (tcgetpgrp(shell_terminal) != (shell_pgid = getpgrp()))
-           kill(-shell_pgid, SIGTTIN);
+       // while (tcgetpgrp(shell_terminal) != (shell_pgid = getpgrp()))
+       //    kill(-shell_pgid, SIGTTIN);
         /* Ignore interactive and job-control signals.  */
         //  (void)signal(SIGINT, sigint_handler);
         signal(SIGINT, SIG_DFL);  // Control-C
