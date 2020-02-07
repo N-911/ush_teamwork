@@ -8,23 +8,24 @@ static void check_builtin (char **list, char *command, t_list **output, int *fla
 int mx_which(t_shell *m_s, t_process *p) {
 	which_t which_options = {0, 0};
 	int n_options = mx_count_options(p->argv, "as", "which", " [-as] program ...");
-	int exit_code = 1;
+	int exit_code = 0;
+	int flag;
 
 	fill_options(n_options, &which_options, p->argv);
 	if (n_options < 0) 
 		return 1;
 	for (int i = n_options + 1; p->argv[i] != NULL; i++) {
+		flag = 0;
 		t_list *output = NULL;
-		int flag = 0;
 		char **arr = mx_strsplit(getenv("PATH"), ':');
 
 		check_builtin(m_s->builtin_list, p->argv[i], &output, &flag);
         check_path(arr, p->argv[i], &output, &flag);
         if (!which_options.s)
         	print_path(output, flag, p->argv[i], which_options);
-        if (flag)
-        	exit_code = 0;
 	}
+	if (!flag)
+        exit_code = 1;
     return exit_code;
 }
 

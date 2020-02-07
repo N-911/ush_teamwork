@@ -4,6 +4,7 @@ static int get_flag(char **args);
 
 void mx_launch_job(t_shell *m_s, t_job *job) {
     extern char **environ;
+    m_s->exit_code = 0;
     char **env = environ;
     char *path = getenv("PATH");
     setbuf(stdout, NULL); /* установить небуферизованный режим */
@@ -85,8 +86,10 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         if (flag) {
             status = mx_set_parametr(p->argv,m_s);
         }
-        else if (p->type != -1)
+        else if (p->type != -1) {
             status = mx_launch_builtin(m_s, p, job_id);  // fork own buildins
+            m_s->exit_code = status;
+        }
         else
             status = mx_launch_process(m_s, p, job_id, path, env, infile, outfile, errfile);
         if (infile != job->stdin)
@@ -117,10 +120,10 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     else {
         mx_print_pid_process_in_job(m_s, job->job_id);
     }
-    m_s->exit_code = status;
+    m_s->exit_code == 0 ? m_s->exit_code = status : 0;    
     mx_print_color(RED, "m_s->exit_code  ");
-    mx_print_color(RED, mx_itoa(m_s->exit_code >> 8));
-    mx_set_variable(m_s->variables, "?", mx_itoa(m_s->exit_code >> 8));
+    mx_print_color(RED, mx_itoa(m_s->exit_code));
+    mx_set_variable(m_s->variables, "?", mx_itoa(m_s->exit_code));
     mx_printstr("\n");
     //printf("exit_code job %d\n", m_s->exit_code);
 }

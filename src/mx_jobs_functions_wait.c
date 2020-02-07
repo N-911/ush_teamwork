@@ -60,7 +60,7 @@ int mx_wait_job(t_shell *m_s, int job_id) {
             }
         }
     }
-    return status;
+    return status >> 8;
 }
 
 int mx_wait_pid(t_shell *m_s, int pid) {

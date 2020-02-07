@@ -81,5 +81,5 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
             }
         }
     }
-    return status >> 8;  // WEXITSTATUS(status)
+    return status;
 }
