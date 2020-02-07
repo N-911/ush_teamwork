@@ -60,11 +60,14 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
             if (p->redir_delim == R_OUTPUT_DBL) {
                 int fd = open (p->output_path, O_RDWR|O_CREAT|O_TRUNC , 0666);
                 char *line = "";
+                int count = 0;
                 while (strcmp(line, p->output_path) != 0) {
                     printf("heredoc> ");
                     write(fd, line, mx_strlen(line));
-                    write(fd, "\n", 1);
+                    if (count)
+                        write(fd, "\n", 1);
                     line = mx_ush_read_line();
+                    count++;
                 }
                 close (fd);
                 infile = open (p->output_path, O_RDONLY, 0666);
