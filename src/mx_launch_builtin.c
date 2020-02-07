@@ -26,13 +26,6 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
                 if (m_s->jobs[job_id]->pgid == 0)
                     m_s->jobs[job_id]->pgid = child_pid;
                 setpgid(child_pid, m_s->jobs[job_id]->pgid);
-                //--------------------------------------
-                mx_print_color(MAG, "child\t");
-                mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
-                mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
-                mx_printstr("\n");
-                //--------------------------------------
-
                 if (m_s->jobs[job_id]->foreground)
                     tcsetpgrp(STDIN_FILENO, m_s->jobs[job_id]->pgid);
                 signal(SIGINT, SIG_DFL);
@@ -63,14 +56,6 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
                     m_s->jobs[job_id]->pgid = child_pid;
                 setpgid (child_pid, m_s->jobs[job_id]->pgid);
             }
-            //--------------------------------------
-            mx_print_color(YEL, "parent buildin \t");
-            mx_print_color(YEL, "p->pid \t");
-            mx_print_color(YEL, mx_itoa(p->pid));
-            mx_print_color(YEL, "\tm_s->jobs[job_id]->pgid ");
-            mx_print_color(YEL, mx_itoa(m_s->jobs[job_id]->pgid));
-            mx_printstr("\n");
-            //--------------------------------------
         }
     }
     else {

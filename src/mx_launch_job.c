@@ -22,19 +22,19 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     job_id = mx_insert_job(m_s, job);  // insert job to job control
     for (p = m_s->jobs[job_id]->first_process; p; p = p->next) {  // list of process in job
         p->job_id = job_id;
-        //------------- print info
-        mx_print_color(RED, "job [");
-        mx_print_color(RED, mx_itoa(job_id));
-        mx_print_color(RED, "]\t\t");
-        mx_print_color(RED, mx_itoa(p->type));
-        mx_print_color(RED, "\tjob->foreground\t");
-        mx_print_color(RED, mx_itoa(job->foreground));
-        mx_print_color(RED, "\tp->foreground\t");
-        mx_print_color(RED, mx_itoa(p->foreground));
-        mx_print_color(RED, "\t job->pgid\t");
-        mx_print_color(RED,mx_itoa(m_s->jobs[job_id]->pgid));
-        mx_printstr("\n");
-        //------------
+        // //------------- print info
+        // mx_print_color(RED, "job [");
+        // mx_print_color(RED, mx_itoa(job_id));
+        // mx_print_color(RED, "]\t\t");
+        // mx_print_color(RED, mx_itoa(p->type));
+        // mx_print_color(RED, "\tjob->foreground\t");
+        // mx_print_color(RED, mx_itoa(job->foreground));
+        // mx_print_color(RED, "\tp->foreground\t");
+        // mx_print_color(RED, mx_itoa(p->foreground));
+        // mx_print_color(RED, "\t job->pgid\t");
+        // mx_print_color(RED,mx_itoa(m_s->jobs[job_id]->pgid));
+        // mx_printstr("\n");
+        // //------------
         if (m_s->exit_flag == 1 && !(p->type == 10))
             m_s->exit_flag = 0;
 
@@ -72,17 +72,14 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
 //        status = mx_wait_job(m_s, job_id);
 //        if (mx_job_completed(m_s, job_id))
 //            mx_remove_job(m_s, job_id);
-//        write(1, "111\n", 5);
 //    }
 
     if (job->foreground) {
-       // write(1, "222\n", 5);
     //else if (status >= 0 && job->foreground == FOREGROUND) {
         tcsetpgrp (STDIN_FILENO, job->pgid);
 	    status = mx_wait_job(m_s, job_id);
         if (mx_job_completed(m_s, job_id))
             mx_remove_job(m_s, job_id);
-
         //signal(SIGTTOU, SIG_IGN);
         tcsetpgrp(STDIN_FILENO, getpid());
         //signal(SIGTTOU, SIG_DFL);
@@ -91,17 +88,13 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
 
 	}
 	else {
-        //write(1, "333\n", 5);
-	    //if (job->foreground == BACKGROUND) {
-//	    if (kill (-m_s->jobs[job_id]->pgid, SIGCONT) < 0)
-//	        perror ("kill (SIGCONT)");
 	    mx_print_pid_process_in_job(m_s, job->job_id);
-//        status = mx_wait_job(m_s, job_id);
-//        if (mx_job_completed(m_s, job_id))
-//            mx_remove_job(m_s, job_id);
 	}
 	m_s->exit_code = status;
-	printf("exit_code job %d\n", m_s->exit_code);
+    mx_print_color(RED, "m_s->exit_code  ");
+    mx_print_color(RED, mx_itoa(m_s->exit_code));
+    mx_printstr("\n");
+	//printf("exit_code job %d\n", m_s->exit_code);
 }
 
 
