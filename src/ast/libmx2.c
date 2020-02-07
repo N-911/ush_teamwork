@@ -36,3 +36,11 @@ bool mx_isdelim (char c, char *delim) {
     }
     return false;
 }
+
+bool mx_check_allocation_error(const void *c) {
+    if (c == NULL) {
+        mx_printerr_red("allocation error\n");
+        return true;
+    }
+    return false;
+}
