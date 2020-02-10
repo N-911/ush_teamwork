@@ -1,26 +1,44 @@
 #include "ush.h"
 
 static int get_flag(char **args);
+static int execute_job(t_shell *m_s, t_job * job, int job_id);
+static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status);
 
 void mx_launch_job(t_shell *m_s, t_job *job) {
-    extern char **environ;
-    m_s->exit_code = 0;
-    char **env = environ;
-    char *path = getenv("PATH");
     setbuf(stdout, NULL); /* установить небуферизованный режим */
     int status;
     int job_id;  // for job contoll
 //    tcsetattr(STDIN_FILENO, TCSANOW, &m_s->t_original);
+
+    mx_check_jobs(m_s);  // job control
+    job_id = mx_insert_job(m_s, job);
+    printf("job_type  %d\n", job->job_type);
+    if (!job->job_type)
+        status = execute_job(m_s, job, job_id);
+    else if (job->job_type == AND && m_s->exit_code == 0)
+        status = execute_job(m_s, job, job_id);
+    else if (job->job_type == OR && m_s->exit_code != 0)
+        status = execute_job(m_s, job, job_id);
+    else
+        mx_remove_job(m_s, job_id);
+// m_s->exit_code == 0 ? m_s->exit_code = status : 0;
+    mx_print_color(RED, "m_s->exit_code  ");
+    mx_print_color(RED, mx_itoa(m_s->exit_code));
+    mx_set_variable(m_s->variables, "?", mx_itoa(m_s->exit_code));
+    mx_printstr("\n");
+}
+
+static int execute_job(t_shell *m_s, t_job * job, int job_id) {
+    extern char **environ;
+    char **env = environ;
+    char *path = getenv("PATH");
+    int status;
     t_process *p;
     int mypipe[2];
-    int infile;
+    int infile = job->stdin;
     int outfile = 1;
     int errfile = 2;
-    infile = job->stdin;
-   // int shell_is_interactive = isatty(STDIN_FILENO);  //!!
-    int shell_terminal = STDIN_FILENO;
-    mx_check_jobs(m_s);  // job control
-    job_id = mx_insert_job(m_s, job);  // insert job to job control
+
     for (p = m_s->jobs[job_id]->first_process; p; p = p->next) {  // list of process in job
         // //------------- print info
         // mx_print_color(RED, "job [");
@@ -41,24 +59,24 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         if (p->input_path) { // redirection > >>
             int flags;
             if (p->redir_delim == R_INPUT)
-                flags = O_WRONLY|O_CREAT|O_TRUNC;
+                flags = O_WRONLY | O_CREAT | O_TRUNC;
             if (p->redir_delim == R_INPUT_DBL)
-                flags = O_WRONLY|O_CREAT;
-            outfile = open (p->input_path, flags , 0666);
+                flags = O_WRONLY | O_CREAT;
+            outfile = open(p->input_path, flags, 0666);
         }
         if (p->output_path) { // redirection < <<
             if (p->redir_delim == R_OUTPUT) {
-                infile = open (p->output_path, O_RDONLY, 0666);
+                infile = open(p->output_path, O_RDONLY, 0666);
                 if (infile < 0) {
                     mx_printerr("ush :");
                     perror(p->output_path);
                     mx_set_variable(m_s->variables, "?", "1");
                     mx_remove_job(m_s, job_id);
-                    continue ;
+                    continue;
                 }
             }
             if (p->redir_delim == R_OUTPUT_DBL) {
-                int fd = open (p->output_path, O_RDWR|O_CREAT|O_TRUNC , 0666);
+                int fd = open(p->output_path, O_RDWR | O_CREAT | O_TRUNC, 0666);
                 char *line = "";
                 int count = 0;
                 while (strcmp(line, p->output_path) != 0) {
@@ -69,9 +87,9 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
                     line = mx_ush_read_line();
                     count++;
                 }
-                close (fd);
-                infile = open (p->output_path, O_RDONLY, 0666);
-                remove (p->output_path);
+                close(fd);
+                infile = open(p->output_path, O_RDONLY, 0666);
+                remove(p->output_path);
             }
         }
         if (p->pipe) {
@@ -81,7 +99,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
                 exit(1);
             }
             outfile = mypipe[1];
-        } 
+        }
         // else
         //     outfile = job->stdout;
         p->infile = infile;
@@ -89,13 +107,11 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         p->errfile = errfile;
         int flag = get_flag(p->argv);
         if (flag) {
-            status = mx_set_parametr(p->argv,m_s);
-        }
-        else if (p->type != -1) {
+            status = mx_set_parametr(p->argv, m_s);
+        } else if (p->type != -1) {
             status = mx_launch_builtin(m_s, p, job_id);  // fork own buildins
             m_s->exit_code = status;
-        }
-        else
+        } else
             status = mx_launch_process(m_s, p, job_id, path, env, infile, outfile, errfile);
         if (infile != job->stdin)
             close(infile);
@@ -103,36 +119,29 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
             close(outfile);
         infile = mypipe[0];
     }
-//    if (!shell_is_interactive) {
-//        status = mx_wait_job(m_s, job_id);
-//        if (mx_job_completed(m_s, job_id))
-//            mx_remove_job(m_s, job_id);
-//    }
+    launch_job_help(m_s, job, job_id, status);
+    return status;
+}
+
+static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
+    int shell_terminal = STDIN_FILENO;
 
     if (job->foreground) {
     //else if (status >= 0 && job->foreground == FOREGROUND) {
-        tcsetpgrp (STDIN_FILENO, job->pgid);
+        tcsetpgrp(STDIN_FILENO, job->pgid);
         status = mx_wait_job(m_s, job_id);
         if (mx_job_completed(m_s, job_id))
             mx_remove_job(m_s, job_id);
         //signal(SIGTTOU, SIG_IGN);
         tcsetpgrp(STDIN_FILENO, getpid());
-        //signal(SIGTTOU, SIG_DFL);
-        tcgetattr (shell_terminal, &job->tmodes);
-        tcsetattr (shell_terminal, TCSADRAIN, &m_s->tmodes);
-
+    //signal(SIGTTOU, SIG_DFL);
+        tcgetattr(shell_terminal, &job->tmodes);
+        tcsetattr(shell_terminal, TCSADRAIN, &m_s->tmodes);
     }
-    else {
+    else
         mx_print_pid_process_in_job(m_s, job->job_id);
-    }
-    m_s->exit_code == 0 ? m_s->exit_code = status : 0;    
-    mx_print_color(RED, "m_s->exit_code  ");
-    mx_print_color(RED, mx_itoa(m_s->exit_code));
-    mx_set_variable(m_s->variables, "?", mx_itoa(m_s->exit_code));
-    mx_printstr("\n");
-    //printf("exit_code job %d\n", m_s->exit_code);
+    m_s->exit_code = status;
 }
-
 
 static int get_flag(char **args) {
     int flag = 1;
