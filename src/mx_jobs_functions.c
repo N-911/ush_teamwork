@@ -77,7 +77,6 @@ int mx_job_id_by_pid(t_shell *m_s, int pid) {
 int mx_get_pgid_by_job_id(t_shell *m_s, int job_id) {
     if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
         return -1;
-
     return m_s->jobs[job_id]->pgid;
 }
 
