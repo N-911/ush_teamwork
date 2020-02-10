@@ -34,6 +34,7 @@ void mx_ush_loop(t_shell *m_s) {
 		printf ("\ru$h> ");
 		fflush (NULL);
         line = mx_get_keys();
+      	printf("\n");
         tcsetattr (0, TCSAFLUSH, &savetty);
         if (line[0] == '\0') {
             mx_check_jobs(m_s);
@@ -61,35 +62,60 @@ void mx_ush_loop(t_shell *m_s) {
 }
 
 static char *mx_get_keys() {
+	char *promt = "u$h>";
 	char *line = mx_strnew(256);
-	int len = 0;
    	int keycode = 0;
+   	int max_len = 0;
+   	int position = 0;
 
-    while (keycode != 10) {
+    for (;;) {
+    	max_len = mx_strlen(line);
     	keycode = 0;
     	read(STDIN_FILENO, &keycode, 4);
-        if (keycode == K_LEFT) {
+    	if (keycode == 10)
+    		break;
+        else if (keycode == K_LEFT) {
+        	if (position > 0) {
+        		position--;
+        	}
+        }
+        else if (keycode == K_RIGHT) {
+        	if (position < mx_strlen(line)) {
+        		position++;
+        	}
+        }
+        else if (keycode == K_DOWN) {
+
+        }
+        else if (keycode == K_UP) {
 
         }
         else if (keycode == CTRL_D) {
             exit(EXIT_SUCCESS);
         }
         else if (keycode == BACKSCAPE) {
-        	if (len > 0) {
-        		line[len - 1] = '\0';
-        		len--;
+        	if (position > 0) {
+        		for (int i = position - 1; i < mx_strlen(line); i++) {
+        			line[i] = line[i + 1];
+        		}
+        		position--;
         	}
         }
         else {
-        	line[len] = keycode;
-        	len++;
+        	for (int i = mx_strlen(line); i > position; i--) {
+        		line[i] = line[i - 1];
+        	}
+        	line[position] = keycode;
+        	position++;
         }
         printf ("\r");
-	    for (int i = 0; i < 25; i++) {
+	    for (int i = 0; i < max_len + mx_strlen(promt) + 1; i++) {
 	        printf (" ");
-	        fflush (NULL);
 	    }
-        printf ("\ru$h> %s", line);
+        printf ("\r%s %s", promt, line);
+        for (int i = 0; i < mx_strlen(line) - position; i++) {
+        	printf("\b");
+        }
         fflush (NULL);
     }
     return line;
