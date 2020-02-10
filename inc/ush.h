@@ -125,6 +125,12 @@ typedef struct s_ast {
     struct s_ast *parent;   // delete !!!!!
 } t_ast;
 
+typedef struct s_jobs  {
+    int l;
+    int r;
+    int s;
+} t_jobs;
+
 typedef struct cd_s  {
     int s;
     int L;
@@ -373,6 +379,10 @@ void mx_remove_job(t_shell *m_s, int job_id);
 int mx_get_proc_count(t_shell *m_s, int job_id, int filter);
 void mx_set_process_status(t_shell *m_s, int pid, int status);
 int mx_set_job_status(t_shell *m_s, int job_id, int status);
+int mx_get_job_status(t_shell *m_s, int job_id, int status);
+void mx_set_last_job(t_shell *m_s);
+
+int mx_job_is_running(t_shell *m_s, int job_id);
 
 void mx_init_jobs_stack(t_shell *m_s);
 void mx_push_to_stack (t_shell *m_s, int job);

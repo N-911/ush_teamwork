@@ -12,13 +12,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="231a84a8-684e-4b8a-8236-bfbaca780c22" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/11" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/l.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/1" beforeDir="false" afterPath="$PROJECT_DIR$/1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_create_job.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_create_job.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/ush.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/ush.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_builtin_commands.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_builtin_commands.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_launch_job.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_job.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_jobs_stack.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_stack.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ush" beforeDir="false" afterPath="$PROJECT_DIR$/ush" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,6 +112,7 @@
       <workItem from="1581094003976" duration="1155000" />
       <workItem from="1581317893503" duration="8735000" />
       <workItem from="1581335180679" duration="294000" />
+      <workItem from="1581336431482" duration="13523000" />
     </task>
     <task id="LOCAL-00001" summary="-test_snikolayen">
       <created>1579768232701</created>
@@ -243,10 +246,14 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="190" y="434" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.2560.1337@0.23.2560.1337" timestamp="1579775998237" />
-    <state x="169" y="35" width="1059" height="1058" key="find.popup" timestamp="1581330515308">
+    <state x="144" y="28" width="1059" height="1058" key="find.popup" timestamp="1581355268104">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="169" y="35" width="1059" height="1058" key="find.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1581330515308" />
+    <state x="144" y="28" width="1059" height="1058" key="find.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1581355268104" />
+    <state x="384" y="328" key="refactoring.ChangeSignatureDialog" timestamp="1581353771175">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="384" y="328" key="refactoring.ChangeSignatureDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1581353771175" />
     <state x="305" y="326" key="run.anything.popup" timestamp="1580144306406">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
