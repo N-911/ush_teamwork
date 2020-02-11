@@ -91,7 +91,12 @@ static char *mx_get_keys() {
 
         }
         else if (keycode == CTRL_D) {
+        	printf("exit\n");
             exit(EXIT_SUCCESS);
+        }
+        else if (keycode == CTRL_C) {
+        	line = "";
+            break;
         }
         else if (keycode == BACKSCAPE) {
         	if (position > 0) {
@@ -108,15 +113,21 @@ static char *mx_get_keys() {
         	line[position] = keycode;
         	position++;
         }
-        printf ("\r");
-	    for (int i = 0; i < max_len + mx_strlen(promt) + 1; i++) {
-	        printf (" ");
+        for (int i = position + 1; i <= mx_strlen(line); i++) {
+        	printf (" ");
+        	fflush (stdout);
+        }
+	    for (int i = 0; i <= max_len + mx_strlen(promt) + 1; i++) {
+	        printf ("\b\x1b[2K");
 	    }
-        printf ("\r%s %s", promt, line);
+        printf ("%s %s", promt, line); 
         for (int i = 0; i < mx_strlen(line) - position; i++) {
-        	printf("\b");
+        	printf ("%c[1D", 27);
         }
         fflush (NULL);
     }
     return line;
 }
+
+
+

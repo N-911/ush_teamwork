@@ -17,6 +17,7 @@
 #include <sys/acl.h>
 #include <sys/xattr.h>
 #include <sys/wait.h>
+#include <sys/types.h>
 #include <stdlib.h>
 #include <sys/param.h>     //   const MAXPATHLEN      PATH_MAX
 #include <termios.h>
@@ -90,6 +91,7 @@
 #define P_UP        2117425947
 #define P_DOWN      2117491483
 #define CTRL_D      4
+#define CTRL_C      3
 #define CTRL_R      18
 #define BACKSCAPE   127
 
