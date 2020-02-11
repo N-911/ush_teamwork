@@ -33,7 +33,6 @@
 
 #define LSH_RL_BUFSIZE 1024
 #define LSH_TOK_BUFSIZE 64
-#define LSH_TOK_DELIM " \t\r\n\a"
 
 //  EXIT
 #define EXIT_FAILURE 1
@@ -85,7 +84,8 @@
 /* Operators and delimeters for parse tokens */
 #define PARSE_DELIM ";|&><"
 #define QUOTE "\'\"`"
-#define USH_TOK_DELIM " \t\r\n\a"
+#define DBL_QUOTE_EXCEPTIONS "$`\"\\"
+#define USH_TOK_DELIM " \t\n"  // " \t\r\n\a"
 
 /* Macroces for recognizing delimeters */
 #define IS_SEP(x) (!mx_strcmp(x, ";"))

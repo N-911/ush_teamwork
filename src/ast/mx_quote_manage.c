@@ -8,16 +8,18 @@ int mx_get_char_index_quote(char *s, char *c, char *quote) {
     if (!s || !*s)
         return -2;
     for (int i = 0; s[i]; i++) {
+        i += (s[i] == '\\') ? 2 : 0;
+        // if (s[i] == '\\')
+        //     i += 2;
         if (quote)
-            for (int k = 0; quote && k < mx_strlen(quote); k++)     // check for segf
-                if (s[i] == quote[k] && (i == 0 || s[i - 1] != '\\')) {
+            for (int k = 0; quote && k < mx_strlen(quote); k++)
+                if (s[i++] == quote[k]) {
                     tmp = s[i];
-                    i++;
                     while (s[i] && s[i] != tmp)
-                        i++;
+                        i += (s[i] == '\\') ? 2 : 1;
                 }
         for (int j = 0; j < mx_strlen(c); j++)
-            if (s[i] == c[j] && (i == 0 || s[i - 1] != '\\'))
+            if (s[i] == c[j])
                 return i;
     }
     return -1;
