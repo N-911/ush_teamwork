@@ -30,8 +30,6 @@ int mx_insert_job(t_shell *m_s, t_job *job) {
     m_s->jobs[id] = job;
     mx_push_to_stack(m_s, id);
     m_s->max_number_job++;
-    mx_set_last_job(m_s);
-    // write(1, "job insert\n", strlen("job insert\n"));
     return id;
 }
 
@@ -43,8 +41,6 @@ void mx_remove_job(t_shell *m_s, int job_id) {
         m_s->max_number_job--;
     m_s->jobs[job_id] = NULL;
     mx_pop_from_stack(m_s, job_id);
-    mx_set_last_job(m_s);
-    // write(1, "job remove\n", strlen("job remove\n"));
 }
 
 void mx_destroy_jobs(t_shell *m_s, int id) {
@@ -108,10 +104,7 @@ int mx_job_is_running(t_shell *m_s, int job_id) {
 }
 
 
-
-
-
-
+// not used
 void mx_print_exit(int status) {
     if (WIFEXITED(status))
         printf("нормальное завершение, код выхода = %d\n",

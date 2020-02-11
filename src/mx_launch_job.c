@@ -12,7 +12,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
 
     mx_check_jobs(m_s);  // job control
     job_id = mx_insert_job(m_s, job);
-//    printf("job_type  %d\n", job->job_type);
+    printf("job_type  %d\n", job->job_type);
     if (!job->job_type)
         status = execute_job(m_s, job, job_id);
     else if (job->job_type == AND && m_s->exit_code == 0)

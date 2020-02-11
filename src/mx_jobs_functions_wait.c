@@ -13,9 +13,6 @@ void mx_check_jobs(t_shell *m_s) {
     int job_id;
 
     while ((pid = waitpid(-1, &status, WNOHANG | WUNTRACED | WCONTINUED)) > 0) {
-        //mx_printstr("pid=");
-        //mx_printint(pid);
-        //mx_printstr("\n");
         if (WIFEXITED(status))
             mx_set_process_status(m_s, pid, STATUS_DONE);
         else if (WIFSTOPPED(status))
@@ -120,5 +117,6 @@ void mx_set_process_status(t_shell *m_s, int pid, int status) {
             }
         }
     }
+//    mx_set_last_job(m_s);
 }
 

@@ -7,7 +7,6 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
     int shell_is_interactive = isatty(STDIN_FILENO);
     pid_t child_pid;
 
-   // pid_t pgid = m_s->jobs[job_id]->pgid;
     p->status = STATUS_RUNNING;
     if (p->type == 4 || p->type == 5 || p->type == 6) {
         if(!p->pipe && p->foreground)

@@ -36,6 +36,7 @@ void mx_sig_h(int signal) {
 //    (void)m_s;
     if (signal == SIGTSTP)
         printf("\n");
+
     if (signal == SIGINT)
         printf("\n");
     if (signal == SIGCHLD) {

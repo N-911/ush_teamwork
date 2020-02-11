@@ -167,10 +167,10 @@ typedef struct  s_export {
 
 typedef struct		s_stack
 {
-    int			size;
+    int			size;  // size = JOBS_NUMBER
     int*		stack;
-    int 		top;
-    int         last;
+    int 		top;  // index of last add job
+    int         last;  // current job gor fg
     int         prev_last;
 } t_stack;
 

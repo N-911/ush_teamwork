@@ -38,9 +38,11 @@ int mx_jobs(t_shell *m_s, t_process *p) {
     int n_args = count_args(p->argv, n_options);
     int exit_code = 1;
 
+    mx_set_last_job(m_s);
     printf ("n_opptions  %d\n", n_options);
     printf("n_args  %d\n", n_args);
     fill_options(n_options, &jobs_options, p->argv);
+    printf("jobs in \n");
     if (n_options >= 0 && n_args < 2) {
         if (n_args == 0 && !n_options) {
             for (int i = 0; i < JOBS_NUMBER; i++) {
@@ -80,9 +82,7 @@ int mx_jobs(t_shell *m_s, t_process *p) {
         }
     }
     p->exit_code = 0;
-    printf("stack-> top %d\n", m_s->jobs_stack->top);
-    printf("stack-> last %d\n", m_s->jobs_stack->last);
-    mx_print_stack(m_s);
+//    mx_print_stack(m_s);
     return exit_code;
 }
 
@@ -138,6 +138,7 @@ int mx_fg(t_shell *m_s, t_process *p) {
     pid_t pgid = 0;
     int job_id = 0;
 
+    mx_set_last_job(m_s);
     if (p->argv[1]) {
         //  if (p->arg_command[0] == '%') {
         job_id = atoi(p->argv[1]);
@@ -167,11 +168,11 @@ int mx_fg(t_shell *m_s, t_process *p) {
         if (mx_wait_job(m_s, job_id) >= 0)
             mx_remove_job(m_s, job_id);
     }
-    else
-        mx_wait_pid(m_s, pgid);
-    signal(SIGTTOU, SIG_IGN);  //Запись в управляющий терминал процессом из группы процессов фонового режима.
-    tcsetpgrp(0, getpid());
-    signal(SIGTTOU, SIG_DFL);  //
+//    else
+//        mx_wait_pid(m_s, pgid);
+//    signal(SIGTTOU, SIG_IGN);  //Запись в управляющий терминал процессом из группы процессов фонового режима.
+//    tcsetpgrp(0, getpid());
+//    signal(SIGTTOU, SIG_DFL);  //
     return exit_code;
 }
 
@@ -181,6 +182,7 @@ int mx_bg(t_shell *m_s, t_process *p) {
     pid_t pgid = 0;
     int job_id = 0;
 
+    mx_set_last_job(m_s);
     if (p->argv[1]) {
         //  if (p->arg_command[0] == '%') {
         job_id = atoi(p->argv[1]);

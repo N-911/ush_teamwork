@@ -47,15 +47,14 @@ t_shell *mx_init_shell(int argc, char **argv) {
             kill(-shell_pgid, SIGTTIN);
         /* Ignore interactive and job-control signals.  */
         //  (void)signal(SIGINT, sigint_handler);
-        signal(SIGINT, SIG_DFL);  // Control-C
+        signal(SIGINT, SIG_IGN);  // Control-C
         signal(SIGQUIT, SIG_IGN);  // 'Control-\'
-        signal(SIGTSTP, mx_sig_h);  // Control-Z
+//        signal(SIGTSTP, mx_sig_h);  // Control-Z
+        signal(SIGTSTP, SIG_IGN);  // Control-Z
         signal(SIGTTIN, SIG_IGN);
         signal(SIGTTOU, SIG_IGN);
 //        signal(SIGCHLD, mx_sig_h);
         shell_pgid = getpid();
-//        printf("parent shell_pgid %d\n", shell_pgid);
-//        printf("идентификатор группы процессов  %d\n", tcgetpgrp(shell_pgid));
         if (setpgid(shell_pgid, shell_pgid) < 0) {
             perror("Couldn't put the shell in its own process group");
             exit(1);
