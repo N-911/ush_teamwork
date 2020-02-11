@@ -67,8 +67,8 @@ static char *expantion(char *s) {
 char *mx_subst_tilde(char *s) {
     char *res = NULL;
 
-    if (!s)
-        return NULL;
+    if (!s || !*s)
+        return s;
     if (s[0] == '~') {
         res = expantion(s);
         if (res != NULL) {

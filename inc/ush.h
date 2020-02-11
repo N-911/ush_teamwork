@@ -281,24 +281,23 @@ char *mx_ush_read_line(void);
  * mx_subst_tilde   subst ~ (tilde);
  * mx_substr_dollar subst $ (variable);
  */
-/* check */char **mx_filters(char *arg, t_export *variables);
-/* check */char *mx_strtok (char *s, const char *delim);
-/* check */char **mx_parce_tokens(char *line);
+char **mx_filters(char *arg, t_export *variables);
+char *mx_strtok (char *s, const char *delim);
+char **mx_parce_tokens(char *line);
 char *mx_subst_tilde(char *s);
 char *mx_substr_dollar(char *s, t_export *variables);
+char *mx_substr_backslash(char *s);
 /*
  *  ---------------------------------------------- mx_quote_manage.c
  * mx_get_char_index_quote      get char index outside of the quote (exc is \);
- * mx_get_char_index_ush        get char index, except isolated with \;
- * mx_count_chr_quote           count chars (outside of the quote);
- * mx_count_chr_ush             count chars, except isolated with \;
- * mx_strtrim_quote             trim all ' or " in quote;
+ * mx_get_char_index_quote_reverse     get char index outside of the quote reverse
+ * mx_count_chr_quote           count chars outside of the quote (exc is \);
+ * mx_strtrim_quote             trim ' or " in quote;
  */
-int mx_get_char_index_quote(const char *str, char *c, char *quote);
-int mx_get_char_index_ush(const char *str, char c);
-int mx_count_chr_quote(const char *str, char *c, char *q);
-int mx_count_chr_ush(const char *str, char c);
-/* rewrite */ char *mx_strtrim_quote(char *s, char q_char);
+int mx_get_char_index_quote(char *str, char *c, char *quote);
+int mx_get_char_index_quote_reverse(char *s, char *c, char *q);
+int mx_count_chr_quote(char *str, char c, char *q);
+char *mx_strtrim_quote(char *s, char c, char *q);
 /*
  *  ---------------------------------------------- move to LIBMX
  */

@@ -26,7 +26,7 @@ static char *get_end_usual_quote_func(char *s, const char *delim, char *end) {
     while (*s) {
         if (mx_isdelim(*s, QUOTE)) {
             tmp = *s;
-            s += mx_get_char_index_ush(s + 1, tmp) + 2;
+            s += mx_get_char_index_quote(s + 1, &tmp, NULL) + 2;
         }
         else if (mx_isdelim(*s, (char *)delim))
             break;
