@@ -1,6 +1,8 @@
 #include "ush.h"
 
 static char *mx_get_keys();
+static char **check_path(char **arr, char *command);
+static void print_command(char *promt, char *line, int position, int max_len);
 
 static int get_job_type(t_ast **ast, int i) {
     t_ast *tmp = NULL;
@@ -26,7 +28,7 @@ void mx_ush_loop(t_shell *m_s) {
 
         tcgetattr (0, &tty);
 		savetty = tty;
-		tty.c_lflag &= ~(ICANON|ECHO|ISIG|BRKINT | ICRNL | INPCK | ISTRIP | IXON |OPOST |IEXTEN);
+		tty.c_lflag &= ~(ICANON|ECHO|ISIG|BRKINT|ICRNL|INPCK|ISTRIP|IXON|OPOST|IEXTEN);
 		tty.c_cflag |= (CS8);
 		tty.c_cc[VMIN] = 1;
 		tty.c_cc[VTIME] = 0;
@@ -85,10 +87,13 @@ static char *mx_get_keys() {
         	}
         }
         else if (keycode == K_DOWN) {
-
+        	//  вперед в прошлое
         }
         else if (keycode == K_UP) {
-
+        	// назад в будущее
+        }
+        else if (keycode == K_END) {
+        	position = mx_strlen(line);
         }
         else if (keycode == CTRL_D) {
         	printf("exit\n");
@@ -106,6 +111,33 @@ static char *mx_get_keys() {
         		position--;
         	}
         }
+        else if (keycode == TAB) {
+        	char *path = getenv("PATH");
+        	char **arr = mx_strsplit(path, ':');
+        	char **commands = check_path(arr, line);
+        	int key = TAB;
+        	int len = -1;
+        		for (;;) {
+        			if (key == 10)
+        				break;
+        			if (key == TAB) {
+        				if (commands[0] != NULL) {
+	        				if (commands[len + 1] != NULL)
+	        					len++;
+	        				else
+	        					len = 0;
+	        				line = commands[len];
+	        				position = mx_strlen(line);
+	        				print_command(promt, line, position, max_len);
+	        				max_len = mx_strlen(line);
+	        			}
+        			}
+        			else
+        				break;
+        			key = 0;
+        			read(STDIN_FILENO, &key, 4);
+        		}
+        }
         else {
         	for (int i = mx_strlen(line); i > position; i--) {
         		line[i] = line[i - 1];
@@ -113,9 +145,14 @@ static char *mx_get_keys() {
         	line[position] = keycode;
         	position++;
         }
-        for (int i = position + 1; i <= mx_strlen(line); i++) {
+        print_command(promt, line, position, max_len);
+    }
+    return line;
+}
+
+static void print_command(char *promt, char *line, int position, int max_len) {
+		for (int i = position; i < mx_strlen(line); i++) {
         	printf (" ");
-        	fflush (stdout);
         }
 	    for (int i = 0; i <= max_len + mx_strlen(promt) + 1; i++) {
 	        printf ("\b\x1b[2K");
@@ -125,9 +162,29 @@ static char *mx_get_keys() {
         	printf ("%c[1D", 27);
         }
         fflush (NULL);
-    }
-    return line;
 }
 
+static char **check_path(char **arr, char *command) {
+    int i = 0;
+    char **commands = (char **)malloc(sizeof(char *) * 256);
+    int len = 0;
+
+    while (arr[i] != NULL ) {
+        DIR *dptr  = opendir(arr[i]);
+        if (dptr != NULL) {
+            struct dirent  *ds;
+            while ((ds = readdir(dptr)) != 0) {
+                if (strncmp(ds->d_name, command, mx_strlen(command)) == 0 && command[0] != '.') {
+                    commands[len] = strdup(ds->d_name);
+         			len++;
+                }
+            }
+            closedir(dptr);
+        }
+        i++;
+    }
+    commands[len] = NULL;
+    return commands;
+}
 
 
