@@ -119,9 +119,8 @@ static void exec_signal(int keycode, char *line, int *position) {
     if (keycode == CTRL_D)
         if (strcmp(line, "") == 0)
             exit_ush();
-        else {
+        else
             reverse_backscape(position,  line);
-        }
     else if (keycode == TAB) {
         //to do
     }
