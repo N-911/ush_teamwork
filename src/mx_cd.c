@@ -6,6 +6,9 @@ static void change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_cod
 static char *chpwd(char **args, int n_options, t_shell *m_s);
 static void fill_options(int n_options, cd_t *cd_options, char **args);
 static int check_path(char *point, cd_t cd_options);
+static char *go_home();
+static char *go_back();
+static char *go_somewere(t_process *p, int n_options);
 
 int mx_cd(t_shell *m_s, t_process *p) {
 	cd_t cd_options = {0, 0, 0};
@@ -16,30 +19,48 @@ int mx_cd(t_shell *m_s, t_process *p) {
 
 	fill_options(n_options, &cd_options, p->argv);
 	if (n_options >= 0 && n_args < 3) {
-		if (n_args == 0) {
-			if (getenv("HOME"))
-				point = strdup(getenv("HOME"));
-			else
-				mx_printerr("ush: cd: HOME not set\n");
-		}
+		if (n_args == 0)
+			point = go_home();
 		else if (n_args == 2)
 			point = chpwd(p->argv, n_options, m_s);
-		else {
-			if (strcmp(p->argv[n_options + 1], "-") == 0) {
-				if (getenv("OLDPWD"))
-					point = strdup(getenv("OLDPWD"));
-				else
-					mx_printerr("ush: cd: OLDPWD not set\n");
-			}
-			else
-				point = strdup(p->argv[n_options + 1]);
-		}
-		if (point) {
+		else 
+			point = go_somewere(p, n_options);
+		if (point)
 			change_dir(point, cd_options, m_s, &exit_code);
-		}
 	}
 	return exit_code;
 }
+
+static char *go_somewere(t_process *p, int n_options) {
+	char *point = NULL;
+
+	if (strcmp(p->argv[n_options + 1], "-") == 0)
+		point = go_back();
+	else
+		point = strdup(p->argv[n_options + 1]);
+	return point;
+}
+
+static char *go_back() {
+	char *point = NULL;
+
+	if (getenv("OLDPWD"))
+		point = strdup(getenv("OLDPWD"));
+	else
+		mx_printerr("ush: cd: OLDPWD not set\n");
+	return point;
+}
+
+static char *go_home() {
+	char *point = NULL;
+
+	if (getenv("HOME"))
+		point = strdup(getenv("HOME"));
+	else
+		mx_printerr("ush: cd: HOME not set\n");
+	return point;
+}
+
 
 static void change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code) {
 	char *link = malloc(1024);
