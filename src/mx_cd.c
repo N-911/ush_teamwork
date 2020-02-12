@@ -9,6 +9,8 @@ static int check_path(char *point, cd_t cd_options);
 static char *go_home();
 static char *go_back();
 static char *go_somewere(t_process *p, int n_options);
+static void print_error_cd(char *point);
+static void manage_env(char *dir, t_shell *m_s,  cd_t cd_options, int *exit_code);
 
 int mx_cd(t_shell *m_s, t_process *p) {
 	cd_t cd_options = {0, 0, 0};
@@ -63,29 +65,37 @@ static char *go_home() {
 
 
 static void change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code) {
-	char *link = malloc(1024);
 	char *dir = mx_normalization(point, m_s->pwd);
 	int flag = check_path(point, cd_options);
 
 	if (!flag) {
-		if (chdir(dir) != 0) {
-			mx_printerr("ush: ");
-			mx_printerr("cd: ");
-			perror(point);
-		}
-		else {
-			readlink(dir, link, 1024);
-			if (cd_options.P == 1 && strcmp(link, "") != 0) {
-				free(dir);
-				dir = getcwd(NULL, 1024);
-			}
-			free(link);
-			setenv("OLDPWD", m_s->pwd, 1);
-			setenv("PWD", dir, 1);
-			m_s->pwd = dir;
-			*exit_code = 0;
-		}
+		if (chdir(dir) != 0)
+			print_error_cd(point);
+		else
+			manage_env(dir, m_s, cd_options, exit_code);
 	}
+}
+
+static void manage_env(char *dir, t_shell *m_s,  cd_t cd_options, int *exit_code) {
+	char *link = malloc(1024);
+
+	readlink(dir, link, 1024);
+	if (cd_options.P == 1 && strcmp(link, "") != 0) {
+		free(dir);
+		dir = getcwd(NULL, 1024);
+	}
+	free(link);
+	setenv("OLDPWD", m_s->pwd, 1);
+	setenv("PWD", dir, 1);
+	free(m_s->pwd);
+	m_s->pwd = strdup(dir);
+	free(dir);
+	(*exit_code) = 0;
+}
+
+static void print_error_cd(char *point) {
+	mx_printerr("ush: cd: ");
+	perror(point);
 }
 
 static char *chpwd(char **args, int n_options, t_shell *m_s) {
