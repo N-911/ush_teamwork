@@ -84,8 +84,8 @@
 #define INPUT_SIZE  1024
 #define K_LEFT      4479771  // edit keys
 #define K_RIGHT     4414235
-#define K_HOME        4741915
-#define K_END         4610843
+#define K_HOME      4741915
+#define K_END       4610843
 #define K_UP        4283163  // history keys
 #define K_DOWN      4348699
 #define P_UP        2117425947
@@ -95,6 +95,7 @@
 #define CTRL_R      18
 #define BACKSCAPE   127
 #define TAB         9
+#define ENTER       10
 
 /*
 *  ---------------------------------------------- Abstract Syntax Tree
