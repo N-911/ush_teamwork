@@ -18,24 +18,31 @@ static bool unmached_er(char c) {
     return true;
 }
 /*
- *  Check if '', "", ``, {}, () even
+ *  Check if '', "", ``, () even
  */
 static bool check_quote(char *line) {
-    char *quote = QUOTE;
     int c;
-    int s;
 
-    for (int i = 0; i < mx_strlen(quote); i++) {
-        c = mx_count_chr_quote(line, quote[i], NULL);
-        if (c > 0 && c % 2 != 0)
-            return unmached_er(quote[i]);
+    for (int i = 0; line[i]; i++) {
+        c = -1;
+        if (line[i] == '\\')
+            i++;
+        else if (line[i] == '\''
+            && (c = mx_get_char_index_quote(&line[i + 1], "\'", NULL)) < 0)
+            return unmached_er('\'');
+        else if (line[i] == '\"'
+                && (c = mx_get_char_index_quote(&line[i + 1], "\"", NULL)) < 0)
+            return unmached_er('\"');
+        else if (line[i] == '`'
+                && (c = mx_get_char_index_quote(&line[i + 1], "`", "\'")) < 0)
+            return unmached_er('`');
+        else if (line[i] == '('
+                && (c = mx_get_char_index_quote(&line[i + 1], ")", "\'")) < 0)
+            return unmached_er('(');
+        else if (line[i] == ')')
+            return unmached_er(')');
+        (c < 0) ? (i) : (i += c + 1);
     }
-    if ((c = mx_count_chr_quote(line, '{', "\'"))
-        != (s = mx_count_chr_quote(line, '}', "\'")))
-        return (c > s) ? parse_er("{", 1) : parse_er("}", 1);
-    if (mx_count_chr_quote(line, '(', "\'")
-        != mx_count_chr_quote(line, ')', "\'"))
-        return (c > s) ? parse_er("(", 1) : parse_er(")", 1);
     return false;
 }
 /*

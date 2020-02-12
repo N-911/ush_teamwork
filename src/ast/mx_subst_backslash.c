@@ -7,17 +7,19 @@ char *mx_substr_backslash(char *s) {
     int j = 0;
     int i = 0;
 
-    if (!s || !*s || mx_get_char_index_quote(s, "\\", "\'") < 0)
+    if (!s || !*s)
         return s;
     n = mx_strnew(mx_strlen(s));
     while (s[i]) {
-        if (s[i] && s[i] == '\\')
-            n[j++] = s[++i];
+        if (s[i] && s[i] == '\\') {
+            i++;
+            n[j] = s[i];
+        }
         else if (s[i] && s[i] == '\'') {
-            n[j++] = s[i++];
+            i++;
             while (s[i] != '\'')
                 n[j++] = s[i++];
-            n[j++] = s[i++];
+            n[j] = s[i];
         }
         else if (s[i] && s[i] == '\"') {
             n[j++] = s[i++];
@@ -28,13 +30,13 @@ char *mx_substr_backslash(char *s) {
                     n[j++] = s[++i];
                 n[j++] = s[i++];
             }
-            n[j++] = s[i++];
+            n[j] = s[i];
         }
         else
-            n[j++] = s[i++];
+            n[j] = s[i];
+        i++;
+        j++;
     }
-    while (j < mx_strlen(s))
-        n[j++] = '\0';
     mx_strdel(&s);
     return n;
 }
