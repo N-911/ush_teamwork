@@ -381,6 +381,7 @@ void mx_set_process_status(t_shell *m_s, int pid, int status);
 int mx_set_job_status(t_shell *m_s, int job_id, int status);
 int mx_get_job_status(t_shell *m_s, int job_id, int status);
 void mx_set_last_job(t_shell *m_s);
+int mx_find_job_by_p_name(t_shell *m_s, char *arg);
 
 int mx_job_is_running(t_shell *m_s, int job_id);
 
