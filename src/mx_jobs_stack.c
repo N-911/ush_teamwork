@@ -79,8 +79,7 @@ int mx_get_job_status(t_shell *m_s, int job_id, int status) {
 
 void mx_set_last_job(t_shell *m_s) {
     int size = m_s->jobs_stack->top;
-    int last = 0;
-//    int prev_last = 0;
+    int last = -1;
 
     for (int i = size; i >= 0; i--) {
         if (mx_get_job_status(m_s, m_s->jobs_stack->stack[i], 2)) {
@@ -88,15 +87,14 @@ void mx_set_last_job(t_shell *m_s) {
             break;
         }
     }
-    if (last == 0) {
+    if (last == -1) {
         for (int j = size; j >= 0; j--) {
-            if (mx_get_job_status(m_s, m_s->jobs_stack->stack[j], 0)
-                && m_s->jobs[j]->foreground == 0) {
+            if ((mx_get_job_status(m_s, m_s->jobs_stack->stack[j], 0) > 0)) {
+//            && m_s->jobs[j]->foreground == 0) {
                 last = m_s->jobs_stack->stack[j];
                 break;
             }
         }
     }
     m_s->jobs_stack->last = last;
-    printf("last %d\n", m_s->jobs_stack->last);
 }

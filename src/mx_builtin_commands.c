@@ -119,91 +119,9 @@ fg [задание]
     //system ("leaks -q ush");
     exit(exit_code);
 }
-=======
-Возобновляет работу задания в приоритетном режиме и делает это задание текущим. Если задание не указано,
-используется текущее задание командного интерпретатора. Возвращается значение статуса выхода команды,
-переведенной в приоритетный режим, или 1 если управление заданиями отключено или, при включенном
-управлении заданиями, если указано несуществующее задание или задание, запущенное при отключенном
-управлении заданиями.
->>>>>>> master
 
-Строки %% и %+ обозначают текущее задание командного интерпретатора - последнее задание, остановленное
-при работе в приоритетном режиме или запущенное в фоновом режиме. На предыдущее задание можно сослаться
-с помощью строки %-. В результатах работы команд, связанных с управлением заданиями, (в частности, в
-результатах выполнения команды jobs), текущее задание всегда помечается знаком +, а предыдущее - знаком -.
 */
 
-int mx_fg(t_shell *m_s, t_process *p) {
-    int exit_code = 0;
-    pid_t pgid = 0;
-    int job_id = 0;
-
-    mx_set_last_job(m_s);
-    if (p->argv[1]) {
-        //  if (p->arg_command[0] == '%') {
-        job_id = atoi(p->argv[1]);
-    }
-    else
-        job_id = m_s->jobs_stack->last;
-
-
-    mx_print_color(MAG, "child\t");
-    mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
-    mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
-    mx_printstr("\n");
-    printf("job_id %d\n", job_id);
-    pgid = mx_get_pgid_by_job_id(m_s, job_id);
-    printf("pid suspended process %d\n", pgid);
-    tcsetpgrp (STDIN_FILENO, pgid);
-    tcsetattr (STDIN_FILENO, TCSADRAIN, &m_s->jobs[job_id]->tmodes);
-    if (kill(- pgid, SIGCONT) < 0) {
-        mx_printerr("fg: job not found: ");
-        mx_printerr(mx_itoa(pgid));
-        mx_printerr("\n");
-        return -1;
-    }
-    if (job_id > 0) {
-        mx_set_job_status(m_s, job_id, STATUS_CONTINUED);
-        mx_print_job_status(m_s, job_id, 0);
-        if (mx_wait_job(m_s, job_id) >= 0)
-            mx_remove_job(m_s, job_id);
-    }
-//    else
-//        mx_wait_pid(m_s, pgid);
-//    signal(SIGTTOU, SIG_IGN);  //Запись в управляющий терминал процессом из группы процессов фонового режима.
-//    tcsetpgrp(0, getpid());
-//    signal(SIGTTOU, SIG_DFL);  //
-    return exit_code;
-}
-
-
-int mx_bg(t_shell *m_s, t_process *p) {
-    int exit_code = 0;
-    pid_t pgid = 0;
-    int job_id = 0;
-
-    mx_set_last_job(m_s);
-    if (p->argv[1]) {
-        //  if (p->arg_command[0] == '%') {
-        job_id = atoi(p->argv[1]);
-    }
-    else
-        job_id = m_s->jobs_stack->last;
-    // printf("job_id %d\n", job_id);
-    pgid = mx_get_pgid_by_job_id(m_s, job_id);
-    // printf("pid background process %d\n", pgid);
-    if (kill(-pgid, SIGCONT) < 0) {
-        mx_printerr("bg: job not found: ");
-        mx_printerr(mx_itoa(pgid));
-        mx_printerr("\n");
-        return -1;
-    }
-    if (job_id > 0) {
-        mx_set_job_status(m_s, job_id, STATUS_CONTINUED);
-        mx_print_job_status(m_s, job_id, 0);
-    }
-    return exit_code;
-}
 
 static int count_args(char **args, int n_options) {
     int n_args = 0;
