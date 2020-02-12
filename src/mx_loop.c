@@ -156,14 +156,10 @@ static void add_char(int *position, char *line, int keycode) {
 }
 
 static void edit_command(int keycode, int *position, char *line) {
-    if (keycode == K_LEFT) {
-        if (*position > 0)
-            (*position)--;
-    }
-    else if (keycode == K_RIGHT) {
-        if (*position < mx_strlen(line))
-            (*position)++;
-    }
+    if (keycode == K_LEFT)
+        *position > 0 ? (*position)-- : 0;
+    else if (keycode == K_RIGHT) 
+        *position < mx_strlen(line) ? (*position)++ : 0;
     else if (keycode == K_END)
         *position = mx_strlen(line);
     else if (keycode == K_DOWN) {
