@@ -157,28 +157,17 @@ static int count_args(char **args, int n_options) {
 
 static int check_path(char *point, cd_t cd_options) {
 	int flag = 0;
+	char *read_link = realpath(point, NULL);
 
 	if (cd_options.s) {
-		char *tmp_1 = mx_strjoin(point, "/");
-		int idx = 0;
-
-		while (mx_get_char_index(tmp_1, '/') >= 0) {
-			idx += mx_get_char_index(tmp_1, '/');
-			char *link1 = malloc(1024);
-			char *tmp_2 = strndup(point, idx);
-
-			readlink(tmp_2, link1, 1024);
-			idx ++;
-			tmp_1 += mx_get_char_index(tmp_1, '/') + 1;
-			if (strcmp(link1,"") != 0) {
-				mx_printerr("ush: cd: ");
-				mx_printerr(point);
-				mx_printerr(": Not a directory");
-				mx_printerr("\n");
-				flag ++;
-				break;
-			}
+		if(read_link && strcmp(point, read_link) != 0){
+			mx_printerr("ush: cd: ");
+			mx_printerr(point);
+			mx_printerr(": Not a directory");
+			mx_printerr("\n");
+			flag++;
 		}
 	}
 	return flag;
 }
+
