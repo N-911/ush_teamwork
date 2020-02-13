@@ -57,9 +57,10 @@ static void check_path(char **arr, char *command, t_list **output, int *flag) {
             struct dirent  *ds;
             while ((ds = readdir(dptr)) != 0) {
                 if (strcmp(ds->d_name, command) == 0 && command[0] != '.') {
-                    name = mx_strjoin(arr[i], "/");
-                    name = mx_strjoin(name, command);
+                    name = strcat(arr[i], "/");
+                    name = strcat(name, command);
                     mx_push_back(&*output, name);
+                    //free(name);
                     (*flag)++;
                 }
             }
