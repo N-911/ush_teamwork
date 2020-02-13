@@ -407,6 +407,9 @@ int mx_wait_job(t_shell *m_s, int id);  //waitpid process in job group
 void mx_destroy_jobs(t_shell *m_s, int id);  //free job memory
 
 //      OTHER
+void mx_error_fg_bg(char *arg0, char *arg1, char *arg2, char *arg3);
+int mx_check_args(t_shell *m_s, t_process *p);  // use in fg and bg
+
 void mx_printstr(const char *s);
 void mx_printerr(const char *s);
 char *mx_normalization (char *point, char *pwd);
