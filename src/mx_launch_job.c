@@ -134,7 +134,7 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
         if (mx_job_completed(m_s, job_id))
             mx_remove_job(m_s, job_id);
 //  printf(" launch_job_help-2  \n");
-//        signal(SIGTTOU, SIG_IGN);
+        signal(SIGTTOU, SIG_IGN);
         tcsetpgrp(STDIN_FILENO, getpid());
 //    printf(" launch_job_help-3  \n");
 //        signal(SIGTTOU, SIG_DFL);

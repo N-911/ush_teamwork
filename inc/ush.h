@@ -40,7 +40,7 @@
 #define EXIT_SUCCESS 0
 
 //  JOBS
-#define JOBS_NUMBER 20
+#define JOBS_NUMBER 100
 #define STATUS_RUNNING 0
 #define STATUS_DONE 1
 #define STATUS_SUSPENDED 2

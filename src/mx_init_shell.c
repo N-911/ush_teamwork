@@ -53,6 +53,7 @@ t_shell *mx_init_shell(int argc, char **argv) {
         signal(SIGTSTP, SIG_IGN);  // Control-Z
         signal(SIGTTIN, SIG_IGN);
         signal(SIGTTOU, SIG_IGN);
+        signal(SIGPIPE, mx_sig_h);
 //        signal(SIGCHLD, mx_sig_h);
         shell_pgid = getpid();
         if (setpgid(shell_pgid, shell_pgid) < 0) {

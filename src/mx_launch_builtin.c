@@ -32,6 +32,7 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
                 signal(SIGTSTP, SIG_DFL);
                 signal(SIGTTIN, SIG_DFL);
                 signal(SIGTTOU, SIG_DFL);
+                signal(SIGPIPE, mx_sig_h);
             }
             if (p->infile != STDIN_FILENO) {
                 dup2(p->infile, STDIN_FILENO);

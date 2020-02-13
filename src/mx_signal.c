@@ -33,16 +33,17 @@ void mx_sig_handler_exit(int sig) {
 }
 
 void mx_sig_h(int signal) {
+    if (signal == SIGPIPE)
+        mx_printerr("err write PIPE!!!!\n");
 //    (void)m_s;
-    if (signal == SIGTSTP)
-        printf("\n");
-
-    if (signal == SIGINT)
-        printf("\n");
-    if (signal == SIGCHLD) {
-        printf("\n");
-//        mx_check_jobs(void)m_s);
-    }
+//    if (signal == SIGTSTP)
+//        printf("\n");
+//
+//    if (signal == SIGINT)
+//        printf("\n");
+//    if (signal == SIGCHLD) {
+//        printf("\n");
+////        mx_check_jobs(void)m_s);
 
     // printf("%d\n", signal);
 /*

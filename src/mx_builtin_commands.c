@@ -14,34 +14,28 @@ int mx_builtin_commands_idex(t_shell *m_s, char *command) {
 
 /*
 jobs - List background processes
-[2]    done       ls |
-       suspended  sleep 5
-[3]    suspended  sleep 15
-
 -l   list process IDs in addition to the normal information.
 -p  Pass the -p option to jobs command to display PIDs only:  7895 7896
 -r  Display only running jobs.
 -s  Display only stopped jobs
-[3]    10354 suspended  sleep 15
-// jobs  list the active jobs [3]    suspended  sleep 15
-// jobs -l                    [1]  + 24549 suspended  sleep 11
-
 
 e2r13p9% jobs -z
 jobs: bad option: -z
-
 */
 
 int mx_jobs(t_shell *m_s, t_process *p) {
     t_jobs jobs_options = {0, 0, 0};
     int n_options = mx_count_options(p->argv, "lprs", "jobs", " [-lrs]");
     int n_args = count_args(p->argv, n_options);
-    int exit_code = 1;
+    int exit_code = 0;
 
     mx_set_last_job(m_s);
-//    printf ("n_opptions  %d\n", n_options);
-//    printf("n_args  %d\n", n_args);
+    printf ("n_opptions  %d\n", n_options);
+    printf("n_args  %d\n", n_args);
     fill_options(n_options, &jobs_options, p->argv);
+
+
+
 //    printf("jobs in \n");
     if (n_options >= 0 && n_args < 2) {
         if (n_args == 0 && !n_options) {
@@ -94,6 +88,8 @@ static int count_args(char **args, int n_options) {
     }
 //    if (n_args > 1)
 //        mx_printerr("ush: jobs: bad option:\n");
+//    if (n_args > 2)
+//        mx_printerr("ush: cd: too many arguments\n");
     return n_args;
 }
 
@@ -110,10 +106,8 @@ static void fill_options(int n_options, t_jobs *jobs_options, char **args) {
     }
 }
 
-
 /*
 fg [задание]
-
 <<<<<<< HEAD
     if(p->argv[1] != NULL && p->argv[2] != NULL) {
         mx_printerr("ush: exit: too many arguments\n");
