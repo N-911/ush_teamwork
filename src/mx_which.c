@@ -4,30 +4,39 @@ static void fill_options(int n_options, which_t *which_options, char **args);
 static void check_path(char **arr, char *command, t_list **output, int *flag);
 static void print_path(t_list *output, int flag, char *command, which_t which_options);
 static void check_builtin (char **list, char *command, t_list **output, int *flag);
+static void get_info(t_shell *m_s, char *command, int *flag, which_t which_options);
+static void mx_clear_list(t_list **list);
 
 int mx_which(t_shell *m_s, t_process *p) {
 	which_t which_options = {0, 0};
 	int n_options = mx_count_options(p->argv, "as", "which", " [-as] program ...");
+	int flag = 0;
 	int exit_code = 0;
-	int flag;
 
 	fill_options(n_options, &which_options, p->argv);
 	if (n_options < 0) 
 		return 1;
 	for (int i = n_options + 1; p->argv[i] != NULL; i++) {
-		flag = 0;
-		t_list *output = NULL;
-		char **arr = mx_strsplit(getenv("PATH"), ':');
-
-		check_builtin(m_s->builtin_list, p->argv[i], &output, &flag);
-        check_path(arr, p->argv[i], &output, &flag);
-        if (!which_options.s)
-        	print_path(output, flag, p->argv[i], which_options);
+		get_info(m_s, p->argv[i], &flag, which_options);
+        if (!flag)
+        	exit_code = 1;
 	}
-	if (!flag)
-        exit_code = 1;
     return exit_code;
 }
+
+static void get_info(t_shell *m_s, char *command, int *flag, which_t which_options) {
+	t_list *output= NULL;
+	char **arr = mx_strsplit(getenv("PATH"), ':');
+
+	*flag = 0;
+	check_builtin(m_s->builtin_list, command, &output, flag);
+    check_path(arr, command, &output, flag);
+    mx_del_strarr(&arr);
+    if (!which_options.s)
+        print_path(output, *flag, command, which_options);
+    mx_clear_list(&output);
+}
+
 
 static void fill_options(int n_options, which_t *which_options, char **args) {
 	for(int i = n_options; i > 0; i --) {
@@ -85,3 +94,19 @@ static void print_path(t_list *output, int flag, char *command, which_t which_op
 		}
 	}
 }
+
+static void mx_clear_list(t_list **list) {
+    t_list *q = *list;
+    t_list *tmp = NULL;
+
+    if (!(*list) || !list)
+        return;
+    while (q) {
+        // mx_strdel((char **)&q->data);
+        tmp = q->next;
+        free(q);
+        q = tmp;
+    }
+    *list = NULL;
+}
+
