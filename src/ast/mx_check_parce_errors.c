@@ -18,30 +18,45 @@ static bool unmached_er(char c) {
     return true;
 }
 /*
+ *  check_quote split by auditor ))))
+ */
+static char check_quote_auditor(char *s, int *i) {
+    int j = *i;
+    char tmp;
+
+    if (s[j] == ')')
+        return ')';
+    (s[j] == '(') ? (tmp = ')') : (tmp = s[j]);
+    j++;
+    while (s[j] && s[j] != tmp)
+        (s[j] == '\\') ? (j += 2) : (j++);
+    *i = j;
+    (tmp == ')') ? (tmp = '(') : (tmp);
+    return tmp;
+}
+/*
  *  Check if '', "", ``, () even
  */
-static bool check_quote(char *line) {
-    int c;
+static bool check_quote(char *s) {
+    char tmp;
 
-    for (int i = 0; line[i]; i++) {
-        c = -1;
-        if (line[i] == '\\')
+    if (!s || !*s)
+        return false;
+    for (int i = 0; s[i]; i++) {
+        if (s[i] == '\\')
             i++;
-        else if (line[i] == '\''
-            && (c = mx_get_char_index_quote(&line[i + 1], "\'", NULL)) < 0)
-            return unmached_er('\'');
-        else if (line[i] == '\"'
-                && (c = mx_get_char_index_quote(&line[i + 1], "\"", NULL)) < 0)
-            return unmached_er('\"');
-        else if (line[i] == '`'
-                && (c = mx_get_char_index_quote(&line[i + 1], "`", "\'")) < 0)
-            return unmached_er('`');
-        else if (line[i] == '('
-                && (c = mx_get_char_index_quote(&line[i + 1], ")", "\'")) < 0)
-            return unmached_er('(');
-        else if (line[i] == ')')
-            return unmached_er(')');
-        (c < 0) ? (i) : (i += c + 1);
+        else if (mx_isdelim(s[i], QUOTE)) {
+            tmp = check_quote_auditor(s, &i);
+            if (!s[i] || tmp == ')')
+                return unmached_er(tmp);
+        }
+        else if (s[i] == '\'') {
+            i++;
+            while (s[i] && s[i] != '\'')
+                i++;
+            if (!s[i])
+                return unmached_er('\'');
+        }
     }
     return false;
 }
@@ -53,12 +68,12 @@ static bool check_parse_auditor(char *line, int i) {
     int i2;
     int i3;
 
-    i2 = mx_get_char_index_quote(&line[i + 1], PARSE_DELIM, QUOTE);
+    i2 = mx_get_char_index_quote(&line[i + 1], PARSE_DELIM);
     if (i2 == 0) {
         if (line[i] != line[i + 1] || line[i + 1] == ';')
             return parse_er(&line[i + 1], 1);
         else if (line[i + 2]) {
-            i3 = mx_get_char_index_quote(&line[i + 2], PARSE_DELIM, QUOTE);
+            i3 = mx_get_char_index_quote(&line[i + 2], PARSE_DELIM);
             if (i3 == 0)
                 return parse_er(&line[i + 2], 1);
         }
@@ -72,7 +87,7 @@ static bool check_parse(char *line) {
     int i = 0;
 
     while (line) {
-        if ((i = mx_get_char_index_quote(line, PARSE_DELIM, QUOTE)) >= 0) {
+        if ((i = mx_get_char_index_quote(line, PARSE_DELIM)) >= 0) {
             if ((line[i + 1] == '\0' && line[i] != ';' && line[i] != '&')
             || mx_strcmp(&line[i], "&&") == 0)
                 return parse_er("\\n", 2);

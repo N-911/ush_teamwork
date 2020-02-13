@@ -9,7 +9,7 @@ static char *get_var(char *s, int *v_len) {
     if (!s)
         return NULL;
     if (s[0] == '{') {
-        var = mx_strndup(&s[1], mx_get_char_index_quote(s, "}", "\'") - 1);
+        var = mx_strndup(&s[1], mx_get_char_index_quote(s, "}") - 1);
         *v_len = mx_strlen(var) + 2;
     }
     else {
@@ -63,7 +63,7 @@ char *mx_substr_dollar(char *s, t_export *variables) {
         return s;
     if (mx_strcmp(s, "$") == 0)
         return s;
-    while ((pos = mx_get_char_index_quote(res, "$", "\'")) == 0
+    while ((pos = mx_get_char_index_quote(res, "$")) == 0
             || (pos > 0 && res[pos - 1] != '\\'))
         res = expantion(res, variables, pos);
     return res;

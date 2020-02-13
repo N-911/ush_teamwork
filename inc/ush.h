@@ -83,7 +83,7 @@
 */
 /* Operators and delimeters for parse tokens */
 #define PARSE_DELIM ";|&><"
-#define QUOTE "\'\""
+#define QUOTE "\"`()"
 #define DBL_QUOTE_EXCEPTIONS "$`\"\\"
 #define USH_TOK_DELIM " \t\n"  // " \t\r\n\a"
 
@@ -289,13 +289,15 @@ char *mx_substr_dollar(char *s, t_export *variables);
 char *mx_substr_backslash(char *s);
 /*
  *  ---------------------------------------------- mx_quote_manage.c
- * mx_get_char_index_quote      get char index outside of the quote (exc is \);
+ * mx_get_char_index_quote      get char index outside of the quote;
+ * mx_get_char_index_backslash  get char index except single isolated;
  * mx_count_chr_quote           count chars outside of the quote (exc is \);
  * mx_strtrim_quote             trim ' or " in quote;
  */
-int mx_get_char_index_quote(char *str, char *c, char *quote);
-int mx_count_chr_quote(char *str, char c, char *q);
-char *mx_strtrim_quote(char *s, char c, char *q);
+int mx_get_char_index_quote(char *str, char *c);
+int mx_get_char_index_backslash(char *s, char *c);
+// int mx_count_chr_quote(char *str, char c, char *q);
+// char *mx_strtrim_quote(char *s, char c, char *q);
 /*
  *  ---------------------------------------------- move to LIBMX
  */
