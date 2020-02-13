@@ -103,6 +103,23 @@ int mx_job_is_running(t_shell *m_s, int job_id) {
     return status;
 }
 
+int mx_find_job_by_p_name(t_shell *m_s, char *arg) {
+    int i;
+    t_process *p;
+
+    for (i = m_s->max_number_job; i > 0 ; i--) {
+        if (m_s->jobs[i] == NULL)
+            continue;
+        for (p = m_s->jobs[i]->first_process; p != NULL; p = p->next) {
+            if ((mx_strcmp(p->argv[0], arg)) == 0)
+                return i;
+        }
+    }
+    return -1;
+}
+
+
+
 
 // not used
 void mx_print_exit(int status) {

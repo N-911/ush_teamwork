@@ -13,8 +13,11 @@
   <component name="ChangeListManager">
     <list default="true" id="231a84a8-684e-4b8a-8236-bfbaca780c22" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/ush.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/ush.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_bg.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_bg.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_fg.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_fg.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_launch_job.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_job.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ush" beforeDir="false" afterPath="$PROJECT_DIR$/ush" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,6 +113,7 @@
       <workItem from="1581405854368" duration="18489000" />
       <workItem from="1581441605164" duration="448000" />
       <workItem from="1581490831205" duration="17693000" />
+      <workItem from="1581576220998" duration="10835000" />
     </task>
     <task id="LOCAL-00001" summary="-test_snikolayen">
       <created>1579768232701</created>
@@ -243,10 +247,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="225" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1581505955734" />
-    <state x="330" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1581490842214">
+    <state x="330" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1581576224751">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="330" y="524" key="com.intellij.ide.util.TipDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1581490842214" />
+    <state x="330" y="524" key="com.intellij.ide.util.TipDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1581576224751" />
     <state x="493" y="615" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580109410730">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -255,10 +259,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="190" y="434" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.2560.1337@0.23.2560.1337" timestamp="1579775998237" />
-    <state x="231" y="95" width="1059" height="1058" key="find.popup" timestamp="1581502646483">
+    <state x="231" y="95" width="1059" height="1058" key="find.popup" timestamp="1581582147363">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="231" y="95" width="1059" height="1058" key="find.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1581502646483" />
+    <state x="231" y="95" width="1059" height="1058" key="find.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1581582147363" />
     <state x="384" y="328" key="refactoring.ChangeSignatureDialog" timestamp="1581353771175">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -267,10 +271,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="305" y="326" key="run.anything.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1580144306406" />
-    <state x="290" y="328" width="670" height="676" key="search.everywhere.popup" timestamp="1581508388701">
+    <state x="290" y="328" width="670" height="676" key="search.everywhere.popup" timestamp="1581589588211">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="290" y="328" width="670" height="676" key="search.everywhere.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1581508388701" />
+    <state x="290" y="328" width="670" height="676" key="search.everywhere.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1581589588211" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -347,7 +351,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>141</line>
+          <line>143</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -382,7 +386,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>132</line>
+          <line>131</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>

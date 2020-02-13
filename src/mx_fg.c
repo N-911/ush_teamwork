@@ -11,8 +11,10 @@
 результатах выполнения команды jobs), текущее задание всегда помечается знаком +, а предыдущее - знаком -.
 */
 
-static int get_number_job (t_shell  *m_s, char **args);
-static int fg_send_signal (int pgid, int job_);
+static int fg_send_signal(t_shell *m_s, int pgid, int job_id);
+static int fg_check(t_shell *m_s, t_process *p);
+static void print_error_fg(char *arg1, char *arg2, char *arg3);
+static int fg_get_job_id (t_shell *m_s, t_process *p);
 
 int mx_fg(t_shell *m_s, t_process *p) {
     int status;
@@ -20,31 +22,66 @@ int mx_fg(t_shell *m_s, t_process *p) {
     int job_id = 0;
 
     mx_set_last_job(m_s);
-
-    if ((job_id = get_number_job(m_s, p->argv)) == -1 || job_id == 0) {
-        mx_printerr("fg: no current job\n");
+    if ((job_id = fg_get_job_id(m_s, p)) < 1)
         return -1;
-    }
-
-    job_id = get_number_job(m_s, p->argv);
-//printf("job_id %d\n",  job_id);
-
-
     if ((pgid = mx_get_pgid_by_job_id(m_s, job_id)) < 1) {
-        mx_printerr("fg: job not found: ");
-        mx_printerr(mx_itoa(job_id));
-        mx_printerr("\n");
+        print_error_fg("fg: ", p->argv[1],": no such job\n");
         return -1;
     }
-    mx_fg_send_signal(job_i,)
-
+    status = fg_send_signal(m_s, pgid, job_id);
     return status;
 }
 
-static int fg_send_signal (int pgid, int job_) {
+static int fg_get_job_id (t_shell *m_s, t_process *p) {
+    int job_id;
+    int n_args = 0;
+
+    for (int i = 0; p->argv[i] != NULL; i++)
+        n_args++;
+    if (n_args > 2) {
+        mx_printerr("ush: fg: too many arguments\n");
+        return -1;
+    } else if (n_args == 1) {
+        if ((job_id = m_s->jobs_stack->last) < 1) {
+            mx_printerr("fg: no current job\n");
+            return -1;
+        }
+    }
+    else {
+        if ((job_id = fg_check(m_s, p)) < 1)
+            return -1;
+    }
+    return job_id;
+}
+
+static int fg_check (t_shell *m_s, t_process *p) {
+    int job_id;
+
+    if (p->argv[1][0] == '%' && isdigit(p->argv[1][1])) {
+        if ((job_id = atoi(mx_strdup(p->argv[1] + 1))) < 1) {
+            print_error_fg("fg: ", p->argv[1],": no such job\n");
+            return -1;
+        }
+    }
+    else if (p->argv[1][0] == '%' && !isdigit(p->argv[1][1])) {
+        if ((job_id = mx_find_job_by_p_name(m_s, (p->argv[1] + 1))) < 1) {
+            print_error_fg("fg: job not found: ", (p->argv[1] + 1),"\n");
+            return -1;
+        }
+    }
+    else {
+        if ((job_id = mx_find_job_by_p_name(m_s, p->argv[1])) < 1) {
+            print_error_fg("fg: job not found: ", p->argv[1],"\n");
+            return -1;
+        }
+    }
+    return job_id;
+}
+
+static int fg_send_signal(t_shell *m_s, int pgid, int job_id) {
     int status;
 
-    printf("pid suspended process %d\n", pgid);
+//    printf("pid suspended process %d\n", pgid);
     if (kill(-pgid, SIGCONT) < 0) {
         mx_printerr("fg: job not found: ");
         mx_printerr(mx_itoa(job_id));
@@ -62,43 +99,12 @@ static int fg_send_signal (int pgid, int job_) {
     signal(SIGTTOU, SIG_DFL);
     tcgetattr(STDERR_FILENO, &m_s->jobs[job_id]->tmodes);
     tcsetattr(STDIN_FILENO, TCSADRAIN, &m_s->jobs[job_id]->tmodes);
-    return status;
+    return status >> 8;
 }
 
-static int get_number_job (t_shell  *m_s, char **args) {
-    int n_args = 0;
-    int job_id = -1;
-//    int pgid;
-
-    for (int i = 0; args[i] != NULL; i++)
-        n_args++;
-
-    if (n_args > 2)
-        mx_printerr("ush: fg: too many arguments\n");
-    else if (n_args == 1) {
-        job_id = m_s->jobs_stack->last;
-    }
-    else {
-        if (args[1][0] == '%') {
-            job_id = atoi(mx_strdup(args[1] + 1));
-        }
-        else
-            job_id = mx_find_job_by_p_name(m_s, args[1]);
-    }
-    return job_id;
+static void print_error_fg(char *arg1, char *arg2, char *arg3) {
+    mx_printerr(arg1);
+    mx_printerr(arg2);
+    mx_printerr(arg3);
 }
 
-int mx_find_job_by_p_name(t_shell *m_s, char *arg) {
-    int i;
-    t_process *p;
-
-    for (i = m_s->max_number_job; i > 0 ; i--) {
-        if (m_s->jobs[i] == NULL)
-            continue;
-        for (p = m_s->jobs[i]->first_process; p != NULL; p = p->next) {
-            if ((mx_strcmp(p->argv[0], arg)) == 0)
-                return i;
-            }
-        }
-    return -1;
-}

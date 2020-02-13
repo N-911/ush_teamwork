@@ -127,14 +127,16 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
     int shell_terminal = STDIN_FILENO;
 
     if (job->foreground) {
-        printf(" launch_job_help now \n");
     //else if (status >= 0 && job->foreground == FOREGROUND) {
         tcsetpgrp(STDIN_FILENO, job->pgid);
         status = mx_wait_job(m_s, job_id);
+        printf(" launch_job_help-1  \n");
         if (mx_job_completed(m_s, job_id))
             mx_remove_job(m_s, job_id);
+        printf(" launch_job_help-2  \n");
 //        signal(SIGTTOU, SIG_IGN);
         tcsetpgrp(STDIN_FILENO, getpid());
+        printf(" launch_job_help-3  \n");
 //        signal(SIGTTOU, SIG_DFL);
         tcgetattr(shell_terminal, &job->tmodes);
         tcsetattr(shell_terminal, TCSADRAIN, &m_s->tmodes);
@@ -142,6 +144,7 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
     else
         mx_print_pid_process_in_job(m_s, job->job_id);
     m_s->exit_code = status;
+    printf(" launch_job_help end \n");
 }
 
 static int get_flag(char **args) {
