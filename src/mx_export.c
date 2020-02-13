@@ -14,7 +14,7 @@ int mx_export(t_shell *m_s, t_process *p) {
      " [name[=value] ...] or export -p");
     int n_args = count_args(p->argv, n_options);
     int i = 0;
-    int exit_code = 1;
+    int exit_code = 0;
 
     if (n_options <  0)
         return 1;
@@ -122,6 +122,7 @@ static void export_or_error(char *arg, t_export *export, t_export *variables, in
         mx_printerr("ush: export: `");
         mx_printerr(arg);
         mx_printerr("': not a valid identifier\n");
+        *exit_code = 1;
     }
     else {
         char *name;
@@ -133,7 +134,7 @@ static void export_or_error(char *arg, t_export *export, t_export *variables, in
         }
         export_value(export, name, value);
         export_value(variables, name, value);
-        exit_code = 0;
+        *exit_code = 0;
     }
 }
 

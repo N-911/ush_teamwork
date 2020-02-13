@@ -54,7 +54,7 @@ static void check_path(char **arr, char *command, t_list **output, int *flag) {
                     (*flag)++;
                 }
             }
-        closedir(dptr);
+        	closedir(dptr);
         }
         i++;
     }

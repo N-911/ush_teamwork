@@ -14,7 +14,6 @@ int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env) {
     if (pid == 0) {
         char **arr = mx_strsplit(path, ':');
         char *command = p->argv[0];
-        //printf("COMMANd = %s\n", command);
         path  = check_path(arr, command);
         if(!path)
             path = strdup(command);
@@ -25,13 +24,10 @@ int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env) {
         }
         exit(0);
     }
-    else if (pid < 0) { // Ошибка при форкинге
-        perror("env ");
-    } 
-    else { // Родительский процесс
+    else if (pid < 0)
+        perror("env "); 
+    else
         waitpid(pid, &status, 0);
-    }
-    
     return status >> 8;//WEXITSTATUS(status);
 }
 
@@ -85,6 +81,7 @@ static void print_error(char *command, char *error) {
     if (error) {
         mx_printerr(command);
         mx_printerr(error);
+        free(error);
     }
     else
         perror(command);

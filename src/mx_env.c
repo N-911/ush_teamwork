@@ -12,10 +12,12 @@ static char **get_args(t_process *p, int start);
 static char **get_env_arr(t_export *env_list);
 static void launch_command(t_shell *m_s, t_process *p, t_env_builtin *env, int *exit_code);
 static t_env_builtin *init_env (t_process *p);
-static void print_env_error(char *option, char *error);
+static void print_env_error(char option, char *error);
 static char *get_parameter (char **args, int *i, int j, int *n_options);
-static int add_param(char *param, t_export **env_params, char *option);
+static int add_param(char *param, t_export **env_params, char option);
 static int add_option(char **args, int *i, int *n_options, t_env_builtin *env);
+static void get_data(int i, char **args, t_env_builtin *env);
+static char *get_option(char c);
 
 int mx_env(t_shell *m_s, t_process *p) {
     t_env_builtin *env = init_env(p);
@@ -75,45 +77,55 @@ static int count_options(char **args, t_env_builtin *env) {
 }
 
 static int add_option(char **args, int *i, int *n_options, t_env_builtin *env) {
+    int exit_code = 0;
+    char option;
+
 	for (int j = 1; j <= mx_strlen(args[*i]); j++) {
-        char *option = malloc(2);
-        option[0] = args[*i][j];
-        option[1] = '\0';
+        option = args[*i][j];
         if (args[*i][j] == 'u' || args[*i][j] == 'P') {
             char *param = get_parameter(args, i, j, n_options);
-            int status = add_param(param, &env->env_params, option);
+            exit_code = add_param(param, &env->env_params, option);
 
-            if(status < 0) 
-                return status;
+            free(param);
             break;
         }
-        else if (args[*i][j] == 'i' || args[*i][j] == '-' || mx_strlen(args[*i]) == 1) {
+        else if (args[*i][j] == 'i' || args[*i][j] == '-' || mx_strlen(args[*i]) == 1)
             env->env_options.i = 1;
-        }
         else if (j != mx_strlen(args[*i])) {
             print_env_error(option, "env: illegal option -- ");
-            return -1;
+            exit_code = -1;
+            break;
         }
     }
-    return 0;
+    return exit_code;
 }
 
-static void print_env_error(char *option, char *error) {
+static char *get_option(char c) {
+    char *option = malloc(2);
+
+    option[0] = c;
+    option[1] = '\0';
+    return option;
+}
+
+static void print_env_error(char option, char *error) {
 	mx_printerr(error);
-    mx_printerr(option);
+    write(2, &option, 1);
     mx_printerr("\nusage: env [-iv] [-P utilpath] [-u name]\n");
     mx_printerr("           [name=value ...] [utility [argument ...]]\n");
 }
 
-static int add_param(char *param, t_export **env_params, char *option) {          
+static int add_param(char *param, t_export **env_params, char option) {         
     if (param) {
-    	if (strcmp(option, "u") == 0 && strchr(param, '=')) {
+    	if (option == 'u' && strchr(param, '=')) {
 	        mx_printerr("env: unsetenv ");
 	        mx_printerr(param);
 	        mx_printerr(": Invalid argument\n");
 	        return -1;
 	    }
-        mx_push_export(&*env_params, option, param);
+        char *str_option = get_option(option);
+        mx_push_export(&*env_params, str_option, param);
+        free(str_option);
         return 0;
     }
     else {
@@ -148,21 +160,23 @@ static void set_data(t_env_builtin *env, char *args[]) {
 
     for (int i = 0; environ[i] != NULL; i++) {
         if (!env->env_options.i) {
-            int idx = mx_get_char_index(environ[i],'=');
-            char *name = strndup(environ[i],idx);
-            char *value = strdup_from(environ[i],idx);
-                    
-            mx_push_export(&env->env_list, name, value);   
+            get_data(i, environ, env);   
         }
     }
     get_params(env->env_params, env->env_list, &env->path);
     for (int i = env->n_options + 1; i <= env->n_options + env->n_variables; i++) {
-        int idx = mx_get_char_index(args[i],'=');
-        char *name = strndup(args[i],idx);
-        char *value = strdup_from(args[i],idx);
-            
-        mx_push_export(&env->env_list, name, value);   
+        get_data(i, args, env);
     }
+}
+
+static void get_data(int i, char **args, t_env_builtin *env) {
+    int idx = mx_get_char_index(args[i],'=');
+    char *name = strndup(args[i],idx);
+    char *value = strdup_from(args[i],idx);
+            
+    mx_push_export(&env->env_list, name, value);
+    free(name);
+    free(value);  
 }
 
 static void delete_name(t_export **list, char *arg) {

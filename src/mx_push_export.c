@@ -26,8 +26,8 @@ void mx_push_export(t_export **list, void *name, void *value) {
 static t_export *create_node(void *name, void *value) {
    t_export *node =  (t_export *)malloc(sizeof(t_export));
 
-   node->name = name;
-   node->value = value;
+   node->name = strdup(name);
+   node->value = strdup(value);
    node->next = NULL;
    return node;
 }
