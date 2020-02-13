@@ -8,6 +8,8 @@ static void print_export(t_export *export);
 static void get_data (char *arg, char **name, 
     char **value, t_export *variables);
 static void export_or_error(char *arg, t_export *export, t_export *variables, int *exit_code);
+static void print_export_error(char *arg, int *exit_code);
+static void clear_data(char *name, char *value);
 
 int mx_export(t_shell *m_s, t_process *p) {
     int n_options = mx_count_options(p->argv, "p", "export",
@@ -68,7 +70,7 @@ static void export_value(t_export *export, char *name, char *value) {
     while (head != NULL) {
         if (strcmp(head->name, name) == 0) {
             flag++;
-            head->value = value;
+            head->value = strdup(value);
             break;
         }
         head = head->next;
@@ -95,10 +97,8 @@ static void print_export(t_export *export) {
 static void get_data (char *arg, char **name, char **value, t_export *variables) {
     int idx = mx_get_char_index(arg,'=');
 
-    if (idx < 0) {
+    if (idx < 0)
         *name = strdup(arg);
-        *value = NULL;
-    } 
     else {
         *name = strndup(arg,idx);
         *value = strdup_from(arg,idx);
@@ -107,7 +107,7 @@ static void get_data (char *arg, char **name, char **value, t_export *variables)
         t_export *head = variables;
         while (head != NULL) {
             if (strcmp(head->name, *name) == 0) {
-                *value = head->value;
+                *value = strdup(head->value);
                 break;
             }
             head = head->next;
@@ -118,26 +118,34 @@ static void get_data (char *arg, char **name, char **value, t_export *variables)
 static void export_or_error(char *arg, t_export *export, t_export *variables, int *exit_code) {
     int flag = check_identifier(arg);
 
-    if (flag) {
-        mx_printerr("ush: export: `");
-        mx_printerr(arg);
-        mx_printerr("': not a valid identifier\n");
-        *exit_code = 1;
-    }
+    if (flag)
+        print_export_error(arg, exit_code);
     else {
-        char *name;
-        char *value;
+        char *name = NULL;
+        char *value = NULL;
                 
         get_data(arg, &name, &value, variables);
-        if (value != NULL) {
+        if (value != NULL)
             setenv(name, value, 1);
-        }
         export_value(export, name, value);
         export_value(variables, name, value);
+        clear_data(name, value);
         *exit_code = 0;
     }
 }
 
+static void print_export_error(char *arg, int *exit_code) {
+    mx_printerr("ush: export: `");
+    mx_printerr(arg);
+    mx_printerr("': not a valid identifier\n");
+    *exit_code = 1;
+}
 
+static void clear_data(char *name, char *value) {
+    if(name)
+        free(name);
+    if(value)
+        free(value);
+}
 
 
