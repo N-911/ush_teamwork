@@ -1,9 +1,10 @@
 #include "ush.h"
 
 static int count_options(char **args);
-static char *replace_substr(const char *str, const char *sub, const char *replace);
+static char *replace_substr(char *str, char *sub, char *replace);
 static void fill_options(char **args, echo_t *echo_options, int n_options);
 static char *replace_slash(const char *str, echo_t *echo_options);
+static char *get_result(char *buff1, char *buff2,  char *replace);
 
 int mx_echo(t_shell *m_s, t_process *p) {
     int exit_code = m_s->exit_code;
@@ -85,24 +86,34 @@ static char *replace_slash(const char *str, echo_t *echo_options) {
     
     return res;
 }
-static char *replace_substr(const char *str, const char *sub, const char *replace) {
-    char *res = mx_strdup(str);
+static char *replace_substr(char *str,  char *sub, char *replace) {
+    char *res = strdup(str);
     char *buff1 = mx_strnew(mx_strlen(str));
     char *buff2 = mx_strnew(mx_strlen(str));
     while(mx_strstr(res,sub) != NULL) {
         int i = mx_get_substr_index(res,sub);
         mx_strncpy(buff1, res, i);
-        for(int j = 0; j < i + mx_strlen(sub); j++){
+        for(int j = 0; j < i + mx_strlen(sub); j++)
             res++;
-        }
         mx_strcpy(buff2,res);
-        res = "";
-        res = mx_strjoin(res, buff1);
-        res = mx_strjoin(res, replace);
-        res = mx_strjoin(res, buff2);
+        res = get_result(buff1, buff2, replace);
     }
     free(buff1);
     free(buff2);
+    return res;
+}
+
+static char *get_result(char *buff1, char *buff2,  char *replace) {
+    char *tmp = NULL;
+    char *res = NULL;
+
+    tmp = strdup(buff1);
+    res = mx_strjoin(tmp, replace);
+    free(tmp);
+    tmp = strdup(res);
+    free(res);
+    res = mx_strjoin(tmp, buff2);
+    free(tmp);
     return res;
 }
 

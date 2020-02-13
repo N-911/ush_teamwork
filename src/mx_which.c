@@ -60,7 +60,6 @@ static void check_path(char **arr, char *command, t_list **output, int *flag) {
                     name = strcat(arr[i], "/");
                     name = strcat(name, command);
                     mx_push_back(&*output, name);
-                    //free(name);
                     (*flag)++;
                 }
             }
