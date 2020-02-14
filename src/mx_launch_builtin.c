@@ -9,7 +9,7 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
 
     p->status = STATUS_RUNNING;
     if (p->type == 4 || p->type == 5 || p->type == 6) {
-        if(!p->pipe && p->foreground)
+        if(!p->pipe && p->foreground && m_s->jobs[job_id]->first_process->next == NULL)
             mx_remove_job(m_s, job_id);
     }
     // if pipe or in foreground -> fork
@@ -60,7 +60,7 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
     }
     else {
         int defoult;
-        if(p->input_path) {
+        if(p->output_path) {
             defoult = dup(1);
             if (p->outfile != STDOUT_FILENO) {
                 lseek(p->outfile, 0, SEEK_END);  
@@ -74,12 +74,13 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
         }
         status = builtin_functions[p->type](m_s, p);
         p->status = STATUS_DONE;
-        if(p->input_path) {
+        if(p->output_path) {
             if (p->outfile != STDOUT_FILENO) {
                 dup2(defoult, 1);
                 close(defoult);
             }
         }
     }
+    p->status = STATUS_DONE;
     return status;
 }

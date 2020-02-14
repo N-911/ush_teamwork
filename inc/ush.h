@@ -93,10 +93,10 @@
 #define IS_AND(x) (!mx_strcmp(x, "&&"))
 #define IS_OR(x) (!mx_strcmp(x, "||"))
 #define IS_PIPE(x) (!mx_strcmp(x, "|"))
-#define IS_R_INPUT(x) (!mx_strcmp(x, ">"))  // redirections
-#define IS_R_INPUT_DBL(x) (!mx_strcmp(x, ">>"))
-#define IS_R_OUTPUT(x) (!mx_strcmp(x, "<"))
-#define IS_R_OUTPUT_DBL(x) (!mx_strcmp(x, "<<"))
+#define IS_R_INPUT(x) (!mx_strcmp(x, "<"))  // redirections
+#define IS_R_INPUT_DBL(x) (!mx_strcmp(x, "<<"))
+#define IS_R_OUTPUT(x) (!mx_strcmp(x, ">"))
+#define IS_R_OUTPUT_DBL(x) (!mx_strcmp(x, ">>"))
 #define IS_SEP_FIRST_LWL(x) (x == SEP || x == FON || x == AND || x == OR)
 #define IS_REDIR_INP(x) (x == R_INPUT || x == R_INPUT_DBL)
 #define IS_REDIR_OUTP(x) (x == R_OUTPUT || x == R_OUTPUT_DBL)
@@ -191,8 +191,8 @@ typedef struct s_process {
     // char **envp;
     char *command;
     char *arg_command;
-    char *input_path;  // < <<
-    char *output_path;  // > >>
+    char *input_path;  // > >>
+    char *output_path;  // < <<
     int redir_delim;  // <, <<, >, >> from e_type
     pid_t pid;
     int exit_code;

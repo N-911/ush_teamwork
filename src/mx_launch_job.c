@@ -55,31 +55,30 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
 //         //------------
         if (m_s->exit_flag == 1 && !(p->type == 10))
             m_s->exit_flag = 0;
-
-        if (p->input_path) { // redirection > >>
+        if (p->output_path) { // redirection > >>
             int flags;
-            if (p->redir_delim == R_INPUT)
+            if (p->redir_delim == R_OUTPUT)
                 flags = O_WRONLY | O_CREAT | O_TRUNC;
-            if (p->redir_delim == R_INPUT_DBL)
+            if (p->redir_delim == R_OUTPUT_DBL)
                 flags = O_WRONLY | O_CREAT;
-            outfile = open(p->input_path, flags, 0666);
+            outfile = open(p->output_path, flags, 0666);
         }
-        if (p->output_path) { // redirection < <<
-            if (p->redir_delim == R_OUTPUT) {
-                infile = open(p->output_path, O_RDONLY, 0666);
+        if (p->input_path) { // redirection < <<
+            if (p->redir_delim == R_INPUT) {
+                infile = open(p->input_path, O_RDONLY, 0666);
                 if (infile < 0) {
                     mx_printerr("ush :");
-                    perror(p->output_path);
+                    perror(p->input_path);
                     mx_set_variable(m_s->variables, "?", "1");
                     mx_remove_job(m_s, job_id);
                     continue;
                 }
             }
-            if (p->redir_delim == R_OUTPUT_DBL) {
-                int fd = open(p->output_path, O_RDWR | O_CREAT | O_TRUNC, 0666);
+            if (p->redir_delim == R_INPUT_DBL) {
+                int fd = open(p->input_path, O_RDWR | O_CREAT | O_TRUNC, 0666);
                 char *line = "";
                 int count = 0;
-                while (strcmp(line, p->output_path) != 0) {
+                while (strcmp(line, p->input_path) != 0) {
                     printf("heredoc> ");
                     write(fd, line, mx_strlen(line));
                     if (count)
@@ -88,8 +87,8 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
                     count++;
                 }
                 close(fd);
-                infile = open(p->output_path, O_RDONLY, 0666);
-                remove(p->output_path);
+                infile = open(p->input_path, O_RDONLY, 0666);
+                remove(p->input_path);
             }
         }
         if (p->pipe) {
@@ -129,6 +128,7 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
     if (job->foreground) {
     //else if (status >= 0 && job->foreground == FOREGROUND) {
         tcsetpgrp(STDIN_FILENO, job->pgid);
+        printf ("status  %d\n", status);
         status = mx_wait_job(m_s, job_id);
 // printf(" launch_job_help-1  \n");
         if (mx_job_completed(m_s, job_id))

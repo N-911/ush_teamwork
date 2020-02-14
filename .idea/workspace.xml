@@ -12,16 +12,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="231a84a8-684e-4b8a-8236-bfbaca780c22" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/slss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/ush.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/ush.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/slss" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_builtin_commands.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_builtin_commands.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_init_shell.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_init_shell.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions_print.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions_print.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_launch_builtin.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_builtin.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_launch_job.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_job.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_launch_process.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_process.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_signal.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_signal.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ush" beforeDir="false" afterPath="$PROJECT_DIR$/ush" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,6 +122,7 @@
       <workItem from="1581576220998" duration="15818000" />
       <workItem from="1581597061423" duration="128000" />
       <workItem from="1581601261648" duration="5757000" />
+      <workItem from="1581661727656" duration="12546000" />
     </task>
     <task id="LOCAL-00001" summary="-test_snikolayen">
       <created>1579768232701</created>
@@ -260,10 +263,14 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="225" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1581590028515" />
-    <state x="330" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1581576224751">
+    <state x="330" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1581661729741">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="330" y="524" key="com.intellij.ide.util.TipDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1581576224751" />
+    <state x="330" y="524" key="com.intellij.ide.util.TipDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1581661729741" />
+    <state x="419" y="246" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1581667852775">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="419" y="246" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.2560.1337@0.23.2560.1337" timestamp="1581667852775" />
     <state x="493" y="615" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580109410730">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -272,10 +279,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="190" y="434" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.2560.1337@0.23.2560.1337" timestamp="1579775998237" />
-    <state x="231" y="95" width="1059" height="1058" key="find.popup" timestamp="1581614571166">
+    <state x="555" y="139" width="1059" height="1058" key="find.popup" timestamp="1581678459592">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="231" y="95" width="1059" height="1058" key="find.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1581614571166" />
+    <state x="555" y="139" width="1059" height="1058" key="find.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1581678459592" />
     <state x="384" y="328" key="refactoring.ChangeSignatureDialog" timestamp="1581353771175">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -334,12 +341,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>94</line>
+          <line>93</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>66</line>
+          <line>65</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -349,12 +356,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>121</line>
+          <line>120</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>128</line>
+          <line>127</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -364,17 +371,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>107</line>
+          <line>106</line>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>110</line>
+          <line>109</line>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>113</line>
+          <line>112</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">

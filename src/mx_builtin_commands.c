@@ -1,6 +1,9 @@
 #include "ush.h"
 static int count_args(char **args, int n_options);
+
 static void fill_options(int n_options, t_jobs *jobs_options, char **args);
+
+static void print_jobs_by_mask(t_shell *m_s, t_jobs jobs_options, int n_options);
 
 int mx_builtin_commands_idex(t_shell *m_s, char *command) {
     int i = 0;
@@ -24,61 +27,89 @@ jobs: bad option: -z
 */
 
 int mx_jobs(t_shell *m_s, t_process *p) {
-    t_jobs jobs_options = {0, 0, 0};
+    t_jobs jobs_op = {0, 0, 0};
     int n_options = mx_count_options(p->argv, "lprs", "jobs", " [-lrs]");
     int n_args = count_args(p->argv, n_options);
     int exit_code = 0;
+    int job_id;
 
     mx_set_last_job(m_s);
-    printf ("n_opptions  %d\n", n_options);
-    printf("n_args  %d\n", n_args);
-    fill_options(n_options, &jobs_options, p->argv);
-
-
+    printf ("n_opptions   = %d\n", n_options);
+    printf("n_args  =\t%d\n", n_args);
+    fill_options(n_options, &jobs_op, p->argv);
 
 //    printf("jobs in \n");
-    if (n_options >= 0 && n_args < 2) {
-        if (n_args == 0 && !n_options) {
-            for (int i = 0; i < JOBS_NUMBER; i++) {
-                if (m_s->jobs[i] != NULL)
-                    mx_print_job_status(m_s, i, 0);
+
+
+    if (n_options >= 0 && n_args == 0)
+        print_jobs_by_mask(m_s, jobs_op, n_options);
+    else if (n_args) {
+        for (int j = n_options + 1; p->argv[j] != NULL; j++) {
+            for (int i = 1; i < JOBS_NUMBER; i++) {
+                if (m_s->jobs[i] != NULL) {
+                    if ((job_id = mx_find_job_by_p_name(m_s, (p->argv[j]))) < 1) {
+                        mx_error_fg_bg(p->argv[0], ": job not found: ", p->argv[j], "\n");
+                        return -1;
+                    }
+                    mx_print_job_status(m_s, job_id, 0);
+                }
             }
-        }
-        else if (jobs_options.l) {
-            if (jobs_options.r) {
-                for (int i = 0; i < JOBS_NUMBER; i++)
-                    if (m_s->jobs[i] != NULL && mx_job_is_running(m_s, i))
-                        mx_print_job_status(m_s, i, 1);
-            } else if (jobs_options.s) {
-                for (int i = 0; i < JOBS_NUMBER; i++)
-                    if (m_s->jobs[i] != NULL && !mx_job_is_running(m_s, i))
-                        mx_print_job_status(m_s, i, 1);
-            } else {
-                for (int i = 0; i < JOBS_NUMBER; i++)
-                    if (m_s->jobs[i] != NULL)
-                        mx_print_job_status(m_s, i, 1);
-            }
-        }
-        else if (jobs_options.r && !jobs_options.s) {
-            for (int i = 0; i < JOBS_NUMBER; i++)
-                if (m_s->jobs[i] != NULL && mx_job_is_running(m_s, i))
-                    mx_print_job_status(m_s, i, 1);
-        }
-        else if (jobs_options.s && !jobs_options.r) {
-            for (int i = 0; i < JOBS_NUMBER; i++)
-                if (m_s->jobs[i] != NULL && !mx_job_is_running(m_s, i))
-                    mx_print_job_status(m_s, i, 1);
-        }
-        else {
-            for (int i = 0; i < JOBS_NUMBER; i++)
-                if (m_s->jobs[i] != NULL)
-                    mx_print_job_status(m_s, i, 0);
         }
     }
+
     p->exit_code = 0;
 //    mx_print_stack(m_s);
     return exit_code;
 }
+
+//    if ((job_id = mx_find_job_by_p_name(m_s, (p->argv[i]))) < 1) {
+//        mx_error_fg_bg(p->argv[0], ": job not found: ", p->argv[i], "\n");
+//            return -1;
+//
+//
+
+static void print_jobs_by_mask(t_shell *m_s, t_jobs jobs_op, int n_op) {
+    if (!n_op) {
+        for (int i = 0; i < JOBS_NUMBER; i++) {
+            if (m_s->jobs[i] != NULL)
+                mx_print_job_status(m_s, i, 0);
+        }
+    }
+    else if (jobs_op.l) {
+        if (jobs_op.r) {
+            for (int i = 0; i < JOBS_NUMBER; i++)
+                if (m_s->jobs[i] != NULL && mx_job_is_running(m_s, i))
+                    mx_print_job_status(m_s, i, 1);
+                }
+                else if (jobs_op.s) {
+                    for (int i = 0; i < JOBS_NUMBER; i++)
+                        if (m_s->jobs[i] != NULL && !mx_job_is_running(m_s, i))
+                            mx_print_job_status(m_s, i, 1);
+                }
+                else {
+                    for (int i = 0; i < JOBS_NUMBER; i++)
+                        if (m_s->jobs[i] != NULL)
+                            mx_print_job_status(m_s, i, 1);
+                }
+    }
+    else if (jobs_op.r && !jobs_op.s) {
+        for (int i = 0; i < JOBS_NUMBER; i++)
+            if (m_s->jobs[i] != NULL && mx_job_is_running(m_s, i))
+                mx_print_job_status(m_s, i, 1);
+    }
+
+    else if (jobs_op.s && !jobs_op.r) {
+        for (int i = 0; i < JOBS_NUMBER; i++)
+            if (m_s->jobs[i] != NULL && !mx_job_is_running(m_s, i))
+                mx_print_job_status(m_s, i, 1);
+    }
+    else {
+        for (int i = 0; i < JOBS_NUMBER; i++)
+            if (m_s->jobs[i] != NULL)
+                mx_print_job_status(m_s, i, 0);
+    }
+}
+
 
 static int count_args(char **args, int n_options) {
     int n_args = 0;
