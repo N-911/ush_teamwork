@@ -129,10 +129,12 @@ typedef struct s_ast {
 /*
  * For redirections
  */
-// typedef struct s_redir {
-//     char **args;
-//     int type;
-// } t_redir;
+typedef struct s_redir {
+    char *input_path;  // < <<
+    char *output_path;  // > >>
+    int redir_delim;  // <, <<, >, >> from e_type
+    struct s_redir *next;
+} t_redir;
 
 typedef struct s_jobs  {
     int l;
@@ -201,10 +203,10 @@ typedef struct s_process {
     // char **envp;
     char *command;
     char *arg_command;
-    char *input_path;  // > >>
-    char *output_path;  // < <<
+    char *input_path;  // < <<
+    char *output_path;  // > >>
     int redir_delim;  // <, <<, >, >> from e_type
-
+    t_redir *redirect;  // new
     pid_t pid;
     int exit_code;
     char *path;
@@ -286,6 +288,8 @@ void mx_ast_push_back(t_ast **head, char **args, int type);
 void mx_ast_push_back_redirection(t_ast **head, char **args, int type);
 void mx_ast_clear_list(t_ast **list);
 void mx_ast_clear_all(t_ast ***list);                 // mx_ast_clear_list.c
+void mx_redir_push_back(t_redir **head, char *path, int type);
+void mx_redir_clear_list(t_redir **list);
 bool mx_check_parce_errors(char *line);
 char *mx_ush_read_line(void);
 /*
@@ -297,14 +301,12 @@ char *mx_ush_read_line(void);
  *                  don't strdup input line, but "cut" existing line with '\0';
  * mx_subst_tilde   subst ~ (tilde);
  * mx_substr_dollar subst $ (variable);
- * mx_get_variable_value    get value from t_export *variables.
  */
 char **mx_filters(char *arg, t_export *variables);
 char *mx_strtok (char *s, const char *delim);
 char **mx_parce_tokens(char *line);
 char *mx_subst_tilde(char *s);
 char *mx_substr_dollar(char *s, t_export *variables);
-char *mx_get_variable_value(char *var, t_export *variables);
 char *mx_substr_backslash(char *s);
 /*
  *  ---------------------------------------------- mx_quote_manage.c

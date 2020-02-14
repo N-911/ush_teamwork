@@ -1,17 +1,17 @@
 #include "ush.h"
 
-// static int get_job_type(t_ast **ast, int i) {
-//     t_ast *tmp = NULL;
+static int get_job_type(t_ast **ast, int i) {
+    t_ast *tmp = NULL;
 
-//     if (i != 0) {
-//         tmp = ast[i - 1];
-//         while (tmp->next)
-//             tmp = tmp->next;
-//         if (tmp->type == AND || tmp->type == OR)
-//             return tmp->type;
-//     }
-//     return 0;
-// }
+    if (i != 0) {
+        tmp = ast[i - 1];
+        while (tmp->next)
+            tmp = tmp->next;
+        if (tmp->type == AND || tmp->type == OR)
+            return tmp->type;
+    }
+    return 0;
+}
 
 void mx_ush_loop(t_shell *m_s) {
     char *line;

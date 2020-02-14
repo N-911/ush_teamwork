@@ -1,7 +1,7 @@
 #include "ush.h"
 /*
-*  clear one lists (parsed_line)
-*/
+ * Cclear one lists (parsed_line).
+ */
 void mx_ast_clear_list(t_ast **list) {
     t_ast *q = *list;
     t_ast *tmp = NULL;
@@ -20,8 +20,8 @@ void mx_ast_clear_list(t_ast **list) {
     *list = NULL;
 }
 /*
-*  clear array of lists (Abstract Syntax Tree)
-*/
+ *  Clear array of lists (Abstract Syntax Tree).
+ */
 void mx_ast_clear_all(t_ast ***list) {
     t_ast **q = *list;
 

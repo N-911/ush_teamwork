@@ -17,7 +17,7 @@ t_ast *push_redirections(t_ast **q, t_ast **ast) {
     int tmp_type;
     t_ast *c = (*q)->next;
 
-    tmp_type = c->type;
+    tmp_type = (*q)->type;
     for (; c && MX_IS_REDIRECTION(tmp_type); c = c->next, (*q) = (*q)->next) {
         mx_ast_push_back_redirection(ast, c->args, tmp_type);
         tmp_type = c->type;

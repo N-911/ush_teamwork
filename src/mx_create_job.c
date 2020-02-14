@@ -8,6 +8,7 @@ static t_process *init_process(void) {
     p->input_path = NULL;
     p->output_path = NULL;
     p->redir_delim = 0;
+    p->redirect = NULL;
     p->foreground = 1;
     p->pipe = 0;
     p->next = NULL;
@@ -35,8 +36,10 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
             p->output_path = mx_strdup(tmp->args[0]);
     }
     // new redirections
-    // if (list->left) {
-    // }
+    if (list->left) {
+        for (t_ast *q = list->left; q; q = q->next)
+            mx_redir_push_back(&p->redirect, q->args[0], q->type);
+    }
     //
     if (p->delim == FON)
         p->foreground = 0;
