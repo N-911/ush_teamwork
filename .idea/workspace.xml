@@ -12,17 +12,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="231a84a8-684e-4b8a-8236-bfbaca780c22" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/ush.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/ush.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/slss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1" beforeDir="false" afterPath="$PROJECT_DIR$/1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_builtin_commands.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_builtin_commands.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_init_shell.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_init_shell.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_launch_builtin.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_builtin.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_launch_job.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_job.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ush" beforeDir="false" afterPath="$PROJECT_DIR$/ush" afterDir="false" />
     </list>
@@ -122,7 +115,7 @@
       <workItem from="1581576220998" duration="15818000" />
       <workItem from="1581597061423" duration="128000" />
       <workItem from="1581601261648" duration="5757000" />
-      <workItem from="1581661727656" duration="12546000" />
+      <workItem from="1581661727656" duration="12930000" />
     </task>
     <task id="LOCAL-00001" summary="-test_snikolayen">
       <created>1579768232701</created>
@@ -180,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581590024513</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fix bugs and &lt; &gt;">
+      <created>1581681543330</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1581681543330</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -204,7 +204,8 @@
     <MESSAGE value="snikolayen_test_jobs" />
     <MESSAGE value="c&#10;merge_snikolayen_5" />
     <MESSAGE value="fg and bg" />
-    <option name="LAST_COMMIT_MESSAGE" value="fg and bg" />
+    <MESSAGE value="fix bugs and &lt; &gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bugs and &lt; &gt;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="395" y="462" key="#Deployment" timestamp="1581505914696">
@@ -215,10 +216,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="89" y="353" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1580648262088" />
-    <state x="219" y="294" width="1153" height="1005" key="CommitChangelistDialog2" timestamp="1581590023287">
+    <state x="219" y="294" width="1153" height="1005" key="CommitChangelistDialog2" timestamp="1581681542653">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="219" y="294" width="1153" height="1005" key="CommitChangelistDialog2/0.23.2560.1337@0.23.2560.1337" timestamp="1581590023287" />
+    <state x="219" y="294" width="1153" height="1005" key="CommitChangelistDialog2/0.23.2560.1337@0.23.2560.1337" timestamp="1581681542653" />
     <state width="1264" height="247" key="GridCell.Tab.0.bottom" timestamp="1581441051182">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -259,10 +260,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="640" height="384" key="ImportCMakeProjectWizard.topPanel/0.23.2560.1337@0.23.2560.1337" timestamp="1580644358149" />
-    <state x="225" y="431" key="Vcs.Push.Dialog.v2" timestamp="1581590028515">
+    <state x="225" y="431" key="Vcs.Push.Dialog.v2" timestamp="1581681550179">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="225" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1581590028515" />
+    <state x="225" y="431" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1581681550179" />
     <state x="330" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1581661729741">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -366,7 +367,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>143</line>
+          <line>142</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -401,7 +402,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>131</line>
+          <line>130</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">

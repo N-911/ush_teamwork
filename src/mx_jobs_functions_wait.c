@@ -40,8 +40,8 @@ int mx_wait_job(t_shell *m_s, int job_id) {
 //    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
 //        return -1;
    proc_count = mx_get_proc_count(m_s, job_id, FILTER_IN_PROGRESS);
-   printf("job_id %d\n", job_id);
-   printf("proc count %d\n", proc_count);
+//   printf("job_id %d\n", job_id);
+//   printf("proc count %d\n", proc_count);
     while (wait_count < proc_count) {
         wait_pid = waitpid(-m_s->jobs[job_id]->pgid, &status, WUNTRACED);
         wait_count++;

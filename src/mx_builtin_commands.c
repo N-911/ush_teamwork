@@ -34,13 +34,9 @@ int mx_jobs(t_shell *m_s, t_process *p) {
     int job_id;
 
     mx_set_last_job(m_s);
-    printf ("n_opptions   = %d\n", n_options);
-    printf("n_args  =\t%d\n", n_args);
+//    printf ("n_opptions   = %d\n", n_options);
+//    printf("n_args  =\t%d\n", n_args);
     fill_options(n_options, &jobs_op, p->argv);
-
-//    printf("jobs in \n");
-
-
     if (n_options >= 0 && n_args == 0)
         print_jobs_by_mask(m_s, jobs_op, n_options);
     else if (n_args) {
@@ -56,17 +52,10 @@ int mx_jobs(t_shell *m_s, t_process *p) {
             }
         }
     }
-
     p->exit_code = 0;
 //    mx_print_stack(m_s);
     return exit_code;
 }
-
-//    if ((job_id = mx_find_job_by_p_name(m_s, (p->argv[i]))) < 1) {
-//        mx_error_fg_bg(p->argv[0], ": job not found: ", p->argv[i], "\n");
-//            return -1;
-//
-//
 
 static void print_jobs_by_mask(t_shell *m_s, t_jobs jobs_op, int n_op) {
     if (!n_op) {

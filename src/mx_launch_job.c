@@ -128,7 +128,6 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
     if (job->foreground) {
     //else if (status >= 0 && job->foreground == FOREGROUND) {
         tcsetpgrp(STDIN_FILENO, job->pgid);
-        printf ("status  %d\n", status);
         status = mx_wait_job(m_s, job_id);
 // printf(" launch_job_help-1  \n");
         if (mx_job_completed(m_s, job_id))
