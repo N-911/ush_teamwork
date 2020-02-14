@@ -88,19 +88,19 @@
 #define USH_TOK_DELIM " \t\n"  // " \t\r\n\a"
 
 /* Macroces for recognizing delimeters */
-#define IS_SEP(x) (!mx_strcmp(x, ";"))
-#define IS_FON(x) (!mx_strcmp(x, "&"))
-#define IS_AND(x) (!mx_strcmp(x, "&&"))
-#define IS_OR(x) (!mx_strcmp(x, "||"))
-#define IS_PIPE(x) (!mx_strcmp(x, "|"))
-#define IS_R_INPUT(x) (!mx_strcmp(x, ">"))  // redirections
-#define IS_R_INPUT_DBL(x) (!mx_strcmp(x, ">>"))
-#define IS_R_OUTPUT(x) (!mx_strcmp(x, "<"))
-#define IS_R_OUTPUT_DBL(x) (!mx_strcmp(x, "<<"))
-#define IS_SEP_FIRST_LWL(x) (x == SEP || x == FON || x == AND || x == OR)
-#define IS_REDIR_INP(x) (x == R_INPUT || x == R_INPUT_DBL)
-#define IS_REDIR_OUTP(x) (x == R_OUTPUT || x == R_OUTPUT_DBL)
-#define IS_REDIRECTION(x) (IS_REDIR_INP(x) || IS_REDIR_OUTP(x))
+#define MX_IS_SEP(x) (!mx_strcmp(x, ";"))
+#define MX_IS_FON(x) (!mx_strcmp(x, "&"))
+#define MX_IS_AND(x) (!mx_strcmp(x, "&&"))
+#define MX_IS_OR(x) (!mx_strcmp(x, "||"))
+#define MX_IS_PIPE(x) (!mx_strcmp(x, "|"))
+#define MX_IS_R_INPUT(x) (!mx_strcmp(x, ">"))  // redirections
+#define MX_IS_R_INPUT_DBL(x) (!mx_strcmp(x, ">>"))
+#define MX_IS_R_OUTPUT(x) (!mx_strcmp(x, "<"))
+#define MX_IS_R_OUTPUT_DBL(x) (!mx_strcmp(x, "<<"))
+#define MX_IS_SEP_FIRST_LWL(x) (x == SEP || x == FON || x == AND || x == OR)
+#define MX_IS_REDIR_INP(x) (x == R_INPUT || x == R_INPUT_DBL)
+#define MX_IS_REDIR_OUTP(x) (x == R_OUTPUT || x == R_OUTPUT_DBL)
+#define MX_IS_REDIRECTION(x) (MX_IS_REDIR_INP(x) || MX_IS_REDIR_OUTP(x))
 
 /* Types of operators */
 enum e_type {
@@ -116,14 +116,23 @@ enum e_type {
     NUL
 };
 
-/* For creation Abstract Syntax Tree */
+/*
+ * For creation Abstract Syntax Tree
+ */
 typedef struct s_ast {
     char **args;            // cmd with args
     int type;               // type of delim after cmd (last -> ;)
     struct s_ast *next;
     struct s_ast *left;     // for redirections
-    struct s_ast *parent;   // delete !!!!!
 } t_ast;
+
+/*
+ * For redirections
+ */
+// typedef struct s_redir {
+//     char **args;
+//     int type;
+// } t_redir;
 
 typedef struct cd_s  {
     int s;
@@ -188,6 +197,7 @@ typedef struct s_process {
     char *input_path;  // < <<
     char *output_path;  // > >>
     int redir_delim;  // <, <<, >, >> from e_type
+
     pid_t pid;
     int exit_code;
     char *path;
@@ -266,7 +276,7 @@ t_ast **mx_ast_creation(char *line, t_shell *m_s);
 t_ast *mx_ush_parsed_line(char *line, t_export *variables);
 t_ast **mx_ast_parse(t_ast *parsed_line);
 void mx_ast_push_back(t_ast **head, char **args, int type);
-/* rewrite */ void mx_ast_push_back_redirection(t_ast **head, t_ast **list);
+void mx_ast_push_back_redirection(t_ast **head, char **args, int type);
 void mx_ast_clear_list(t_ast **list);
 void mx_ast_clear_all(t_ast ***list);                 // mx_ast_clear_list.c
 bool mx_check_parce_errors(char *line);
@@ -280,12 +290,14 @@ char *mx_ush_read_line(void);
  *                  don't strdup input line, but "cut" existing line with '\0';
  * mx_subst_tilde   subst ~ (tilde);
  * mx_substr_dollar subst $ (variable);
+ * mx_get_variable_value    get value from t_export *variables.
  */
 char **mx_filters(char *arg, t_export *variables);
 char *mx_strtok (char *s, const char *delim);
 char **mx_parce_tokens(char *line);
 char *mx_subst_tilde(char *s);
 char *mx_substr_dollar(char *s, t_export *variables);
+char *mx_get_variable_value(char *var, t_export *variables);
 char *mx_substr_backslash(char *s);
 /*
  *  ---------------------------------------------- mx_quote_manage.c

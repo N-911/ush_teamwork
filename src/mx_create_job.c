@@ -24,14 +24,19 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
     p->argv = mx_strdup_arr(list->args);
     p->delim = list->type;
     p->command = mx_strdup(list->args[0]);
+    // old redir
     if (list->left) {
         tmp = list->left;
         p->redir_delim = tmp->type;
-        if (IS_REDIR_INP(tmp->type))
+        if (MX_IS_REDIR_INP(tmp->type))
             p->input_path = mx_strdup(tmp->args[0]);
-        else if (IS_REDIR_OUTP(tmp->type))
+        else if (MX_IS_REDIR_OUTP(tmp->type))
             p->output_path = mx_strdup(tmp->args[0]);
     }
+    // new redirections
+    // if (list->left) {
+    // }
+    //
     if (p->delim == FON)
         p->foreground = 0;
     if (p->delim == PIPE)

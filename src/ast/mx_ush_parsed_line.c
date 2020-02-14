@@ -3,23 +3,23 @@
  * Convert delimeter in int-value.
  */
 static int get_type(char *delim) {
-    if (IS_SEP(delim))
+    if (MX_IS_SEP(delim))
         return SEP;
-    else if (IS_FON(delim))
+    else if (MX_IS_FON(delim))
         return FON;
-    else if (IS_AND(delim))
+    else if (MX_IS_AND(delim))
         return AND;
-    else if (IS_OR(delim))
+    else if (MX_IS_OR(delim))
         return OR;
-    else if (IS_PIPE(delim))
+    else if (MX_IS_PIPE(delim))
         return PIPE;
-    else if (IS_R_INPUT(delim))
+    else if (MX_IS_R_INPUT(delim))
         return R_INPUT;
-    else if (IS_R_INPUT_DBL(delim))
+    else if (MX_IS_R_INPUT_DBL(delim))
         return R_INPUT_DBL;
-    else if (IS_R_OUTPUT(delim))
+    else if (MX_IS_R_OUTPUT(delim))
         return R_OUTPUT;
-    else if (IS_R_OUTPUT_DBL(delim))
+    else if (MX_IS_R_OUTPUT_DBL(delim))
         return R_OUTPUT_DBL;
     return NUL;
 }
