@@ -86,7 +86,11 @@ static void manage_env(char *dir, t_shell *m_s,  cd_t cd_options, int *exit_code
 	}
 	free(link);
 	setenv("OLDPWD", m_s->pwd, 1);
+	mx_set_variable(m_s->variables, "OLDPWD", m_s->pwd);
+	mx_set_variable(m_s->exported, "OLDPWD", m_s->pwd);
 	setenv("PWD", dir, 1);
+	mx_set_variable(m_s->variables, "PWD", dir);
+	mx_set_variable(m_s->exported, "PWD", dir);
 	free(m_s->pwd);
 	m_s->pwd = strdup(dir);
 	free(dir);

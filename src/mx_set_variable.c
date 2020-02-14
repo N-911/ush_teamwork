@@ -7,7 +7,8 @@ void mx_set_variable(t_export *export, char *name, char *value) {
     while (head != NULL) {
         if (strcmp(head->name, name) == 0) {
             flag++;
-            head->value = value;
+            free(head->value);
+            head->value = strdup(value);
             break;
         }
         head = head->next;
