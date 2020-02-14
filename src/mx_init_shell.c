@@ -39,6 +39,10 @@ t_shell *mx_init_shell(int argc, char **argv) {
     free(shlvl);
     m_s->exported = mx_set_export();
     m_s->variables = mx_set_variables();
+    m_s->prompt = "u$h>";
+    m_s->prompt_status = 1;
+    mx_set_variable(m_s->variables, "PROMPT", "u$h>");
+    mx_set_variable(m_s->variables, "PROMPT1", "Auditor dlya lohov>");
     shell_is_interactive = isatty(shell_terminal);  // See if we are running interactively.
 //    mx_terminal_init(m_s);
     if (shell_is_interactive) {

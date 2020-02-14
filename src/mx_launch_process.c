@@ -58,10 +58,13 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
             print_error(command, error);
             _exit(status);
         }
+
+        exit(status);
     }
     else {
         p->pid = child_pid;
         //WAIT_CHILD();
+        
         if (shell_is_interactive) {
             pid_t pid = child_pid;
             if (m_s->jobs[job_id]->pgid == 0)
@@ -75,6 +78,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
         // mx_print_color(YEL, mx_itoa(m_s->jobs[job_id]->pgid));
         // mx_printstr("\n");
     }
+
     return status >> 8;//WEXITSTATUS(status)
 }
 

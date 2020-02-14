@@ -90,6 +90,7 @@
 #define K_DOWN      4348699
 #define P_UP        2117425947
 #define P_DOWN      2117491483
+#define C_PROMPT    42946
 #define CTRL_D      4
 #define CTRL_C      3
 #define CTRL_R      18
@@ -265,6 +266,8 @@ typedef struct s_shell {
     bool custom_terminal;
     pid_t shell_pgid;
     char *pwd;
+    char *prompt;
+    int prompt_status;
     t_export *exported;
     t_export *variables;
 } t_shell;

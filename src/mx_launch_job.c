@@ -107,6 +107,7 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
         int flag = get_flag(p->argv);
         if (flag) {
             status = mx_set_parametr(p->argv, m_s);
+            mx_remove_job(m_s, job_id);
         } else if (p->type != -1) {
             status = mx_launch_builtin(m_s, p, job_id);  // fork own buildins
         } else
