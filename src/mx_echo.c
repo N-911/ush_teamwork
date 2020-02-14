@@ -5,33 +5,37 @@ static char *replace_substr(char *str, char *sub, char *replace);
 static void fill_options(char **args, echo_t *echo_options, int n_options);
 static char *replace_slash(const char *str, echo_t *echo_options);
 static char *get_result(char *buff1, char *buff2,  char *replace);
+static void edit_argv(int n_options, t_process *p, char *sequenses[], char *escape[]);
 
 int mx_echo(t_shell *m_s, t_process *p) {
     int exit_code = m_s->exit_code;
-    echo_t echo_options = {0, 0, 0};
     int n_options = count_options(p->argv);
     char *sequenses[] = {"\\a","\\b","\\f","\\n","\\r","\\t","\\v",NULL};
     char *escape[] = {"\a","\b","\f","\n","\r","\t","\v",NULL};
 
+    edit_argv(n_options, p, sequenses, escape);
+    return exit_code;
+}
+
+static void edit_argv(int n_options, t_process *p, char *sequenses[], char *escape[]) {
+    echo_t echo_options = {0, 0, 0};
+
     fill_options(p->argv, &echo_options, n_options);
     for(int i = n_options + 1; p->argv[i] != NULL; i++) {
-    	if (!echo_options.E) {
+        if (!echo_options.E) {
             p->argv[i] = replace_slash(p->argv[i], &echo_options);
-    		for (int j = 0; sequenses[j] != NULL; j++) {
-    			if (strstr(p->argv[i],sequenses[j])) {
-	    			p->argv[i] = replace_substr(p->argv[i],sequenses[j], escape[j]);
-    			}
-    		}
-    	}
-    	printf("%s",p->argv[i]);
+            for (int j = 0; sequenses[j] != NULL; j++) {
+                if (strstr(p->argv[i],sequenses[j]))
+                    p->argv[i] = replace_substr(p->argv[i],sequenses[j], escape[j]);
+            }
+        }
+        printf("%s",p->argv[i]);
         if(strstr(p->argv[i],"\\c"))
             break;
-    	if (p->argv[i + 1])
-    		mx_printstr(" ");
+        if (p->argv[i + 1])
+            mx_printstr(" ");
     }
-    if (!echo_options.n)
-    	mx_printstr("\n");
-    return exit_code;
+    !echo_options.n ? printf("\n") : 0;
 }
 
 static int count_options(char **args) {
@@ -55,9 +59,8 @@ static char *replace_slash(const char *str, echo_t *echo_options) {
     int len = 0;
 
     for (int i = 0; i < mx_strlen(str); i++) {
-        if (str[i] == '\\' && str[i + 1] == '\\') {
+        if (str[i] == '\\' && str[i + 1] == '\\')
             i++;
-        }
         if (str[i] == '\\' && str[i + 1] == 'e') {
             if (str[i + 2] != '\\')
                 i += 3;
@@ -69,9 +72,8 @@ static char *replace_slash(const char *str, echo_t *echo_options) {
             break;
         }
         if (str[i] == '\\' && str[i + 1] == 'x') {
-            if (!str[i + 2]) {
+            if (!str[i + 2])
                 i += 2;
-            }
             else {
                 char rep = mx_hex_to_nbr(strndup(str + i + 2, 2));
                 res[len] = rep;

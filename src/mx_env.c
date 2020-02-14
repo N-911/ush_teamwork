@@ -32,6 +32,8 @@ int mx_env(t_shell *m_s, t_process *p) {
     else {
         launch_command(p, env, &exit_code);
     }
+    if (env->path)
+        free (env->path);
     m_s->exit_flag = 0;
   	return exit_code;
 }
