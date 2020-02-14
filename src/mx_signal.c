@@ -20,9 +20,10 @@ void sigchld_handler(int signum) {
 void mx_sig_handler(int signal) {
     if (signal == SIGTSTP)
         printf("\n");
-    if (signal == SIGINT){
+    else if (signal == SIGINT)
         printf("\n%s%s%s", GRN, "u$h> ", RESET);
-    }
+    else
+        printf ("unnown signal\n");
     //printf("%d\n", signal);
 }
 

@@ -47,6 +47,7 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
                 close(p->errfile);
             }
             status = builtin_functions[p->type](m_s, p);
+            p->status = STATUS_DONE;
             exit (status);
         }
         else {
