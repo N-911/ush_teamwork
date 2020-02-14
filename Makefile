@@ -50,6 +50,8 @@ SRC_PARSER = libmx1.c \
     mx_parce_tokens.c \
     mx_strtok.c \
     mx_quote_manage.c \
+    mx_redir_push_back.c \
+    mx_subst_backslash.c \
     mx_subst_tilde.c \
     mx_subst_dollar.c \
     mx_ush_parsed_line.c \
@@ -102,7 +104,9 @@ OBJ_PARSER = libmx1.o \
     mx_filters.o \
     mx_parce_tokens.o \
     mx_quote_manage.o \
+    mx_redir_push_back.o \
     mx_strtok.o \
+    mx_subst_backslash.o \
     mx_subst_tilde.o \
     mx_subst_dollar.o \
     mx_ush_parsed_line.o \

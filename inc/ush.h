@@ -34,7 +34,6 @@
 
 #define LSH_RL_BUFSIZE 1024
 #define LSH_TOK_BUFSIZE 64
-#define LSH_TOK_DELIM " \t\r\n\a"
 
 //  EXIT
 #define EXIT_FAILURE 1
@@ -102,23 +101,24 @@
 */
 /* Operators and delimeters for parse tokens */
 #define PARSE_DELIM ";|&><"
-#define QUOTE "\'\"`"
-#define USH_TOK_DELIM " \t\r\n\a"
+#define QUOTE "\"`()"
+#define DBL_QUOTE_EXCEPTIONS "$`\"\\"
+#define USH_TOK_DELIM " \t\n"  // " \t\r\n\a"
 
 /* Macroces for recognizing delimeters */
-#define IS_SEP(x) (!mx_strcmp(x, ";"))
-#define IS_FON(x) (!mx_strcmp(x, "&"))
-#define IS_AND(x) (!mx_strcmp(x, "&&"))
-#define IS_OR(x) (!mx_strcmp(x, "||"))
-#define IS_PIPE(x) (!mx_strcmp(x, "|"))
-#define IS_R_INPUT(x) (!mx_strcmp(x, "<"))  // redirections
-#define IS_R_INPUT_DBL(x) (!mx_strcmp(x, "<<"))
-#define IS_R_OUTPUT(x) (!mx_strcmp(x, ">"))
-#define IS_R_OUTPUT_DBL(x) (!mx_strcmp(x, ">>"))
-#define IS_SEP_FIRST_LWL(x) (x == SEP || x == FON || x == AND || x == OR)
-#define IS_REDIR_INP(x) (x == R_INPUT || x == R_INPUT_DBL)
-#define IS_REDIR_OUTP(x) (x == R_OUTPUT || x == R_OUTPUT_DBL)
-#define IS_REDIRECTION(x) (IS_REDIR_INP(x) || IS_REDIR_OUTP(x))
+#define MX_IS_SEP(x) (!mx_strcmp(x, ";"))
+#define MX_IS_FON(x) (!mx_strcmp(x, "&"))
+#define MX_IS_AND(x) (!mx_strcmp(x, "&&"))
+#define MX_IS_OR(x) (!mx_strcmp(x, "||"))
+#define MX_IS_PIPE(x) (!mx_strcmp(x, "|"))
+#define MX_IS_R_INPUT(x) (!mx_strcmp(x, "<"))  // redirections
+#define MX_IS_R_INPUT_DBL(x) (!mx_strcmp(x, "<<"))
+#define MX_IS_R_OUTPUT(x) (!mx_strcmp(x, ">"))
+#define MX_IS_R_OUTPUT_DBL(x) (!mx_strcmp(x, ">>"))
+#define MX_IS_SEP_FIRST_LWL(x) (x == SEP || x == FON || x == AND || x == OR)
+#define MX_IS_REDIR_INP(x) (x == R_INPUT || x == R_INPUT_DBL)
+#define MX_IS_REDIR_OUTP(x) (x == R_OUTPUT || x == R_OUTPUT_DBL)
+#define MX_IS_REDIRECTION(x) (MX_IS_REDIR_INP(x) || MX_IS_REDIR_OUTP(x))
 
 /* Types of operators */
 enum e_type {
@@ -134,20 +134,32 @@ enum e_type {
     NUL
 };
 
-/* For creation Abstract Syntax Tree */
+/*
+ * For creation Abstract Syntax Tree
+ */
 typedef struct s_ast {
     char **args;            // cmd with args
     int type;               // type of delim after cmd (last -> ;)
     struct s_ast *next;
     struct s_ast *left;     // for redirections
-    struct s_ast *parent;   // delete !!!!!
 } t_ast;
+
+/*
+ * For redirections
+ */
+typedef struct s_redir {
+    char *input_path;  // < <<
+    char *output_path;  // > >>
+    int redir_delim;  // <, <<, >, >> from e_type
+    struct s_redir *next;
+} t_redir;
 
 typedef struct s_jobs  {
     int l;
     int r;
     int s;
 } t_jobs;
+
 
 typedef struct cd_s  {
     int s;
@@ -209,9 +221,10 @@ typedef struct s_process {
     // char **envp;
     char *command;
     char *arg_command;
-    char *input_path;  // > >>
-    char *output_path;  // < <<
+    char *input_path;  // < <<
+    char *output_path;  // > >>
     int redir_delim;  // <, <<, >, >> from e_type
+    t_redir *redirect;  // new
     pid_t pid;
     int exit_code;
     char *path;
@@ -290,9 +303,11 @@ t_ast **mx_ast_creation(char *line, t_shell *m_s);
 t_ast *mx_ush_parsed_line(char *line, t_export *variables);
 t_ast **mx_ast_parse(t_ast *parsed_line);
 void mx_ast_push_back(t_ast **head, char **args, int type);
-/* rewrite */ void mx_ast_push_back_redirection(t_ast **head, t_ast **list);
+void mx_ast_push_back_redirection(t_ast **head, char **args, int type);
 void mx_ast_clear_list(t_ast **list);
 void mx_ast_clear_all(t_ast ***list);                 // mx_ast_clear_list.c
+void mx_redir_push_back(t_redir **head, char *path, int type);
+void mx_redir_clear_list(t_redir **list);
 bool mx_check_parce_errors(char *line);
 char *mx_ush_read_line(void);
 /*
@@ -305,24 +320,23 @@ char *mx_ush_read_line(void);
  * mx_subst_tilde   subst ~ (tilde);
  * mx_substr_dollar subst $ (variable);
  */
-/* check */char **mx_filters(char *arg, t_export *variables);
-/* check */char *mx_strtok (char *s, const char *delim);
-/* check */char **mx_parce_tokens(char *line);
+char **mx_filters(char *arg, t_export *variables);
+char *mx_strtok (char *s, const char *delim);
+char **mx_parce_tokens(char *line);
 char *mx_subst_tilde(char *s);
 char *mx_substr_dollar(char *s, t_export *variables);
+char *mx_substr_backslash(char *s);
 /*
  *  ---------------------------------------------- mx_quote_manage.c
- * mx_get_char_index_quote      get char index outside of the quote (exc is \);
- * mx_get_char_index_ush        get char index, except isolated with \;
- * mx_count_chr_quote           count chars (outside of the quote);
- * mx_count_chr_ush             count chars, except isolated with \;
- * mx_strtrim_quote             trim all ' or " in quote;
+ * mx_get_char_index_quote      get char index outside of the quote;
+ * mx_get_char_index_backslash  get char index except single isolated;
+ * mx_count_chr_quote           count chars outside of the quote (exc is \);
+ * mx_strtrim_quote             trim ' or " in quote;
  */
-int mx_get_char_index_quote(const char *str, char *c, char *quote);
-int mx_get_char_index_ush(const char *str, char c);
-int mx_count_chr_quote(const char *str, char *c, char *q);
-int mx_count_chr_ush(const char *str, char c);
-/* rewrite */ char *mx_strtrim_quote(char *s, char q_char);
+int mx_get_char_index_quote(char *str, char *c);
+int mx_get_char_index_backslash(char *s, char *c);
+// int mx_count_chr_quote(char *str, char c, char *q);
+// char *mx_strtrim_quote(char *s, char c, char *q);
 /*
  *  ---------------------------------------------- move to LIBMX
  */
