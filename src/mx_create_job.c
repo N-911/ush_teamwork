@@ -2,6 +2,7 @@
 
 static t_process *init_process(void) {
     t_process *p = (t_process *)malloc(sizeof(t_process));
+
     if (!p)
         return NULL;
     p->input_path = NULL;

@@ -44,31 +44,32 @@ t_shell *mx_init_shell(int argc, char **argv) {
     if (shell_is_interactive) {
         // Loop until we are in the foreground.
         while (tcgetpgrp(shell_terminal) != (shell_pgid = getpgrp()))
-           kill(-shell_pgid, SIGTTIN);
+            kill(-shell_pgid, SIGTTIN);
         /* Ignore interactive and job-control signals.  */
         //  (void)signal(SIGINT, sigint_handler);
         signal(SIGINT, SIG_IGN);  // Control-C
         signal(SIGQUIT, SIG_IGN);  // 'Control-\'
-        signal(SIGTSTP, mx_sig_h);  // Control-Z
+//        signal(SIGTSTP, mx_sig_h);  // Control-Z
+        signal(SIGTSTP, SIG_IGN);  // Control-Z
         signal(SIGTTIN, SIG_IGN);
         signal(SIGTTOU, SIG_IGN);
+        signal(SIGPIPE, mx_sig_h);
 //        signal(SIGCHLD, mx_sig_h);
         shell_pgid = getpid();
-//        printf("parent shell_pgid %d\n", shell_pgid);
-//        printf("идентификатор группы процессов  %d\n", tcgetpgrp(shell_pgid));
-        if (setpgid (shell_pgid, shell_pgid) < 0) {
-            perror ("Couldn't put the shell in its own process group");
-            exit (1);
+        if (setpgid(shell_pgid, shell_pgid) < 0) {
+            perror("Couldn't put the shell in its own process group");
+            exit(1);
         }
-        tcsetpgrp (shell_terminal, shell_pgid);  // Grab control of the terminal.
+        tcsetpgrp(shell_terminal, shell_pgid);  // Grab control of the terminal.
         m_s->shell_pgid = shell_pgid;  //  Save default terminal attributes for shell.
         printf("shell_pgid == %d\n", m_s->shell_pgid);
         tcgetattr(shell_terminal, &m_s->t_original);
-        tcgetattr(shell_terminal,&m_s->tmodes);
+        tcgetattr(shell_terminal, &m_s->tmodes);
+    }
         for (int i = -1; i < JOBS_NUMBER; ++i) {
             m_s->jobs[i] = NULL;
         }
-     }
+    m_s->exit_code = -1;
     return m_s;
 }
 

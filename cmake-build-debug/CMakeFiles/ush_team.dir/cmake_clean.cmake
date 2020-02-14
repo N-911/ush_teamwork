@@ -50,7 +50,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/ush_team.dir/src/ast/mx_ast_push_back.c.o"
   "CMakeFiles/ush_team.dir/src/ast/mx_check_parce_errors.c.o"
   "CMakeFiles/ush_team.dir/src/ast/mx_filters.c.o"
-  "CMakeFiles/ush_team.dir/src/ast/mx_get_char_index_quote.c.o"
   "CMakeFiles/ush_team.dir/src/ast/mx_parce_tokens.c.o"
   "CMakeFiles/ush_team.dir/src/ast/mx_quote_manage.c.o"
   "CMakeFiles/ush_team.dir/src/ast/mx_strtok.c.o"

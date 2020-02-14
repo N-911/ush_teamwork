@@ -35,6 +35,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
             signal(SIGTSTP, SIG_DFL);
             signal(SIGTTIN, SIG_DFL);
             signal(SIGTTOU, SIG_DFL);
+            signal(SIGPIPE, mx_sig_h);
             // signal(SIGCHLD, SIG_DFL);
         }
         if (infile != STDIN_FILENO) {

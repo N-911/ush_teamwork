@@ -41,7 +41,7 @@
 #define EXIT_SUCCESS 0
 
 //  JOBS
-#define JOBS_NUMBER 20
+#define JOBS_NUMBER 100
 #define STATUS_RUNNING 0
 #define STATUS_DONE 1
 #define STATUS_SUSPENDED 2
@@ -111,10 +111,10 @@
 #define IS_AND(x) (!mx_strcmp(x, "&&"))
 #define IS_OR(x) (!mx_strcmp(x, "||"))
 #define IS_PIPE(x) (!mx_strcmp(x, "|"))
-#define IS_R_INPUT(x) (!mx_strcmp(x, ">"))  // redirections
-#define IS_R_INPUT_DBL(x) (!mx_strcmp(x, ">>"))
-#define IS_R_OUTPUT(x) (!mx_strcmp(x, "<"))
-#define IS_R_OUTPUT_DBL(x) (!mx_strcmp(x, "<<"))
+#define IS_R_INPUT(x) (!mx_strcmp(x, "<"))  // redirections
+#define IS_R_INPUT_DBL(x) (!mx_strcmp(x, "<<"))
+#define IS_R_OUTPUT(x) (!mx_strcmp(x, ">"))
+#define IS_R_OUTPUT_DBL(x) (!mx_strcmp(x, ">>"))
 #define IS_SEP_FIRST_LWL(x) (x == SEP || x == FON || x == AND || x == OR)
 #define IS_REDIR_INP(x) (x == R_INPUT || x == R_INPUT_DBL)
 #define IS_REDIR_OUTP(x) (x == R_OUTPUT || x == R_OUTPUT_DBL)
@@ -142,6 +142,12 @@ typedef struct s_ast {
     struct s_ast *left;     // for redirections
     struct s_ast *parent;   // delete !!!!!
 } t_ast;
+
+typedef struct s_jobs  {
+    int l;
+    int r;
+    int s;
+} t_jobs;
 
 typedef struct cd_s  {
     int s;
@@ -179,10 +185,10 @@ typedef struct  s_export {
 
 typedef struct		s_stack
 {
-    int			size;
+    int			size;  // size = JOBS_NUMBER
     int*		stack;
-    int 		top;
-    int         last;
+    int 		top;  // index of last add job
+    int         last;  // current job gor fg
     int         prev_last;
 } t_stack;
 
@@ -203,8 +209,8 @@ typedef struct s_process {
     // char **envp;
     char *command;
     char *arg_command;
-    char *input_path;  // < <<
-    char *output_path;  // > >>
+    char *input_path;  // > >>
+    char *output_path;  // < <<
     int redir_delim;  // <, <<, >, >> from e_type
     pid_t pid;
     int exit_code;
@@ -391,6 +397,11 @@ void mx_remove_job(t_shell *m_s, int job_id);
 int mx_get_proc_count(t_shell *m_s, int job_id, int filter);
 void mx_set_process_status(t_shell *m_s, int pid, int status);
 int mx_set_job_status(t_shell *m_s, int job_id, int status);
+int mx_get_job_status(t_shell *m_s, int job_id, int status);
+void mx_set_last_job(t_shell *m_s);
+int mx_find_job_by_p_name(t_shell *m_s, char *arg);
+
+int mx_job_is_running(t_shell *m_s, int job_id);
 
 void mx_init_jobs_stack(t_shell *m_s);
 void mx_push_to_stack (t_shell *m_s, int job);
@@ -414,6 +425,9 @@ int mx_wait_job(t_shell *m_s, int id);  //waitpid process in job group
 void mx_destroy_jobs(t_shell *m_s, int id);  //free job memory
 
 //      OTHER
+void mx_error_fg_bg(char *arg0, char *arg1, char *arg2, char *arg3);
+int mx_check_args(t_shell *m_s, t_process *p);  // use in fg and bg
+
 void mx_printstr(const char *s);
 void mx_printerr(const char *s);
 char *mx_normalization (char *point, char *pwd);

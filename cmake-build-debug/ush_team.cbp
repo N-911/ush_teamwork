@@ -50,6 +50,7 @@
 					<Add directory="/Users/snikolayen/ush_team/libmx/inc"/>
 					<Add directory="/Users/snikolayen/ush_team/libmx/src"/>
 					<Add directory="/Users/snikolayen/ush_team/src"/>
+					<Add directory="/Users/snikolayen/ush_team/src/ast"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
@@ -77,6 +78,7 @@
 					<Add directory="/Users/snikolayen/ush_team/libmx/inc"/>
 					<Add directory="/Users/snikolayen/ush_team/libmx/src"/>
 					<Add directory="/Users/snikolayen/ush_team/src"/>
+					<Add directory="/Users/snikolayen/ush_team/src/ast"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
@@ -258,9 +260,6 @@
 			<Option target="ush_team"/>
 		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/ast/mx_filters.c">
-			<Option target="ush_team"/>
-		</Unit>
-		<Unit filename="/Users/snikolayen/ush_team/src/ast/mx_get_char_index_quote.c">
 			<Option target="ush_team"/>
 		</Unit>
 		<Unit filename="/Users/snikolayen/ush_team/src/ast/mx_parce_tokens.c">

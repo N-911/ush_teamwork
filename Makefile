@@ -10,6 +10,8 @@ SRC = mx_builtin_commands.c \
     mx_which.c \
     mx_env.c \
     mx_echo.c \
+    mx_fg.c \
+    mx_bg.c \
     mx_set_parametr.c \
     mx_nbr_to_hex.c \
     mx_hex_to_nbr.c \
@@ -21,6 +23,7 @@ SRC = mx_builtin_commands.c \
     mx_init_shell.c \
     mx_jobs_stack.c \
     mx_jobs_functions.c \
+    mx_jobs_functions_2.c \
     mx_jobs_functions_wait.c \
     mx_jobs_functions_print.c \
     mx_launch_job.c \
@@ -60,6 +63,8 @@ OBJ = mx_builtin_commands.o \
     mx_which.o \
     mx_env.o \
     mx_echo.o \
+    mx_fg.o \
+    mx_bg.o \
     mx_set_parametr.o \
     mx_nbr_to_hex.o \
     mx_hex_to_nbr.o \
@@ -71,6 +76,7 @@ OBJ = mx_builtin_commands.o \
     mx_init_shell.o \
     mx_jobs_stack.o \
     mx_jobs_functions.o \
+    mx_jobs_functions_2.o \
     mx_jobs_functions_wait.o \
     mx_jobs_functions_print.o \
     mx_launch_job.o \
