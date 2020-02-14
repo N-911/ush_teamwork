@@ -6,7 +6,7 @@ static int count_options(char **args, t_env_builtin *env);
 static char *strdup_from(char *str, int index);
 static void set_data(t_env_builtin *env, char *args[]);
 static void delete_name(t_export **list, char *arg);
-static void get_params (t_export *env_params, t_export *env_list, char **path);
+static void get_params (t_export *env_params, t_export *env_list, t_env_builtin *env);
 static void print_env(t_export *env_list);
 static char **get_args(t_process *p, int start);
 static char **get_env_arr(t_export *env_list);
@@ -163,7 +163,7 @@ static void set_data(t_env_builtin *env, char *args[]) {
             get_data(i, environ, env);   
         }
     }
-    get_params(env->env_params, env->env_list, &env->path);
+    get_params(env->env_params, env->env_list, env);
     for (int i = env->n_options + 1; i <= env->n_options + env->n_variables; i++) {
         get_data(i, args, env);
     }
@@ -197,7 +197,7 @@ static void delete_name(t_export **list, char *arg) {
     }
 }
 
-static void get_params (t_export *env_params, t_export *env_list, char **path) {
+static void get_params (t_export *env_params, t_export *env_list, t_env_builtin *env) {
     t_export *head = env_params;
 
     while (head != NULL) {
@@ -205,9 +205,9 @@ static void get_params (t_export *env_params, t_export *env_list, char **path) {
             delete_name(&env_list, head->value);
         }
         if (strcmp(head->name, "P") == 0) {
-            if (*path)
-                free(*path);
-            *path = strdup(head->value);
+            if (env->path != NULL)
+                free(env->path);
+            env->path = strdup(head->value);
         }
         head = head->next;
     }
@@ -230,11 +230,13 @@ static char **get_args(t_process *p, int start) {
         args_arr[i - start] = strdup(p->argv[i]);
         i++;
     }
+    mx_del_strarr(&p->argv);
+    args_arr[i - start] = NULL;
     return args_arr;
 }
 
 static char **get_env_arr(t_export *env_list) {
-    char **env_arr = (char **)malloc(sizeof(char *) * 256);
+    char **env_arr = (char **)malloc(sizeof(char *) * 1024);
     t_export *head = env_list;
     int i = 0;
 

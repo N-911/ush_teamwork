@@ -8,7 +8,7 @@ int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env) {
     pid_t pid;
     int status = 1;
     m_s->history_index = 0;
-    char *const *envp = env;
+    char *const *envp =  env;
 
     pid = fork();
     if (pid == 0) {
@@ -18,6 +18,7 @@ int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env) {
         if(!path)
             path = strdup(command);
         char *error = get_error(&path, command, &status);
+        printf("%s\n", path);
         if (execve(path, p->argv, envp) < 0) {
             print_error(command, error);
             _exit(status);
