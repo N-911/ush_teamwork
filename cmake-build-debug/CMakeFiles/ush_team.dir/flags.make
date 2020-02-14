@@ -6,5 +6,5 @@ C_FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
 
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/snikolayen/ush_team/. -I/Users/snikolayen/ush_team/inc -I/Users/snikolayen/ush_team/libmx -I/Users/snikolayen/ush_team/libmx/inc -I/Users/snikolayen/ush_team/libmx/src -I/Users/snikolayen/ush_team/src 
+C_INCLUDES = -I/Users/snikolayen/ush_team/. -I/Users/snikolayen/ush_team/inc -I/Users/snikolayen/ush_team/libmx -I/Users/snikolayen/ush_team/libmx/inc -I/Users/snikolayen/ush_team/libmx/src -I/Users/snikolayen/ush_team/src -I/Users/snikolayen/ush_team/src/ast 
 

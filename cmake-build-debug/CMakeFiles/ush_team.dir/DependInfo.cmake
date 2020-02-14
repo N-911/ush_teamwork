@@ -55,7 +55,6 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/snikolayen/ush_team/src/ast/mx_ast_push_back.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/ast/mx_ast_push_back.c.o"
   "/Users/snikolayen/ush_team/src/ast/mx_check_parce_errors.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/ast/mx_check_parce_errors.c.o"
   "/Users/snikolayen/ush_team/src/ast/mx_filters.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/ast/mx_filters.c.o"
-  "/Users/snikolayen/ush_team/src/ast/mx_get_char_index_quote.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/ast/mx_get_char_index_quote.c.o"
   "/Users/snikolayen/ush_team/src/ast/mx_parce_tokens.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/ast/mx_parce_tokens.c.o"
   "/Users/snikolayen/ush_team/src/ast/mx_quote_manage.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/ast/mx_quote_manage.c.o"
   "/Users/snikolayen/ush_team/src/ast/mx_strtok.c" "/Users/snikolayen/ush_team/cmake-build-debug/CMakeFiles/ush_team.dir/src/ast/mx_strtok.c.o"
@@ -108,6 +107,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "../libmx/inc"
   "../libmx/src"
   "../src"
+  "../src/ast"
   )
 
 # Targets to which this target links.

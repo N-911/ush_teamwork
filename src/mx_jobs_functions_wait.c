@@ -13,9 +13,6 @@ void mx_check_jobs(t_shell *m_s) {
     int job_id;
 
     while ((pid = waitpid(-1, &status, WNOHANG | WUNTRACED | WCONTINUED)) > 0) {
-        //mx_printstr("pid=");
-        //mx_printint(pid);
-        //mx_printstr("\n");
         if (WIFEXITED(status))
             mx_set_process_status(m_s, pid, STATUS_DONE);
         else if (WIFSTOPPED(status))
@@ -40,20 +37,19 @@ int mx_wait_job(t_shell *m_s, int job_id) {
     int wait_count = 0;
     int status = 0;
 
-    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
-        return -1;
-    proc_count = mx_get_proc_count(m_s, job_id, FILTER_IN_PROGRESS);
+//    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
+//        return -1;
+   proc_count = mx_get_proc_count(m_s, job_id, FILTER_IN_PROGRESS);
+//   printf("job_id %d\n", job_id);
+//   printf("proc count %d\n", proc_count);
     while (wait_count < proc_count) {
         wait_pid = waitpid(-m_s->jobs[job_id]->pgid, &status, WUNTRACED);
         wait_count++;
-        if (WIFEXITED(status)) {
+        if (WIFEXITED(status))
             mx_set_process_status(m_s, wait_pid, STATUS_DONE);
-            //  mx_pop_from_stack(m_s, job_id);
-        }
         else if (WIFSIGNALED(status))
             mx_set_process_status(m_s, wait_pid, STATUS_TERMINATED);
         else if (WSTOPSIG(status)) {
-            status = -1;
             mx_set_process_status(m_s, wait_pid, STATUS_SUSPENDED);
             if (wait_count == proc_count) {
                 mx_print_job_status(m_s, job_id, 0);
@@ -61,23 +57,6 @@ int mx_wait_job(t_shell *m_s, int job_id) {
         }
     }
     return status >> 8;
-}
-
-int mx_wait_pid(t_shell *m_s, int pid) {
-    int status = 0;
-
-    waitpid(pid, &status, WUNTRACED);
-    if (WIFEXITED(status)) {
-        mx_set_process_status(m_s, pid, STATUS_DONE);
-    }
-    else if (WIFSIGNALED(status)) {
-        mx_set_process_status(m_s, pid, STATUS_TERMINATED);
-    }
-    else if (WSTOPSIG(status)) {
-        status = -1;
-        mx_set_process_status(m_s, pid, STATUS_SUSPENDED);
-    }
-    return status;
 }
 
 
@@ -104,9 +83,8 @@ void mx_set_process_status(t_shell *m_s, int pid, int status) {
     int job_id = mx_job_id_by_pid(m_s, pid);
 
     for (i = 1; i < m_s->max_number_job; i++) {
-        if (m_s->jobs[i] == NULL) {
+        if (m_s->jobs[i] == NULL)
             continue;
-        }
         for (p = m_s->jobs[i]->first_process; p != NULL; p = p->next) {
             if (p->pid == pid) {
                 p->status = status;
@@ -120,4 +98,25 @@ void mx_set_process_status(t_shell *m_s, int pid, int status) {
             }
         }
     }
+//    mx_set_last_job(m_s);
 }
+
+//not used!!!
+int mx_wait_pid(t_shell *m_s, int pid) {
+    int status = 0;
+
+    waitpid(pid, &status, WUNTRACED);
+    if (WIFEXITED(status)) {
+        mx_set_process_status(m_s, pid, STATUS_DONE);
+    }
+    else if (WIFSIGNALED(status)) {
+        mx_set_process_status(m_s, pid, STATUS_TERMINATED);
+    }
+    else if (WSTOPSIG(status)) {
+        status = -1;
+        mx_set_process_status(m_s, pid, STATUS_SUSPENDED);
+    }
+    return status;
+}
+
+

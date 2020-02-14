@@ -9,6 +9,7 @@ include_directories(libmx)
 include_directories(libmx/inc)
 include_directories(libmx/src)
 include_directories(src)
+include_directories(src/ast)
 
 add_executable(ush_team
         inc/ush.h
@@ -66,7 +67,6 @@ add_executable(ush_team
         src/ast/mx_ast_push_back.c
         src/ast/mx_check_parce_errors.c
         src/ast/mx_filters.c
-        src/ast/mx_get_char_index_quote.c
         src/ast/mx_parce_tokens.c
         src/ast/mx_quote_manage.c
         src/ast/mx_strtok.c

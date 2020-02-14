@@ -1500,33 +1500,6 @@ src/ast/mx_filters.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_filters.c.s
 .PHONY : src/ast/mx_filters.c.s
 
-src/ast/mx_get_char_index_quote.o: src/ast/mx_get_char_index_quote.c.o
-
-.PHONY : src/ast/mx_get_char_index_quote.o
-
-# target to build an object file
-src/ast/mx_get_char_index_quote.c.o:
-	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_get_char_index_quote.c.o
-.PHONY : src/ast/mx_get_char_index_quote.c.o
-
-src/ast/mx_get_char_index_quote.i: src/ast/mx_get_char_index_quote.c.i
-
-.PHONY : src/ast/mx_get_char_index_quote.i
-
-# target to preprocess a source file
-src/ast/mx_get_char_index_quote.c.i:
-	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_get_char_index_quote.c.i
-.PHONY : src/ast/mx_get_char_index_quote.c.i
-
-src/ast/mx_get_char_index_quote.s: src/ast/mx_get_char_index_quote.c.s
-
-.PHONY : src/ast/mx_get_char_index_quote.s
-
-# target to generate assembly for a file
-src/ast/mx_get_char_index_quote.c.s:
-	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_get_char_index_quote.c.s
-.PHONY : src/ast/mx_get_char_index_quote.c.s
-
 src/ast/mx_parce_tokens.o: src/ast/mx_parce_tokens.c.o
 
 .PHONY : src/ast/mx_parce_tokens.o
@@ -2796,9 +2769,6 @@ help:
 	@echo "... src/ast/mx_filters.o"
 	@echo "... src/ast/mx_filters.i"
 	@echo "... src/ast/mx_filters.s"
-	@echo "... src/ast/mx_get_char_index_quote.o"
-	@echo "... src/ast/mx_get_char_index_quote.i"
-	@echo "... src/ast/mx_get_char_index_quote.s"
 	@echo "... src/ast/mx_parce_tokens.o"
 	@echo "... src/ast/mx_parce_tokens.i"
 	@echo "... src/ast/mx_parce_tokens.s"
