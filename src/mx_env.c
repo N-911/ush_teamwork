@@ -10,7 +10,7 @@ static void get_params (t_export *env_params, t_export *env_list, t_env_builtin 
 static void print_env(t_export *env_list);
 static char **get_args(t_process *p, int start);
 static char **get_env_arr(t_export *env_list);
-static void launch_command(t_shell *m_s, t_process *p, t_env_builtin *env, int *exit_code);
+static void launch_command(t_process *p, t_env_builtin *env, int *exit_code);
 static t_env_builtin *init_env (t_process *p);
 static void print_env_error(char option, char *error);
 static char *get_parameter (char **args, int *i, int j, int *n_options);
@@ -30,8 +30,9 @@ int mx_env(t_shell *m_s, t_process *p) {
         print_env(env->env_list);
     } 
     else {
-        launch_command(m_s, p, env, &exit_code);
+        launch_command(p, env, &exit_code);
     }
+    m_s->exit_flag = 0;
   	return exit_code;
 }
 
@@ -253,14 +254,14 @@ static char **get_env_arr(t_export *env_list) {
     return env_arr;
 }
 
-static void launch_command(t_shell *m_s, t_process *p, t_env_builtin *env, int *exit_code) {
+static void launch_command( t_process *p, t_env_builtin *env, int *exit_code) {
     char **args_arr = get_args(p, env->n_options + env->n_variables + 1);
     char **env_arr = get_env_arr(env->env_list);
         
     if (!env->path)
         env->path = getenv("PATH");
     p->argv = args_arr;
-    *exit_code = mx_launch_bin(m_s, p, env->path, env_arr);
+    *exit_code = mx_launch_bin(p, env->path, env_arr);
 }
 
 static t_env_builtin *init_env (t_process *p) {

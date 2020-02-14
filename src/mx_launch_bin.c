@@ -3,33 +3,38 @@
 static char *check_path(char **arr, char *command);
 static char *get_error(char **name, char *command, int *status);
 static void print_error(char *command, char *error);
+static void child_proc(t_process *p, char *path, char **env, int *status) ;
 
-int mx_launch_bin(t_shell *m_s, t_process *p, char *path, char **env) {
+int mx_launch_bin(t_process *p, char *path, char **env) {
     pid_t pid;
     int status = 1;
-    m_s->history_index = 0;
-    char *const *envp =  env;
 
     pid = fork();
     if (pid == 0) {
-        char **arr = mx_strsplit(path, ':');
-        char *command = p->argv[0];
-        path  = check_path(arr, command);
-        if(!path)
-            path = strdup(command);
-        char *error = get_error(&path, command, &status);
-        printf("%s\n", path);
-        if (execve(path, p->argv, envp) < 0) {
-            print_error(command, error);
-            _exit(status);
-        }
-        exit(0);
+        child_proc(p, path, env, &status);
     }
     else if (pid < 0)
         perror("env "); 
     else
         waitpid(pid, &status, 0);
     return status >> 8;//WEXITSTATUS(status);
+}
+
+static void child_proc(t_process *p, char *path, char **env, int *status) {
+    char *const *envp =  env;
+    char **arr = mx_strsplit(path, ':');
+    char *command = p->argv[0];
+    char *error;
+
+    path  = check_path(arr, command);
+    if(!path)
+        path = strdup(command);
+    error = get_error(&path, command, status);
+    if (execve(path, p->argv, envp) < 0) {
+        print_error(command, error);
+        _exit(*status);
+    }
+    exit(0);
 }
 
 
