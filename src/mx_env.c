@@ -261,7 +261,7 @@ static void launch_command( t_process *p, t_env_builtin *env, int *exit_code) {
     char **env_arr = get_env_arr(env->env_list);
         
     if (!env->path)
-        env->path = getenv("PATH");
+        env->path = strdup(getenv("PATH"));
     p->argv = args_arr;
     *exit_code = mx_launch_bin(p, env->path, env_arr);
 }

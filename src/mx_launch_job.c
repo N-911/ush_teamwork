@@ -109,7 +109,6 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
             status = mx_set_parametr(p->argv, m_s);
         } else if (p->type != -1) {
             status = mx_launch_builtin(m_s, p, job_id);  // fork own buildins
-            m_s->exit_code = status;
         } else
             status = mx_launch_process(m_s, p, job_id, path, env, infile, outfile, errfile);
         if (infile != job->stdin)
@@ -117,6 +116,7 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
         if (outfile != job->stdout)
             close(outfile);
         infile = mypipe[0];
+        m_s->exit_code = status;
     }
     launch_job_help(m_s, job, job_id, status);
     return status;
@@ -128,7 +128,8 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
     if (job->foreground) {
     //else if (status >= 0 && job->foreground == FOREGROUND) {
         tcsetpgrp(STDIN_FILENO, job->pgid);
-        status = mx_wait_job(m_s, job_id);
+        if (status == 0)
+            status = mx_wait_job(m_s, job_id);
 // printf(" launch_job_help-1  \n");
         if (mx_job_completed(m_s, job_id))
             mx_remove_job(m_s, job_id);
