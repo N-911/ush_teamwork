@@ -6,7 +6,7 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status);
 
 static void print_info(t_shell *m_s, t_job *job, t_process *p, int job_id);
 
-        void mx_launch_job(t_shell *m_s, t_job *job) {
+void mx_launch_job(t_shell *m_s, t_job *job) {
     setbuf(stdout, NULL); /* установить небуферизованный режим */
     int status;
     int job_id;  // for job contoll
@@ -121,11 +121,9 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
     int shell_terminal = STDIN_FILENO;
 
     if (job->foreground) {
-    //else if (status >= 0 && job->foreground == FOREGROUND) {
+        printf ("foreground help\n");
         tcsetpgrp(STDIN_FILENO, job->pgid);
-//        if (status == 0)
         status = mx_wait_job(m_s, job_id);
-// mx_print_job_status(m_s, job_id, 1);
         if (mx_job_completed(m_s, job_id)) {
             mx_remove_job(m_s, job_id);
         }
@@ -135,9 +133,14 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
         tcgetattr(shell_terminal, &job->tmodes);
         tcsetattr(shell_terminal, TCSADRAIN, &m_s->tmodes);
     }
-    else
+    else {
+//        printf ("background help\n");
         mx_print_pid_process_in_job(m_s, job->job_id);
+//        tcsetpgrp(STDIN_FILENO, getpid());
+//        mx_check_jobs(m_s);  // job control
+    }
     m_s->exit_code = status;
+    printf ("help end \n");
 }
 
 static int get_flag(char **args) {

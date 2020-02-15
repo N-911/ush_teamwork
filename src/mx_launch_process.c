@@ -5,7 +5,7 @@ static char *get_error(char **name, char *command, int *status);
 static void print_error(char *command, char *error);
 //static void set_group(t_shell *m_s, int job_id, pid_t child_pid);
 
-        int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
+int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
                       int infile, int outfile, int errfile) {
     int status = 0;
     pid_t child_pid;
@@ -25,12 +25,13 @@ static void print_error(char *command, char *error);
                 m_s->jobs[job_id]->pgid = child_pid;
             setpgid (child_pid, m_s->jobs[job_id]->pgid);
 
-             mx_print_color(MAG, "child\t");
-            mx_print_color(MAG, "child pid\t");
-            mx_print_color(MAG, mx_itoa(getpid()));
-            mx_print_color(MAG, "\tm_s->jobs[job_id]->pgid ");
-             mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
-             mx_printstr("\n");
+//             mx_print_color(MAG, "child\t");
+//            mx_print_color(MAG, "child pid\t");
+//            mx_print_color(MAG, mx_itoa(getpid()));
+//            mx_print_color(MAG, "\tm_s->jobs[job_id]->pgid ");
+//             mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
+//             mx_printstr("\n");
+
             if (m_s->jobs[job_id]->foreground)
                 tcsetpgrp(STDIN_FILENO, m_s->jobs[job_id]->pgid);
             signal(SIGINT, SIG_DFL);
@@ -39,7 +40,7 @@ static void print_error(char *command, char *error);
             signal(SIGTTIN, SIG_DFL);
             signal(SIGTTOU, SIG_DFL);
             signal(SIGPIPE, mx_sig_h);
-            // signal(SIGCHLD, SIG_DFL);
+//            signal(SIGCHLD, SIG_DFL);
         }
         if (infile != STDIN_FILENO) {
             dup2(infile, STDIN_FILENO);

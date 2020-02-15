@@ -13,15 +13,17 @@ static void add_char(int *position, char *line, int keycode);
 static void read_input(int *max_len, int *keycode, char *line);
 static void exec_signal(int keycode, char *line, int *position);
 static void reverse_backscape(int *position, char *line);
+sig_atomic_t flag = 0;
 
 void mx_ush_loop(t_shell *m_s) {
     char *line;
     t_ast **ast = NULL;
     
     while (1) {
+        mx_check_jobs(m_s);
 		line = get_line();
         if (line[0] == '\0') {
-            mx_check_jobs(m_s);
+//            mx_check_jobs(m_s);
             continue;
         } else {
             if ((ast = mx_ast_creation(line, m_s))) {

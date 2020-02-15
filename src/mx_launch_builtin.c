@@ -34,13 +34,14 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
                 signal(SIGTTOU, SIG_DFL);
                 signal(SIGPIPE, mx_sig_h);
             }
-//            //****************
-//            mx_print_color(MAG, "child\t");
-//            mx_print_color(MAG, "child pid\t");
-//            mx_print_color(MAG, mx_itoa(p->pid));
-//            mx_print_color(MAG, "\tm_s->jobs[job_id]->pgid ");
-//            mx_printstr("\n");
-//            //****************
+            //****************
+            mx_print_color(MAG, "child\t");
+            mx_print_color(MAG, "child pid\t");
+            mx_print_color(MAG, mx_itoa(p->pid));
+            mx_print_color(MAG, "\tm_s->jobs[job_id]->pgid ");
+            mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
+            mx_printstr("\n");
+            //****************
 
             if (p->infile != STDIN_FILENO) {
                 dup2(p->infile, STDIN_FILENO);
@@ -67,7 +68,7 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
             }
         }
     }
-    else {
+    else {  // run function buildin
         int defoult;
         if(p->output_path) {
             defoult = dup(1);
@@ -90,6 +91,5 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
             }
         }
     }
-    p->status = STATUS_DONE;
     return status;
 }
