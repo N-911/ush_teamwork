@@ -1,9 +1,9 @@
 #include "ush.h"
 
-static char *mx_get_keys(char *promt, t_shell *m_s);
-static void print_command(char *promt, char *line, int position, int max_len);
+static char *mx_get_keys(t_shell *m_s);
+static void print_command(t_shell *m_s, char *line, int position, int max_len);
 static void exit_ush();
-static void edit_command(int keycode, int *position, char *line, t_shell *m_s);
+static void edit_command(int keycode, int *position, char **line, t_shell *m_s);
 static void backscape(int *position, char *line);
 static char *get_line(t_shell *m_s);
 static int get_job_type(t_ast **ast, int i);
@@ -14,6 +14,8 @@ static void read_input(int *max_len, int *keycode, char *line);
 static void exec_signal(int keycode, char *line, int *position);
 static void reverse_backscape(int *position, char *line);
 static char *get_variable(t_shell *m_s, char *target);
+static void edit_prompt(t_shell *m_s);
+static void print_prompt(t_shell *m_s);
 
 void mx_ush_loop(t_shell *m_s) {
     char *line;
@@ -31,7 +33,6 @@ void mx_ush_loop(t_shell *m_s) {
                     new_job = mx_create_job(m_s, ast[i]);
                     new_job->job_type = get_job_type(ast, i);
                     mx_launch_job(m_s, new_job);
-                    m_s->history_count = 0;
                 }
                 mx_ast_clear_all(&ast);  // clear leeks
             }
@@ -76,6 +77,23 @@ static char *get_line(t_shell *m_s) {
     char *line;
     struct termios savetty;
 
+    edit_prompt(m_s);
+
+    savetty = mx_disable_term();
+    print_prompt(m_s);
+    fflush (NULL);
+    line = mx_get_keys(m_s);
+    if (strcmp(line, "") != 0) {
+        m_s->history[m_s->history_count] = strdup(line);
+        m_s->history_count++;
+    }
+    m_s->history_index = m_s->history_count;
+    printf("\n");
+    mx_enable_term(savetty);
+    return line;
+}
+
+static void edit_prompt(t_shell *m_s) {
     if (!m_s->prompt_status) {
             char *info = mx_strnew(256);
             int i = mx_strlen(m_s->pwd) - 1;
@@ -95,25 +113,17 @@ static char *get_line(t_shell *m_s) {
                 info = strdup("\\");
             if (strcmp(m_s->pwd, getenv("HOME")) == 0)
                 info = strdup("~");
-            m_s->prompt = mx_strjoin(info, ">");
+            m_s->prompt = strdup(info);
         }
     else {
         if (get_variable(m_s, "PROMPT"))
                 m_s->prompt = get_variable(m_s, "PROMPT");
             else
-                m_s->prompt = "u$h>";
+                m_s->prompt = "u$h";
     }
-
-    savetty = mx_disable_term();
-    printf ("\r%s ",m_s->prompt);
-    fflush (NULL);
-    line = mx_get_keys(m_s->prompt, m_s);
-    printf("\n");
-    mx_enable_term(savetty);
-    return line;
 }
 
-static char *mx_get_keys(char *promt, t_shell *m_s) {
+static char *mx_get_keys(t_shell *m_s) {
 	char *line = mx_strnew(1024);
    	int keycode = 0;
    	int max_len = 0;
@@ -121,17 +131,15 @@ static char *mx_get_keys(char *promt, t_shell *m_s) {
 
     for (;keycode != ENTER && keycode != CTRL_C;) {
     	read_input(&max_len, &keycode, line);
-        //printf("%d\n", keycode);
+        max_len += mx_strlen(m_s->prompt);  
         if (keycode >= 127)
-            edit_command(keycode, &position, line, m_s);
+            edit_command(keycode, &position, &line, m_s);
         else if (keycode < 32)
             exec_signal(keycode, line, &position);
         else
             add_char(&position, line, keycode);
         if (keycode != CTRL_C){
-            max_len += mx_strlen(promt);
-            promt = m_s->prompt;
-            print_command(promt, line, position, max_len);
+            print_command(m_s, line, position, max_len);
         }
     }
     return line;
@@ -187,30 +195,33 @@ static void add_char(int *position, char *line, int keycode) {
     (*position)++;
 }
 
-static void edit_command(int keycode, int *position, char *line, t_shell *m_s) {
+static void edit_command(int keycode, int *position, char **line, t_shell *m_s) {
     if (keycode == K_LEFT)
         *position > 0 ? (*position)-- : 0;
     else if (keycode == K_RIGHT) 
-        *position < mx_strlen(line) ? (*position)++ : 0;
+        *position < mx_strlen(*line) ? (*position)++ : 0;
     else if (keycode == K_END)
-        *position = mx_strlen(line);
+        *position = mx_strlen(*line);
     else if (keycode == K_DOWN) {
-        m_s->history_count = 1;
-        //  вперед в прошлое
+        if (m_s->history[m_s->history_index + 1] && m_s->history_index < m_s->history_count) {
+            *line = strdup(m_s->history[m_s->history_index + 1]);
+            *position = mx_strlen(*line);
+            m_s->history_index++;
+        }
     }
     else if (keycode == K_UP) {
-        // назад в будущее
+        if (m_s->history[m_s->history_index - 1] && m_s->history_index > 0) {
+            *line = strdup(m_s->history[m_s->history_index - 1]);
+            *position = mx_strlen(*line);
+            m_s->history_index--;
+        }
     }
     else if (keycode == C_PROMPT) {
-        if (!m_s->prompt_status) {
-            m_s->prompt_status++;
-        }
-        else {
-            m_s->prompt_status--;
-        }
+        m_s->prompt_status ? m_s->prompt_status-- : m_s->prompt_status++;
+        edit_prompt(m_s);
     }
     else if (keycode == BACKSCAPE)
-        backscape(position, line);
+        backscape(position, *line);
 }
 
 static char *get_variable(t_shell *m_s, char *target) {
@@ -225,19 +236,32 @@ static char *get_variable(t_shell *m_s, char *target) {
     return NULL;
 }
 
-static void print_command(char *promt, char *line, int position, int max_len) {
+static void print_command(t_shell *m_s, char *line, int position, int max_len) {
 		for (int i = position; i < mx_strlen(line); i++) {
         	printf (" ");
         }
-	    for (int i = 0; i <= max_len + 1; i++) {
+	    for (int i = 0; i <= max_len + 2; i++) {
 	        printf ("\b\x1b[2K");
 	    }
-        printf ("%s %s", promt, line); 
+        print_prompt(m_s);
+        printf ("%s", line);
         for (int i = 0; i < mx_strlen(line) - position; i++) {
         	printf ("%c[1D", 27);
         }
         fflush (NULL);
 }
+
+static void print_prompt(t_shell *m_s) {
+    if (!m_s->prompt_status)
+        printf("%s", BOLD_CYAN);
+    printf ("%s", m_s->prompt);
+    if (!m_s->prompt_status)
+        printf("%s", RESET);
+    printf ("> ");
+}
+
+
+
 
 
 

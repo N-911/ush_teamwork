@@ -28,8 +28,9 @@ static t_export *create_node(void *name, void *value) {
 
     node->name = strdup(name);
     if(!value)
-        value = strdup("");
-    node->value = strdup(value);
+        node->value = strdup("");
+    else
+        node->value = strdup(value);
     node->next = NULL;
     return node;
 }
