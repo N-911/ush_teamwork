@@ -22,6 +22,32 @@ void mx_ush_loop(t_shell *m_s) {
     t_ast **ast = NULL;
     
     while (1) {
+        // int flag = 0;
+        // char *path = ".";
+        // while(!flag) {
+        //     DIR *dptr  = opendir(path);
+        //     struct dirent  *ds;
+
+        //         while ((ds = readdir(dptr)) != 0) {//cчитываем хуйню из директории
+        //             if (strcmp(ds->d_name, ".git") == 0) {
+        //                 char *gitpath = mx_strjoin(path, "/.git/HEAD");
+        //                 char *git = mx_file_to_str(gitpath);
+        //                 char **arr = mx_strsplit(git, '/');
+        //                 int count = 0;
+        //                 while (arr[count] != NULL)
+        //                     count++;
+        //                 char *last = strdup(arr[count - 1]);
+        //                 char *user = strndup(last,mx_strlen(last) - 1);
+        //                 printf("%sgit:(%s%s%s)%s\n",BLU, RED,user, BLU, RESET);
+        //                 flag++;
+        //                 break;
+        //             }
+        //         }
+        //     if (strcmp(realpath(path, NULL), getenv("HOME")) == 0)
+        //         flag++;
+        //     closedir(dptr);
+        //     path = mx_strjoin(path, "/..");
+        // }
 		line = get_line(m_s);
         if (line[0] == '\0') {
             mx_check_jobs(m_s);
