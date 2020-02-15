@@ -81,6 +81,5 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
             }
         }
     }
-    p->status = STATUS_DONE;
     return status;
 }
