@@ -4,7 +4,9 @@ static int get_flag(char **args);
 static int execute_job(t_shell *m_s, t_job * job, int job_id);
 static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status);
 
-void mx_launch_job(t_shell *m_s, t_job *job) {
+static void print_info(t_shell *m_s, t_job *job, t_process *p, int job_id);
+
+        void mx_launch_job(t_shell *m_s, t_job *job) {
     setbuf(stdout, NULL); /* установить небуферизованный режим */
     int status;
     int job_id;  // for job contoll
@@ -40,19 +42,7 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
     int errfile = 2;
 
     for (p = m_s->jobs[job_id]->first_process; p; p = p->next) {  // list of process in job
-         //------------- print info
-         mx_print_color(RED, "job [");
-         mx_print_color(RED, mx_itoa(job_id));
-         mx_print_color(RED, "]\t\t");
-         mx_print_color(RED, mx_itoa(p->type));
-         mx_print_color(RED, "\tjob->foreground\t");
-         mx_print_color(RED, mx_itoa(job->foreground));
-         mx_print_color(RED, "\tp->foreground\t");
-         mx_print_color(RED, mx_itoa(p->foreground));
-         mx_print_color(RED, "\t job->pgid\t");
-         mx_print_color(RED,mx_itoa(m_s->jobs[job_id]->pgid));
-         mx_printstr("\n");
-         //------------
+        print_info(m_s, job, p, job_id);
         if (m_s->exit_flag == 1 && !(p->type == 10))
             m_s->exit_flag = 0;
         if (p->output_path) { // redirection > >>
@@ -61,7 +51,11 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
                 flags = O_WRONLY | O_CREAT | O_TRUNC;
             if (p->redir_delim == R_OUTPUT_DBL)
                 flags = O_WRONLY | O_CREAT;
-            outfile = open(p->output_path, flags, 0666);
+            if ((outfile = open(p->output_path, flags, 0666)) == -1) {
+                mx_printerr("ush :");
+                perror(p->input_path);
+                return 255;
+            }
         }
         if (p->input_path) { // redirection < <<
             if (p->redir_delim == R_INPUT) {
@@ -118,6 +112,7 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
         infile = mypipe[0];
         m_s->exit_code = status;
     }
+    mx_set_last_job(m_s);  //!!!!!!!! test
     launch_job_help(m_s, job, job_id, status);
     return status;
 }
@@ -128,17 +123,14 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
     if (job->foreground) {
     //else if (status >= 0 && job->foreground == FOREGROUND) {
         tcsetpgrp(STDIN_FILENO, job->pgid);
-        if (status == 0)
-            status = mx_wait_job(m_s, job_id);
- printf(" launch_job_help-1  \n");
+//        if (status == 0)
+        status = mx_wait_job(m_s, job_id);
+// mx_print_job_status(m_s, job_id, 1);
         if (mx_job_completed(m_s, job_id)) {
-            printf(" launch_job_help_check_completed  \n");
             mx_remove_job(m_s, job_id);
         }
-  printf(" launch_job_help-2  \n");
         signal(SIGTTOU, SIG_IGN);
         tcsetpgrp(STDIN_FILENO, getpid());
-    printf(" launch_job_help-3  \n");
 //        signal(SIGTTOU, SIG_DFL);
         tcgetattr(shell_terminal, &job->tmodes);
         tcsetattr(shell_terminal, TCSADRAIN, &m_s->tmodes);
@@ -146,7 +138,6 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
     else
         mx_print_pid_process_in_job(m_s, job->job_id);
     m_s->exit_code = status;
-//    printf(" launch_job_help end \n");
 }
 
 static int get_flag(char **args) {
@@ -159,4 +150,21 @@ static int get_flag(char **args) {
         }
     }
     return flag;
+}
+
+static void print_info(t_shell *m_s, t_job *job, t_process *p, int job_id) {
+    //------------- print info
+    mx_print_color(RED, "job [");
+    mx_print_color(RED, mx_itoa(job_id));
+    mx_print_color(RED, "]\t\t");
+    mx_print_color(RED, mx_itoa(p->type));
+    mx_print_color(RED, "\tjob->foreground\t");
+    mx_print_color(RED, mx_itoa(job->foreground));
+    mx_print_color(RED, "\tp->foreground\t");
+    mx_print_color(RED, mx_itoa(p->foreground));
+    mx_print_color(RED, "\t job->pgid\t");
+    mx_print_color(RED,mx_itoa(m_s->jobs[job_id]->pgid));
+    mx_printstr("\n");
+    //------------
+
 }

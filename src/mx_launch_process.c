@@ -3,7 +3,7 @@
 static char *check_path(char **arr, char *command);
 static char *get_error(char **name, char *command, int *status);
 static void print_error(char *command, char *error);
-static void set_group(t_shell *m_s, int job_id, pid_t child_pid);
+//static void set_group(t_shell *m_s, int job_id, pid_t child_pid);
 
         int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
                       int infile, int outfile, int errfile) {
@@ -26,7 +26,9 @@ static void set_group(t_shell *m_s, int job_id, pid_t child_pid);
             setpgid (child_pid, m_s->jobs[job_id]->pgid);
 
              mx_print_color(MAG, "child\t");
-             mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
+            mx_print_color(MAG, "child pid\t");
+            mx_print_color(MAG, mx_itoa(getpid()));
+            mx_print_color(MAG, "\tm_s->jobs[job_id]->pgid ");
              mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
              mx_printstr("\n");
             if (m_s->jobs[job_id]->foreground)
@@ -62,14 +64,14 @@ static void set_group(t_shell *m_s, int job_id, pid_t child_pid);
     }
     else {
         p->pid = child_pid;
-        set_group(m_s, job_id, child_pid);
+//        set_group(m_s, job_id, child_pid);
 //        //WAIT_CHILD();
-//        if (shell_is_interactive) {
-//            pid_t pid = child_pid;
-//            if (m_s->jobs[job_id]->pgid == 0)
-//                m_s->jobs[job_id]->pgid = pid;
-//            setpgid (pid, m_s->jobs[job_id]->pgid);
-//        }
+        if (shell_is_interactive) {
+            pid_t pid = child_pid;
+            if (m_s->jobs[job_id]->pgid == 0)
+                m_s->jobs[job_id]->pgid = pid;
+            setpgid (pid, m_s->jobs[job_id]->pgid);
+        }
          mx_print_color(YEL, "parent\t");
          mx_print_color(YEL, "p->pid \t");
          mx_print_color(YEL, mx_itoa(p->pid));
@@ -80,16 +82,16 @@ static void set_group(t_shell *m_s, int job_id, pid_t child_pid);
     return status >> 8;//WEXITSTATUS(status)
 }
 
-static void set_group(t_shell *m_s, int job_id, pid_t child_pid) {
-    int shell_is_interactive = isatty(STDIN_FILENO);
-
-    if (shell_is_interactive) {
-        pid_t pid = child_pid;
-        if (m_s->jobs[job_id]->pgid == 0)
-            m_s->jobs[job_id]->pgid = pid;
-        setpgid (pid, m_s->jobs[job_id]->pgid);
-    }
-}
+//static void set_group(t_shell *m_s, int job_id, pid_t child_pid) {
+//    int shell_is_interactive = isatty(STDIN_FILENO);
+//
+//    if (shell_is_interactive) {
+//        pid_t pid = child_pid;
+//        if (m_s->jobs[job_id]->pgid == 0)
+//            m_s->jobs[job_id]->pgid = pid;
+//        setpgid (pid, m_s->jobs[job_id]->pgid);
+//    }
+//}
 
 static char *check_path(char **arr, char *command) {
     int i = 0;
