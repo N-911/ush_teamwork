@@ -48,7 +48,7 @@ static char *get_prefix(char *s, int *sleshpos) {
     int sp = -1;
 
     if (s[1]) {
-        sp = mx_get_char_index_quote(&s[1], "/");
+        sp = mx_get_char_index_quote(&s[1], "/", QUOTE2);
         if (sp > 0)
             prefix = mx_strndup(&s[1], sp);
         else
@@ -81,8 +81,8 @@ static char *expantion(char *s) {
     return res;
 }
 /*
-*  substitutiont tilde
-*/
+ *  Substitutiont tilde
+ */
 char *mx_subst_tilde(char *s) {
     char *res = NULL;
 

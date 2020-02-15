@@ -2,36 +2,48 @@
 /*
  * Get char index except single isolated.
  */
-int mx_get_char_index_backslash(char *s, char *c) {
-    if (!s || !*s)
-        return -2;
-    for (int i = 0; s[i]; i++) {
-        if (s[i] == '\\')
-            i++;
-        else
-            for (int j = 0; j < mx_strlen(c); j++)
-                if (s[i] == c[j])
-                    return i;
-    }
-    return -1;
-}
+// int mx_get_char_index_backslash(char *s, char *c) {
+//     if (!s || !*s)
+//         return -2;
+//     for (int i = 0; s[i]; i++) {
+//         if (s[i] == '\\')
+//             i++;
+//         else
+//             for (int j = 0; j < mx_strlen(c); j++)
+//                 if (s[i] == c[j])
+//                     return i;
+//     }
+//     return -1;
+// }
 /*
  * Get char index outside of the quote
- * search everywhere except ' ', " ", ` `, ( ).
+ * search everywhere except ' ', " ", ` `, $( ).
  */
-int mx_get_char_index_quote(char *s, char *c) {
+int mx_get_char_index_quote(char *s, char *c, char *q) {  // q = "\"\'`$"
     char tmp;
 
     for (int i = 0; s[i]; i++) {
         if (s[i] == '\\')
             i++;
-        else if (mx_isdelim(s[i], "\"`(")) {
-            (s[i] == '(') ? (tmp = ')') : (tmp = s[i]);
+        else if (mx_isdelim(s[i], q) && !mx_strncmp(&s[i], "$(", 2)) {
+            tmp = ')';
             i++;
             while (s[i] && s[i] != tmp)
                 (s[i] == '\\') ? (i += 2) : (i++);
         }
-        else if (s[i] == '\'') {
+        else if (mx_isdelim(s[i], q) && s[i] == '`') {
+            tmp = s[i];
+            i++;
+            while (s[i] && s[i] != tmp)
+                (s[i] == '\\') ? (i += 2) : (i++);
+        }
+        else if (mx_isdelim(s[i], q) && s[i] == '\"') {
+            tmp = s[i];
+            i++;
+            while (s[i] && s[i] != tmp)
+                (s[i] == '\\') ? (i += 2) : (i++);
+        }
+        else if (mx_isdelim(s[i], q) && s[i] == '\'') {
             i++;
             while (s[i] && s[i] != '\'')
                 i++;
@@ -60,7 +72,7 @@ int mx_get_char_index_quote(char *s, char *c) {
 /*
  * Trim first in quote
  */
-// char *mx_strtrim_quote(char *s, char c, char *q) {
+// char *mx_strtrim_quote(char *s) {
 //     int newlen;
 //     char *n;
 

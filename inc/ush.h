@@ -102,6 +102,7 @@
 /* Operators and delimeters for parse tokens */
 #define PARSE_DELIM ";|&><"
 #define QUOTE "\"`()"
+#define QUOTE2 "\"\'`$"
 #define DBL_QUOTE_EXCEPTIONS "$`\"\\"
 #define USH_TOK_DELIM " \t\n"  // " \t\r\n\a"
 
@@ -312,7 +313,7 @@ bool mx_check_parce_errors(char *line);
 char *mx_ush_read_line(void);
 /*
  *  ---------------------------------------------- FILTERS
- * mx_filters       parse by USH_TOK_DELIM, subst ~, $, trim'' "";
+ * mx_filters       parse by USH_TOK_DELIM, subst ~, $, trim \ '' "";
  * mx_strtok        like std strtok return one token,
  *                  unlike std - works correct with '', "" and func () { x; };
  * mx_parce_tokens  get array of pointers to separate tokens in line,
@@ -325,7 +326,8 @@ char *mx_strtok (char *s, const char *delim);
 char **mx_parce_tokens(char *line);
 char *mx_subst_tilde(char *s);
 char *mx_substr_dollar(char *s, t_export *variables);
-char *mx_substr_backslash(char *s);
+char *mx_subst_command(char *s);
+// char *mx_substr_backslash(char *s);
 /*
  *  ---------------------------------------------- mx_quote_manage.c
  * mx_get_char_index_quote      get char index outside of the quote;
@@ -333,10 +335,10 @@ char *mx_substr_backslash(char *s);
  * mx_count_chr_quote           count chars outside of the quote (exc is \);
  * mx_strtrim_quote             trim ' or " in quote;
  */
-int mx_get_char_index_quote(char *str, char *c);
-int mx_get_char_index_backslash(char *s, char *c);
+int mx_get_char_index_quote(char *s, char *c, char *q);
+// int mx_get_char_index_backslash(char *s, char *c);
 // int mx_count_chr_quote(char *str, char c, char *q);
-// char *mx_strtrim_quote(char *s, char c, char *q);
+char *mx_strtrim_quote(char *s);
 /*
  *  ---------------------------------------------- move to LIBMX
  */

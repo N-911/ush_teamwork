@@ -10,7 +10,7 @@ static char *get_var(char *s, int *v_len) {
     if (!s)
         return NULL;
     if (s[0] == '{') {
-        i = mx_get_char_index_quote(s, "}");
+        i = mx_get_char_index_quote(s, "}", QUOTE2);
         if (i < 0)
             return NULL;
         var = mx_strndup(&s[1], i - 1);
@@ -69,7 +69,7 @@ char *mx_substr_dollar(char *s, t_export *variables) {
         return s;
     if (mx_strcmp(s, "$") == 0)
         return s;
-    while ((pos = mx_get_char_index_quote(res, "$")) == 0)
+    while ((pos = mx_get_char_index_quote(res, "$", QUOTE2)) == 0)
         if (!(res = expantion(res, variables, pos))) {
             mx_printerr("u$h: bad substitution");
             return NULL;

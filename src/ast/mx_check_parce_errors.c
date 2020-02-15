@@ -68,12 +68,12 @@ static bool check_parse_auditor(char *line, int i) {
     int i2;
     int i3;
 
-    i2 = mx_get_char_index_quote(&line[i + 1], PARSE_DELIM);
+    i2 = mx_get_char_index_quote(&line[i + 1], PARSE_DELIM, QUOTE2);
     if (i2 == 0) {
         if (line[i] != line[i + 1] || line[i + 1] == ';')
             return parse_er(&line[i + 1], 1);
         else if (line[i + 2]) {
-            i3 = mx_get_char_index_quote(&line[i + 2], PARSE_DELIM);
+            i3 = mx_get_char_index_quote(&line[i + 2], PARSE_DELIM, QUOTE2);
             if (i3 == 0)
                 return parse_er(&line[i + 2], 1);
         }
@@ -87,7 +87,7 @@ static bool check_parse(char *line) {
     int i = 0;
 
     while (line) {
-        if ((i = mx_get_char_index_quote(line, PARSE_DELIM)) >= 0) {
+        if ((i = mx_get_char_index_quote(line, PARSE_DELIM, QUOTE2)) >= 0) {
             if ((line[i + 1] == '\0' && line[i] != ';' && line[i] != '&')
             || mx_strcmp(&line[i], "&&") == 0)
                 return parse_er("\\n", 2);
