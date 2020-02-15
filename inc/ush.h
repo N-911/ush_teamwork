@@ -261,6 +261,7 @@ typedef struct s_shell {
     char **history;
     int history_count;
     int history_index;
+    int history_size;
     struct termios tmodes;
     struct termios t_original;
     struct termios t_custom;

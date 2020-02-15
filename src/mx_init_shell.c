@@ -42,9 +42,8 @@ t_shell *mx_init_shell(int argc, char **argv) {
     m_s->prompt = "u$h";
     m_s->prompt_status = 1;
     m_s->history_count = 0;
-    m_s->history = (char **)malloc(sizeof(char *) * 500);
-    for (int i = 0; i < 500; i++)
-        m_s->history[i] = NULL;
+    m_s->history_size = 1000;
+    m_s->history = (char **)malloc(sizeof(char *) * m_s->history_size);
     mx_set_variable(m_s->variables, "PROMPT", "u$h");
     mx_set_variable(m_s->variables, "PROMPT1", "Auditor dlya lohov>");
     shell_is_interactive = isatty(shell_terminal);  // See if we are running interactively.
