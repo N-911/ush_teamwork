@@ -239,6 +239,8 @@ static void edit_command(int keycode, int *position, char **line, t_shell *m_s) 
     else if (keycode == K_DOWN) {
         if (m_s->history[m_s->history_index + 1] && m_s->history_index < m_s->history_count) {
             free(*line);
+            *line = NULL;
+            *line = mx_strnew(1024);
             *line = strdup(m_s->history[m_s->history_index + 1]);
             *position = mx_strlen(*line);
             m_s->history_index++;
@@ -247,7 +249,9 @@ static void edit_command(int keycode, int *position, char **line, t_shell *m_s) 
     else if (keycode == K_UP) {
         if (m_s->history[m_s->history_index - 1] && m_s->history_index > 0) {
             free(*line);
-            *line = strdup(m_s->history[m_s->history_index - 1]);
+            *line = NULL;
+            *line = mx_strnew(1024);
+            strcpy(*line, m_s->history[m_s->history_index - 1]);
             *position = mx_strlen(*line);
             m_s->history_index--;
         }
