@@ -80,6 +80,8 @@
 #define DIR_T "\x1B[0;30;42m"
 #define DIR_X "\033[0;30;43m"
 #define BOLD_CYAN "\x1B[1;36m"
+#define BOLD_RED "\x1B[[1;31m"
+#define BOLD_BLUE "\x1B[1;34m"
 
 //KEYBOARDS
 #define INPUT_SIZE  1024
@@ -269,6 +271,7 @@ typedef struct s_shell {
     pid_t shell_pgid;
     char *pwd;
     char *prompt;
+    char *git;
     int prompt_status;
     t_export *exported;
     t_export *variables;
@@ -450,6 +453,7 @@ unsigned long mx_hex_to_nbr(const char *hex);
 
 int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id);
 //int mx_launch_builtin(t_shell *m_s, t_process *p);
+char *mx_get_git_info();
 
 
 #endif

@@ -22,32 +22,6 @@ void mx_ush_loop(t_shell *m_s) {
     t_ast **ast = NULL;
     
     while (1) {
-        // int flag = 0;
-        // char *path = ".";
-        // while(!flag) {
-        //     DIR *dptr  = opendir(path);
-        //     struct dirent  *ds;
-
-        //         while ((ds = readdir(dptr)) != 0) {//cчитываем хуйню из директории
-        //             if (strcmp(ds->d_name, ".git") == 0) {
-        //                 char *gitpath = mx_strjoin(path, "/.git/HEAD");
-        //                 char *git = mx_file_to_str(gitpath);
-        //                 char **arr = mx_strsplit(git, '/');
-        //                 int count = 0;
-        //                 while (arr[count] != NULL)
-        //                     count++;
-        //                 char *last = strdup(arr[count - 1]);
-        //                 char *user = strndup(last,mx_strlen(last) - 1);
-        //                 printf("%sgit:(%s%s%s)%s\n",BLU, RED,user, BLU, RESET);
-        //                 flag++;
-        //                 break;
-        //             }
-        //         }
-        //     if (strcmp(realpath(path, NULL), getenv("HOME")) == 0)
-        //         flag++;
-        //     closedir(dptr);
-        //     path = mx_strjoin(path, "/..");
-        // }
 		line = get_line(m_s);
         if (line[0] == '\0') {
             mx_check_jobs(m_s);
@@ -65,6 +39,38 @@ void mx_ush_loop(t_shell *m_s) {
         }
         mx_strdel(&line);
     }
+}
+
+char *mx_get_git_info() {
+    char *user = NULL;
+    int flag = 0;
+    char *path = ".";
+        while(!flag) {
+            DIR *dptr  = opendir(path);
+            struct dirent  *ds;
+
+                while ((ds = readdir(dptr)) != 0) {//cчитываем хуйню из директории
+                    if (strcmp(ds->d_name, ".git") == 0) {
+                        char *gitpath = mx_strjoin(path, "/.git/HEAD");
+                        char *git = mx_file_to_str(gitpath);
+                        char **arr = mx_strsplit(git, '/');
+                        int count = 0;
+                        while (arr[count] != NULL)
+                            count++;
+                        user = strdup(arr[count - 1]);
+                        user[mx_strlen(user) - 1] = '\0';
+                        //printf("%sgit:(%s%s%s)%s\n",BOLD_BLUE, RED, user, BOLD_BLUE, RESET);
+                        flag++;
+                        break;
+                    }
+                }
+            if (strcmp(realpath(path, NULL), getenv("HOME")) == 0 ||
+                mx_count_substr(realpath(path, NULL), "/") <= 2)
+                flag++;
+            closedir(dptr);
+            path = mx_strjoin(path, "/..");
+        }
+    return user;
 }
 
 static struct termios mx_disable_term() {
@@ -126,23 +132,18 @@ static char *get_line(t_shell *m_s) {
 static void edit_prompt(t_shell *m_s) {
     if (!m_s->prompt_status) {
             char *info = mx_strnew(256);
-            int i = mx_strlen(m_s->pwd) - 1;
-            int len = 0;
-            while(m_s->pwd[i] != '/') {
-                info[len] = m_s->pwd[i];
-                i--;
-                len++;
-            }
-            len--;
-            for (int j = 0; j <= len / 2; j++) {
-                char tmp = info[j];
-                info[j] = info[len - j];
-                info[len - j] = tmp; 
-            }
-            if (strcmp(m_s->pwd, "\\") == 0)
-                info = strdup("\\");
-            if (strcmp(m_s->pwd, getenv("HOME")) == 0)
+            if (strcmp(m_s->pwd, "/") == 0)
+                info = strdup("/");
+            else if (strcmp(m_s->pwd, getenv("HOME")) == 0)
                 info = strdup("~");
+            else {
+                char **arr = mx_strsplit(m_s->pwd, '/');
+                int count = 0;
+                while (arr[count] != NULL)
+                    count++;
+                info = strdup(arr[count - 1]);
+            }
+            
             m_s->prompt = strdup(info);
         }
     else {
@@ -158,10 +159,13 @@ static char *mx_get_keys(t_shell *m_s) {
    	int keycode = 0;
    	int max_len = 0;
    	int position = 0;
+    m_s->git = mx_get_git_info();
 
     for (;keycode != ENTER && keycode != CTRL_C;) {
     	read_input(&max_len, &keycode, line);
-        max_len += mx_strlen(m_s->prompt);  
+        max_len += mx_strlen(m_s->prompt);
+        if (m_s->git)
+            max_len += mx_strlen(m_s->git) + 7;
         if (keycode >= 127)
             edit_command(keycode, &position, &line, m_s);
         else if (keycode < 32)
@@ -287,6 +291,8 @@ static void print_prompt(t_shell *m_s) {
     if (!m_s->prompt_status)
         printf("%s", BOLD_CYAN);
     printf ("%s", m_s->prompt);
+    if (!m_s->prompt_status && m_s->git)
+        printf(" %sgit:(%s%s%s)",BOLD_BLUE, RED, m_s->git, BOLD_BLUE);
     if (!m_s->prompt_status)
         printf("%s", RESET);
     printf ("> ");
