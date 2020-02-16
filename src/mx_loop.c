@@ -273,12 +273,13 @@ static char *get_variable(t_shell *m_s, char *target) {
 }
 
 static void print_command(t_shell *m_s, char *line, int position, int max_len) {
-		for (int i = position; i < mx_strlen(line); i++) {
+		for (int i = position; i <= mx_strlen(line); i++) {
         	printf (" ");
         }
 	    for (int i = 0; i <= max_len + 2; i++) {
 	        printf ("\b\x1b[2K");
 	    }
+        printf ("\r");
         print_prompt(m_s);
         printf ("%s", line);
         for (int i = 0; i < mx_strlen(line) - position; i++) {
