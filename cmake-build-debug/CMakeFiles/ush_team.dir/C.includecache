@@ -41,6 +41,8 @@ sys/xattr.h
 -
 sys/wait.h
 -
+sys/types.h
+-
 stdlib.h
 -
 sys/param.h
@@ -63,8 +65,8 @@ fcntl.h
 -
 termios.h
 -
-libmx/inc/libmx.h
-../inc/libmx/inc/libmx.h
+../libmx/inc/libmx.h
+../libmx/inc/libmx.h
 
 ../libmx/inc/libmx.h
 errno.h

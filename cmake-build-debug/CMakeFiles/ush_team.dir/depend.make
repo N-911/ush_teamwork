@@ -170,9 +170,17 @@ CMakeFiles/ush_team.dir/src/ast/mx_quote_manage.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/ast/mx_quote_manage.c.o: ../libmx/inc/libmx.h
 CMakeFiles/ush_team.dir/src/ast/mx_quote_manage.c.o: ../src/ast/mx_quote_manage.c
 
+CMakeFiles/ush_team.dir/src/ast/mx_redir_push_back.c.o: ../inc/ush.h
+CMakeFiles/ush_team.dir/src/ast/mx_redir_push_back.c.o: ../libmx/inc/libmx.h
+CMakeFiles/ush_team.dir/src/ast/mx_redir_push_back.c.o: ../src/ast/mx_redir_push_back.c
+
 CMakeFiles/ush_team.dir/src/ast/mx_strtok.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/ast/mx_strtok.c.o: ../libmx/inc/libmx.h
 CMakeFiles/ush_team.dir/src/ast/mx_strtok.c.o: ../src/ast/mx_strtok.c
+
+CMakeFiles/ush_team.dir/src/ast/mx_subst_backslash.c.o: ../inc/ush.h
+CMakeFiles/ush_team.dir/src/ast/mx_subst_backslash.c.o: ../libmx/inc/libmx.h
+CMakeFiles/ush_team.dir/src/ast/mx_subst_backslash.c.o: ../src/ast/mx_subst_backslash.c
 
 CMakeFiles/ush_team.dir/src/ast/mx_subst_dollar.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/ast/mx_subst_dollar.c.o: ../libmx/inc/libmx.h
@@ -189,6 +197,10 @@ CMakeFiles/ush_team.dir/src/ast/mx_ush_parsed_line.c.o: ../src/ast/mx_ush_parsed
 CMakeFiles/ush_team.dir/src/ast/mx_ush_read_line.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/ast/mx_ush_read_line.c.o: ../libmx/inc/libmx.h
 CMakeFiles/ush_team.dir/src/ast/mx_ush_read_line.c.o: ../src/ast/mx_ush_read_line.c
+
+CMakeFiles/ush_team.dir/src/mx_bg.c.o: ../inc/ush.h
+CMakeFiles/ush_team.dir/src/mx_bg.c.o: ../libmx/inc/libmx.h
+CMakeFiles/ush_team.dir/src/mx_bg.c.o: ../src/mx_bg.c
 
 CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/mx_builtin_commands.c.o: ../libmx/inc/libmx.h
@@ -222,6 +234,10 @@ CMakeFiles/ush_team.dir/src/mx_export.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/mx_export.c.o: ../libmx/inc/libmx.h
 CMakeFiles/ush_team.dir/src/mx_export.c.o: ../src/mx_export.c
 
+CMakeFiles/ush_team.dir/src/mx_fg.c.o: ../inc/ush.h
+CMakeFiles/ush_team.dir/src/mx_fg.c.o: ../libmx/inc/libmx.h
+CMakeFiles/ush_team.dir/src/mx_fg.c.o: ../src/mx_fg.c
+
 CMakeFiles/ush_team.dir/src/mx_get_type.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/mx_get_type.c.o: ../libmx/inc/libmx.h
 CMakeFiles/ush_team.dir/src/mx_get_type.c.o: ../src/mx_get_type.c
@@ -237,6 +253,10 @@ CMakeFiles/ush_team.dir/src/mx_init_shell.c.o: ../src/mx_init_shell.c
 CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.o: ../libmx/inc/libmx.h
 CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.o: ../src/mx_jobs_functions.c
+
+CMakeFiles/ush_team.dir/src/mx_jobs_functions_2.c.o: ../inc/ush.h
+CMakeFiles/ush_team.dir/src/mx_jobs_functions_2.c.o: ../libmx/inc/libmx.h
+CMakeFiles/ush_team.dir/src/mx_jobs_functions_2.c.o: ../src/mx_jobs_functions_2.c
 
 CMakeFiles/ush_team.dir/src/mx_jobs_functions_print.c.o: ../inc/ush.h
 CMakeFiles/ush_team.dir/src/mx_jobs_functions_print.c.o: ../libmx/inc/libmx.h

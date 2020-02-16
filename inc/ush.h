@@ -151,6 +151,8 @@ typedef struct s_redir {
     char *input_path;  // < <<
     char *output_path;  // > >>
     int redir_delim;  // <, <<, >, >> from e_type
+    int c_input;
+    int c_output;
     struct s_redir *next;
 } t_redir;
 
@@ -241,6 +243,8 @@ typedef struct s_process {
     int infile;
     int outfile;
     int errfile;
+    int *r_infile;
+    int *r_outfile;
 } t_process;
 
 // A job is a pipeline of processes.
@@ -376,6 +380,10 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
                       int infile, int outfile, int errfile);
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
 void mx_launch_job(t_shell *m_s, t_job *job);
+void mx_count_redir(t_process *p);
+void mx_set_redirections(t_process *p);
+
+
 
 //      BUILTIN COMMANDS
 int mx_env(t_shell *m_s, t_process *p);

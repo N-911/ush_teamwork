@@ -17,6 +17,8 @@ static t_redir *redir_create_node(char *path, int type) {
     else
         return NULL;
     q->redir_delim = type;
+    q->c_input = 0;
+    q->c_output = 0;
     q->next = NULL;
     return (q);
 }

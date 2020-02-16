@@ -45,18 +45,20 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
         print_info(m_s, job, p, job_id);
         if (m_s->exit_flag == 1 && !(p->type == 10))
             m_s->exit_flag = 0;
-        if (p->output_path) { // redirection > >>
-            int flags;
-            if (p->redir_delim == R_OUTPUT)
-                flags = O_WRONLY | O_CREAT | O_TRUNC;
-            if (p->redir_delim == R_OUTPUT_DBL)
-                flags = O_WRONLY | O_CREAT;
-            if ((outfile = open(p->output_path, flags, 0666)) == -1) {
-                mx_printerr("ush :");
-                perror(p->input_path);
-                return 255;
-            }
-        }
+
+        mx_set_redirections(p);
+
+//        if (p->output_path) { // redirection > >>
+//            if (p->redir_delim == R_OUTPUT)
+//                flags = O_WRONLY | O_CREAT | O_TRUNC;
+//            if (p->redir_delim == R_OUTPUT_DBL)
+//                flags = O_WRONLY | O_CREAT;
+//            if ((outfile = open(p->output_path, flags, 0666)) == -1) {
+//                mx_printerr("ush :");
+//                perror(p->input_path);
+//                return 255;
+//            }
+//        }
         if (p->input_path) { // redirection < <<
             if (p->redir_delim == R_INPUT) {
                 infile = open(p->input_path, O_RDONLY, 0666);
@@ -92,9 +94,8 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
                 exit(1);
             }
             outfile = mypipe[1];
+            p->r_outfile[0] = mypipe[1];
         }
-        // else
-        //     outfile = job->stdout;
         p->infile = infile;
         p->outfile = outfile;
         p->errfile = errfile;
@@ -103,8 +104,14 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
             status = mx_set_parametr(p->argv, m_s);
         } else if (p->type != -1) {
             status = mx_launch_builtin(m_s, p, job_id);  // fork own buildins
-        } else
-            status = mx_launch_process(m_s, p, job_id, path, env, infile, outfile, errfile);
+        }
+        else {
+            if (p->redirect->output_path) {
+                for (int i = p->redirect->c_output; i >= 0; i--)
+                    status = mx_launch_process(m_s, p, job_id, path, env, infile, p->r_outfile[i], errfile);
+//                status = mx_launch_process(m_s, p, job_id, path, env, infile, outfile, errfile);
+                }
+        }
         if (infile != job->stdin)
             close(infile);
         if (outfile != job->stdout)
@@ -142,6 +149,48 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
     m_s->exit_code = status;
     printf ("help end \n");
 }
+
+
+void mx_set_redirections(t_process *p) {
+    t_redir *r;
+    int flags;
+    int j;
+    mx_count_redir(p);
+
+    p->r_outfile = (int *)malloc(sizeof(int) * (p->redirect->c_output + 1));
+    p->r_outfile[0] = STDOUT_FILENO;
+    if (p->redirect) {
+        for (r = p->redirect, j = 1; r; r = r->next, j++) {
+            if (r->redir_delim == R_OUTPUT)
+
+                flags = O_WRONLY | O_CREAT | O_TRUNC;
+            if (r->redir_delim == R_OUTPUT_DBL)
+                flags = O_WRONLY | O_CREAT;
+            if ((p->r_outfile[j] = open(r->output_path, flags, 0666)) == -1) {
+                mx_printerr("ush :");
+                perror(r->output_path);
+//                return 255;  // do!!
+            }
+            printf ("redir %d\n", p->r_outfile[j]);
+        }
+    }
+}
+
+void mx_count_redir(t_process *p) {
+    t_redir *r;
+    printf ("mx_count_redir start\n");
+
+    for (r = p->redirect; r; r = r->next) {
+        if (r->redir_delim == R_INPUT || r->redir_delim == R_INPUT_DBL)
+            p->redirect->c_input +=1;
+        if (r->redir_delim == R_OUTPUT || r->redir_delim == R_OUTPUT_DBL)
+            p->redirect->c_output +=1;
+    }
+    printf("\x1B[32m p->redirect->c_input = %d \x1B[0m  \n", p->redirect->c_input);
+    printf("\x1B[32m p->redirect->c_output = %d \x1B[0m  \n", p->redirect->c_output);
+    printf ("mx_count_redir end\n");
+}
+
 
 static int get_flag(char **args) {
     int flag = 1;

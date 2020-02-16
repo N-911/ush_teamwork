@@ -1554,6 +1554,33 @@ src/ast/mx_quote_manage.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_quote_manage.c.s
 .PHONY : src/ast/mx_quote_manage.c.s
 
+src/ast/mx_redir_push_back.o: src/ast/mx_redir_push_back.c.o
+
+.PHONY : src/ast/mx_redir_push_back.o
+
+# target to build an object file
+src/ast/mx_redir_push_back.c.o:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_redir_push_back.c.o
+.PHONY : src/ast/mx_redir_push_back.c.o
+
+src/ast/mx_redir_push_back.i: src/ast/mx_redir_push_back.c.i
+
+.PHONY : src/ast/mx_redir_push_back.i
+
+# target to preprocess a source file
+src/ast/mx_redir_push_back.c.i:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_redir_push_back.c.i
+.PHONY : src/ast/mx_redir_push_back.c.i
+
+src/ast/mx_redir_push_back.s: src/ast/mx_redir_push_back.c.s
+
+.PHONY : src/ast/mx_redir_push_back.s
+
+# target to generate assembly for a file
+src/ast/mx_redir_push_back.c.s:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_redir_push_back.c.s
+.PHONY : src/ast/mx_redir_push_back.c.s
+
 src/ast/mx_strtok.o: src/ast/mx_strtok.c.o
 
 .PHONY : src/ast/mx_strtok.o
@@ -1580,6 +1607,33 @@ src/ast/mx_strtok.s: src/ast/mx_strtok.c.s
 src/ast/mx_strtok.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_strtok.c.s
 .PHONY : src/ast/mx_strtok.c.s
+
+src/ast/mx_subst_backslash.o: src/ast/mx_subst_backslash.c.o
+
+.PHONY : src/ast/mx_subst_backslash.o
+
+# target to build an object file
+src/ast/mx_subst_backslash.c.o:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_subst_backslash.c.o
+.PHONY : src/ast/mx_subst_backslash.c.o
+
+src/ast/mx_subst_backslash.i: src/ast/mx_subst_backslash.c.i
+
+.PHONY : src/ast/mx_subst_backslash.i
+
+# target to preprocess a source file
+src/ast/mx_subst_backslash.c.i:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_subst_backslash.c.i
+.PHONY : src/ast/mx_subst_backslash.c.i
+
+src/ast/mx_subst_backslash.s: src/ast/mx_subst_backslash.c.s
+
+.PHONY : src/ast/mx_subst_backslash.s
+
+# target to generate assembly for a file
+src/ast/mx_subst_backslash.c.s:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_subst_backslash.c.s
+.PHONY : src/ast/mx_subst_backslash.c.s
 
 src/ast/mx_subst_dollar.o: src/ast/mx_subst_dollar.c.o
 
@@ -1688,6 +1742,33 @@ src/ast/mx_ush_read_line.s: src/ast/mx_ush_read_line.c.s
 src/ast/mx_ush_read_line.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/ast/mx_ush_read_line.c.s
 .PHONY : src/ast/mx_ush_read_line.c.s
+
+src/mx_bg.o: src/mx_bg.c.o
+
+.PHONY : src/mx_bg.o
+
+# target to build an object file
+src/mx_bg.c.o:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_bg.c.o
+.PHONY : src/mx_bg.c.o
+
+src/mx_bg.i: src/mx_bg.c.i
+
+.PHONY : src/mx_bg.i
+
+# target to preprocess a source file
+src/mx_bg.c.i:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_bg.c.i
+.PHONY : src/mx_bg.c.i
+
+src/mx_bg.s: src/mx_bg.c.s
+
+.PHONY : src/mx_bg.s
+
+# target to generate assembly for a file
+src/mx_bg.c.s:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_bg.c.s
+.PHONY : src/mx_bg.c.s
 
 src/mx_builtin_commands.o: src/mx_builtin_commands.c.o
 
@@ -1905,6 +1986,33 @@ src/mx_export.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_export.c.s
 .PHONY : src/mx_export.c.s
 
+src/mx_fg.o: src/mx_fg.c.o
+
+.PHONY : src/mx_fg.o
+
+# target to build an object file
+src/mx_fg.c.o:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_fg.c.o
+.PHONY : src/mx_fg.c.o
+
+src/mx_fg.i: src/mx_fg.c.i
+
+.PHONY : src/mx_fg.i
+
+# target to preprocess a source file
+src/mx_fg.c.i:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_fg.c.i
+.PHONY : src/mx_fg.c.i
+
+src/mx_fg.s: src/mx_fg.c.s
+
+.PHONY : src/mx_fg.s
+
+# target to generate assembly for a file
+src/mx_fg.c.s:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_fg.c.s
+.PHONY : src/mx_fg.c.s
+
 src/mx_get_type.o: src/mx_get_type.c.o
 
 .PHONY : src/mx_get_type.o
@@ -2012,6 +2120,33 @@ src/mx_jobs_functions.s: src/mx_jobs_functions.c.s
 src/mx_jobs_functions.c.s:
 	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_jobs_functions.c.s
 .PHONY : src/mx_jobs_functions.c.s
+
+src/mx_jobs_functions_2.o: src/mx_jobs_functions_2.c.o
+
+.PHONY : src/mx_jobs_functions_2.o
+
+# target to build an object file
+src/mx_jobs_functions_2.c.o:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_jobs_functions_2.c.o
+.PHONY : src/mx_jobs_functions_2.c.o
+
+src/mx_jobs_functions_2.i: src/mx_jobs_functions_2.c.i
+
+.PHONY : src/mx_jobs_functions_2.i
+
+# target to preprocess a source file
+src/mx_jobs_functions_2.c.i:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_jobs_functions_2.c.i
+.PHONY : src/mx_jobs_functions_2.c.i
+
+src/mx_jobs_functions_2.s: src/mx_jobs_functions_2.c.s
+
+.PHONY : src/mx_jobs_functions_2.s
+
+# target to generate assembly for a file
+src/mx_jobs_functions_2.c.s:
+	$(MAKE) -f CMakeFiles/ush_team.dir/build.make CMakeFiles/ush_team.dir/src/mx_jobs_functions_2.c.s
+.PHONY : src/mx_jobs_functions_2.c.s
 
 src/mx_jobs_functions_print.o: src/mx_jobs_functions_print.c.o
 
@@ -2775,9 +2910,15 @@ help:
 	@echo "... src/ast/mx_quote_manage.o"
 	@echo "... src/ast/mx_quote_manage.i"
 	@echo "... src/ast/mx_quote_manage.s"
+	@echo "... src/ast/mx_redir_push_back.o"
+	@echo "... src/ast/mx_redir_push_back.i"
+	@echo "... src/ast/mx_redir_push_back.s"
 	@echo "... src/ast/mx_strtok.o"
 	@echo "... src/ast/mx_strtok.i"
 	@echo "... src/ast/mx_strtok.s"
+	@echo "... src/ast/mx_subst_backslash.o"
+	@echo "... src/ast/mx_subst_backslash.i"
+	@echo "... src/ast/mx_subst_backslash.s"
 	@echo "... src/ast/mx_subst_dollar.o"
 	@echo "... src/ast/mx_subst_dollar.i"
 	@echo "... src/ast/mx_subst_dollar.s"
@@ -2790,6 +2931,9 @@ help:
 	@echo "... src/ast/mx_ush_read_line.o"
 	@echo "... src/ast/mx_ush_read_line.i"
 	@echo "... src/ast/mx_ush_read_line.s"
+	@echo "... src/mx_bg.o"
+	@echo "... src/mx_bg.i"
+	@echo "... src/mx_bg.s"
 	@echo "... src/mx_builtin_commands.o"
 	@echo "... src/mx_builtin_commands.i"
 	@echo "... src/mx_builtin_commands.s"
@@ -2814,6 +2958,9 @@ help:
 	@echo "... src/mx_export.o"
 	@echo "... src/mx_export.i"
 	@echo "... src/mx_export.s"
+	@echo "... src/mx_fg.o"
+	@echo "... src/mx_fg.i"
+	@echo "... src/mx_fg.s"
 	@echo "... src/mx_get_type.o"
 	@echo "... src/mx_get_type.i"
 	@echo "... src/mx_get_type.s"
@@ -2826,6 +2973,9 @@ help:
 	@echo "... src/mx_jobs_functions.o"
 	@echo "... src/mx_jobs_functions.i"
 	@echo "... src/mx_jobs_functions.s"
+	@echo "... src/mx_jobs_functions_2.o"
+	@echo "... src/mx_jobs_functions_2.i"
+	@echo "... src/mx_jobs_functions_2.s"
 	@echo "... src/mx_jobs_functions_print.o"
 	@echo "... src/mx_jobs_functions_print.i"
 	@echo "... src/mx_jobs_functions_print.s"
