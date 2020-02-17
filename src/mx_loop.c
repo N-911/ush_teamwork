@@ -9,7 +9,7 @@ static char *get_line(t_shell *m_s);
 static int get_job_type(t_ast **ast, int i);
 static struct termios mx_disable_term();
 static void mx_enable_term(struct termios savetty);
-static void add_char(int *position, char *line, int keycode);
+static void add_char(int *position, char *line, int keycode, t_shell *m_s);
 static void read_input(int *max_len, int *keycode, char *line);
 static void exec_signal(int keycode, char *line, int *position);
 static void reverse_backscape(int *position, char *line);
@@ -21,6 +21,7 @@ void mx_ush_loop(t_shell *m_s) {
     char *line;
     t_ast **ast = NULL;
     
+    m_s->git = mx_get_git_info();
     while (1) {
 		line = get_line(m_s);
         if (line[0] == '\0') {
@@ -112,6 +113,7 @@ static char *get_line(t_shell *m_s) {
     edit_prompt(m_s);
 
     savetty = mx_disable_term();
+    m_s->line_len = 1024;
     print_prompt(m_s);
     fflush (NULL);
     line = mx_get_keys(m_s);
@@ -159,7 +161,6 @@ static char *mx_get_keys(t_shell *m_s) {
    	int keycode = 0;
    	int max_len = 0;
    	int position = 0;
-    m_s->git = mx_get_git_info();
 
     for (;keycode != ENTER && keycode != CTRL_C;) {
     	read_input(&max_len, &keycode, line);
@@ -171,7 +172,7 @@ static char *mx_get_keys(t_shell *m_s) {
         else if (keycode < 32)
             exec_signal(keycode, line, &position);
         else
-            add_char(&position, line, keycode);
+            add_char(&position, line, keycode, m_s);
         if (keycode != CTRL_C){
             print_command(m_s, line, position, max_len);
         }
@@ -221,7 +222,11 @@ static void reverse_backscape(int *position, char *line) {
         }
 }
 
-static void add_char(int *position, char *line, int keycode) {
+static void add_char(int *position, char *line, int keycode, t_shell *m_s) {
+    if (mx_strlen(line) >= m_s->line_len) {
+        m_s->line_len += 1024;
+        line = realloc(line, m_s->line_len);
+    }
     for (int i = mx_strlen(line); i > *position; i--) {
         line[i] = line[i - 1];
     }
@@ -294,7 +299,7 @@ static void print_command(t_shell *m_s, char *line, int position, int max_len) {
 
 static void print_prompt(t_shell *m_s) {
     if (!m_s->prompt_status)
-        printf("%s", BOLD_CYAN);
+        printf("%s", BOLD_MAGENTA);
     printf ("%s", m_s->prompt);
     if (!m_s->prompt_status && m_s->git)
         printf(" %sgit:(%s%s%s)",BOLD_BLUE, RED, m_s->git, BOLD_BLUE);
@@ -302,9 +307,4 @@ static void print_prompt(t_shell *m_s) {
         printf("%s", RESET);
     printf ("> ");
 }
-
-
-
-
-
 

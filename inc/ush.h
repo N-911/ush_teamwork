@@ -79,6 +79,7 @@
 #define CHR "\x1B[0;34;43m"
 #define DIR_T "\x1B[0;30;42m"
 #define DIR_X "\033[0;30;43m"
+#define BOLD_MAGENTA "\x1B[1;35m"
 #define BOLD_CYAN "\x1B[1;36m"
 #define BOLD_RED "\x1B[[1;31m"
 #define BOLD_BLUE "\x1B[1;34m"
@@ -272,6 +273,7 @@ typedef struct s_shell {
     char *pwd;
     char *prompt;
     char *git;
+    int line_len;
     int prompt_status;
     t_export *exported;
     t_export *variables;
