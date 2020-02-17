@@ -37,11 +37,10 @@ int mx_wait_job(t_shell *m_s, int job_id) {
     int wait_count = 0;
     int status = 0;
 
-//    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
-//        return -1;
+//    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)  //delete
+//        return -1;    //delete
    proc_count = mx_get_proc_count(m_s, job_id, FILTER_IN_PROGRESS);
-//   printf("job_id %d\n", job_id);
-   printf("\x1B[32m proc count %d \x1B[0m  \n", proc_count);
+   printf("\x1B[32m proc count %d \x1B[0m  \n", proc_count);   //delete
     while (wait_count < proc_count) {
         wait_pid = waitpid(-m_s->jobs[job_id]->pgid, &status, WUNTRACED);
         wait_count++;

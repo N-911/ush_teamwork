@@ -1,0 +1,20 @@
+total 3520
+drwxr-xr-x  19 snikolayen  4242      646 Feb 17 18:14 .
+drwx------  61 snikolayen  4242     2142 Feb 17 18:13 ..
+-rw-r--r--@  1 snikolayen  4242     6148 Feb 16 14:03 .DS_Store
+drwxr-xr-x  15 snikolayen  4242      510 Feb 17 15:22 .git
+-rw-r--r--   1 snikolayen  4242      452 Feb  2 13:49 .gitignore
+drwxr-xr-x   9 snikolayen  4242      306 Feb 17 17:59 .idea
+-rw-r--r--   1 snikolayen  4242        0 Feb 17 18:14 1
+-rw-r--r--   1 snikolayen  4242        0 Feb 17 18:14 10
+-rw-r--r--   1 snikolayen  4242      147 Feb 17 14:38 2
+-rw-r--r--   1 snikolayen  4242     3306 Feb 16 15:40 CMakeLists.txt
+-rw-r--r--   1 snikolayen  4242     2946 Feb 14 17:49 Makefile
+-rw-r--r--   1 snikolayen  4242       14 Jan 23 10:12 README.md
+drwxr-xr-x   9 snikolayen  4242      306 Feb 16 18:59 cmake-build-debug
+-rwxr-xr-x   1 snikolayen  4242     8532 Feb 14 17:49 env_test
+drwxr-xr-x   4 snikolayen  4242      136 Feb 17 17:32 inc
+drwxr-xr-x   7 snikolayen  4242      238 Feb  1 18:54 libmx
+drwxr-xr-x  41 snikolayen  4242     1394 Feb 17 18:13 src
+-rw-r--r--@  1 snikolayen  4242  1674240 Feb 14 17:49 ucode _ LMS2.pdf
+-rwxr-xr-x   1 snikolayen  4242    84380 Feb 17 17:52 ush

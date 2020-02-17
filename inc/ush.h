@@ -151,8 +151,6 @@ typedef struct s_redir {
     char *input_path;  // < <<
     char *output_path;  // > >>
     int redir_delim;  // <, <<, >, >> from e_type
-    int c_input;
-    int c_output;
     struct s_redir *next;
 } t_redir;
 
@@ -227,6 +225,8 @@ typedef struct s_process {
     char *output_path;  // > >>
     int redir_delim;  // <, <<, >, >> from e_type
     t_redir *redirect;  // new
+    int c_input;
+    int c_output;
     pid_t pid;
     int exit_code;
     char *path;
@@ -381,7 +381,9 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
 void mx_launch_job(t_shell *m_s, t_job *job);
 void mx_count_redir(t_process *p);
-void mx_set_redirections(t_process *p);
+void mx_set_redirections(t_process *p, int intfile, int outfile);
+void set_r_infile(t_process *p, int infile);
+void set_r_outfile(t_process *p, int outfile);
 
 
 

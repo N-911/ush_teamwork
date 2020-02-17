@@ -46,8 +46,7 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
         if (m_s->exit_flag == 1 && !(p->type == 10))
             m_s->exit_flag = 0;
 
-        mx_set_redirections(p);
-
+        mx_set_redirections(p, infile, outfile);
         if (p->pipe) {
             if (pipe(mypipe) < 0) {
                 perror("pipe");
@@ -55,13 +54,14 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
                 exit(1);
             }
             outfile = mypipe[1];
-            p->r_outfile[0] = mypipe[1];
+//            p->r_outfile[0] = mypipe[1];
         }
+        p->r_outfile[0] = outfile;
+        //*******
         p->infile = infile;
         p->outfile = outfile;
         p->errfile = errfile;
-
-
+        //********
         int flag = get_flag(p->argv);
         if (flag) {
             status = mx_set_parametr(p->argv, m_s);
@@ -70,36 +70,41 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
                 status = mx_launch_builtin(m_s, p, job_id);  // fork own buildins
         }
         else {
-////            if (p->c_input > 1) {
-//                for (int a = 0; a < p->c_input; a++) {
-//                    status = mx_launch_process(m_s, p, job_id, path, env, p->r_infile[a], p->r_outfile[0], errfile);
-//                    printf("\x1B[36m p->r_infile[%d] =  %d \x1B[0m  \n", a, p->r_infile[a]);
-////                status = mx_launch_process(m_s, p, job_id, path, env, p->r_infile[a], p->r_outfile[i], errfile);
-//                }
-//                printf("r_input\n")
-//            }
-//            if (p->c_output > 1) {
+            if (p->c_input > 1) {
+                for (int a = 0; a < p->c_input; a++) {
+                    status = mx_launch_process(m_s, p, job_id, path, env, p->r_infile[a], p->r_outfile[0], errfile);
+                    printf("\x1B[36m p->r_infile[%d] =  %d \x1B[0m  \n", a, p->r_infile[a]);
+//                status = mx_launch_process(m_s, p, job_id, path, env, p->r_infile[a], p->r_outfile[i], errfile);
+                }
+                status = mx_launch_process(m_s, p, job_id, path, env, p->r_outfile[0], p->r_outfile[0], errfile);
+                printf("r_input\n");
+            }
+            else if (p->c_output > 1) {
                 for (int i = p->c_output - 1; i >= 0; i--) {
                     printf("\x1B[36m p->r_outfile[%d] =  %d \x1B[0m  \n", i, p->r_outfile[i]);
                     status = mx_launch_process(m_s, p, job_id, path, env, infile, p->r_outfile[i], errfile);
 //                status = mx_launch_process(m_s, p, job_id, path, env, infile, outfile, errfile);
                 }
                 printf("r_output\n");
-//                }
+                }
+            else {
+                status = mx_launch_process(m_s, p, job_id, path, env, p->r_infile[0], p->r_outfile[0], errfile);
+            }
         }
         if (infile != job->stdin)
             close(infile);
         if (outfile != job->stdout)
             close(outfile);
-//        infile = mypipe[0];
+        infile = mypipe[0];
+
         if (p->c_input > 1) {
-            for(int i = 0; i < p->c_input; i ++) {
+            for(int i = 1; i < p->c_input; i ++) {
                 if (p->r_infile[i] != job->stdin)
                     close(p->r_infile[i]);
             }
         }
         if (p->c_output > 1) {
-            for(int i = 0; i < p->c_output; i ++) {
+            for(int i = 1; i < p->c_output; i ++) {
                 if (p->r_outfile[i] != job->stdout)
                     close(p->r_outfile[i]);
             }
@@ -138,10 +143,10 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
 }
 
 
-void mx_set_redirections(t_process *p) {
+void mx_set_redirections(t_process *p, int intfile, int outfile) {
     mx_count_redir(p);
-    set_r_outfile(p);
-    set_r_infile(p);
+    set_r_outfile(p, outfile);
+    set_r_infile(p, intfile);
 }
 
 void mx_count_redir(t_process *p) {
@@ -163,12 +168,12 @@ void mx_count_redir(t_process *p) {
     printf("\x1B[32m p->redirect->c_output = %d \x1B[0m  \n", p->c_output);
 //    printf ("mx_count_redir end\n");
 }
-void set_r_infile(t_process *p) {
+void set_r_infile(t_process *p, int infile) {
     t_redir *r;
     int j;
 
     p->r_infile = (int *) malloc(sizeof(int) * (p->c_input));
-    p->r_infile[0] = STDIN_FILENO;
+    p->r_infile[0] = infile;
     if (p->c_input > 1) {
         for (r = p->redirect, j = 1; r; r = r->next, j++) {
             if (r->redir_delim == R_INPUT) {
@@ -202,13 +207,13 @@ void set_r_infile(t_process *p) {
     }
 }
 
-void set_r_outfile(t_process *p) {
+void set_r_outfile(t_process *p, int outfile) {
     int flags;
     t_redir *r;
     int j;
 
     p->r_outfile = (int *)malloc(sizeof(int) * (p->c_output));
-    p->r_outfile[0] = STDOUT_FILENO;
+    p->r_outfile[0] = outfile;
     if (p->c_output > 1) {
         for (r = p->redirect, j = 0; r; r = r->next, j++) {
             printf("count redir\n");
