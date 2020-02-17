@@ -74,6 +74,7 @@ static void change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_cod
 		else
 			manage_env(dir, m_s, cd_options, exit_code);
 	}
+	m_s->git = mx_get_git_info();
 }
 
 static void manage_env(char *dir, t_shell *m_s,  cd_t cd_options, int *exit_code) {

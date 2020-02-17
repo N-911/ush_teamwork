@@ -78,6 +78,10 @@
 #define CHR "\x1B[0;34;43m"
 #define DIR_T "\x1B[0;30;42m"
 #define DIR_X "\033[0;30;43m"
+#define BOLD_MAGENTA "\x1B[1;35m"
+#define BOLD_CYAN "\x1B[1;36m"
+#define BOLD_RED "\x1B[[1;31m"
+#define BOLD_BLUE "\x1B[1;34m"
 
 //KEYBOARDS
 #define INPUT_SIZE  1024
@@ -89,6 +93,7 @@
 #define K_DOWN      4348699
 #define P_UP        2117425947
 #define P_DOWN      2117491483
+#define C_PROMPT    42946
 #define CTRL_D      4
 #define CTRL_C      3
 #define CTRL_R      18
@@ -272,15 +277,21 @@ typedef struct s_shell {
     char **history;
     int history_count;
     int history_index;
+    int history_size;
     struct termios tmodes;
     struct termios t_original;
     struct termios t_custom;
     bool custom_terminal;
     pid_t shell_pgid;
     char *pwd;
+    char *prompt;
+    char *git;
+    int line_len;
+    int prompt_status;
     t_export *exported;
     t_export *variables;
 } t_shell;
+
 
 static volatile sig_atomic_t sigflag; // устанавливается обработчиком  в ненулевое значение
 static sigset_t newmask, oldmask, zeromask;
@@ -459,6 +470,7 @@ unsigned long mx_hex_to_nbr(const char *hex);
 
 int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id);
 //int mx_launch_builtin(t_shell *m_s, t_process *p);
+char *mx_get_git_info();
 
 
 #endif

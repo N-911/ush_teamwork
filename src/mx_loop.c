@@ -1,25 +1,28 @@
 #include "ush.h"
 
-static char *mx_get_keys(char *promt);
-static void print_command(char *promt, char *line, int position, int max_len);
+static char *mx_get_keys(t_shell *m_s);
+static void print_command(t_shell *m_s, char *line, int position, int max_len);
 static void exit_ush();
-static void edit_command(int keycode, int *position, char *line);
+static void edit_command(int keycode, int *position, char **line, t_shell *m_s);
 static void backscape(int *position, char *line);
-static char *get_line();
+static char *get_line(t_shell *m_s);
 static int get_job_type(t_ast **ast, int i);
 static struct termios mx_disable_term();
 static void mx_enable_term(struct termios savetty);
-static void add_char(int *position, char *line, int keycode);
+static void add_char(int *position, char *line, int keycode, t_shell *m_s);
 static void read_input(int *max_len, int *keycode, char *line);
 static void exec_signal(int keycode, char *line, int *position);
 static void reverse_backscape(int *position, char *line);
+static char *get_variable(t_shell *m_s, char *target);
+static void edit_prompt(t_shell *m_s);
+static void print_prompt(t_shell *m_s);
 
 void mx_ush_loop(t_shell *m_s) {
     char *line;
     t_ast **ast = NULL;
-
+    m_s->git = mx_get_git_info();
     while (1) {
-		line = get_line();
+		line = get_line(m_s);
         if (line[0] == '\0') {
             mx_check_jobs(m_s);
             continue;
@@ -31,13 +34,44 @@ void mx_ush_loop(t_shell *m_s) {
                     new_job = mx_create_job(m_s, ast[i]);
                     new_job->job_type = get_job_type(ast, i);
                     mx_launch_job(m_s, new_job);
-                    m_s->history_count = 0;
                 }
                 mx_ast_clear_all(&ast);  // clear leeks
             }
         }
         mx_strdel(&line);
     }
+}
+
+char *mx_get_git_info() {
+    char *user = NULL;
+    int flag = 0;
+    char *path = ".";
+        while(!flag) {
+            DIR *dptr  = opendir(path);
+            struct dirent  *ds;
+
+                while ((ds = readdir(dptr)) != 0) {//cчитываем хуйню из директории
+                    if (strcmp(ds->d_name, ".git") == 0) {
+                        char *gitpath = mx_strjoin(path, "/.git/HEAD");
+                        char *git = mx_file_to_str(gitpath);
+                        char **arr = mx_strsplit(git, '/');
+                        int count = 0;
+                        while (arr[count] != NULL)
+                            count++;
+                        user = strdup(arr[count - 1]);
+                        user[mx_strlen(user) - 1] = '\0';
+                        //printf("%sgit:(%s%s%s)%s\n",BOLD_BLUE, RED, user, BOLD_BLUE, RESET);
+                        flag++;
+                        break;
+                    }
+                }
+            if (strcmp(realpath(path, NULL), getenv("HOME")) == 0 ||
+                mx_count_substr(realpath(path, NULL), "/") <= 2)
+                flag++;
+            closedir(dptr);
+            path = mx_strjoin(path, "/..");
+        }
+    return user;
 }
 
 static struct termios mx_disable_term() {
@@ -72,20 +106,57 @@ static int get_job_type(t_ast **ast, int i) {
     return 0;
 }
 
-static char *get_line() {
+static char *get_line(t_shell *m_s) {
     char *line;
     struct termios savetty;
 
+    edit_prompt(m_s);
+
     savetty = mx_disable_term();
-    printf ("\ru$h> ");
+    m_s->line_len = 1024;
+    print_prompt(m_s);
     fflush (NULL);
-    line = mx_get_keys("u$h>");
+    line = mx_get_keys(m_s);
+    if (m_s->history_count == m_s->history_size) {
+        m_s->history_size += 1000;
+        m_s->history = (char **)realloc(m_s->history, m_s->history_size);
+    }
+    if (strcmp(line, "") != 0) {
+        m_s->history[m_s->history_count] = strdup(line);
+        m_s->history_count++;
+    }
+    m_s->history_index = m_s->history_count;
     printf("\n");
     mx_enable_term(savetty);
     return line;
 }
 
-static char *mx_get_keys(char *promt) {
+static void edit_prompt(t_shell *m_s) {
+    if (!m_s->prompt_status) {
+            char *info = mx_strnew(256);
+            if (strcmp(m_s->pwd, "/") == 0)
+                info = strdup("/");
+            else if (strcmp(m_s->pwd, getenv("HOME")) == 0)
+                info = strdup("~");
+            else {
+                char **arr = mx_strsplit(m_s->pwd, '/');
+                int count = 0;
+                while (arr[count] != NULL)
+                    count++;
+                info = strdup(arr[count - 1]);
+            }
+
+            m_s->prompt = strdup(info);
+        }
+    else {
+        if (get_variable(m_s, "PROMPT"))
+                m_s->prompt = get_variable(m_s, "PROMPT");
+            else
+                m_s->prompt = "u$h";
+    }
+}
+
+static char *mx_get_keys(t_shell *m_s) {
 	char *line = mx_strnew(1024);
    	int keycode = 0;
    	int max_len = 0;
@@ -93,14 +164,18 @@ static char *mx_get_keys(char *promt) {
 
     for (;keycode != ENTER && keycode != CTRL_C;) {
     	read_input(&max_len, &keycode, line);
+        max_len += mx_strlen(m_s->prompt);
+        if (m_s->git)
+            max_len += mx_strlen(m_s->git) + 7;
         if (keycode >= 127)
-            edit_command(keycode, &position, line);
+            edit_command(keycode, &position, &line, m_s);
         else if (keycode < 32)
             exec_signal(keycode, line, &position);
         else
-            add_char(&position, line, keycode);
-        if (keycode != CTRL_C)
-            print_command(promt, line, position, max_len);
+            add_char(&position, line, keycode, m_s);
+        if (keycode != CTRL_C){
+            print_command(m_s, line, position, max_len);
+        }
     }
     return line;
 }
@@ -147,7 +222,11 @@ static void reverse_backscape(int *position, char *line) {
         }
 }
 
-static void add_char(int *position, char *line, int keycode) {
+static void add_char(int *position, char *line, int keycode, t_shell *m_s) {
+    if (mx_strlen(line) >= m_s->line_len) {
+        m_s->line_len += 1024;
+        line = realloc(line, m_s->line_len);
+    }
     for (int i = mx_strlen(line); i > *position; i--) {
         line[i] = line[i - 1];
     }
@@ -155,33 +234,76 @@ static void add_char(int *position, char *line, int keycode) {
     (*position)++;
 }
 
-static void edit_command(int keycode, int *position, char *line) {
+static void edit_command(int keycode, int *position, char **line, t_shell *m_s) {
     if (keycode == K_LEFT)
         *position > 0 ? (*position)-- : 0;
     else if (keycode == K_RIGHT)
-        *position < mx_strlen(line) ? (*position)++ : 0;
+        *position < mx_strlen(*line) ? (*position)++ : 0;
     else if (keycode == K_END)
-        *position = mx_strlen(line);
+        *position = mx_strlen(*line);
     else if (keycode == K_DOWN) {
-        //  вперед в прошлое
+        if (m_s->history[m_s->history_index + 1] && m_s->history_index < m_s->history_count) {
+            free(*line);
+            *line = NULL;
+            *line = mx_strnew(1024);
+            *line = strdup(m_s->history[m_s->history_index + 1]);
+            *position = mx_strlen(*line);
+            m_s->history_index++;
+        }
     }
     else if (keycode == K_UP) {
-        // назад в будущее
+        if (m_s->history[m_s->history_index - 1] && m_s->history_index > 0) {
+            free(*line);
+            *line = NULL;
+            *line = mx_strnew(1024);
+            strcpy(*line, m_s->history[m_s->history_index - 1]);
+            *position = mx_strlen(*line);
+            m_s->history_index--;
+        }
+    }
+    else if (keycode == C_PROMPT) {
+        m_s->prompt_status ? m_s->prompt_status-- : m_s->prompt_status++;
+        edit_prompt(m_s);
     }
     else if (keycode == BACKSCAPE)
-        backscape(position, line);
+        backscape(position, *line);
 }
 
-static void print_command(char *promt, char *line, int position, int max_len) {
-		for (int i = position; i < mx_strlen(line); i++) {
+static char *get_variable(t_shell *m_s, char *target) {
+    t_export *head = m_s->variables;
+
+    while (head != NULL) {
+        if (strcmp(head->name, target) == 0) {
+            return head->value;
+        }
+        head = head->next;
+    }
+    return NULL;
+}
+
+static void print_command(t_shell *m_s, char *line, int position, int max_len) {
+		for (int i = position; i <= mx_strlen(line); i++) {
         	printf (" ");
         }
-	    for (int i = 0; i <= max_len + mx_strlen(promt) + 1; i++) {
+	    for (int i = 0; i <= max_len + 2; i++) {
 	        printf ("\b\x1b[2K");
 	    }
-        printf ("%s %s", promt, line);
+        printf ("\r");
+        print_prompt(m_s);
+        printf ("%s", line);
         for (int i = 0; i < mx_strlen(line) - position; i++) {
         	printf ("%c[1D", 27);
         }
         fflush (NULL);
+}
+
+static void print_prompt(t_shell *m_s) {
+    if (!m_s->prompt_status)
+        printf("%s", BOLD_MAGENTA);
+    printf ("%s", m_s->prompt);
+    if (!m_s->prompt_status && m_s->git)
+        printf(" %sgit:(%s%s%s)",BOLD_BLUE, RED, m_s->git, BOLD_BLUE);
+    if (!m_s->prompt_status)
+        printf("%s", RESET);
+    printf ("> ");
 }
