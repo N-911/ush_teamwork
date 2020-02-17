@@ -101,9 +101,8 @@
 */
 /* Operators and delimeters for parse tokens */
 #define PARSE_DELIM ";|&><"
-#define QUOTE "\"`()"
 #define QUOTE2 "\"\'`$"
-#define DBL_QUOTE_EXCEPTIONS "$`\"\\"
+#define DBLQ_EXCEPTIONS "$`\"\\"
 #define USH_TOK_DELIM " \t\n"  // " \t\r\n\a"
 
 /* Macroces for recognizing delimeters */
@@ -338,7 +337,7 @@ char *mx_subst_command(char *s);
 int mx_get_char_index_quote(char *s, char *c, char *q);
 // int mx_get_char_index_backslash(char *s, char *c);
 // int mx_count_chr_quote(char *str, char c, char *q);
-char *mx_strtrim_quote(char *s);
+void mx_strtrim_quote(char **str);
 /*
  *  ---------------------------------------------- move to LIBMX
  */

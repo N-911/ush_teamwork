@@ -23,19 +23,21 @@
 static char *get_end_usual_quote_func(char *s, const char *delim, char *end) {
     char tmp;
 
-    while (*s) {
-        if (mx_isdelim(*s, (char *)delim))
-            break;
-        else if (*s == '\\')
+    while (*s && !(mx_isdelim(*s, (char *)delim))) {
+        if (*s == '\\')
             s++;
         else if (*s == '\'')
             s += mx_get_char_index(s + 1, '\'') + 2;
-        else if (mx_isdelim(*s, "\"`")) {
+        else if (mx_isdelim(*s, "\"")) {
             tmp = *s;
-            s += mx_get_char_index_backslash(s + 1, &tmp) + 2;
+            s += mx_get_char_index_quote(s + 1, &tmp, "`") + 2;
+        }
+        else if (mx_isdelim(*s, "`")) {
+            tmp = *s;
+            s += mx_get_char_index_quote(s + 1, "`", "\"\'$") + 2;
         }
         else if (mx_strncmp(s, "$(", 2) == 0)
-            s += mx_get_char_index_backslash(s, ")") + 3;
+            s += mx_get_char_index_quote(s, ")", "\"\'`") + 3;
         s++;
     }
     end = s;

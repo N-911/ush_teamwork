@@ -24,9 +24,12 @@ static char check_quote_auditor(char *s, int *i) {
     int j = *i;
     char tmp;
 
-    if (s[j] == ')')
-        return ')';
-    (s[j] == '(') ? (tmp = ')') : (tmp = s[j]);
+    // if (s[j] == ')')
+    //     return ')';
+    if (s[j] == '(' && s[j - 1] && s[j - 1] == '$')
+        tmp = ')';
+    else
+        tmp = s[j];
     j++;
     while (s[j] && s[j] != tmp)
         (s[j] == '\\') ? (j += 2) : (j++);
@@ -45,7 +48,7 @@ static bool check_quote(char *s) {
     for (int i = 0; s[i]; i++) {
         if (s[i] == '\\')
             i++;
-        else if (mx_isdelim(s[i], QUOTE)) {
+        else if (mx_isdelim(s[i], "`\"(")) {
             tmp = check_quote_auditor(s, &i);
             if (!s[i] || tmp == ')')
                 return unmached_er(tmp);
