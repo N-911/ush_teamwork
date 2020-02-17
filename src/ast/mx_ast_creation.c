@@ -13,13 +13,13 @@ static void print_list(t_ast *parsed_line) {
                 mx_printstr("redir == ");
 
                 if (r->type == R_INPUT)
-                    mx_printstr("> ");
-                else if (r->type == R_INPUT_DBL)
-                    mx_printstr(">> ");
-                else if (r->type == R_OUTPUT)
                     mx_printstr("< ");
-                else if (r->type == R_OUTPUT_DBL)
+                else if (r->type == R_INPUT_DBL)
                     mx_printstr("<< ");
+                else if (r->type == R_OUTPUT)
+                    mx_printstr("> ");
+                else if (r->type == R_OUTPUT_DBL)
+                    mx_printstr(">> ");
 
                 if (r->args)
                     mx_print_strarr_in_line(r->args, " ");

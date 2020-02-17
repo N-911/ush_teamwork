@@ -3,23 +3,23 @@
  * Convert delimeter in int-value.
  */
 static int get_type(char *delim) {
-    if (IS_SEP(delim))
+    if (MX_IS_SEP(delim))
         return SEP;
-    else if (IS_FON(delim))
+    else if (MX_IS_FON(delim))
         return FON;
-    else if (IS_AND(delim))
+    else if (MX_IS_AND(delim))
         return AND;
-    else if (IS_OR(delim))
+    else if (MX_IS_OR(delim))
         return OR;
-    else if (IS_PIPE(delim))
+    else if (MX_IS_PIPE(delim))
         return PIPE;
-    else if (IS_R_INPUT(delim))
+    else if (MX_IS_R_INPUT(delim))
         return R_INPUT;
-    else if (IS_R_INPUT_DBL(delim))
+    else if (MX_IS_R_INPUT_DBL(delim))
         return R_INPUT_DBL;
-    else if (IS_R_OUTPUT(delim))
+    else if (MX_IS_R_OUTPUT(delim))
         return R_OUTPUT;
-    else if (IS_R_OUTPUT_DBL(delim))
+    else if (MX_IS_R_OUTPUT_DBL(delim))
         return R_OUTPUT_DBL;
     return NUL;
 }
@@ -73,7 +73,7 @@ static char *get_token_and_delim(char *line, int *i, int *type) {
     int pos = 0;
     char *tmp = NULL;
 
-    if ((pos = mx_get_char_index_quote(&line[pos], PARSE_DELIM, QUOTE)) > 0) {
+    if ((pos = mx_get_char_index_quote(&line[pos], PARSE_DELIM)) > 0) {
         tmp = mx_strndup(line, pos);
         *type = get_delim(line + pos, &pos);
         *i += pos;
@@ -108,7 +108,7 @@ t_ast *mx_ush_parsed_line(char *line, t_export *variables) {
         if ((tmp = get_token_and_delim(&line[i], &i, &type))) {
             if ((args = mx_filters(tmp, variables)) && *args)
                 mx_ast_push_back(&res, args, type);
-            else if (type != SEP) {
+            else if (type != SEP) {  // works "; ; ;", block "; | ;"
                 mx_printerr("u$h: parse error near `");
                 delim = get_delim_from_type(type);
                 write(2, delim, mx_strlen(delim));

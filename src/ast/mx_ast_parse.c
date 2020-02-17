@@ -6,9 +6,25 @@ static int count_sep_first_lwl(t_ast *q) {
     int i = 1;
 
     for (; q; q = q->next)
-        if (IS_SEP_FIRST_LWL(q->type))
+        if (MX_IS_SEP_FIRST_LWL(q->type))
             i++;
     return i;
+}
+/*
+*  Push redirections left.
+*/
+t_ast *push_redirections(t_ast **q, t_ast **ast) {
+    int tmp_type;
+    t_ast *c = (*q)->next;
+
+    tmp_type = (*q)->type;
+    for (; c && MX_IS_REDIRECTION(tmp_type); c = c->next, (*q) = (*q)->next) {
+        mx_ast_push_back_redirection(ast, c->args, tmp_type);
+        tmp_type = c->type;
+    }
+    for (c = *ast; c->next; c = c->next) {}
+    c->type = tmp_type;
+    return *q;
 }
 /*
 *  create ast (array of lists) from parsed_line (list)
@@ -21,13 +37,10 @@ t_ast **mx_ast_parse(t_ast *parsed_line) {
 
     ast[i] = NULL;
     for (; q; q = q->next) {
-        if (IS_REDIRECTION(q->type)) {
-            mx_ast_push_back_redirection(&ast[i], &q);
-            for (; IS_REDIRECTION(q->type); q = q->next) {}
-        }
-        else
-            mx_ast_push_back(&ast[i], q->args, q->type);
-        if (IS_SEP_FIRST_LWL(q->type) || q->type == NUL)
+        mx_ast_push_back(&ast[i], q->args, q->type);
+        if (MX_IS_REDIRECTION(q->type))
+            q = push_redirections(&q, &ast[i]);
+        if (MX_IS_SEP_FIRST_LWL(q->type) || q->type == NUL)
             ast[++i] = NULL;
     }
     return ast;
