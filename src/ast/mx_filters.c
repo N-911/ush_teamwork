@@ -13,7 +13,6 @@ char **mx_filters(char *arg, t_export *variables) {
         res[i] = mx_subst_tilde(res[i]);                // res[i] if bad subst
         res[i] = mx_substr_dollar(res[i], variables);   // NULL if bad subst
         res[i] = mx_subst_command(res[i]);              // '\0' or NULL if bad subst
-
         if (!res[i]) {
             mx_del_strarr(&res);
             free(args);
@@ -24,11 +23,11 @@ char **mx_filters(char *arg, t_export *variables) {
             i--;
         }
     }
-    res[i] = NULL;
+    // res[i] = NULL;
     /*  scans the results of parameter expansion, command substitution,
      *  that did not double quoted for word splitting.
      */
-    // mx_strtrim_quote(res);
+    mx_strtrim_quote(res);
     free(args);
     return res;
 }

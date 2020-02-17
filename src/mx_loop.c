@@ -17,7 +17,7 @@ static void reverse_backscape(int *position, char *line);
 void mx_ush_loop(t_shell *m_s) {
     char *line;
     t_ast **ast = NULL;
-    
+
     while (1) {
 		line = get_line();
         if (line[0] == '\0') {
@@ -25,6 +25,7 @@ void mx_ush_loop(t_shell *m_s) {
             continue;
         } else {
             if ((ast = mx_ast_creation(line, m_s))) {
+                ast_print(ast);
                 for (int i = 0; ast[i]; i++) {
                     t_job *new_job = (t_job *) malloc(sizeof(t_job));  //create new job
                     new_job = mx_create_job(m_s, ast[i]);
@@ -157,7 +158,7 @@ static void add_char(int *position, char *line, int keycode) {
 static void edit_command(int keycode, int *position, char *line) {
     if (keycode == K_LEFT)
         *position > 0 ? (*position)-- : 0;
-    else if (keycode == K_RIGHT) 
+    else if (keycode == K_RIGHT)
         *position < mx_strlen(line) ? (*position)++ : 0;
     else if (keycode == K_END)
         *position = mx_strlen(line);
@@ -178,12 +179,9 @@ static void print_command(char *promt, char *line, int position, int max_len) {
 	    for (int i = 0; i <= max_len + mx_strlen(promt) + 1; i++) {
 	        printf ("\b\x1b[2K");
 	    }
-        printf ("%s %s", promt, line); 
+        printf ("%s %s", promt, line);
         for (int i = 0; i < mx_strlen(line) - position; i++) {
         	printf ("%c[1D", 27);
         }
         fflush (NULL);
 }
-
-
-
