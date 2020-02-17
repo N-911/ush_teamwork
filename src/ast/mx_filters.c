@@ -23,7 +23,7 @@ char **mx_filters(char *arg, t_export *variables) {
             i--;
         }
     }
-    // res[i] = NULL;
+    res[i] = NULL;
     /*  scans the results of parameter expansion, command substitution,
      *  that did not double quoted for word splitting.
      */

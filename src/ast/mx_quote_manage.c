@@ -53,16 +53,17 @@ static void mx_strtrim_quote_auditor(char *s, char *tmp, int *ii, int *jj) {
 
     if (s[i] == '\"') {
         i++;
-        while (s[i] && s[i] != '\"') {
-            (s[i] == '\\' && mx_isdelim(s[i + 1], DBLQ_EXCEPTIONS)) ? (i++) : (i);
-            tmp[j++] = s[i++];
+        for (; s[i] && s[i] != '\"'; i++, j++) {
+            if (s[i] == '\\' && mx_isdelim(s[i + 1], DBLQ_EXCEPTIONS))
+                i++;
+            tmp[j] = s[i];
         }
         j--;
     }
     else if (s[i] == '\'') {
         i++;
-        while (s[i] && s[i] != '\'')
-            tmp[j++] = s[i++];
+        for (; s[i] && s[i] != '\''; i++, j++)
+            tmp[j] = s[i];
         j--;
     }
     *ii = i;

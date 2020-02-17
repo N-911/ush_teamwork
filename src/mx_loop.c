@@ -21,6 +21,7 @@ void mx_ush_loop(t_shell *m_s) {
     char *line;
     t_ast **ast = NULL;
     m_s->git = mx_get_git_info();
+    // system ("leaks -q ush");
     while (1) {
 		line = get_line(m_s);
         if (line[0] == '\0') {
@@ -28,7 +29,6 @@ void mx_ush_loop(t_shell *m_s) {
             continue;
         } else {
             if ((ast = mx_ast_creation(line, m_s))) {
-                ast_print(ast);
                 for (int i = 0; ast[i]; i++) {
                     t_job *new_job = (t_job *) malloc(sizeof(t_job));  //create new job
                     new_job = mx_create_job(m_s, ast[i]);
@@ -39,6 +39,7 @@ void mx_ush_loop(t_shell *m_s) {
             }
         }
         mx_strdel(&line);
+        // system ("leaks -q ush");
     }
 }
 

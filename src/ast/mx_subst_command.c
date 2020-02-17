@@ -32,7 +32,7 @@ static char *expantion(char *s, int pos) {
 
     res = mx_strndup(s, pos);
     if ((subst = get_subst(&s[pos], &len))) {
-        mx_printerr_red("u$h: substitushions don't work.\n");
+        mx_printerr("u$h: command substitushion doesn't work.\n");
         // res = mx_strjoin_free(res, subst);
     }
     if (s[pos + len])
