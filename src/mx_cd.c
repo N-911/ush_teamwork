@@ -25,7 +25,7 @@ int mx_cd(t_shell *m_s, t_process *p) {
 			point = go_home();
 		else if (n_args == 2)
 			point = chpwd(p->argv, n_options, m_s);
-		else 
+		else
 			point = go_somewere(p, n_options);
 		if (point)
 			change_dir(point, cd_options, m_s, &exit_code);
@@ -114,7 +114,7 @@ static char *chpwd(char **args, int n_options, t_shell *m_s) {
 		mx_printerr("ush: cd: string not in pwd: ");
 		mx_printerr(args[n_options + 1]);
 		mx_printerr("\n");
-	} 
+	}
 	else {
 		new = replace_sub(current, args[n_options + 1], args[n_options + 2]);
 	}
@@ -179,4 +179,3 @@ static int check_path(char *point, cd_t cd_options) {
 	free(read_link);
 	return flag;
 }
-

@@ -13,9 +13,6 @@ static char *add_login(char *home, char *prefix) {
         path = mx_strndup(home, i + 1);
     path = mx_strjoin_free(path, prefix);
     if (lstat(path, &buff) != 0) {
-        // mx_printerr("u$h: no such user or named directory: ");
-        // mx_printerr(prefix);
-        // mx_printerr("\n");
         mx_strdel(&path);
         return NULL;
     }
@@ -48,7 +45,7 @@ static char *get_prefix(char *s, int *sleshpos) {
     int sp = -1;
 
     if (s[1]) {
-        sp = mx_get_char_index_quote(&s[1], "/");
+        sp = mx_get_char_index_quote(&s[1], "/", MX_QUOTE);
         if (sp > 0)
             prefix = mx_strndup(&s[1], sp);
         else
@@ -81,8 +78,8 @@ static char *expantion(char *s) {
     return res;
 }
 /*
-*  substitutiont tilde
-*/
+ *  Substitutiont tilde
+ */
 char *mx_subst_tilde(char *s) {
     char *res = NULL;
 

@@ -12,7 +12,7 @@ static t_ast *ast_create_node(char **args, int type) {
     q->type = type;
     q->next = NULL;
     q->left = NULL;
-    return (q);
+    return q;
 }
 
 void mx_ast_push_back(t_ast **head, char **args, int type) {
@@ -25,12 +25,12 @@ void mx_ast_push_back(t_ast **head, char **args, int type) {
     if (!q)
         return;
     p = *head;
-    if (*head == NULL) { // if head = NULL
+    if (*head == NULL) {
         *head = q;
         return;
     }
     else {
-        while (p->next != NULL) // find last node
+        while (p->next != NULL)
             p = p->next;
         p->next = q;
     }
@@ -46,12 +46,12 @@ void mx_ast_push_back_redirection(t_ast **head, char **args, int type) {
     if (!q)
         return;
     p = *head;
-    if (*head == NULL) { // if head = NULL
+    if (*head == NULL) {
         *head = q;
         return;
     }
     else {
-        while (p->next != NULL) // find last node
+        while (p->next != NULL)
             p = p->next;
         mx_ast_push_back(&p->left, args, type);
     }

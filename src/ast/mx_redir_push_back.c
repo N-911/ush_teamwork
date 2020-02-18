@@ -31,19 +31,17 @@ void mx_redir_push_back(t_redir **head, char *path, int type) {
     if (!q)
         return;
     p = *head;
-    if (*head == NULL) { // if head = NULL
+    if (*head == NULL) {
         *head = q;
         return;
     }
     else {
-        while (p->next != NULL) // find last node
+        while (p->next != NULL)
             p = p->next;
         p->next = q;
     }
 }
-/*
- *  clear redir lists
- */
+
 void mx_redir_clear_list(t_redir **list) {
     t_redir *q = *list;
     t_redir *tmp = NULL;

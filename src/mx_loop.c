@@ -20,25 +20,26 @@ static void print_prompt(t_shell *m_s);
 void mx_ush_loop(t_shell *m_s) {
     char *line;
     t_ast **ast = NULL;
-    
+    t_job *new_job;
     m_s->git = mx_get_git_info();
+    // system ("leaks -q ush");
     while (1) {
 		line = get_line(m_s);
+        // line = mx_ush_read_line();
         if (line[0] == '\0') {
             mx_check_jobs(m_s);
             continue;
+        // } else if (mx_strcmp(line, "exit") == 0) {  // for check leaks
+        //     exit(0);
         } else {
             if ((ast = mx_ast_creation(line, m_s))) {
+                // mx_ast_print(ast);
                 for (int i = 0; ast[i]; i++) {
-                    t_job *new_job = (t_job *) malloc(sizeof(t_job));  //create new job
                     new_job = mx_create_job(m_s, ast[i]);
                     new_job->job_type = get_job_type(ast, i);
                     mx_launch_job(m_s, new_job);
-                    //printf("done1\n");
-                    //free(new_job);
                 }
                 mx_ast_clear_all(&ast);  // clear leeks
-                //printf("done2\n");
             }
         }
         free(line);
@@ -159,7 +160,7 @@ static void edit_prompt(t_shell *m_s) {
                 info = strdup(arr[count - 1]);
                 mx_del_strarr(&arr);
             }
-            
+
             m_s->prompt = strdup(info);
             free(info);
         }
@@ -254,7 +255,7 @@ static void add_char(int *position, char *line, int keycode, t_shell *m_s) {
 static void edit_command(int keycode, int *position, char **line, t_shell *m_s) {
     if (keycode == K_LEFT)
         *position > 0 ? (*position)-- : 0;
-    else if (keycode == K_RIGHT) 
+    else if (keycode == K_RIGHT)
         *position < mx_strlen(*line) ? (*position)++ : 0;
     else if (keycode == K_END)
         *position = mx_strlen(*line);
@@ -324,4 +325,3 @@ static void print_prompt(t_shell *m_s) {
         printf("%s", RESET);
     printf ("> ");
 }
-

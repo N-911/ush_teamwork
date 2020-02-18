@@ -23,30 +23,7 @@ static int get_type(char *delim) {
         return R_OUTPUT_DBL;
     return NUL;
 }
-/*
- * Convert int-value in delimeter.
- */
-static char *get_delim_from_type(int type) {
-    if (type == SEP)
-        return mx_strdup(";");
-    else if (type == FON)
-        return mx_strdup("&");
-    else if (type == AND)
-        return mx_strdup("&&");
-    else if (type == OR)
-        return mx_strdup("||");
-    else if (type == PIPE)
-        return mx_strdup("|");
-    else if (type == R_INPUT)
-        return mx_strdup(">");
-    else if (type == R_INPUT_DBL)
-        return mx_strdup(">>");
-    else if (type == R_OUTPUT)
-        return mx_strdup("<");
-    else if (type == R_OUTPUT_DBL)
-        return mx_strdup("<<");
-    return NULL;
-}
+
 /*
  * Get delimeter like a string and convert in int-value.
  */
@@ -54,8 +31,8 @@ static int get_delim(char *line, int *pos) {
     char *delim = NULL;
     int type = 0;
 
-    if (line[0] && mx_isdelim(line[0], PARSE_DELIM)) {
-        if (line[1] && mx_isdelim(line[1], PARSE_DELIM))
+    if (line[0] && mx_isdelim(line[0], MX_PARSE_DELIM)) {
+        if (line[1] && mx_isdelim(line[1], MX_PARSE_DELIM))
             delim = mx_strndup(line, 2);
         else
             delim = mx_strndup(line, 1);
@@ -73,17 +50,14 @@ static char *get_token_and_delim(char *line, int *i, int *type) {
     int pos = 0;
     char *tmp = NULL;
 
-    if ((pos = mx_get_char_index_quote(&line[pos], PARSE_DELIM)) > 0) {
+    if ((pos = mx_get_char_index_quote(&line[pos],
+                                       MX_PARSE_DELIM, MX_QUOTE)) > 0) {
         tmp = mx_strndup(line, pos);
         *type = get_delim(line + pos, &pos);
         *i += pos;
     }
-    else if (pos == 0) {        // in case >> << < >
-        // tmp = mx_strdup("first_arg_is_empty");
-        // *type = get_delim(line, &pos);
-        // *i += pos;
+    else if (pos == 0)        // in case >> << < >
         (*i)++;
-    }
     else {
         tmp = mx_strdup(line);
         *type = SEP;
@@ -97,29 +71,20 @@ static char *get_token_and_delim(char *line, int *i, int *type) {
 t_ast *mx_ush_parsed_line(char *line, t_export *variables) {
     t_ast *res = NULL;
     int type = 0;
-    char *delim;
+    int i = 0;
     char *tmp = NULL;
     char **args = NULL;
 
     if (mx_check_parce_errors(line))
         return NULL;
-    int i = 0;
-    while (line[i]) {
+    while (line[i])
         if ((tmp = get_token_and_delim(&line[i], &i, &type))) {
             if ((args = mx_filters(tmp, variables)) && *args)
                 mx_ast_push_back(&res, args, type);
-            else if (type != SEP) {  // works "; ; ;", block "; | ;"
-                mx_printerr("u$h: parse error near `");
-                delim = get_delim_from_type(type);
-                write(2, delim, mx_strlen(delim));
-                mx_strdel(&delim);
-                mx_printerr("\'\n");
-                mx_ast_clear_list(&res);
-                return NULL;
-            }
+            else if (!args || type != SEP)  // works "; ; ;", block "; | ;"
+                return mx_parse_error_ush(type, res);
             mx_del_strarr(&args);
+            mx_strdel(&tmp);
         }
-        mx_strdel(&tmp);
-    }
     return res;
 }

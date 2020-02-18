@@ -1,6 +1,6 @@
 #include "ush.h"
 /*
- * Cclear one lists (parsed_line).
+ * Clear one lists (parsed_line).
  */
 void mx_ast_clear_list(t_ast **list) {
     t_ast *q = *list;
@@ -25,7 +25,7 @@ void mx_ast_clear_list(t_ast **list) {
 void mx_ast_clear_all(t_ast ***list) {
     t_ast **q = *list;
 
-    for (int i = 0; q[i]; i++)  // clear leeks
+    for (int i = 0; q[i]; i++)
         mx_ast_clear_list(&q[i]);
     free(q);
     q = NULL;
