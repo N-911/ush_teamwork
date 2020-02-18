@@ -58,6 +58,8 @@ static void delete_name(t_export **list, char *arg) {
     while (head != NULL) {
         if (head->next != NULL) {
             if (strcmp(head->next->name, arg) == 0) {
+                free(head->next->name);
+                free(head->next->value);
                 free(head->next);
                 head->next = head->next->next;
                 break;
