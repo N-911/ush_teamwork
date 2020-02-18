@@ -12,6 +12,10 @@ t_export *mx_set_variables() {
         char *value = strdup_from(environ[i],idx);
             
         mx_push_export(&variables, name, value);
+        if (name)
+            free(name);
+        if (value)
+            free(value);
     }
     mx_push_export(&variables, "?", "0");
     return variables;
@@ -26,7 +30,11 @@ t_export *mx_set_export() {
         char *name = strndup(environ[i],idx);
         char *value = strdup_from(environ[i],idx);
             
-        mx_push_export(&export, name, value);   
+        mx_push_export(&export, name, value); 
+        if (name)
+            free(name);
+        if (value)
+            free(value);
     }
     return export;
 }

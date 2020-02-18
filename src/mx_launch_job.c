@@ -24,7 +24,9 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
 // m_s->exit_code == 0 ? m_s->exit_code = status : 0;
     //mx_print_color(RED, "m_s->exit_code  ");
     //mx_print_color(RED, mx_itoa(m_s->exit_code));
-    mx_set_variable(m_s->variables, "?", mx_itoa(m_s->exit_code));
+    char *exit_status = mx_itoa(m_s->exit_code);
+    mx_set_variable(m_s->variables, "?", exit_status);
+    free(exit_status);
     //mx_printstr("\n");
 }
 
@@ -118,6 +120,7 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
             close(outfile);
         infile = mypipe[0];
         m_s->exit_code = status;
+        mx_del_strarr(&p->argv);
     }
     launch_job_help(m_s, job, job_id, status);
     return status;

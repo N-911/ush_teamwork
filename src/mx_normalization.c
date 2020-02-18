@@ -19,12 +19,15 @@ static char *get_dir(char *point, char *pwd) {
     if (point[0] == '/')
         dir = strdup(point);
     else {
-        if (strcmp(pwd, "") != 0)
-            dir = mx_strjoin(cur_dir, "/");
-        dir = mx_strjoin(dir,point);
+        //if (strcmp(pwd, "") != 0)
+        char *tmp = mx_strjoin(cur_dir, "/");
+        dir = mx_strjoin(tmp,point);
+        free(tmp);
     }
     arr = get_arr(dir);
     dir = fill_dir(dir, arr);
+    mx_del_strarr(&arr);
+    free(cur_dir);
     return dir;
 }
 
@@ -61,8 +64,11 @@ static char *fill_dir(char *dir, char **arr) {
     dir = NULL;
     while (arr[i] != NULL) {
         if (strcmp(arr[i], "") != 0) {
-            dir = mx_strjoin(dir, "/");
-            dir = mx_strjoin(dir, arr[i]);
+            char *tmp = mx_strjoin(dir, "/");
+            if(dir)
+                free(dir);
+            dir = mx_strjoin(tmp, arr[i]);
+            free(tmp);
         }
         i++;
     }

@@ -470,6 +470,7 @@ unsigned long mx_hex_to_nbr(const char *hex);
 int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id);
 //int mx_launch_builtin(t_shell *m_s, t_process *p);
 char *mx_get_git_info();
+void mx_clear_all(t_shell *m_s);
 
 
 #endif

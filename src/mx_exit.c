@@ -36,6 +36,7 @@ int mx_exit(t_shell *m_s, t_process *p) {
             exit_code = 255;
         }
     }
+    mx_clear_all(m_s);
     //system("leaks -q ush");
     exit(exit_code);
 }

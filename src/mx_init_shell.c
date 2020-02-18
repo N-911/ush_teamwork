@@ -39,7 +39,7 @@ t_shell *mx_init_shell(int argc, char **argv) {
     free(shlvl);
     m_s->exported = mx_set_export();
     m_s->variables = mx_set_variables();
-    m_s->prompt = "u$h";
+    m_s->prompt = strdup("u$h");
     m_s->prompt_status = 1;
     m_s->history_count = 0;
     m_s->history_size = 1000;
@@ -69,7 +69,10 @@ t_shell *mx_init_shell(int argc, char **argv) {
         }
         tcsetpgrp(shell_terminal, shell_pgid);  // Grab control of the terminal.
         m_s->shell_pgid = shell_pgid;  //  Save default terminal attributes for shell.
-        printf("shell_pgid == %d\n", m_s->shell_pgid);
+        char *c_shell_pgid = mx_itoa(m_s->shell_pgid);
+        mx_set_variable(m_s->variables, "$", c_shell_pgid);
+        free(c_shell_pgid);
+        //printf("shell_pgid == %d\n", m_s->shell_pgid);
         tcgetattr(shell_terminal, &m_s->t_original);
         tcgetattr(shell_terminal, &m_s->tmodes);
     }

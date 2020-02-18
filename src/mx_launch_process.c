@@ -53,12 +53,16 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
         char **arr = mx_strsplit(path, ':');
         char *command = p->argv[0];
         path  = check_path(arr, command);
+        mx_del_strarr(&arr);
         char *error = get_error(&path, command, &status);
         if (execve(path, p->argv, env) < 0) {
             print_error(command, error);
+            free(error);
+            free(path);
             _exit(status);
         }
-
+        free(path);
+        free(error);
         exit(status);
     }
     else {
@@ -94,8 +98,9 @@ static char *check_path(char **arr, char *command) {
             while ((ds = readdir(dptr)) != 0) {
                 if (strcmp(ds->d_name, command) == 0 && command[0] != '.') {
                     flag++;
-                    name = mx_strjoin(arr[i], "/");
-                    name = mx_strjoin(name, command);
+                    char *tmp = mx_strjoin(arr[i], "/");
+                    name = mx_strjoin(tmp, command);
+                    free(tmp);
                     break;
                 }
             }

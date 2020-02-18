@@ -34,23 +34,24 @@ void mx_ush_loop(t_shell *m_s) {
                     new_job = mx_create_job(m_s, ast[i]);
                     new_job->job_type = get_job_type(ast, i);
                     mx_launch_job(m_s, new_job);
+                    //free(new_job);
                 }
                 mx_ast_clear_all(&ast);  // clear leeks
             }
         }
-        mx_strdel(&line);
+        free(line);
     }
 }
 
 char *mx_get_git_info() {
     char *user = NULL;
     int flag = 0;
-    char *path = ".";
+    char *path = strdup(".");
         while(!flag) {
             DIR *dptr  = opendir(path);
             struct dirent  *ds;
 
-                while ((ds = readdir(dptr)) != 0) {//cчитываем хуйню из директории
+                while ((ds = readdir(dptr)) != 0) {
                     if (strcmp(ds->d_name, ".git") == 0) {
                         char *gitpath = mx_strjoin(path, "/.git/HEAD");
                         char *git = mx_file_to_str(gitpath);
@@ -60,17 +61,25 @@ char *mx_get_git_info() {
                             count++;
                         user = strdup(arr[count - 1]);
                         user[mx_strlen(user) - 1] = '\0';
-                        //printf("%sgit:(%s%s%s)%s\n",BOLD_BLUE, RED, user, BOLD_BLUE, RESET);
                         flag++;
+                        free(git);
+                        free(gitpath);
+                        mx_del_strarr(&arr);
                         break;
                     }
                 }
-            if (strcmp(realpath(path, NULL), getenv("HOME")) == 0 ||
-                mx_count_substr(realpath(path, NULL), "/") <= 2)
+            char *real_path = realpath(path, NULL);
+            if (strcmp(real_path, getenv("HOME")) == 0 ||
+                mx_count_substr(real_path, "/") <= 2)
                 flag++;
+            free(real_path);
             closedir(dptr);
-            path = mx_strjoin(path, "/..");
+            char *tmp = strdup(path);
+            free(path);
+            path = mx_strjoin(tmp, "/..");
+            free(tmp);
         }
+        free(path);
     return user;
 }
 
@@ -132,8 +141,10 @@ static char *get_line(t_shell *m_s) {
 }
 
 static void edit_prompt(t_shell *m_s) {
+    if (m_s->prompt)
+        free(m_s->prompt);
     if (!m_s->prompt_status) {
-            char *info = mx_strnew(256);
+            char *info = NULL;
             if (strcmp(m_s->pwd, "/") == 0)
                 info = strdup("/");
             else if (strcmp(m_s->pwd, getenv("HOME")) == 0)
@@ -144,15 +155,17 @@ static void edit_prompt(t_shell *m_s) {
                 while (arr[count] != NULL)
                     count++;
                 info = strdup(arr[count - 1]);
+                mx_del_strarr(&arr);
             }
             
             m_s->prompt = strdup(info);
+            free(info);
         }
     else {
         if (get_variable(m_s, "PROMPT"))
-                m_s->prompt = get_variable(m_s, "PROMPT");
-            else
-                m_s->prompt = "u$h";
+            m_s->prompt = strdup(get_variable(m_s, "PROMPT"));
+        else
+            m_s->prompt = strdup("u$h");
     }
 }
 
@@ -163,6 +176,7 @@ static char *mx_get_keys(t_shell *m_s) {
    	int position = 0;
 
     for (;keycode != ENTER && keycode != CTRL_C;) {
+        edit_prompt(m_s);
     	read_input(&max_len, &keycode, line);
         max_len += mx_strlen(m_s->prompt);
         if (m_s->git)
@@ -173,9 +187,10 @@ static char *mx_get_keys(t_shell *m_s) {
             exec_signal(keycode, line, &position);
         else
             add_char(&position, line, keycode, m_s);
-        if (keycode != CTRL_C){
+        if (keycode != CTRL_C)
             print_command(m_s, line, position, max_len);
-        }
+        else
+            free(m_s->prompt);
     }
     return line;
 }

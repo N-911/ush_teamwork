@@ -7,6 +7,7 @@ static char *replace_slash(const char *str, echo_t *echo_options);
 static char *get_result(char *buff1, char *buff2,  char *replace);
 static void edit_argv(int n_options, t_process *p, char *sequenses[], char *escape[]);
 
+
 int mx_echo(t_shell *m_s, t_process *p) {
     int exit_code = m_s->exit_code;
     int n_options = count_options(p->argv);

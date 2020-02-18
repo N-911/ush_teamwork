@@ -29,6 +29,7 @@ int mx_cd(t_shell *m_s, t_process *p) {
 			point = go_somewere(p, n_options);
 		if (point)
 			change_dir(point, cd_options, m_s, &exit_code);
+		free(point);
 	}
 	return exit_code;
 }
@@ -74,6 +75,8 @@ static void change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_cod
 		else
 			manage_env(dir, m_s, cd_options, exit_code);
 	}
+	free(dir);
+	free(m_s->git);
 	m_s->git = mx_get_git_info();
 }
 
@@ -173,6 +176,7 @@ static int check_path(char *point, cd_t cd_options) {
 			flag++;
 		}
 	}
+	free(read_link);
 	return flag;
 }
 
