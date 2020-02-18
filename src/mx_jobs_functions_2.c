@@ -37,6 +37,7 @@ int mx_job_is_running(t_shell *m_s, int job_id) {
     }
     return status;
 }
+
 int mx_find_job_by_p_name(t_shell *m_s, char *arg) {
     int i;
     t_process *p;

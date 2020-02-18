@@ -17,10 +17,6 @@ void mx_init_jobs_stack(t_shell *m_s) {
 void mx_push_to_stack(t_shell *m_s, int job) {
     if (m_s->jobs_stack->top < m_s->jobs_stack->size)
         m_s->jobs_stack->stack[++m_s->jobs_stack->top] = job;
-
-  //  if (m_s->jobs[job]->foreground == 0)  // if job in foreground - set ir last job +
-  //      m_s->jobs_stack->last = job;
-    //printf ("top after push %d\n", m_s->jobs_stack->top);
 }
 
 void mx_pop_from_stack(t_shell *m_s, int job) {

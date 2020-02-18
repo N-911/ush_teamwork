@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <sys/types.h> /* определения типов */
-#include <sys/ioctl.h>
+//#include <sys/ioctl.h>
 #include <sys/stat.h> /* структура, возвращаемая stat */
 #include <grp.h>
 #include <sys/acl.h>
@@ -52,13 +52,6 @@
 #define FOREGROUND 1
 #define BACKGROUND 0
 #define MAX_LEN 10
-
-//  JOB STATUS
-#define STATUS_RUN "running"
-#define STATUS_DON "done"
-#define STATUS_SUS "suspended"
-#define STATUS_CON "continued"
-#define STATUS_TER "terminated"
 
 //      COLORS
 #define BLK   "\x1B[30m"
@@ -416,13 +409,6 @@ void mx_sig_h(int signal);
 void mx_sig_handler_exit(int sig);
 void sigchld_handler(int signum);
 void mx_sig_handler(int signal);
-//void sig_usr(int signo);
-void TELL_WAIT(void);
-void TELL_PARENT(pid_t pid);
-void WAIT_PARENT(void);
-void TELL_CHILD(pid_t pid);
-void WAIT_CHILD(void);
-
 
 //      JOBS
 int mx_get_next_job_id(t_shell *m_s);
@@ -453,9 +439,7 @@ int mx_print_job_status(t_shell *m_s, int job_id, int flag);
 void mx_print_args_in_line(char **res, const char *delim);
 
 void mx_check_jobs(t_shell *m_s);  //waitpid any process
-int mx_wait_pid(t_shell *m_s, int pid);  //waitpid process by pid
 int mx_wait_job(t_shell *m_s, int id);  //waitpid process in job group
-
 void mx_destroy_jobs(t_shell *m_s, int id);  //free job memory
 
 //      OTHER

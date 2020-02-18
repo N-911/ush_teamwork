@@ -51,24 +51,3 @@ int mx_get_pgid_by_job_id(t_shell *m_s, int job_id) {
         return -1;
     return m_s->jobs[job_id]->pgid;
 }
-
-
-//// not used
-//void mx_print_exit(int status) {
-//    if (WIFEXITED(status))
-//        printf("нормальное завершение, код выхода = %d\n",
-//               WEXITSTATUS(status));
-//    else if (WIFSIGNALED(status))
-//        printf("аварийное завершение, номер сигнала = %d%s\n",
-//               WTERMSIG(status),
-//
-//#ifdef WCOREDUMP
-//               WCOREDUMP(status) ? " (создан файл core)" : "");
-//#else
-//        "");
-//#endif
-//
-//    else if (WIFSTOPPED(status))
-//        printf("дочерний процесс остановлен, номер сигнала = %d\n", WSTOPSIG(status));
-//}
-
