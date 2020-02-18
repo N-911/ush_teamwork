@@ -24,10 +24,17 @@ static void edit_argv(int n_options, t_process *p, char *sequenses[], char *esca
     fill_options(p->argv, &echo_options, n_options);
     for(int i = n_options + 1; p->argv[i] != NULL; i++) {
         if (!echo_options.E) {
-            p->argv[i] = replace_slash(p->argv[i], &echo_options);
+            char *tmp = replace_slash(p->argv[i], &echo_options);
+            free(p->argv[i]);
+            p->argv[i] = strdup(tmp);
+            free(tmp);
             for (int j = 0; sequenses[j] != NULL; j++) {
-                if (strstr(p->argv[i],sequenses[j]))
-                    p->argv[i] = replace_substr(p->argv[i],sequenses[j], escape[j]);
+                if (strstr(p->argv[i],sequenses[j])){
+                    char *tmp = replace_substr(p->argv[i],sequenses[j], escape[j]);
+                    free(p->argv[i]);
+                    p->argv[i] = strdup(tmp);
+                    free(tmp);
+                }
             }
         }
         printf("%s",p->argv[i]);
@@ -89,8 +96,9 @@ static char *replace_slash(const char *str, echo_t *echo_options) {
     
     return res;
 }
+
 static char *replace_substr(char *str,  char *sub, char *replace) {
-    char *res = strdup(str);
+    char *res = str;
     char *buff1 = mx_strnew(mx_strlen(str));
     char *buff2 = mx_strnew(mx_strlen(str));
     while(mx_strstr(res,sub) != NULL) {
@@ -99,6 +107,7 @@ static char *replace_substr(char *str,  char *sub, char *replace) {
         for(int j = 0; j < i + mx_strlen(sub); j++)
             res++;
         mx_strcpy(buff2,res);
+        //free(res);
         res = get_result(buff1, buff2, replace);
     }
     free(buff1);

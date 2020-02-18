@@ -34,9 +34,11 @@ void mx_ush_loop(t_shell *m_s) {
                     new_job = mx_create_job(m_s, ast[i]);
                     new_job->job_type = get_job_type(ast, i);
                     mx_launch_job(m_s, new_job);
+                    //printf("done1\n");
                     //free(new_job);
                 }
                 mx_ast_clear_all(&ast);  // clear leeks
+                //printf("done2\n");
             }
         }
         free(line);
