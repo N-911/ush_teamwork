@@ -16,6 +16,10 @@ int mx_set_parametr(char **args, t_shell *m_s) {
             mx_set_variable(m_s->variables, name, value);
             export_value(m_s->exported, name, value);
         }
+        if (name)
+            free(name);
+        if (value)
+            free(value);
     }
     return 0;   
 }
@@ -39,7 +43,9 @@ static void export_value(t_export *export, char *name, char *value) {
 
     while (head != NULL) {
         if (strcmp(head->name, name) == 0) {
-            head->value = value;
+            if (head->value)
+                free(head->value);
+            head->value = strdup(value);
             setenv(name, value, 1);
             break;
         }

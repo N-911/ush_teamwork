@@ -70,6 +70,7 @@ static void export_value(t_export *export, char *name, char *value) {
     while (head != NULL) {
         if (strcmp(head->name, name) == 0) {
             flag++;
+            free(head->value);
             head->value = strdup(value);
             break;
         }
