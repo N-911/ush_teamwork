@@ -18,6 +18,7 @@ static int add_param(char *param, t_export **env_params, char option);
 static int add_option(char **args, int *i, int *n_options, t_env_builtin *env);
 static void get_data(int i, char **args, t_env_builtin *env);
 static char *get_option(char c);
+static void mx_clear_export(t_export *list);
 
 int mx_env(t_shell *m_s, t_process *p) {
     t_env_builtin *env = init_env(p);
@@ -25,8 +26,8 @@ int mx_env(t_shell *m_s, t_process *p) {
 
     set_data(env, p->argv);
     if (env->n_options < 0 || env->n_variables < 0) 
-        return 1;
-    if (env->n_args == 0) {
+        exit_code = 1;
+    else if (env->n_args == 0) {
         print_env(env->env_list);
     } 
     else {
@@ -35,6 +36,9 @@ int mx_env(t_shell *m_s, t_process *p) {
     if (env->path)
         free (env->path);
     m_s->exit_flag = 0;
+    mx_clear_export(env->env_list);
+    mx_clear_export(env->env_params);
+    free(env);
   	return exit_code;
 }
 
@@ -127,7 +131,8 @@ static int add_param(char *param, t_export **env_params, char option) {
 	        return -1;
 	    }
         char *str_option = get_option(option);
-        mx_push_export(&*env_params, str_option, param);
+        mx_push_export(env_params, str_option, param);
+        free(param);
         free(str_option);
         return 0;
     }
@@ -191,6 +196,8 @@ static void delete_name(t_export **list, char *arg) {
     while (head != NULL) {
         if (head->next != NULL) {
             if (strcmp(head->next->name, arg) == 0) {
+                free(head->next->name);
+                free(head->next->value);
                 free(head->next);
                 head->next = head->next->next;
                 break;
@@ -246,9 +253,11 @@ static char **get_env_arr(t_export *env_list) {
     while (head != NULL) {
         char *str = NULL;
 
-        str = mx_strjoin(head->name, "=");
-        str = mx_strjoin(str, head->value);
+        char *tmp = mx_strjoin(head->name, "=");
+        str = mx_strjoin(tmp, head->value);
+        free(tmp);
         env_arr[i] = strdup(str);
+        free(str);
         i++;
         head = head->next;
     }
@@ -264,6 +273,7 @@ static void launch_command( t_process *p, t_env_builtin *env, int *exit_code) {
         env->path = strdup(getenv("PATH"));
     p->argv = args_arr;
     *exit_code = mx_launch_bin(p, env->path, env_arr);
+    mx_del_strarr(&env_arr);
 }
 
 static t_env_builtin *init_env (t_process *p) {
@@ -280,3 +290,23 @@ static t_env_builtin *init_env (t_process *p) {
     env->path = NULL;
     return env;
 }
+
+static void mx_clear_export(t_export *list) {
+    t_export *q = list;
+    t_export *tmp = NULL;
+
+    if (!(list) || !list)
+        return;
+    while (q) {
+        if (q->name)
+            free(q->name);
+        if (q->value)
+            free(q->value);
+        tmp = q->next;
+        free(q);
+        q = tmp;
+    }
+    //free(list);
+    list = NULL;
+}
+
