@@ -376,8 +376,11 @@ void termios_restore(t_shell *m_s);
 // char **mx_ush_split_line(char *line);  // delete
 t_job *mx_create_job(t_shell *m_s, t_ast *list);  // create one job from ast
 void mx_ush_loop(t_shell *m_s);  // create ast -> create jobs -> ...
-int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
-                      int infile, int outfile, int errfile);
+
+int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env);
+
+//int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
+//                      int infile, int outfile, int errfile);
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
 void mx_launch_job(t_shell *m_s, t_job *job);
 void mx_count_redir(t_process *p);
@@ -469,6 +472,7 @@ unsigned long mx_hex_to_nbr(const char *hex);
 
 int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id);
 //int mx_launch_builtin(t_shell *m_s, t_process *p);
+void mx_print_fd(t_process  *p);
 
 
 #endif

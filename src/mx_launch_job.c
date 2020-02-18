@@ -56,6 +56,10 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
             outfile = mypipe[1];
 //            p->r_outfile[0] = mypipe[1];
         }
+        else
+            outfile = job->stdout;
+
+        p->r_infile[0] = infile;
         p->r_outfile[0] = outfile;
         //*******
         p->infile = infile;
@@ -70,26 +74,8 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
                 status = mx_launch_builtin(m_s, p, job_id);  // fork own buildins
         }
         else {
-            if (p->c_input > 1) {
-                for (int a = 0; a < p->c_input; a++) {
-                    status = mx_launch_process(m_s, p, job_id, path, env, p->r_infile[a], p->r_outfile[0], errfile);
-                    printf("\x1B[36m p->r_infile[%d] =  %d \x1B[0m  \n", a, p->r_infile[a]);
-//                status = mx_launch_process(m_s, p, job_id, path, env, p->r_infile[a], p->r_outfile[i], errfile);
-                }
-                status = mx_launch_process(m_s, p, job_id, path, env, p->r_outfile[0], p->r_outfile[0], errfile);
-                printf("r_input\n");
-            }
-            else if (p->c_output > 1) {
-                for (int i = p->c_output - 1; i >= 0; i--) {
-                    printf("\x1B[36m p->r_outfile[%d] =  %d \x1B[0m  \n", i, p->r_outfile[i]);
-                    status = mx_launch_process(m_s, p, job_id, path, env, infile, p->r_outfile[i], errfile);
-//                status = mx_launch_process(m_s, p, job_id, path, env, infile, outfile, errfile);
-                }
-                printf("r_output\n");
-                }
-            else {
-                status = mx_launch_process(m_s, p, job_id, path, env, p->r_infile[0], p->r_outfile[0], errfile);
-            }
+            mx_print_fd(p);
+                status = mx_launch_process(m_s, p, job_id, path, env );
         }
         if (infile != job->stdin)
             close(infile);
@@ -97,18 +83,18 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
             close(outfile);
         infile = mypipe[0];
 
-        if (p->c_input > 1) {
-            for(int i = 1; i < p->c_input; i ++) {
-                if (p->r_infile[i] != job->stdin)
-                    close(p->r_infile[i]);
-            }
-        }
-        if (p->c_output > 1) {
-            for(int i = 1; i < p->c_output; i ++) {
-                if (p->r_outfile[i] != job->stdout)
-                    close(p->r_outfile[i]);
-            }
-        }
+//        if (p->c_input > 1) {
+//            for(int i = 1; i < p->c_input; i ++) {
+//                if (p->r_infile[i] != job->stdin)
+//                    close(p->r_infile[i]);
+//            }
+//        }
+//        if (p->c_output > 1) {
+//            for(int i = 1; i < p->c_output; i ++) {
+//                if (p->r_outfile[i] != job->stdout)
+//                    close(p->r_outfile[i]);
+//            }
+//        }
         m_s->exit_code = status;
     }
     mx_set_last_job(m_s);  //!!!!!!!! test
@@ -142,6 +128,18 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
 //    printf ("help end \n");
 }
 
+void mx_print_fd(t_process  *p) {
+    printf("\x1B[32m p->r_input \x1B[0m\t");
+    for(int i = 0; i < p->c_input; i ++) {
+        printf("\x1B[32m [%d] \x1B[0m  \t", p->r_infile[0]);
+    }
+    printf("\n");
+    printf("\x1B[32m p->r_output \x1B[0m\t");
+    for(int i = 0; i < p->c_output; i ++) {
+        printf("\x1B[32m [%d] \x1B[0m  \t", p->r_outfile[0]);
+    }
+    printf("\n");
+}
 
 void mx_set_redirections(t_process *p, int intfile, int outfile) {
     mx_count_redir(p);
@@ -159,9 +157,8 @@ void mx_count_redir(t_process *p) {
         if (r->redir_delim == R_OUTPUT || r->redir_delim == R_OUTPUT_DBL)
             p->c_output +=1;
     }
-//    if (p->c_input == 0)
+//    if (p->pipe)
         p->c_input++;
-
     if (p->c_output == 0)
         p->c_output++;
     printf("\x1B[32m p->redirect->c_input = %d \x1B[0m  \n", p->c_input);
@@ -251,6 +248,8 @@ static void print_info(t_shell *m_s, t_job *job, t_process *p, int job_id) {
     mx_print_color(RED, mx_itoa(job_id));
     mx_print_color(RED, "]\t\t");
     mx_print_color(RED, mx_itoa(p->type));
+    mx_print_color(RED, "\t");
+    mx_print_color(RED, p->argv[0]);
     mx_print_color(RED, "\tjob->foreground\t");
     mx_print_color(RED, mx_itoa(job->foreground));
     mx_print_color(RED, "\tp->foreground\t");

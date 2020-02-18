@@ -5,8 +5,8 @@ static char *get_error(char **name, char *command, int *status);
 static void print_error(char *command, char *error);
 //static void set_group(t_shell *m_s, int job_id, pid_t child_pid);
 
-int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
-                      int infile, int outfile, int errfile) {
+int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env) {
+//                      int infile, int outfile, int errfile) {
     int status = 0;
     pid_t child_pid;
     p->status = STATUS_RUNNING;
@@ -42,18 +42,34 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
             signal(SIGPIPE, mx_sig_h);
 //            signal(SIGCHLD, SIG_DFL);
         }
-        if (infile != STDIN_FILENO) {
-            dup2(infile, STDIN_FILENO);
-            close(infile);
-        }
-        if (outfile != STDOUT_FILENO) {
-            dup2(outfile, STDOUT_FILENO);
-            close(outfile);
-        }
-        if (errfile != STDERR_FILENO) {
-            dup2(errfile, STDERR_FILENO);
-            close(errfile);
-        }
+//        if (p->c_input > 1) {
+            for(int i = 0; i < p->c_input; i++) {
+                if (p->r_infile[i] != STDIN_FILENO) {
+                    dup2(p->r_infile[i], STDIN_FILENO);
+                    close(p->r_infile[i]);
+                }
+            }
+//        }
+//        if (p->c_output > 1) {
+//            for(int i = 0; i < p->c_output; i++) {
+//                if (p->r_outfile[i] != STDOUT_FILENO) {
+//                    dup2(p->r_infile[i], STDOUT_FILENO);
+//                    close(p->r_outfile[i]);
+//                }
+//            }
+//        }
+//        if (infile != STDIN_FILENO) {
+//            dup2(infile, STDIN_FILENO);
+//            close(infile);
+//        }
+//        if (outfile != STDOUT_FILENO) {
+//            dup2(outfile, STDOUT_FILENO);
+//            close(outfile);
+//        }
+//        if (errfile != STDERR_FILENO) {
+//            dup2(errfile, STDERR_FILENO);
+//            close(errfile);
+//        }
         char **arr = mx_strsplit(path, ':');
         char *command = p->argv[0];
         path  = check_path(arr, command);
