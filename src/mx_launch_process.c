@@ -42,21 +42,32 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
             signal(SIGPIPE, mx_sig_h);
 //            signal(SIGCHLD, SIG_DFL);
         }
+        if (p->r_infile[0] != STDIN_FILENO) {
+            dup2(p->r_infile[0], STDIN_FILENO);
+            close(p->r_infile[0]);
+        }
+        if (p->r_outfile[0] != STDOUT_FILENO) {
+                dup2(p->r_outfile[0], STDOUT_FILENO);
+                close(p->r_outfile[0]);
+        }
+
+        write(p->r_infile[0], "@@@\n", 5);
+
 //        if (p->c_input > 1) {
-            for(int i = 0; i < p->c_input; i++) {
-                if (p->r_infile[i] != STDIN_FILENO) {
-                    dup2(p->r_infile[i], STDIN_FILENO);
-                    close(p->r_infile[i]);
-                }
-            }
-//        }
-//        if (p->c_output > 1) {
-//            for(int i = 0; i < p->c_output; i++) {
-//                if (p->r_outfile[i] != STDOUT_FILENO) {
-//                    dup2(p->r_infile[i], STDOUT_FILENO);
-//                    close(p->r_outfile[i]);
+//            for(int i = 0; i < p->c_input; i++) {
+//                if (p->r_infile[i] != STDIN_FILENO) {
+//                    dup2(p->r_infile[i], STDIN_FILENO);
+//                    close(p->r_infile[i]);
 //                }
 //            }
+
+//        }
+//        }
+        if (p->c_output > 1) {
+            for(int i = 1; i < p->c_output; i++) {
+                write(p->r_outfile[i], "@@@\n", 5);
+                }
+            }
 //        }
 //        if (infile != STDIN_FILENO) {
 //            dup2(infile, STDIN_FILENO);
@@ -109,6 +120,12 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
 //        setpgid (pid, m_s->jobs[job_id]->pgid);
 //    }
 //}
+
+
+//
+//char buffer[BUFSIZ];
+//
+
 
 static char *check_path(char **arr, char *command) {
     int i = 0;
@@ -165,3 +182,13 @@ static void print_error(char *command, char *error) {
     else
         perror(command);
 }
+
+
+//if (p->c_output > 1) {
+//for(int i = 1; i < p->c_output; i++) {
+//if (p->r_outfile[i] != STDOUT_FILENO) {
+//dup2(p->r_outfile[i], STDOUT_FILENO);
+//close(p->r_outfile[i]);
+//}
+//}
+//}

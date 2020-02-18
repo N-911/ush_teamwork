@@ -383,7 +383,8 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
 //                      int infile, int outfile, int errfile);
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
 void mx_launch_job(t_shell *m_s, t_job *job);
-void mx_count_redir(t_process *p);
+void mx_count_redir(t_process *p, int intfile);
+//void mx_count_redir(t_process *p);
 void mx_set_redirections(t_process *p, int intfile, int outfile);
 void set_r_infile(t_process *p, int infile);
 void set_r_outfile(t_process *p, int outfile);
