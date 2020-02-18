@@ -74,6 +74,7 @@ static void check_builtin (char **list, char *command, t_list **output, int *fla
 		if (strcmp(list[j], command) == 0) {
 			char *str = mx_strjoin(command, ": shell built-in command");
 			mx_push_back(&*output, str);
+			free(str);
 			(*flag)++;
 		}
 	}
@@ -102,7 +103,7 @@ static void mx_clear_list(t_list **list) {
     if (!(*list) || !list)
         return;
     while (q) {
-        // mx_strdel((char **)&q->data);
+         mx_strdel((char **)&q->data);
         tmp = q->next;
         free(q);
         q = tmp;
