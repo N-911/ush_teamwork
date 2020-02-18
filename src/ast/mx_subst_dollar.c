@@ -16,7 +16,7 @@ static char *get_var(char *s, int *v_len) {
         *v_len = mx_strlen(var) + 2;
     }
     else {
-        while (s[i] && !mx_isspace(s[i]))  // mx_isdelim
+        while (s[i] && !mx_isspace(s[i]) && !mx_isdelim(s[i], "\'`\\"))
             i++;
         if (i != 0)
             var = mx_strndup(s, i);
@@ -50,57 +50,54 @@ static char *expantion(char *s, t_export *variables, int pos) {
             res = mx_strjoin_free(res, value);
         mx_strdel(&var);
     }
-    if (res && s[pos + v_len])
-        res = mx_strjoin_free(res, &s[pos + 1 + v_len]);
+    else
+        mx_strdel(&res);
+    if (res && s[pos + v_len + 1])
+        res = mx_strjoin_free(res, &s[pos + v_len + 1]);
     mx_strdel(&s);
     return res;
 }
 
-static char *exp_inside_dblq(char *s, t_export *variables) {
-    int i = 0;
+static char *exp_inside_dblq(char *s, t_export *var, int *i, int *k) {
     int j = 0;
     int pos = 0;
-    char *res = s;
     char *tmp;
-    int k = 0;
+    char *res = s;
 
-    while (s[i]) {
-        if ((k = mx_get_char_index_quote(&s[i], "\"", "\'`$")) >= 0) {
-            i += k;
-            res = mx_strndup(s, i + 1);
-            j = mx_get_char_index_quote(&s[i + 1], "\"", "`");
-            tmp = mx_strndup(&s[i + 1], j);
-            while (tmp && (pos = mx_get_char_index_quote(tmp, "$", "`")) >= 0)
-                tmp = expantion(tmp, variables, pos);
-            res = mx_strjoin_free(res, tmp);
-            res = mx_strjoin_free(res, &s[i + j + 1]);
-            i += mx_strlen(tmp) + 2;
-            mx_strdel(&tmp);
-            mx_strdel(&s);
-            s = res;
-        }
-        else
-            break;
-    }
-    return s;
+    (*i) += *k + 1;
+    res = mx_strndup(s, *i);
+    j = mx_get_char_index_quote(&s[*i], "\"", "`");
+    tmp = mx_strndup(&s[*i], j);
+    while (tmp && (pos = mx_get_char_index_quote(tmp, "$", "`")) >= 0)
+        tmp = expantion(tmp, var, pos);
+    res = mx_strjoin_free(mx_strjoin_free(res, tmp), &s[*i + j]);
+    (*i) += mx_strlen(tmp) + 1;
+    mx_strdel(&tmp);
+    mx_strdel(&s);
+    return res;
 }
-
 /*
  * Substitutiont dollar from variables.
  */
 char *mx_substr_dollar(char *s, t_export *variables) {
     char *res = s;
     int pos = 0;
+    int i = 0;
+    int k = 0;
 
     if (!s || !*s || !variables || mx_strcmp(s, "$") == 0)
         return s;
-    if (mx_get_char_index_quote(res, "\"", "\'`$") >= 0)
-        res = exp_inside_dblq(res, variables);
-    while (res && (pos = mx_get_char_index_quote(res, "$", QUOTE2)) >= 0)
-        if (!(res = expantion(res, variables, pos))) {
-            mx_printerr("u$h: bad substitution");
-            return NULL;
-        }
-
+    while (s[i]) {
+        if ((k = mx_get_char_index_quote(&s[i], "\"", "\'`$")) >= 0)
+            res = exp_inside_dblq(res, variables, &i, &k);
+        else
+            break;
+    }
+    while (res && (pos = mx_get_char_index_quote(res, "$", MX_QUOTE)) >= 0)
+        res = expantion(res, variables, pos);
+    if (!res) {
+        mx_printerr("u$h: bad substitution\n");
+        return NULL;
+    }
     return res;
 }

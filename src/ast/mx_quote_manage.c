@@ -18,23 +18,19 @@ static void mx_get_char_auditor(char *s, int *ii, char *q) {
     }
     *ii = i;
 }
-
 /*
  * Get char index outside of the quote
  * search everywhere except ' ', " ", ` `, $( ).
  */
 int mx_get_char_index_quote(char *s, char *c, char *q) {  // q = "\"\'`$"
-    char tmp;
-
     if (!s || !c)
         return -2;
     for (int i = 0; s[i]; i++) {
         if (s[i] == '\\')
             i++;
         else if (mx_isdelim(s[i], q) && !mx_strncmp(&s[i], "$(", 2)) {
-            tmp = ')';
             i++;
-            while (s[i] && s[i] != tmp)  // while (s[++i] && s[i] != tmp)   (s[i] == '\\') ? (i++) : (i);
+            while (s[i] && s[i] != ')')
                 (s[i] == '\\') ? (i += 2) : (i++);
         }
         else if (mx_isdelim(s[i], q) && mx_isdelim(s[i], "`\'\""))
@@ -54,7 +50,7 @@ static void mx_strtrim_quote_auditor(char *s, char *tmp, int *ii, int *jj) {
     if (s[i] == '\"') {
         i++;
         for (; s[i] && s[i] != '\"'; i++, j++) {
-            if (s[i] == '\\' && mx_isdelim(s[i + 1], DBLQ_EXCEPTIONS))
+            if (s[i] == '\\' && mx_isdelim(s[i + 1], MX_DBLQ_EXCEPTIONS))
                 i++;
             tmp[j] = s[i];
         }
@@ -87,50 +83,10 @@ void mx_strtrim_quote(char **str) {
             }
             else if (s[i] && (s[i] == '\"' || s[i] == '\''))
                 mx_strtrim_quote_auditor(s, tmp, &i, &j);
-            else {
+            else
                 tmp[j] = s[i];
-            }
         }
         mx_strdel(&str[k]);
         str[k] = tmp;
     }
 }
-
-/*
- * Count chars (outside of the quote)
- */
-// int mx_count_chr_quote(char *str, char c) {
-//     int res = 0;
-//     int tmp = 0;
-//     char *s = str;
-
-//     while (s && (tmp = mx_get_char_index_quote(s, &c)) >= 0) {
-//         res++;
-//         s += tmp + 1;
-//     }
-//     return res;
-// }
-/*
- * Trim first in quote
- */
-// char *mx_strtrim_quote(char *s, char c, char *q) {
-//     int newlen;
-//     char *n;
-
-//     if (!s || !*s || !c)
-//         return NULL;
-//     newlen = mx_strlen(s) - mx_count_chr_quote(s, c, q);
-//     if (newlen == mx_strlen(s))
-//         return s;
-//     else if (newlen > 0) {
-//         n = mx_strnew(newlen);
-//         for (int j = 0, i = 0; s[i] && j < newlen; j++, i++) {
-//             while (s[i] && s[i] == c)
-//                 i++;
-//             n[j] = s[i];
-//         }
-//     } else
-//         n = malloc(0);
-//     mx_strdel(&s);
-//     return n;
-// }

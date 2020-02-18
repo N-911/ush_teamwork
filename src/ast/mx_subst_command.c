@@ -11,14 +11,14 @@ static char *get_subst(char *s, int *len) {
         if (i < 0)
             return NULL;
         subst = mx_strndup(&s[2], i - 1);
-        *len = mx_strlen(subst) + 3;
+        *len = i;
     }
     else if (s[0] == '`') {
         i = mx_get_char_index_quote(&s[1], "`", "\'");
         if (i < 0)
             return NULL;
         subst = mx_strndup(&s[1], i - 1);
-        *len = mx_strlen(subst) + 2;
+        *len = i + 1;
     }
     return subst;
 }
@@ -35,8 +35,8 @@ static char *expantion(char *s, int pos) {
         mx_printerr("u$h: command substitushion doesn't work.\n");
         // res = mx_strjoin_free(res, subst);
     }
-    if (s[pos + len])
-        res = mx_strjoin_free(res, &s[pos + 1 + len]);
+    if (s[pos + len + 1])
+        res = mx_strjoin_free(res, &s[pos + len + 1]);
     mx_strdel(&s);
     return res;
 }
@@ -50,6 +50,9 @@ char *mx_subst_command(char *s) {
     if (!s || !*s)
         return s;
     while ((pos = mx_get_char_index_quote(res, "`$", "\'")) >= 0)
-        res = expantion(res, pos);
+        if (!(res = expantion(res, pos))) {
+            mx_printerr("u$h: bad command substitution\n");
+            return NULL;
+        }
     return res;
 }

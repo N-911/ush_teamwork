@@ -1,7 +1,7 @@
 #include "ush.h"
 /*
-* malloc and realloc line if nesessary
-*/
+ * Malloc and realloc line if nesessary
+ */
 static char **create_tokens(char **tokens, int *bufsize) {
     if (tokens == NULL) {
         tokens = malloc((*bufsize) * sizeof(char*));
@@ -21,8 +21,8 @@ static char **create_tokens(char **tokens, int *bufsize) {
     return tokens;
 }
 /*
-* get array of pointers to separate tokens in line
-*/
+ * Get array of pointers to separate tokens in line
+ */
 char **mx_parce_tokens(char *line) {
     int position = 0;
     int bufsize = 64;
@@ -30,13 +30,13 @@ char **mx_parce_tokens(char *line) {
     char *token;
 
     tokens = create_tokens(tokens, &bufsize);  // malloc
-    token = mx_strtok(line, USH_TOK_DELIM);
+    token = mx_strtok(line, MX_USH_TOK_DELIM);
     while (token != NULL) {
         tokens[position] = token;
         position++;
         if (position >= bufsize)
             tokens = create_tokens(tokens, &bufsize);  // realloc
-        token = mx_strtok(NULL, USH_TOK_DELIM);
+        token = mx_strtok(NULL, MX_USH_TOK_DELIM);
     }
     tokens[position] = NULL;
     return tokens;

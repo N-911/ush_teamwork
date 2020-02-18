@@ -20,20 +20,25 @@ static void print_prompt(t_shell *m_s);
 void mx_ush_loop(t_shell *m_s) {
     char *line;
     t_ast **ast = NULL;
+    t_job *new_job;
     m_s->git = mx_get_git_info();
     // system ("leaks -q ush");
     while (1) {
 		line = get_line(m_s);
+        // line = mx_ush_read_line();
         if (line[0] == '\0') {
             mx_check_jobs(m_s);
             continue;
+        // } else if (mx_strcmp(line, "exit") == 0) {  // for check leaks
+        //     exit(0);
         } else {
             if ((ast = mx_ast_creation(line, m_s))) {
+                // mx_ast_print(ast);
                 for (int i = 0; ast[i]; i++) {
-                    t_job *new_job = (t_job *) malloc(sizeof(t_job));  //create new job
                     new_job = mx_create_job(m_s, ast[i]);
                     new_job->job_type = get_job_type(ast, i);
                     mx_launch_job(m_s, new_job);
+                    // destroy
                 }
                 mx_ast_clear_all(&ast);  // clear leeks
             }
