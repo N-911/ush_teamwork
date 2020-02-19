@@ -264,7 +264,7 @@ static void edit_command(int keycode, int *position, char **line, t_shell *m_s) 
             free(*line);
             *line = NULL;
             *line = mx_strnew(1024);
-            *line = strdup(m_s->history[m_s->history_index + 1]);
+            strcpy(*line, m_s->history[m_s->history_index + 1]);
             *position = mx_strlen(*line);
             m_s->history_index++;
         }
