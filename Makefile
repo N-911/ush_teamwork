@@ -46,6 +46,7 @@ SRC = mx_builtin_commands.c \
     mx_env_functions_2.c \
     mx_echo_functions.c \
     mx_which_functions.c \
+    mx_get_git_info.c \
     ush_main.c
 
 SRC_PARSER = libmx1.c \
@@ -111,6 +112,7 @@ OBJ = mx_builtin_commands.o \
     mx_env_functions_2.o \
     mx_echo_functions.o \
     mx_which_functions.o \
+    mx_get_git_info.o \
     ush_main.o
 
 OBJ_PARSER = libmx1.o \

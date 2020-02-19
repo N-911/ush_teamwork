@@ -27,11 +27,8 @@ void mx_ush_loop(t_shell *m_s) {
         if (line[0] == '\0') {
             mx_check_jobs(m_s);
             continue;
-        // } else if (mx_strcmp(line, "exit") == 0) {  // for check leaks
-        //     exit(0);
         } else {
             if ((ast = mx_ast_creation(line, m_s))) {
-                // mx_ast_print(ast);
                 for (int i = 0; ast[i]; i++) {
                     new_job = mx_create_job(m_s, ast[i]);
                     new_job->job_type = get_job_type(ast, i);
@@ -42,46 +39,6 @@ void mx_ush_loop(t_shell *m_s) {
         }
         free(line);
     }
-}
-
-char *mx_get_git_info() {
-    char *user = NULL;
-    int flag = 0;
-    char *path = strdup(".");
-        while(!flag) {
-            DIR *dptr  = opendir(path);
-            struct dirent  *ds;
-
-                while ((ds = readdir(dptr)) != 0) {
-                    if (strcmp(ds->d_name, ".git") == 0) {
-                        char *gitpath = mx_strjoin(path, "/.git/HEAD");
-                        char *git = mx_file_to_str(gitpath);
-                        char **arr = mx_strsplit(git, '/');
-                        int count = 0;
-                        while (arr[count] != NULL)
-                            count++;
-                        user = strdup(arr[count - 1]);
-                        user[mx_strlen(user) - 1] = '\0';
-                        flag++;
-                        free(git);
-                        free(gitpath);
-                        mx_del_strarr(&arr);
-                        break;
-                    }
-                }
-            char *real_path = realpath(path, NULL);
-            if (strcmp(real_path, getenv("HOME")) == 0 ||
-                mx_count_substr(real_path, "/") <= 2)
-                flag++;
-            free(real_path);
-            closedir(dptr);
-            char *tmp = strdup(path);
-            free(path);
-            path = mx_strjoin(tmp, "/..");
-            free(tmp);
-        }
-        free(path);
-    return user;
 }
 
 static struct termios mx_disable_term() {
