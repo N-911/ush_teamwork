@@ -474,5 +474,6 @@ void mx_set_data(t_env_builtin *env, char *args[]);
 void mx_launch_command( t_process *p, t_env_builtin *env, int *exit_code);
 int mx_count_env_options(char **args, t_env_builtin *env);
 void mx_escape_seq(t_process *p, int i, echo_t echo_options);
+void mx_get_command_info(t_shell *m_s, char *command, int *flag, which_t which_options);
 
 #endif
