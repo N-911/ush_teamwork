@@ -469,6 +469,10 @@ void mx_change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code);
 char *mx_strdup_from(char *str, int index);
 void mx_export_or_error(char *arg, t_export *export,
     t_export *variables, int *exit_code);
-
+void mx_clear_export(t_export *list);
+void mx_set_data(t_env_builtin *env, char *args[]);
+void mx_launch_command( t_process *p, t_env_builtin *env, int *exit_code);
+int mx_count_env_options(char **args, t_env_builtin *env);
+void mx_escape_seq(t_process *p, int i, echo_t echo_options);
 
 #endif

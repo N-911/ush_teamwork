@@ -41,6 +41,10 @@ SRC = mx_builtin_commands.c \
     mx_cd_functions_1.c \
     mx_export_functions.c \
     mx_strdup_from.c \
+    mx_env_functions.c \
+    mx_env_functions_1.c \
+    mx_env_functions_2.c \
+    mx_echo_functions.c \
     ush_main.c
 
 SRC_PARSER = libmx1.c \
@@ -101,6 +105,10 @@ OBJ = mx_builtin_commands.o \
     mx_cd_functions_1.o \
     mx_export_functions.o \
     mx_strdup_from.o \
+    mx_env_functions.o \
+    mx_env_functions_1.o \
+    mx_env_functions_2.o \
+    mx_echo_functions.o \
     ush_main.o
 
 OBJ_PARSER = libmx1.o \

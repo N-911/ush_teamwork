@@ -1,7 +1,5 @@
 #include "ush.h"
 
-static void mx_clear_export(t_export *list);
-
 void mx_clear_all(t_shell *m_s) {
 	mx_clear_export(m_s->exported);
 	mx_clear_export(m_s->variables);
@@ -10,7 +8,7 @@ void mx_clear_all(t_shell *m_s) {
     //free(m_s);
 }
 
-static void mx_clear_export(t_export *list) {
+void mx_clear_export(t_export *list) {
     t_export *q = list;
     t_export *tmp = NULL;
 
