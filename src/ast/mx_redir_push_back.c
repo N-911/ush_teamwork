@@ -49,10 +49,8 @@ void mx_redir_clear_list(t_redir **list) {
     if (!(*list) || !list)
         return;
     while (q) {
-        if (q->input_path)
-            mx_strdel(&q->input_path);
-        if (q->output_path)
-            mx_strdel(&q->output_path);
+        mx_strdel(&q->input_path);
+        mx_strdel(&q->output_path);
         tmp = q->next;
         free(q);
         q = tmp;

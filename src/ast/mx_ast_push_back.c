@@ -37,17 +37,13 @@ void mx_ast_push_back(t_ast **head, char **args, int type) {
 }
 
 void mx_ast_push_back_redirection(t_ast **head, char **args, int type) {
-    t_ast *q;
     t_ast *p;
 
     if (!head || !args)
         return;
-    q = ast_create_node(args, type);
-    if (!q)
-        return;
     p = *head;
     if (*head == NULL) {
-        *head = q;
+        mx_printerr("u$h: trying to connect redirection to empry process.\n");
         return;
     }
     else {

@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <sys/types.h> /* определения типов */
-#include <sys/ioctl.h>
+//#include <sys/ioctl.h>
 #include <sys/stat.h> /* структура, возвращаемая stat */
 #include <grp.h>
 #include <sys/acl.h>
@@ -52,13 +52,6 @@
 #define FOREGROUND 1
 #define BACKGROUND 0
 #define MAX_LEN 10
-
-//  JOB STATUS
-#define STATUS_RUN "running"
-#define STATUS_DON "done"
-#define STATUS_SUS "suspended"
-#define STATUS_CON "continued"
-#define STATUS_TER "terminated"
 
 //      COLORS
 #define BLK   "\x1B[30m"
@@ -316,6 +309,7 @@ static sigset_t newmask, oldmask, zeromask;
  * mx_unmached_error    print unmached error;
  * mx_parse_error_ush
  * mx_ast_print         print AST for checking parsing
+ * mx_ush_read_line     read input line
  * ---------------------------------------------------------------------------
  */
 t_ast **mx_ast_creation(char *line, t_shell *m_s);
@@ -332,8 +326,7 @@ bool mx_parse_error(char *c, int k);
 bool mx_unmached_error(char c);
 t_ast *mx_parse_error_ush(int type, t_ast *res);
 void mx_ast_print(t_ast **ast);                     // mx_ast_creation.c
-
-char *mx_ush_read_line(void);  // непотрібна, в кінці видалити
+char *mx_ush_read_line(void);
 /*
  * ------------------------------------------------------------------- FILTERS
  * mx_filters       parse by USH_TOK_DELIM, subst ~, $, command, trim \ '' "";
@@ -388,8 +381,6 @@ void mx_termios_save(t_shell *m_s);
 void termios_restore(t_shell *m_s);
 
 //      LOOP
-//char *mx_read_line2(void);  // delete
-// char **mx_ush_split_line(char *line);  // delete
 t_job *mx_create_job(t_shell *m_s, t_ast *list);  // create one job from ast
 void mx_ush_loop(t_shell *m_s);  // create ast -> create jobs -> ...
 int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
@@ -416,13 +407,6 @@ void mx_sig_h(int signal);
 void mx_sig_handler_exit(int sig);
 void sigchld_handler(int signum);
 void mx_sig_handler(int signal);
-//void sig_usr(int signo);
-void TELL_WAIT(void);
-void TELL_PARENT(pid_t pid);
-void WAIT_PARENT(void);
-void TELL_CHILD(pid_t pid);
-void WAIT_CHILD(void);
-
 
 //      JOBS
 int mx_get_next_job_id(t_shell *m_s);
@@ -453,9 +437,7 @@ int mx_print_job_status(t_shell *m_s, int job_id, int flag);
 void mx_print_args_in_line(char **res, const char *delim);
 
 void mx_check_jobs(t_shell *m_s);  //waitpid any process
-int mx_wait_pid(t_shell *m_s, int pid);  //waitpid process by pid
 int mx_wait_job(t_shell *m_s, int id);  //waitpid process in job group
-
 void mx_destroy_jobs(t_shell *m_s, int id);  //free job memory
 
 //      OTHER

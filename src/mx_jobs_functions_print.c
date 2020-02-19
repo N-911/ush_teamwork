@@ -1,19 +1,7 @@
 #include "ush.h"
 
 static void print_spaces(int number);
-/*
-[1]    suspended  sleep 14
-[2]    done       ls |
-       suspended  sleep 5
-[3]    suspended  sleep 15
-[4]    suspended  sleep 16
-[5]    suspended  sleep 16
-[6]    suspended  sleep 17
-[7]    suspended  sleep 18
-[8]  - suspended  sleep 19
-[9]  + suspended  sleep 20
- [PID] - идентификатор последнего процесса в конвейере, связанном с данным заданием
-*/
+
 int mx_print_job_status(t_shell *m_s, int job_id, int flag) {
     t_process *p;
     int len;

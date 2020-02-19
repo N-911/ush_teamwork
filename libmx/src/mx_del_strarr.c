@@ -1,7 +1,8 @@
 #include "libmx.h"
 
 void mx_del_strarr(char ***arr) {
-    if (arr == NULL) return;
+    if (arr == NULL)
+        return;
 
     char ***p = arr;
     char **pp = *arr;
@@ -12,4 +13,3 @@ void mx_del_strarr(char ***arr) {
     free(pp);
     *arr = NULL;
 }
-

@@ -101,22 +101,3 @@ void mx_set_process_status(t_shell *m_s, int pid, int status) {
 //    mx_set_last_job(m_s);
 }
 
-//not used!!!
-int mx_wait_pid(t_shell *m_s, int pid) {
-    int status = 0;
-
-    waitpid(pid, &status, WUNTRACED);
-    if (WIFEXITED(status)) {
-        mx_set_process_status(m_s, pid, STATUS_DONE);
-    }
-    else if (WIFSIGNALED(status)) {
-        mx_set_process_status(m_s, pid, STATUS_TERMINATED);
-    }
-    else if (WSTOPSIG(status)) {
-        status = -1;
-        mx_set_process_status(m_s, pid, STATUS_SUSPENDED);
-    }
-    return status;
-}
-
-
