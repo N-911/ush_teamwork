@@ -47,7 +47,6 @@ void mx_change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code) {
     char *dir = mx_normalization(point, m_s->pwd);
     // printf("%s\n", dir);
     int flag = check_path(point, cd_options);
-
     if (!flag) {
         if (chdir(dir) != 0){
             print_error_cd(point);

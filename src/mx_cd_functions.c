@@ -1,31 +1,31 @@
 #include "ush.h"
 
 char *mx_go_somewere(t_process *p, int n_options) {
-  char *point = NULL;
+    char *point = NULL;
 
-  if (strcmp(p->argv[n_options + 1], "-") == 0)
-    point = mx_go_back();
-  else
-    point = strdup(p->argv[n_options + 1]);
-  return point;
+    if (strcmp(p->argv[n_options + 1], "-") == 0)
+        point = mx_go_back();
+        else
+        point = strdup(p->argv[n_options + 1]);
+    return point;
 }
 
 char *mx_go_back() {
-  char *point = NULL;
+    char *point = NULL;
 
-  if (getenv("OLDPWD"))
-    point = strdup(getenv("OLDPWD"));
-  else
-    mx_printerr("ush: cd: OLDPWD not set\n");
-  return point;
+    if (getenv("OLDPWD"))
+        point = strdup(getenv("OLDPWD"));
+    else
+        mx_printerr("ush: cd: OLDPWD not set\n");
+    return point;
 }
 
 char *mx_go_home() {
-  char *point = NULL;
+    char *point = NULL;
 
-  if (getenv("HOME"))
-    point = strdup(getenv("HOME"));
-  else
-    mx_printerr("ush: cd: HOME not set\n");
-  return point;
+    if (getenv("HOME"))
+        point = strdup(getenv("HOME"));
+    else
+        mx_printerr("ush: cd: HOME not set\n");
+    return point;
 }

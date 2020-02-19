@@ -18,23 +18,23 @@ static void get_git(struct dirent  *ds, char **user, int *flag, char *path) {
     }
 }
 
-static void find_git(int *flag, char *path, char **user) {
-	DIR *dptr  = opendir(path);
+static void find_git(int *flag, char **path, char **user) {
+	DIR *dptr  = opendir(*path);
     struct dirent  *ds;
     char *real_path = NULL;
 
     while ((ds = readdir(dptr)) != 0) {
-        get_git(ds, user, flag, path);
+        get_git(ds, user, flag, *path);
     }
-    real_path = realpath(path, NULL);
+    real_path = realpath(*path, NULL);
     if (strcmp(real_path, getenv("HOME")) == 0 ||
         mx_count_substr(real_path, "/") <= 2)
         (*flag)++;
     free(real_path);
     closedir(dptr);
-    char *tmp = strdup(path);
-    free(path);
-    path = mx_strjoin(tmp, "/..");
+    char *tmp = strdup(*path);
+    free(*path);
+    *path = mx_strjoin(tmp, "/..");
     free(tmp);
 }
 
@@ -44,7 +44,7 @@ char *mx_get_git_info() {
     char *path = strdup(".");
 
     while(!flag) {
-        find_git(&flag, path, &user);
+        find_git(&flag, &path, &user);
     }
     free(path);
     return user;
