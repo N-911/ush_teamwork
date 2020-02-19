@@ -41,7 +41,7 @@ int mx_jobs(t_shell *m_s, t_process *p) {
         print_jobs_by_mask(m_s, jobs_op, n_options);
     else if (n_args) {
         for (int j = n_options + 1; p->argv[j] != NULL; j++) {
-            for (int i = 1; i < JOBS_NUMBER; i++) {
+            for (int i = 1; i < MX_JOBS_NUMBER; i++) {
                 if (m_s->jobs[i] != NULL) {
                     if ((job_id = mx_find_job_by_p_name(m_s, (p->argv[j]))) < 1) {
                         mx_error_fg_bg(p->argv[0], ": job not found: ", p->argv[j], "\n");
@@ -59,41 +59,41 @@ int mx_jobs(t_shell *m_s, t_process *p) {
 
 static void print_jobs_by_mask(t_shell *m_s, t_jobs jobs_op, int n_op) {
     if (!n_op) {
-        for (int i = 0; i < JOBS_NUMBER; i++) {
+        for (int i = 0; i < MX_JOBS_NUMBER; i++) {
             if (m_s->jobs[i] != NULL)
                 mx_print_job_status(m_s, i, 0);
         }
     }
     else if (jobs_op.l) {
         if (jobs_op.r) {
-            for (int i = 0; i < JOBS_NUMBER; i++)
+            for (int i = 0; i < MX_JOBS_NUMBER; i++)
                 if (m_s->jobs[i] != NULL && mx_job_is_running(m_s, i))
                     mx_print_job_status(m_s, i, 1);
                 }
                 else if (jobs_op.s) {
-                    for (int i = 0; i < JOBS_NUMBER; i++)
+                    for (int i = 0; i < MX_JOBS_NUMBER; i++)
                         if (m_s->jobs[i] != NULL && !mx_job_is_running(m_s, i))
                             mx_print_job_status(m_s, i, 1);
                 }
                 else {
-                    for (int i = 0; i < JOBS_NUMBER; i++)
+                    for (int i = 0; i < MX_JOBS_NUMBER; i++)
                         if (m_s->jobs[i] != NULL)
                             mx_print_job_status(m_s, i, 1);
                 }
     }
     else if (jobs_op.r && !jobs_op.s) {
-        for (int i = 0; i < JOBS_NUMBER; i++)
+        for (int i = 0; i < MX_JOBS_NUMBER; i++)
             if (m_s->jobs[i] != NULL && mx_job_is_running(m_s, i))
                 mx_print_job_status(m_s, i, 1);
     }
 
     else if (jobs_op.s && !jobs_op.r) {
-        for (int i = 0; i < JOBS_NUMBER; i++)
+        for (int i = 0; i < MX_JOBS_NUMBER; i++)
             if (m_s->jobs[i] != NULL && !mx_job_is_running(m_s, i))
                 mx_print_job_status(m_s, i, 1);
     }
     else {
-        for (int i = 0; i < JOBS_NUMBER; i++)
+        for (int i = 0; i < MX_JOBS_NUMBER; i++)
             if (m_s->jobs[i] != NULL)
                 mx_print_job_status(m_s, i, 0);
     }

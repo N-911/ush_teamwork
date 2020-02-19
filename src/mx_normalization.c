@@ -2,12 +2,13 @@
 
 static char *get_dir(char *point, char *pwd);
 static char **get_arr(char *dir);
-static char *fill_dir(char *dir, char **arr);
+static char *fill_dir(char **arr);
 
 char *mx_normalization (char *point, char *pwd) {
     char *str = NULL;
 
     str = get_dir(point, pwd);
+    // printf("%s\n", str);
     return str;
 }
 
@@ -21,11 +22,13 @@ static char *get_dir(char *point, char *pwd) {
     else {
         //if (strcmp(pwd, "") != 0)
         char *tmp = mx_strjoin(cur_dir, "/");
+        free(dir);
         dir = mx_strjoin(tmp,point);
         free(tmp);
     }
     arr = get_arr(dir);
-    dir = fill_dir(dir, arr);
+    free(dir);
+    dir = fill_dir(arr);
     mx_del_strarr(&arr);
     free(cur_dir);
     return dir;
@@ -57,15 +60,14 @@ static char **get_arr(char *dir) {
     return arr;
 }
 
-static char *fill_dir(char *dir, char **arr) {
+static char *fill_dir(char **arr) {
     int i = 0;
-
-    free(dir);
-    dir = NULL;
+    char *dir = NULL;
+    
     while (arr[i] != NULL) {
         if (strcmp(arr[i], "") != 0) {
             char *tmp = mx_strjoin(dir, "/");
-            if(dir)
+            if (dir)
                 free(dir);
             dir = mx_strjoin(tmp, arr[i]);
             free(tmp);
@@ -74,5 +76,6 @@ static char *fill_dir(char *dir, char **arr) {
     }
     if (!dir)
         dir = strdup("/");
+
     return dir;
 }

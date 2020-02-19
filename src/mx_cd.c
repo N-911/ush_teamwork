@@ -67,6 +67,7 @@ static char *go_home() {
 
 static void change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code) {
 	char *dir = mx_normalization(point, m_s->pwd);
+	// printf("%s\n", dir);
 	int flag = check_path(point, cd_options);
 
 	if (!flag) {
@@ -75,7 +76,7 @@ static void change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_cod
 		else
 			manage_env(dir, m_s, cd_options, exit_code);
 	}
-	free(dir);
+	//free(dir);
 	free(m_s->git);
 	m_s->git = mx_get_git_info();
 }

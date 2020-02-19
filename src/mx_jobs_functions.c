@@ -21,7 +21,7 @@ int mx_insert_job(t_shell *m_s, t_job *job) {
 }
 
 void mx_remove_job(t_shell *m_s, int job_id) {
-    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
+    if (job_id > MX_JOBS_NUMBER || m_s->jobs[job_id] == NULL)
         return;
     mx_destroy_jobs(m_s, job_id);
     if (job_id == m_s->max_number_job)
@@ -47,7 +47,7 @@ int mx_job_id_by_pid(t_shell *m_s, int pid) {
 }
 
 int mx_get_pgid_by_job_id(t_shell *m_s, int job_id) {
-    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
+    if (job_id > MX_JOBS_NUMBER || m_s->jobs[job_id] == NULL)
         return -1;
     return m_s->jobs[job_id]->pgid;
 }

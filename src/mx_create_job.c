@@ -79,10 +79,10 @@ t_job *mx_create_job(t_shell *m_s, t_ast *list) {
     for (t_ast *l = list; l; l = l->next)
         push_process_back(&first_p, m_s, l);
     new_job->first_process = first_p;
-    new_job->foreground = FOREGROUND;
+    new_job->foreground = MX_FOREGROUND;
     for (; first_p != NULL; first_p = first_p->next)
         if (!first_p->foreground)
-            new_job->foreground = BACKGROUND;
+            new_job->foreground = MX_BACKGROUND;
     new_job->job_id = -1;
     new_job->pgid = 0;
     new_job->stdin = STDIN_FILENO;
