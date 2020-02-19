@@ -466,6 +466,9 @@ char *mx_go_somewere(t_process *p, int n_options);
 char *mx_go_back();
 char *mx_go_home();
 void mx_change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code);
+char *mx_strdup_from(char *str, int index);
+void mx_export_or_error(char *arg, t_export *export,
+    t_export *variables, int *exit_code);
 
 
 #endif

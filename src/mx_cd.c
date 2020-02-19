@@ -5,13 +5,14 @@ static char *replace_sub(char *str, char *sub, char *replace) {
 	int index = mx_get_substr_index(str,sub);
 	char *buff_1 = strndup(str, index);
 	char *buff_2;
+	char *tmp = NULL;
 
     for (int i = 0; i < index + mx_strlen(sub); i++) {
         str++;
     }
     buff_2 = strdup(str);
     result = mx_strjoin(buff_1, replace);
-    char *tmp = mx_strjoin(result,buff_2);
+    tmp = mx_strjoin(result,buff_2);
     free(result);
     result = strdup(tmp);
     free(tmp);
