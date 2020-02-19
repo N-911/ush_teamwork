@@ -57,10 +57,12 @@ void mx_destroy_jobs(t_shell *m_s, int id) {
     t_process *p;
 
     for (p = m_s->jobs[id]->first_process; p != NULL; p = p->next) {
-        free(p->argv);
-        free(p->arg_command);
-        free(p->command);
+        mx_del_strarr(&p->argv);
+        mx_strdel(&p->command);
+        mx_strdel(&p->input_path);
+        mx_strdel(&p->output_path);
+        mx_redir_clear_list(&p->redirect);
+        free(p);
     }
-    m_s->jobs[id]->first_process = NULL;
-    free(m_s->jobs[id]->command);
+    free(m_s->jobs[id]);
 }

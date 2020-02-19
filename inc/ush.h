@@ -309,6 +309,7 @@ static sigset_t newmask, oldmask, zeromask;
  * mx_unmached_error    print unmached error;
  * mx_parse_error_ush
  * mx_ast_print         print AST for checking parsing
+ * mx_ush_read_line     read input line
  * ---------------------------------------------------------------------------
  */
 t_ast **mx_ast_creation(char *line, t_shell *m_s);
@@ -325,8 +326,7 @@ bool mx_parse_error(char *c, int k);
 bool mx_unmached_error(char c);
 t_ast *mx_parse_error_ush(int type, t_ast *res);
 void mx_ast_print(t_ast **ast);                     // mx_ast_creation.c
-
-char *mx_ush_read_line(void);  // непотрібна, в кінці видалити
+char *mx_ush_read_line(void);
 /*
  * ------------------------------------------------------------------- FILTERS
  * mx_filters       parse by USH_TOK_DELIM, subst ~, $, command, trim \ '' "";
@@ -381,8 +381,6 @@ void mx_termios_save(t_shell *m_s);
 void termios_restore(t_shell *m_s);
 
 //      LOOP
-//char *mx_read_line2(void);  // delete
-// char **mx_ush_split_line(char *line);  // delete
 t_job *mx_create_job(t_shell *m_s, t_ast *list);  // create one job from ast
 void mx_ush_loop(t_shell *m_s);  // create ast -> create jobs -> ...
 int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,

@@ -10,7 +10,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
     pid_t child_pid;
     p->status = STATUS_RUNNING;
     int shell_is_interactive = isatty(STDIN_FILENO);  //!!
-    
+
     child_pid = fork();
     //TELL_WAIT();
     if (child_pid < 0) {
@@ -68,7 +68,6 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
     else {
         p->pid = child_pid;
         //WAIT_CHILD();
-        
         if (shell_is_interactive) {
             pid_t pid = child_pid;
             if (m_s->jobs[job_id]->pgid == 0)

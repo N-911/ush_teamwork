@@ -31,7 +31,6 @@ SRC = mx_builtin_commands.c \
     mx_loop.c \
     mx_normalization.c \
     mx_push_export.c \
-    mx_read_line.c \
     mx_set_data.c \
     mx_set_variable.c \
     mx_signal.c \
@@ -88,7 +87,6 @@ OBJ = mx_builtin_commands.o \
     mx_loop.o \
     mx_normalization.o \
     mx_push_export.o \
-    mx_read_line.o \
     mx_set_data.o \
     mx_set_variable.o \
     mx_signal.o \

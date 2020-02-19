@@ -118,7 +118,6 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
             close(outfile);
         infile = mypipe[0];
         m_s->exit_code = status;
-        mx_del_strarr(&p->argv);
     }
     launch_job_help(m_s, job, job_id, status);
     return status;

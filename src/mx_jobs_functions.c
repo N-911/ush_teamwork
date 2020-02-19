@@ -23,7 +23,7 @@ int mx_insert_job(t_shell *m_s, t_job *job) {
 void mx_remove_job(t_shell *m_s, int job_id) {
     if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
         return;
-//    mx_destroy_jobs(m_s, id);
+    mx_destroy_jobs(m_s, job_id);
     if (job_id == m_s->max_number_job)
         m_s->max_number_job--;
     m_s->jobs[job_id] = NULL;

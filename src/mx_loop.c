@@ -22,10 +22,8 @@ void mx_ush_loop(t_shell *m_s) {
     t_ast **ast = NULL;
     t_job *new_job;
     m_s->git = mx_get_git_info();
-    // system ("leaks -q ush");
     while (1) {
 		line = get_line(m_s);
-        // line = mx_ush_read_line();
         if (line[0] == '\0') {
             mx_check_jobs(m_s);
             continue;
