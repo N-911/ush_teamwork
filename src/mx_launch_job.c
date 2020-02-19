@@ -5,12 +5,12 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id);
 static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status);
 
 void mx_launch_job(t_shell *m_s, t_job *job) {
-    setbuf(stdout, NULL); /* установить небуферизованный режим */
+    setbuf(stdout, NULL);  //небуферизованный режим
     int status;
-    int job_id;  // for job contoll
+    int job_id;
 //    tcsetattr(STDIN_FILENO, TCSANOW, &m_s->t_original);
 
-    mx_check_jobs(m_s);  // job control
+    mx_check_jobs(m_s);
     job_id = mx_insert_job(m_s, job);
     if (!job->job_type)
         status = execute_job(m_s, job, job_id);
@@ -29,94 +29,43 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
 }
 
 static int execute_job(t_shell *m_s, t_job * job, int job_id) {
-    extern char **environ;
-    char **env = environ;
-    char *path = getenv("PATH");
+    extern char **environ;  // ?
+    char **env = environ;  // ?
+    char *path = getenv("PATH");  // ?
     int status;
     t_process *p;
     int mypipe[2];
-    int infile = job->stdin;
-    int outfile = 1;
-    int errfile = 2;
 
     for (p = m_s->jobs[job_id]->first_process; p; p = p->next) {  // list of process in job
-//         //------------- print info
-//         mx_print_color(RED, "job [");
-//         mx_print_color(RED, mx_itoa(job_id));
-//         mx_print_color(RED, "]\t\t");
-//         mx_print_color(RED, mx_itoa(p->type));
-//         mx_print_color(RED, "\tjob->foreground\t");
-//         mx_print_color(RED, mx_itoa(job->foreground));
-//         mx_print_color(RED, "\tp->foreground\t");
-//         mx_print_color(RED, mx_itoa(p->foreground));
-//         mx_print_color(RED, "\t job->pgid\t");
-//         mx_print_color(RED,mx_itoa(m_s->jobs[job_id]->pgid));
-//         mx_printstr("\n");
-//         //------------
         if (m_s->exit_flag == 1 && !(p->type == 10))
             m_s->exit_flag = 0;
-        if (p->output_path) { // redirection > >>
-            int flags;
-            if (p->redir_delim == R_OUTPUT)
-                flags = O_WRONLY | O_CREAT | O_TRUNC;
-            if (p->redir_delim == R_OUTPUT_DBL)
-                flags = O_WRONLY | O_CREAT;
-            outfile = open(p->output_path, flags, 0666);
-        }
-        if (p->input_path) { // redirection < <<
-            if (p->redir_delim == R_INPUT) {
-                infile = open(p->input_path, O_RDONLY, 0666);
-                if (infile < 0) {
-                    mx_printerr("ush :");
-                    perror(p->input_path);
-                    mx_set_variable(m_s->variables, "?", "1");
-                    mx_remove_job(m_s, job_id);
-                    continue;
-                }
-            }
-            if (p->redir_delim == R_INPUT_DBL) {
-                int fd = open(p->input_path, O_RDWR | O_CREAT | O_TRUNC, 0666);
-                char *line = "";
-                int count = 0;
-                while (strcmp(line, p->input_path) != 0) {
-                    printf("heredoc> ");
-                    write(fd, line, mx_strlen(line));
-                    if (count)
-                        write(fd, "\n", 1);
-                    line = mx_ush_read_line();
-                    count++;
-                }
-                close(fd);
-                infile = open(p->input_path, O_RDONLY, 0666);
-                remove(p->input_path);
-            }
-        }
+        mx_set_redirec(m_s, job, p, job_id);
         if (p->pipe) {
             if (pipe(mypipe) < 0) {
                 perror("pipe");
                 mx_remove_job(m_s, job_id);
-                exit(1);
+                exit(1);  // ?
             }
-            outfile = mypipe[1];
+            job->outfile = mypipe[1];
         }
-        // else
-        //     outfile = job->stdout;
-        p->infile = infile;
-        p->outfile = outfile;
-        p->errfile = errfile;
+        p->infile = job->infile;
+        p->outfile = job->outfile;
+        p->errfile = job->errfile;
         int flag = get_flag(p->argv);
         if (flag) {
             status = mx_set_parametr(p->argv, m_s);
             mx_remove_job(m_s, job_id);
-        } else if (p->type != -1) {
+        }
+        else if (p->type != -1) {
             status = mx_launch_builtin(m_s, p, job_id);  // fork own buildins
-        } else
-            status = mx_launch_process(m_s, p, job_id, path, env, infile, outfile, errfile);
-        if (infile != job->stdin)
-            close(infile);
-        if (outfile != job->stdout)
-            close(outfile);
-        infile = mypipe[0];
+        }
+        else
+            status = mx_launch_process(m_s, p, job_id, path, env);  // remove pat and env
+        if (job->infile != job->stdin)
+            close(job->infile);
+        if (job->outfile != job->stdout)
+            close(job->outfile);
+        job->infile = mypipe[0];
         m_s->exit_code = status;
     }
     launch_job_help(m_s, job, job_id, status);

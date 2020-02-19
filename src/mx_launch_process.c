@@ -3,86 +3,53 @@
 static char *check_path(char **arr, char *command);
 static char *get_error(char **name, char *command, int *status);
 static void print_error(char *command, char *error);
+static void child_work(t_shell *m_s, t_process *p, int job_id, char *path, char **env, int child_pid);
 
-int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
-                      int infile, int outfile, int errfile) {
-    int status = 0;
+int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env) {
+//    int status = 0;
     pid_t child_pid;
     p->status = MX_STATUS_RUNNING;
     int shell_is_interactive = isatty(STDIN_FILENO);  //!!
-
     child_pid = fork();
-    //TELL_WAIT();
     if (child_pid < 0) {
         perror("error fork");
         exit(1);
     }
-    else if (child_pid == 0) {
-        //TELL_PARENT(getpgid(0));
-        if (shell_is_interactive) {
-            if (m_s->jobs[job_id]->pgid == 0)
-                m_s->jobs[job_id]->pgid = child_pid;
-            setpgid (child_pid, m_s->jobs[job_id]->pgid);
-            // mx_print_color(MAG, "child\t");
-            // mx_print_color(MAG, "m_s->jobs[job_id]->pgid ");
-            // mx_print_color(MAG, mx_itoa(m_s->jobs[job_id]->pgid));
-            // mx_printstr("\n");
-            if (m_s->jobs[job_id]->foreground)
-           // if (p->foreground)
-                tcsetpgrp(STDIN_FILENO, m_s->jobs[job_id]->pgid);
-            signal(SIGINT, SIG_DFL);
-            signal(SIGQUIT, SIG_DFL);
-            signal(SIGTSTP, SIG_DFL);
-            signal(SIGTTIN, SIG_DFL);
-            signal(SIGTTOU, SIG_DFL);
-            signal(SIGPIPE, mx_sig_h);
-            // signal(SIGCHLD, SIG_DFL);
-        }
-        if (infile != STDIN_FILENO) {
-            dup2(infile, STDIN_FILENO);
-            close(infile);
-        }
-        if (outfile != STDOUT_FILENO) {
-            dup2(outfile, STDOUT_FILENO);
-            close(outfile);
-        }
-        if (errfile != STDERR_FILENO) {
-            dup2(errfile, STDERR_FILENO);
-            close(errfile);
-        }
-        char **arr = mx_strsplit(path, ':');
-        char *command = p->argv[0];
-        path  = check_path(arr, command);
-        mx_del_strarr(&arr);
-        char *error = get_error(&path, command, &status);
-        if (execve(path, p->argv, env) < 0) {
-            print_error(command, error);
-            free(error);
-            free(path);
-            _exit(status);
-        }
-        free(path);
-        free(error);
-        exit(status);
-    }
+    else if (child_pid == 0)
+        child_work(m_s, p, job_id, path, env, child_pid);
     else {
         p->pid = child_pid;
-        //WAIT_CHILD();
         if (shell_is_interactive) {
             pid_t pid = child_pid;
             if (m_s->jobs[job_id]->pgid == 0)
                 m_s->jobs[job_id]->pgid = pid;
             setpgid (pid, m_s->jobs[job_id]->pgid);
         }
-        // mx_print_color(YEL, "parent\t");
-        // mx_print_color(YEL, "p->pid \t");
-        // mx_print_color(YEL, mx_itoa(p->pid));
-        // mx_print_color(YEL, "\tm_s->jobs[job_id]->pgid ");
-        // mx_print_color(YEL, mx_itoa(m_s->jobs[job_id]->pgid));
-        // mx_printstr("\n");
     }
+    return p->status >> 8;//WEXITSTATUS(status)
+}
 
-    return status >> 8;//WEXITSTATUS(status)
+
+static void child_work(t_shell *m_s, t_process *p, int job_id, char *path, char **env, int child_pid) {
+    int shell_is_interactive = isatty(STDIN_FILENO);  //!!
+
+    if (shell_is_interactive)
+        mx_pgid(m_s, job_id, child_pid);
+    mx_dup_fd(p);
+    char **arr = mx_strsplit(path, ':');
+    char *command = p->argv[0];
+    path  = check_path(arr, command);
+    mx_del_strarr(&arr);
+    char *error = get_error(&path, command, &p->status);
+    if (execve(path, p->argv, env) < 0) {
+        print_error(command, error);
+        free(error);
+        free(path);
+        _exit(p->status);
+    }
+    free(path);
+    free(error);
+    exit(p->status);
 }
 
 static char *check_path(char **arr, char *command) {

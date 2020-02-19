@@ -26,7 +26,6 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
     p->argv = mx_strdup_arr(list->args);
     p->delim = list->type;
     p->command = mx_strdup(list->args[0]);
-    p->exit_code = 0;
     // old redir
     if (list->left) {
         tmp = list->left;
@@ -90,8 +89,5 @@ t_job *mx_create_job(t_shell *m_s, t_ast *list) {
     new_job->stdin = STDIN_FILENO;
     new_job->stdout = STDOUT_FILENO;
     new_job->stderr = STDERR_FILENO;
-    new_job->infile = new_job->stdin;
-    new_job->outfile = 1;
-    new_job->errfile = 2;
     return new_job;
 }

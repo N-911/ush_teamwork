@@ -386,18 +386,10 @@ void termios_restore(t_shell *m_s);
 //      LOOP
 t_job *mx_create_job(t_shell *m_s, t_ast *list);  // create one job from ast
 void mx_ush_loop(t_shell *m_s);  // create ast -> create jobs -> ...
-void mx_launch_job(t_shell *m_s, t_job *job);
-void mx_set_redirec(t_shell  *m_s, t_job * job, t_process *p, int job_id);
-void mx_set_redir_input(t_shell  *m_s, t_job * job, t_process *p, int job_id);
-void mx_set_redir_output(t_job * job, t_process *p);
-void mx_dup_fd(t_process *p);
-
-int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env);
+int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
+                      int infile, int outfile, int errfile);
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
-void mx_pgid(t_shell *m_s, int job_id, int child_pid);
-
-
-
+void mx_launch_job(t_shell *m_s, t_job *job);
 
 //      BUILTIN COMMANDS
 int mx_env(t_shell *m_s, t_process *p);

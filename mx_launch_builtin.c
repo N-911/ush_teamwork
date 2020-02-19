@@ -10,7 +10,7 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
     p->status = MX_STATUS_RUNNING;
     if (p->type == 4 || p->type == 5 || p->type == 6) {
         if(!p->pipe && p->foreground && m_s->jobs[job_id]->first_process->next == NULL)
-            mx_remove_job_from_panel(m_s, job_id);  // not destroy!!!
+            mx_remove_job_from_panel(m_s, job_id);
     }
     // if pipe or in foreground -> fork
     if (p->pipe || !p->foreground) {
@@ -21,9 +21,31 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
             exit(1);
         }
         else if (child_pid == 0) {
-            if (shell_is_interactive)
-                mx_pgid(m_s, job_id, child_pid);
-            mx_dup_fd(p); // dup to STD 0 1 2
+            if (shell_is_interactive) {
+                if (m_s->jobs[job_id]->pgid == 0)
+                    m_s->jobs[job_id]->pgid = child_pid;
+                setpgid(child_pid, m_s->jobs[job_id]->pgid);
+                if (m_s->jobs[job_id]->foreground)
+                    tcsetpgrp(STDIN_FILENO, m_s->jobs[job_id]->pgid);
+                signal(SIGINT, SIG_DFL);
+                signal(SIGQUIT, SIG_DFL);
+                signal(SIGTSTP, SIG_DFL);
+                signal(SIGTTIN, SIG_DFL);
+                signal(SIGTTOU, SIG_DFL);
+                signal(SIGPIPE, mx_sig_h);
+            }
+            if (p->infile != STDIN_FILENO) {
+                dup2(p->infile, STDIN_FILENO);
+                close(p->infile);
+            }
+            if (p->outfile != STDOUT_FILENO) {
+                dup2(p->outfile, STDOUT_FILENO);
+                close(p->outfile);
+            }
+            if (p->errfile != STDERR_FILENO) {
+                dup2(p->errfile, STDERR_FILENO);
+                close(p->errfile);
+            }
             status = builtin_functions[p->type](m_s, p);
             exit (status);
         }
@@ -59,24 +81,9 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
             }
         }
     }
-//    if (p->type == 4 || p->type == 5 || p->type == 6) {
-//        if(!p->pipe && p->foreground && m_s->jobs[job_id]->first_process->next == NULL)
-//            mx_destroy_jobs(m_s, job_id);
-//    }
+    if (p->type == 4 || p->type == 5 || p->type == 6) {
+        if(!p->pipe && p->foreground && m_s->jobs[job_id]->first_process->next == NULL)
+            mx_destroy_jobs(m_s, job_id);
+    }
     return status;
-}
-
-
-void mx_pgid(t_shell *m_s, int job_id, int child_pid) {
-    if (m_s->jobs[job_id]->pgid == 0)
-        m_s->jobs[job_id]->pgid = child_pid;
-    setpgid(child_pid, m_s->jobs[job_id]->pgid);
-    if (m_s->jobs[job_id]->foreground)
-        tcsetpgrp(STDIN_FILENO, m_s->jobs[job_id]->pgid);
-    signal(SIGINT, SIG_DFL);
-    signal(SIGQUIT, SIG_DFL);
-    signal(SIGTSTP, SIG_DFL);
-    signal(SIGTTIN, SIG_DFL);
-    signal(SIGTTOU, SIG_DFL);
-    signal(SIGPIPE, mx_sig_h);
 }
