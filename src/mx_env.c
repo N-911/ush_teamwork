@@ -93,7 +93,7 @@ static int add_option(char **args, int *i, int *n_options, t_env_builtin *env) {
             char *param = get_parameter(args, i, j, n_options);
             exit_code = add_param(param, &env->env_params, option);
 
-            free(param);
+            //free(param);
             break;
         }
         else if (args[*i][j] == 'i' || args[*i][j] == '-' || mx_strlen(args[*i]) == 1)
@@ -189,7 +189,7 @@ static void get_data(int i, char **args, t_env_builtin *env) {
 
 static void delete_name(t_export **list, char *arg) {
     t_export *head = *list;
-    if (strcmp(head->name, arg) == 0) {
+    if (head != NULL && strcmp(head->name, arg) == 0) {
         *list = (*list)->next;
         return;
     }
