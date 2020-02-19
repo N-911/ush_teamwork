@@ -2,21 +2,22 @@
 /*
  *  Create ast from parsed_line
  */
-t_ast **mx_ast_creation(char *line, t_shell *m_s) {
-    t_ast **ast = NULL;
-    t_ast *parsed_line = NULL;
+// t_ast **mx_ast_creation(char *line, t_shell *m_s) {
+//     t_ast **ast = NULL;
+//     t_ast *parsed_line = NULL;
 
-    if (!(parsed_line = mx_ush_parsed_line(line, m_s->variables))) {
-        // mx_printerr("parsed_line is NULL\n");
-        return NULL;
-    }
-    if (!(ast = mx_ast_parse(parsed_line)) || !(*ast)) {
-        // mx_printerr("ast is NULL\n");
-        return NULL;
-    }
-    mx_ast_clear_list(&parsed_line);
-    return ast;
-}
+//     if (!(parsed_line = mx_ush_parsed_line(line, m_s->variables))) {
+//         // mx_printerr("parsed_line is NULL\n");
+//         return NULL;
+//     }
+//     if (!(ast = mx_ast_parse(parsed_line)) || !(*ast)) {
+//         // mx_printerr("ast is NULL\n");
+//         return NULL;
+//     }
+//     // mx_ast_clear_list(&parsed_line);
+//     print_list(parsed_line);
+//     return ast;
+// }
 /*
  * Print redirections (one process)
  */
@@ -64,4 +65,20 @@ void mx_ast_print(t_ast **ast) {
         print_list(ast[i]);
     }
     mx_print_color(YEL, "-----\n");
+}
+
+t_ast **mx_ast_creation(char *line, t_shell *m_s) {
+    t_ast **ast = NULL;
+    t_ast *parsed_line = NULL;
+
+    if (!(parsed_line = mx_ush_parsed_line(line, m_s->variables))) {
+        // mx_printerr("parsed_line is NULL\n");
+        return NULL;
+    }
+    if (!(ast = mx_ast_parse(parsed_line)) || !(*ast)) {
+        // mx_printerr("ast is NULL\n");
+        return NULL;
+    }
+    mx_ast_clear_list(&parsed_line);
+    return ast;
 }

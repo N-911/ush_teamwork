@@ -16,26 +16,25 @@ static char *add_login(char *home, char *prefix) {
         mx_strdel(&path);
         return NULL;
     }
+    mx_strdel(&home);
     return path;
 }
 /*
- * Check if getenv does not unset
+ * Get value and check if variable does not unset
  */
-static char *get_res(char *home) {
-    char *env_home = getenv(home);
+static char *get_res(char *var, t_export *variables) {
+    char *res = NULL;
 
-    if (mx_strcmp(home, "HOME") == 0) {
-        if (!env_home)
+    for (t_export *q = variables; q; q = q->next)
+        if (mx_strcmp(var, q->name) == 0)
+            res = q->value;
+    if (!res) {
+        if (mx_strcmp(var, "HOME") == 0)
             return mx_strnew(0);
         else
-            return mx_strdup(env_home);
-    }
-    else {
-        if (!env_home)
             return NULL;
-        else
-            return mx_strdup(env_home);
     }
+    return mx_strdup(res);
 }
 /*
  * Prefix - all after ~ and before char '/' or '\0' (example: ~mboiko/)
@@ -57,21 +56,21 @@ static char *get_prefix(char *s, int *sleshpos) {
 /*
  * Substitutiont tilde in different ways
  */
-static char *expantion(char *s) {
+static char *expantion(char *s, t_export *v) {
     char *res = NULL;
     int sleshpos;
     char *prefix = get_prefix(s, &sleshpos);
 
     if (prefix == NULL)
-        res = get_res("HOME");
+        res = get_res("HOME", v);
     else if (prefix[0] == '/' && sleshpos == 0)
-        res = get_res("HOME");
+        res = get_res("HOME", v);
     else if (prefix[0] == '+' && !prefix[1])
-        res = get_res("PWD");
+        res = get_res("PWD", v);
     else if (mx_strcmp(prefix, "-") == 0)
-        res = get_res("OLDPWD");
+        res = get_res("OLDPWD", v);
     else
-        res = add_login(getenv("HOME"), prefix);
+        res = add_login(get_res("HOME", v), prefix);
     if (res && sleshpos >= 0)
         res = mx_strjoin_free(res, &s[sleshpos + 1]);
     mx_strdel(&prefix);
@@ -80,13 +79,13 @@ static char *expantion(char *s) {
 /*
  *  Substitutiont tilde
  */
-char *mx_subst_tilde(char *s) {
+char *mx_subst_tilde(char *s, t_export *variables) {
     char *res = NULL;
 
     if (!s || !*s)
         return s;
     if (s[0] == '~') {
-        res = expantion(s);
+        res = expantion(s, variables);
         if (res) {
             mx_strdel(&s);
             return res;

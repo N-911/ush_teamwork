@@ -342,7 +342,7 @@ char *mx_ush_read_line(void);
 char **mx_filters(char *arg, t_export *variables);
 char *mx_strtok (char *s, const char *delim);
 char **mx_parce_tokens(char *line);
-char *mx_subst_tilde(char *s);
+char *mx_subst_tilde(char *s, t_export *variables);
 char *mx_substr_dollar(char *s, t_export *variables);
 char *mx_subst_command(char *s);
 /*
