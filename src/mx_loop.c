@@ -27,17 +27,15 @@ void mx_ush_loop(t_shell *m_s) {
         if (line[0] == '\0') {
             mx_check_jobs(m_s);
             continue;
-        // } else if (mx_strcmp(line, "exit") == 0) {  // for check leaks
-        //     exit(0);
-        } else {
+        }
+        else {
             if ((ast = mx_ast_creation(line, m_s))) {
-                // mx_ast_print(ast);
                 for (int i = 0; ast[i]; i++) {
                     new_job = mx_create_job(m_s, ast[i]);
                     new_job->job_type = get_job_type(ast, i);
                     mx_launch_job(m_s, new_job);
                 }
-                mx_ast_clear_all(&ast);  // clear leeks
+                mx_ast_clear_all(&ast);
             }
         }
         free(line);

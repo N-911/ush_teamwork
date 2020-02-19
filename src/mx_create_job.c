@@ -20,8 +20,7 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
     t_ast *tmp;
     int index = 0;
 
-    p = init_process();
-    if (!p)
+    if (!(p = init_process()))
         return NULL;
     p->argv = mx_strdup_arr(list->args);
     p->delim = list->type;
