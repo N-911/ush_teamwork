@@ -220,7 +220,7 @@ static void exec_signal(int keycode, char *line, int *position) {
 
 static void exit_ush() {
     printf("exit\n");
-    exit(EXIT_SUCCESS);
+    exit(MX_EXIT_SUCCESS);
 }
 
 static void backscape(int *position, char *line) {

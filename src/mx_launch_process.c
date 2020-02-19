@@ -8,7 +8,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
                       int infile, int outfile, int errfile) {
     int status = 0;
     pid_t child_pid;
-    p->status = STATUS_RUNNING;
+    p->status = MX_STATUS_RUNNING;
     int shell_is_interactive = isatty(STDIN_FILENO);  //!!
 
     child_pid = fork();

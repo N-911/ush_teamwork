@@ -8,7 +8,7 @@ int mx_print_job_status(t_shell *m_s, int job_id, int flag) {
     const char* status[] = { "running", "done", "suspended",
                              "continued", "terminated" };
 
-    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
+    if (job_id > MX_JOBS_NUMBER || m_s->jobs[job_id] == NULL)
         return -1;
     printf("[%d] ", job_id);
     if (m_s->jobs_stack->last == job_id)
@@ -32,7 +32,7 @@ int mx_print_job_status(t_shell *m_s, int job_id, int flag) {
 void mx_print_pid_process_in_job(t_shell *m_s, int job_id) {
     t_process *p;
 
-    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL) {
+    if (job_id > MX_JOBS_NUMBER || m_s->jobs[job_id] == NULL) {
         mx_printstr("error job_id");
         mx_printstr("\n");
     }

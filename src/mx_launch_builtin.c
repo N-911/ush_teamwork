@@ -7,7 +7,7 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
     int shell_is_interactive = isatty(STDIN_FILENO);
     pid_t child_pid;
 
-    p->status = STATUS_RUNNING;
+    p->status = MX_STATUS_RUNNING;
     if (p->type == 4 || p->type == 5 || p->type == 6) {
         if(!p->pipe && p->foreground && m_s->jobs[job_id]->first_process->next == NULL)
             mx_remove_job(m_s, job_id);
@@ -73,7 +73,7 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
             }
         }
         status = builtin_functions[p->type](m_s, p);
-        p->status = STATUS_DONE;
+        p->status = MX_STATUS_DONE;
         if(p->output_path) {
             if (p->outfile != STDOUT_FILENO) {
                 dup2(defoult, 1);
