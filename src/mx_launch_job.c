@@ -58,8 +58,6 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
         }
         else
             outfile = job->stdout;
-
-//        p->r_infile[0] = infile;
         //*******
         p->infile = infile;
         p->outfile = outfile;
@@ -83,17 +81,16 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
         infile = mypipe[0];
 
 //        if (p->c_input > 1) {
-            for(int i = 0; i < p->c_input; i ++) {
-                if (p->r_infile[i] != job->stdin)
-                    close(p->r_infile[i]);
-            }
-//        }
-//        if (p->c_output > 1) {
-            for(int i = 0; i < p->c_output; i ++) {
-                if (p->r_outfile[i] != job->stdout)
-                    close(p->r_outfile[i]);
-            }
-//        }
+//            for(int i = 0; i < p->c_input; i ++) {
+//                if (p->r_infile[i] != job->stdin)
+//                    close(p->r_infile[i]);
+//            }
+////        }
+////        if (p->c_output > 1) {
+//            for(int i = 0; i < p->c_output; i ++) {
+//                if (p->r_outfile[i] != job->stdout)
+//                    close(p->r_outfile[i]);
+//            }
         m_s->exit_code = status;
     }
     mx_set_last_job(m_s);  //!!!!!!!! test
@@ -199,7 +196,7 @@ void set_r_outfile(t_process *p, int outfile) {
     p->r_outfile[0] = outfile;
     if (p->redirect) {
         for (r = p->redirect, j = 0; r; r = r->next, j++) {
-            printf("count out redir\n");
+//            printf("count out redir\n");
             if (r->redir_delim == R_OUTPUT) {
                 flags = O_WRONLY | O_CREAT | O_TRUNC;
                 if ((p->r_outfile[j] = open(r->output_path, flags, 0666)) == -1) {
@@ -216,7 +213,7 @@ void set_r_outfile(t_process *p, int outfile) {
 //                return 255;  // do!!
                 }
             }
-            printf ("out redir end %d\n", p->r_outfile[j]);
+//            printf ("out redir end %d\n", p->r_outfile[j]);
         }
     }
 }
@@ -256,12 +253,12 @@ static void print_info(t_shell *m_s, t_job *job, t_process *p, int job_id) {
 void mx_print_fd(t_process  *p) {
     printf("\x1B[32m p->r_input \x1B[0m\t");
     for(int i = 0; i < p->c_input; i ++) {
-        printf("\x1B[32m [%d] \x1B[0m  \t", p->r_infile[0]);
+        printf("\x1B[32m [%d] \x1B[0m  \t", p->r_infile[i]);
     }
     printf("\n");
     printf("\x1B[32m p->r_output \x1B[0m\t");
     for(int i = 0; i < p->c_output; i ++) {
-        printf("\x1B[32m [%d] \x1B[0m  \t", p->r_outfile[0]);
+        printf("\x1B[32m [%d] \x1B[0m  \t", p->r_outfile[i]);
     }
     printf("\n");
 }

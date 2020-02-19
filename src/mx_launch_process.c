@@ -44,15 +44,17 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
         }
         if (p->r_infile[0] != STDIN_FILENO) {
             dup2(p->r_infile[0], STDIN_FILENO);
+//            if (p->r_infile[1])
+//                dup2(p->r_infile[0], p->r_infile[1]);
             close(p->r_infile[0]);
         }
         if (p->r_outfile[0] != STDOUT_FILENO) {
                 dup2(p->r_outfile[0], STDOUT_FILENO);
-                close(p->r_outfile[0]);
+            if (p->r_outfile[1])
+                dup2(p->r_outfile[0], p->r_outfile[1]);
+            close(p->r_outfile[0]);
         }
-
-        write(p->r_infile[0], "@@@\n", 5);
-
+//        write(p->r_infile[0], "@@@\n", 5);
 //        if (p->c_input > 1) {
 //            for(int i = 0; i < p->c_input; i++) {
 //                if (p->r_infile[i] != STDIN_FILENO) {
@@ -63,11 +65,11 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
 
 //        }
 //        }
-        if (p->c_output > 1) {
-            for(int i = 1; i < p->c_output; i++) {
-                write(p->r_outfile[i], "@@@\n", 5);
-                }
-            }
+//        if (p->c_output > 1) {
+//            for(int i = 1; i < p->c_output; i++) {
+//                write(p->r_outfile[i], "@@@\n", 5);
+//                }
+//            }
 //        }
 //        if (infile != STDIN_FILENO) {
 //            dup2(infile, STDIN_FILENO);
