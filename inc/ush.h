@@ -475,5 +475,10 @@ void mx_launch_command( t_process *p, t_env_builtin *env, int *exit_code);
 int mx_count_env_options(char **args, t_env_builtin *env);
 void mx_escape_seq(t_process *p, int i, echo_t echo_options);
 void mx_get_command_info(t_shell *m_s, char *command, int *flag, which_t which_options);
+char *mx_get_keys(t_shell *m_s);
+void mx_print_prompt(t_shell *m_s);
+void mx_edit_prompt(t_shell *m_s);
+void mx_edit_command(int keycode, int *position, char **line, t_shell *m_s);
+void mx_exec_signal(int keycode, char *line, int *position);
 
 #endif
