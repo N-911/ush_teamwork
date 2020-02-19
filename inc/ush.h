@@ -10,16 +10,16 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <dirent.h>
-#include <sys/types.h> /* определения типов */
-//#include <sys/ioctl.h>
-#include <sys/stat.h> /* структура, возвращаемая stat */
+#include <sys/types.h> // определения типов
+#include <sys/ioctl.h>
+#include <sys/stat.h>  // структура, возвращемая stat
 #include <grp.h>
 #include <sys/acl.h>
 #include <sys/xattr.h>
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <stdlib.h>
-#include <sys/param.h>     //   const MAXPATHLEN      PATH_MAX
+#include <sys/param.h>  // const MAXPATHLEN PATH_MAX
 #include <termios.h>
 #include <signal.h>
 #include <term.h>  // compile with flags -ltermcap or -lncurses
@@ -32,25 +32,25 @@
 
 #include "libmx/inc/libmx.h"
 
-#define LSH_RL_BUFSIZE 1024
-#define LSH_TOK_BUFSIZE 64
+#define LSH_RL_BUFSIZE 1024  //del ?
+#define LSH_TOK_BUFSIZE 64  //del ?
 
 //  EXIT
-#define EXIT_FAILURE 1
-#define EXIT_SUCCESS 0
+#define MX_EXIT_FAILURE 1
+#define MX_EXIT_SUCCESS 0
 
 //  JOBS
-#define JOBS_NUMBER 100
-#define STATUS_RUNNING 0
-#define STATUS_DONE 1
-#define STATUS_SUSPENDED 2
-#define STATUS_CONTINUED 3
-#define STATUS_TERMINATED 4
-#define FILTER_ALL 0
-#define FILTER_DONE 1
-#define FILTER_IN_PROGRESS 2
-#define FOREGROUND 1
-#define BACKGROUND 0
+#define MX_JOBS_NUMBER 100
+#define MX_STATUS_RUNNING 0
+#define MX_STATUS_DONE 1
+#define MX_STATUS_SUSPENDED 2
+#define MX_STATUS_CONTINUED 3
+#define MX_STATUS_TERMINATED 4
+#define MX_FILTER_ALL 0
+#define MX_FILTER_DONE 1
+#define MX_FILTER_IN_PROGRESS 2
+#define MX_FOREGROUND 1
+#define MX_BACKGROUND 0
 #define MAX_LEN 10
 
 //      COLORS
@@ -199,7 +199,7 @@ typedef struct  s_export {
 
 typedef struct		s_stack
 {
-    int			size;  // size = JOBS_NUMBER
+    int			size;  // size = MX_JOBS_NUMBER
     int*		stack;
     int 		top;  // index of last add job
     int         last;  // current job gor fg
@@ -266,7 +266,7 @@ typedef struct s_shell {
     char    **argv;  // check usage, becouse the same in process    ??????
     char	**envp;  //not used
     int		exit_code;  //return if exit
-    t_job   *jobs[JOBS_NUMBER];     //arr jobs
+    t_job   *jobs[MX_JOBS_NUMBER];     //arr jobs
     t_stack *jobs_stack;
     int max_number_job;  // number of added jobs + 1
     char **builtin_list;  // buildin functions

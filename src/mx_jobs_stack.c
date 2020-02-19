@@ -7,8 +7,8 @@ void mx_init_jobs_stack(t_shell *m_s) {
     st->top = -1;  // index of top element -> last_job
     st->last = -1;
     st->prev_last = -1;
-    st->size = JOBS_NUMBER;
-    st->stack = malloc(sizeof(int) * JOBS_NUMBER);
+    st->size = MX_JOBS_NUMBER;
+    st->stack = malloc(sizeof(int) * MX_JOBS_NUMBER);
     for (int i = 0; i < st->size; i ++)
         st->stack[i] = 0;
     m_s->jobs_stack = st;
@@ -64,7 +64,7 @@ int mx_get_job_status(t_shell *m_s, int job_id, int status) {
     t_process *p;
     int flag = 0;
 
-    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
+    if (job_id > MX_JOBS_NUMBER || m_s->jobs[job_id] == NULL)
         return -1;
     for (p = m_s->jobs[job_id]->first_process; p != NULL; p = p->next) {
         if (p->status == status)

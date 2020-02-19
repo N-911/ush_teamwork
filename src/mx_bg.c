@@ -1,6 +1,6 @@
 #include "ush.h"
 
-static int bg_get_job_id (t_shell *m_s, t_process *p);
+static int bg_get_job_id(t_shell *m_s, t_process *p);
 
 int mx_bg(t_shell *m_s, t_process *p) {
     pid_t pgid = 0;
@@ -17,7 +17,7 @@ int mx_bg(t_shell *m_s, t_process *p) {
         mx_error_fg_bg(p->argv[0], ": job not found: ", p->argv[1], "\n");
         return -1;
     }
-    mx_set_job_status(m_s, job_id, STATUS_CONTINUED);
+    mx_set_job_status(m_s, job_id, MX_STATUS_CONTINUED);
     mx_print_job_status(m_s, job_id, 0);
     return 0;
 }

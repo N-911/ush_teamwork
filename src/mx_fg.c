@@ -62,7 +62,7 @@ static int fg_send_signal(t_shell *m_s, t_process *p, int pgid, int job_id) {
         return -1;
     }
     tcsetpgrp(STDIN_FILENO, pgid);
-    mx_set_job_status(m_s, job_id, STATUS_CONTINUED);
+    mx_set_job_status(m_s, job_id, MX_STATUS_CONTINUED);
     mx_print_job_status(m_s, job_id, 0);
     status = mx_wait_job(m_s, job_id);
     if (mx_job_completed(m_s, job_id))
