@@ -462,6 +462,10 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id);
 //int mx_launch_builtin(t_shell *m_s, t_process *p);
 char *mx_get_git_info();
 void mx_clear_all(t_shell *m_s);
+char *mx_go_somewere(t_process *p, int n_options);
+char *mx_go_back();
+char *mx_go_home();
+void mx_change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code);
 
 
 #endif

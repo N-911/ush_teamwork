@@ -37,6 +37,8 @@ SRC = mx_builtin_commands.c \
     mx_terminal.c \
     mx_exit.c \
     mx_clear_all.c \
+    mx_cd_functions.c \
+    mx_cd_functions_1.c \
     ush_main.c
 
 SRC_PARSER = libmx1.c \
@@ -93,6 +95,8 @@ OBJ = mx_builtin_commands.o \
     mx_terminal.o \
     mx_exit.o \
     mx_clear_all.o \
+    mx_cd_functions.c \
+    mx_cd_functions_1.o \
     ush_main.o
 
 OBJ_PARSER = libmx1.o \
