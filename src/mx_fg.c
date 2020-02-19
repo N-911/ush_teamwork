@@ -39,7 +39,8 @@ static int fg_get_job_id (t_shell *m_s, t_process *p) {
     if (n_args > 2) {
         mx_printerr("ush: fg: too many arguments\n");
         return -1;
-    } else if (n_args == 1) {
+    }
+    else if (n_args == 1) {
         if ((job_id = m_s->jobs_stack->last) < 1) {
             mx_printerr("fg: no current job\n");
             return -1;

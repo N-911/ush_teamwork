@@ -1,18 +1,13 @@
 #include "ush.h"
-/* Make sure the shell is running interactively as the foreground job
-   before proceeding. */
 
 static char *get_pwd();
 static char *get_shlvl();
 static void set_shell_defaults(t_shell *m_s);
+static void set_shell_grp(t_shell *m_s);
 
 t_shell *mx_init_shell(int argc, char **argv) {
-    pid_t shell_pgid;
-//  struct termios shell_tmodes;
-    int shell_terminal = STDIN_FILENO;
-    int shell_is_interactive;
+//  struct termios shell_tmodes; // not used?? - del
     t_shell *m_s = (t_shell *) malloc(sizeof(t_shell));
-
     set_shell_defaults(m_s);
     m_s->argc = argc;
     m_s->argv = argv;
@@ -28,8 +23,19 @@ t_shell *mx_init_shell(int argc, char **argv) {
     m_s->prompt_status = 1;
     mx_set_variable(m_s->variables, "PROMPT", "u$h");
     mx_set_variable(m_s->variables, "PROMPT1", "Auditor dlya lohov>");
-    shell_is_interactive = isatty(shell_terminal);  // See if we are running interactively.
+    set_shell_grp(m_s);
 //    mx_terminal_init(m_s);
+    m_s->exit_code = -1;
+    return m_s;
+}
+
+
+static void set_shell_grp(t_shell *m_s) {
+    pid_t shell_pgid;
+    int shell_terminal = STDIN_FILENO;
+    int shell_is_interactive;
+
+    shell_is_interactive = isatty(shell_terminal);  // See if we are running interactively.
     if (shell_is_interactive) {
         while (tcgetpgrp(shell_terminal) != (shell_pgid = getpgrp()))
             kill(-shell_pgid, SIGTTIN);
@@ -51,8 +57,6 @@ t_shell *mx_init_shell(int argc, char **argv) {
         tcgetattr(shell_terminal, &m_s->t_original);
         tcgetattr(shell_terminal, &m_s->tmodes);
     }
-    m_s->exit_code = -1;
-    return m_s;
 }
 
 static char *get_shlvl() {
@@ -76,7 +80,7 @@ static char *get_pwd() {
         free(read_link);
         free(cur_dir);
     }
-    else{
+    else {
         pwd = strdup(cur_dir);
         free(cur_dir);
     }
