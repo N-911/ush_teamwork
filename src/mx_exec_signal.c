@@ -11,17 +11,19 @@ static void reverse_backscape(int *position, char *line) {
     }
 }
 
-void mx_exec_signal(int keycode, char *line, int *position) {
+void mx_exec_signal(int keycode, char **line, int *position) {
     if (keycode == CTRL_C) {
-        for (int i = 0; i < mx_strlen(line); i++) {
-            line[i] = '\0';
+        free(*line);
+        for (int i = 0; i < mx_strlen(*line); i++) {
+            *line[i] = '\0';
         }
+        // *line = strdup("");
     }
     if (keycode == CTRL_D)
-        if (strcmp(line, "") == 0)
+        if (strcmp(*line, "") == 0)
             exit_ush();
         else
-            reverse_backscape(position,  line);
+            reverse_backscape(position,  *line);
     else if (keycode == TAB) {
         //to do
     }

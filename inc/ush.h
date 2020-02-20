@@ -479,6 +479,6 @@ char *mx_get_keys(t_shell *m_s);
 void mx_print_prompt(t_shell *m_s);
 void mx_edit_prompt(t_shell *m_s);
 void mx_edit_command(int keycode, int *position, char **line, t_shell *m_s);
-void mx_exec_signal(int keycode, char *line, int *position);
+void mx_exec_signal(int keycode, char **line, int *position);
 
 #endif
