@@ -13,19 +13,18 @@ static void reverse_backscape(int *position, char *line) {
 }
 
 void mx_exec_signal(int keycode, char **line, int *position, t_shell *m_s) {
-    if (keycode == CTRL_C) {
+    if (keycode == MX_CTRL_C) {
         free(*line);
         for (int i = 0; i < mx_strlen(*line); i++) {
             *line[i] = '\0';
         }
-        // *line = strdup("");
     }
-    if (keycode == CTRL_D)
+    if (keycode == MX_CTRL_D)
         if (strcmp(*line, "") == 0)
             exit_ush(m_s);
         else
             reverse_backscape(position,  *line);
-    else if (keycode == TAB) {
+    else if (keycode == MX_TAB) {
         //to do
     }
 }

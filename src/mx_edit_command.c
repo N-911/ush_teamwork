@@ -34,21 +34,21 @@ static void k_down(t_shell *m_s, char **line, int *position) {
 
 
 void mx_edit_command(int keycode, int *position, char **line, t_shell *m_s) {
-    if (keycode == K_LEFT)
+    if (keycode == MX_K_LEFT)
         *position > 0 ? (*position)-- : 0;
-    else if (keycode == K_RIGHT)
+    else if (keycode == MX_K_RIGHT)
         *position < mx_strlen(*line) ? (*position)++ : 0;
-    else if (keycode == K_END)
+    else if (keycode == MX_K_END)
         *position = mx_strlen(*line);
-    else if (keycode == K_DOWN)
+    else if (keycode == MX_K_DOWN)
         k_down(m_s, line, position);
-    else if (keycode == K_UP)
+    else if (keycode == MX_K_UP)
         k_up(m_s, line, position);
-    else if (keycode == C_PROMPT) {
+    else if (keycode == MX_C_PROMPT) {
         m_s->prompt_status ? m_s->prompt_status-- : m_s->prompt_status++;
         mx_edit_prompt(m_s);
     }
-    else if (keycode == BACKSCAPE)
+    else if (keycode == MX_BACKSCAPE)
         backscape(position, *line);
 }
 

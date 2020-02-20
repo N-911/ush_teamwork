@@ -16,6 +16,7 @@ static struct termios mx_disable_term() {
 }
 
 static void mx_enable_term(struct termios savetty) {
+    printf("\n");
     tcsetattr (0, TCSAFLUSH, &savetty);
 }
 
@@ -50,7 +51,6 @@ static char *get_line(t_shell *m_s) {
         m_s->history_count++;
     }
     m_s->history_index = m_s->history_count;
-    printf("\n");
     mx_enable_term(savetty);
     return line;
 }
@@ -66,7 +66,8 @@ void mx_ush_loop(t_shell *m_s) {
         if (line[0] == '\0') {
             mx_check_jobs(m_s);
             continue;
-        } else {
+        } 
+        else {
             if ((ast = mx_ast_creation(line, m_s))) {
                 for (int i = 0; ast[i]; i++) {
                     new_job = mx_create_job(m_s, ast[i]);

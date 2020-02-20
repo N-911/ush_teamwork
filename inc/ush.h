@@ -74,45 +74,45 @@
 
 
 //      COLORS
-#define BLK   "\x1B[30m"
-#define RED   "\x1B[31m"
-#define GRN   "\x1B[32m"
-#define YEL   "\x1B[33m"
-#define BLU   "\x1B[34m"
-#define MAG   "\x1B[35m"
-#define CYN   "\x1B[36m"
-#define WHT   "\x1B[37m"
-#define RESET "\x1B[0m"
-#define RED_B "\x1B[1;31m"
-#define RESET_B "\x1B[1;31m"
-#define BLK_F_RED_B "\x1B[0;30;41m"
-#define BLK_F_CYAN_B "\x1B[0;30;46m"
-#define BLOCK "\x1B[0;34;46m"
-#define CHR "\x1B[0;34;43m"
-#define DIR_T "\x1B[0;30;42m"
-#define DIR_X "\033[0;30;43m"
-#define BOLD_MAGENTA "\x1B[1;35m"
-#define BOLD_CYAN "\x1B[1;36m"
-#define BOLD_RED "\x1B[[1;31m"
-#define BOLD_BLUE "\x1B[1;34m"
+#define MX_BLK   "\x1B[30m"
+#define MX_RED   "\x1B[31m"
+#define MX_GRN   "\x1B[32m"
+#define MX_YEL   "\x1B[33m"
+#define MX_BLU   "\x1B[34m"
+#define MX_MAG   "\x1B[35m"
+#define MX_CYN   "\x1B[36m"
+#define MX_WHT   "\x1B[37m"
+#define MX_RESET "\x1B[0m"
+#define MX_RED_B "\x1B[1;31m"
+#define MX_RESET_B "\x1B[1;31m"
+#define MX_BLK_F_RED_B "\x1B[0;30;41m"
+#define MX_BLK_F_CYAN_B "\x1B[0;30;46m"
+#define MX_BLOCK "\x1B[0;34;46m"
+#define MX_CHR "\x1B[0;34;43m"
+#define MX_DIR_T "\x1B[0;30;42m"
+#define MX_DIR_X "\033[0;30;43m"
+#define MX_BOLD_MAGENTA "\x1B[1;35m"
+#define MX_BOLD_CYAN "\x1B[1;36m"
+#define MX_BOLD_RED "\x1B[[1;31m"
+#define MX_BOLD_BLUE "\x1B[1;34m"
 
 //KEYBOARDS
-#define INPUT_SIZE  1024
-#define K_LEFT      4479771  // edit keys
-#define K_RIGHT     4414235
-#define K_HOME      4741915
-#define K_END       4610843
-#define K_UP        4283163  // history keys
-#define K_DOWN      4348699
-#define P_UP        2117425947
-#define P_DOWN      2117491483
-#define C_PROMPT    42946
-#define CTRL_D      4
-#define CTRL_C      3
-#define CTRL_R      18
-#define BACKSCAPE   127
-#define TAB         9
-#define ENTER       10
+#define MX_INPUT_SIZE  1024
+#define MX_K_LEFT      4479771  // edit keys
+#define MX_K_RIGHT     4414235
+#define MX_K_HOME      4741915
+#define MX_K_END       4610843
+#define MX_K_UP        4283163  // history keys
+#define MX_K_DOWN      4348699
+#define MX_P_UP        2117425947
+#define MX_P_DOWN      2117491483
+#define MX_C_PROMPT    42946
+#define MX_CTRL_D      4
+#define MX_CTRL_C      3
+#define MX_CTRL_R      18
+#define MX_BACKSCAPE   127
+#define MX_TAB         9
+#define MX_ENTER       10
 
 /*
 *  ------------------------------------------------------ Abstract Syntax Tree
@@ -155,7 +155,7 @@ enum e_type {
     R_OUTPUT,       // <
     R_OUTPUT_DBL,   // <<
     NUL
-} t_type;
+}    t_type;
 
 /*
  * For creation Abstract Syntax Tree
@@ -165,7 +165,7 @@ typedef struct s_ast {
     int type;  // type of delim after cmd (last delim ;)
     struct s_ast *next;
     struct s_ast *left;  // for redirections
-} t_ast;
+}              t_ast;
 
 /*
  * For redirections
@@ -175,56 +175,56 @@ typedef struct s_redir {
     char *output_path;  // > >>
     int redir_delim;  // <, <<, >, >> from e_type
     struct s_redir *next;
-} t_redir;
+}              t_redir;
 
 typedef struct s_jobs  {
     int l;
     int r;
     int s;
-} t_jobs;
+}             t_jobs;
 
 typedef struct cd_s  {
     int s;
     int L;
     int P;
-} cd_t;
+}             cd_t;
 
 typedef struct pwd_s  {
     int L;
     int P;
-} pwd_t;
+}              pwd_t;
 
 typedef struct echo_s  {
     int n;
     int e;
     int E;
-} echo_t;
+}              echo_t;
 
 typedef struct which_s  {
     int s;
     int a;
-} which_t;
+}              which_t;
 
 typedef struct env_s  {
     int i;
     int u;
     int P;
-} env_t;
+}              env_t;
 
 typedef struct  s_export {
     char *name;
     char *value;
     struct s_export *next;
-} t_export;
+}               t_export;
 
-typedef struct		s_stack
+typedef struct	s_stack
 {
     int			size;  // size = MX_JOBS_NUMBER
     int*		stack;
     int 		top;  // index of last add job
     int         last;  // current job gor fg
     int         prev_last;
-} t_stack;
+}              t_stack;
 
 
 typedef struct s_env_builtin  {
@@ -235,7 +235,7 @@ typedef struct s_env_builtin  {
     t_export *env_list;
     t_export *env_params;
     char *path;
-} t_env_builtin;
+}              t_env_builtin;
 
 typedef struct s_process {
     char *fullpath;  //for execve
@@ -263,7 +263,7 @@ typedef struct s_process {
     int infile;
     int outfile;
     int errfile;
-} t_process;
+}             t_process;
 
 // A job is a pipeline of processes.
 typedef struct s_job {
@@ -284,7 +284,7 @@ typedef struct s_job {
     struct s_job *next;  //next job separated by ";" "&&" "||"
     char **env;  // ?
     char *path;
-} t_job;
+}             t_job;
 
 typedef struct s_shell {
     int     argc;
@@ -312,7 +312,7 @@ typedef struct s_shell {
     int prompt_status;
     t_export *exported;
     t_export *variables;
-} t_shell;
+}             t_shell;
 
 
 static volatile sig_atomic_t sigflag; // устанавливается обработчиком  в ненулевое значение

@@ -40,7 +40,7 @@ char *mx_get_keys(t_shell *m_s) {
     int max_len = 0;
     int position = 0;
 
-    for (;keycode != ENTER && keycode != CTRL_C;) {
+    for (;keycode != MX_ENTER && keycode != MX_CTRL_C;) {
         mx_edit_prompt(m_s);
         read_input(&max_len, &keycode, line);
         max_len += mx_strlen(m_s->prompt);
@@ -51,7 +51,7 @@ char *mx_get_keys(t_shell *m_s) {
             mx_exec_signal(keycode, &line, &position, m_s);
         else
             add_char(&position, line, keycode, m_s);
-        if(keycode != CTRL_C)
+        if(keycode != MX_CTRL_C)
             print_command(m_s, line, position, max_len);
     }
     return line;
