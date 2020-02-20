@@ -1,3 +1,4 @@
+//#include <inc/ush.h>
 #include "ush.h"
 
 /*
@@ -12,12 +13,12 @@ void mx_check_jobs(t_shell *m_s) {
     pid_t pid;  // waitpid return pid child process
     int job_id;
 
-    while ((pid = waitpid(-1, &status, WNOHANG | WUNTRACED | WCONTINUED)) > 0) {
-        if (WIFEXITED(status))
+    while ((pid = waitpid(-1, &status, MX_WNOHANG | MX_WUNTRACED | MX_WCONTINUED)) > 0) {
+        if (MX_WIFEXITED(status))
             mx_set_process_status(m_s, pid, MX_STATUS_DONE);
-        else if (WIFSTOPPED(status))
+        else if (MX_WIFSTOPPED(status))
             mx_set_process_status(m_s, pid, MX_STATUS_SUSPENDED);
-        else if (WIFCONTINUED(status)) {
+        else if (MX_WIFCONTINUED(status)) {
             mx_set_process_status(m_s, pid, MX_STATUS_CONTINUED);
         }
         job_id = mx_job_id_by_pid(m_s, pid);
@@ -27,6 +28,7 @@ void mx_check_jobs(t_shell *m_s) {
         }
     }
 }
+
 
 /*
    WUNTRACED флаг, чтобы запросить информацию состояния остановленных процессов также как процессов, которые завершились
@@ -41,13 +43,13 @@ int mx_wait_job(t_shell *m_s, int job_id) {
 //        return -1;
    proc_count = mx_get_proc_count(m_s, job_id, MX_FILTER_IN_PROGRESS);
     while (wait_count < proc_count) {
-        wait_pid = waitpid(-m_s->jobs[job_id]->pgid, &status, WUNTRACED);
+        wait_pid = waitpid(-m_s->jobs[job_id]->pgid, &status, MX_WUNTRACED);
         wait_count++;
-        if (WIFEXITED(status))
+        if (MX_WIFEXITED(status))
             mx_set_process_status(m_s, wait_pid, MX_STATUS_DONE);
-        else if (WIFSIGNALED(status))
+        else if (MX_WIFSIGNALED(status))
             mx_set_process_status(m_s, wait_pid, MX_STATUS_TERMINATED);
-        else if (WSTOPSIG(status)) {
+        else if (MX_WSTOPSIG(status)) {
             mx_set_process_status(m_s, wait_pid, MX_STATUS_SUSPENDED);
             if (wait_count == proc_count)
                 mx_print_job_status(m_s, job_id, 0);

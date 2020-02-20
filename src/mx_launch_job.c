@@ -81,7 +81,7 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
             status = mx_wait_job(m_s, job_id);
         if (mx_job_completed(m_s, job_id))
             mx_remove_job(m_s, job_id);
-        signal(SIGTTOU, SIG_IGN);
+        signal(SIGTTOU, MX_SIG_IGN);
         tcsetpgrp(STDIN_FILENO, getpid());
 //        signal(SIGTTOU, SIG_DFL);
         tcgetattr(shell_terminal, &job->tmodes);

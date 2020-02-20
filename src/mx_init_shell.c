@@ -29,7 +29,6 @@ t_shell *mx_init_shell(int argc, char **argv) {
     return m_s;
 }
 
-
 static void set_shell_grp(t_shell *m_s) {
     pid_t shell_pgid;
     int shell_terminal = STDIN_FILENO;
@@ -38,11 +37,11 @@ static void set_shell_grp(t_shell *m_s) {
     if (shell_is_interactive) {
         while (tcgetpgrp(shell_terminal) != (shell_pgid = getpgrp()))
             kill(-shell_pgid, SIGTTIN);
-        signal(SIGINT, SIG_IGN);  // Control-C
-        signal(SIGQUIT, SIG_IGN);  // 'Control-\'
-        signal(SIGTSTP, SIG_IGN);  // Control-Z
-        signal(SIGTTIN, SIG_IGN);
-        signal(SIGTTOU, SIG_IGN);
+        signal(SIGINT, MX_SIG_IGN);  // Control-C
+        signal(SIGQUIT, MX_SIG_IGN);  // 'Control-\'
+        signal(SIGTSTP, MX_SIG_IGN);  // Control-Z
+        signal(SIGTTIN, MX_SIG_IGN);
+        signal(SIGTTOU, MX_SIG_IGN);
         shell_pgid = getpid();
         if (setpgid(shell_pgid, shell_pgid) < 0) {
             perror("Couldn't put the shell in its own process group");

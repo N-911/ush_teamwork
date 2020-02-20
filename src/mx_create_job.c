@@ -26,7 +26,7 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
     p->argv = mx_strdup_arr(list->args);
     p->delim = list->type;
     p->command = mx_strdup(list->args[0]);
-    p->exit_code = 0;
+//    p->exit_code = 0;
     // old redir
     if (list->left) {
         tmp = list->left;
