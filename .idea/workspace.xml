@@ -13,23 +13,72 @@
   <component name="ChangeListManager">
     <list default="true" id="231a84a8-684e-4b8a-8236-bfbaca780c22" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/ush.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/ush.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_bg.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_bg.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_builtin_commands.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_builtin_commands.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libmx1.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libmx2.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_ast_clear_list.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_ast_creation.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_ast_parse.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_ast_push_back.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_bg.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_builtin_commands.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_cd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_check_parce_errors.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_clear_all.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_count_options.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_create_job.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_echo.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_env.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_exit.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_export.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_fg.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_filters.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_get_type.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_hex_to_nbr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_init_shell.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_jobs_functions.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_jobs_functions_2.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_jobs_functions_print.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_jobs_functions_wait.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_jobs_stack.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_jobs_stack2.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_launch_bin.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_launch_builtin.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_launch_job.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_launch_process.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_loop.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_nbr_to_hex.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_normalization.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_parce_tokens.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_print_errors.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_push_export.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_pwd.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_quote_manage.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_redir_push_back.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_set_data.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_set_parametr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_set_variable.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_signal.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_strtok.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_subst_command.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_subst_dollar.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_subst_tilde.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_terminal.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_unset.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_ush_parsed_line.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_ush_read_line.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mx_which.c" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_create_job.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_create_job.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_fg.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_fg.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_init_shell.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_init_shell.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions_2.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions_2.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions_print.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions_print.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_functions_wait.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_jobs_stack.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_jobs_stack.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_launch_builtin.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_builtin.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_launch_job.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_job.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mx_launch_process.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_launch_process.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_loop.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_loop.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mx_terminal.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_terminal.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ush_main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/ush_main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mx_signal.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/mx_signal.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ush" beforeDir="false" afterPath="$PROJECT_DIR$/ush" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ush.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ush_main.c" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +178,8 @@
       <workItem from="1581601261648" duration="5757000" />
       <workItem from="1581661727656" duration="12930000" />
       <workItem from="1582105847329" duration="1702000" />
+      <workItem from="1582184623912" duration="678000" />
+      <workItem from="1582185371332" duration="4956000" />
     </task>
     <task id="LOCAL-00001" summary="-test_snikolayen">
       <created>1579768232701</created>
@@ -293,10 +344,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="190" y="434" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.2560.1337@0.23.2560.1337" timestamp="1579775998237" />
-    <state x="894" y="177" width="1059" height="1058" key="find.popup" timestamp="1582107059938">
+    <state x="894" y="177" width="1059" height="1058" key="find.popup" timestamp="1582188582595">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="894" y="177" width="1059" height="1058" key="find.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1582107059938" />
+    <state x="894" y="177" width="1059" height="1058" key="find.popup/0.23.2560.1337@0.23.2560.1337" timestamp="1582188582595" />
     <state x="384" y="328" key="refactoring.ChangeSignatureDialog" timestamp="1581353771175">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -315,7 +366,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_jobs_functions_wait.c</url>
-          <line>9</line>
+          <line>10</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -355,43 +406,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>119</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>106</line>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
           <line>99</line>
           <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>142</line>
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>143</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>130</line>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>134</line>
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/mx_launch_job.c</url>
-          <line>136</line>
-          <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/mx_launch_process.c</url>
