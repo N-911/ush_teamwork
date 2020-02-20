@@ -2,7 +2,7 @@
 
 static int count_args(char **args, int n_options);
 static void fill_options(int n_options, t_jobs *jobs_op, char **args);
-static void print_jobs_by_mask(t_shell *m_s, t_jobs jobs_op, int n_options);
+static void print_jobs_by_mask(t_shell *m_s, t_jobs jobs_op, int i);
 
 int mx_builtin_commands_idex(t_shell *m_s, char *command) {
     int i = 0;
@@ -24,75 +24,67 @@ jobs - List background processes
 
 int mx_jobs(t_shell *m_s, t_process *p) {
     t_jobs jobs_op = {0, 0, 0};
-    int n_options = mx_count_options(p->argv, "lprs", "jobs", " [-lrs]");
-    int n_args = count_args(p->argv, n_options);
-    int exit_code = 0;
     int job_id;
+    int n_option;
+    int n_args;
 
+    if ((n_option = mx_count_options(p->argv, "lprs", "jobs", " [-lrs]")) < 0) {
+        p->exit_code = 1;
+        return p->exit_code;
+    }
+    n_args = count_args(p->argv, n_option);
     mx_set_last_job(m_s);
-//    printf ("n_opptions   = %d\n", n_options);
-//    printf("n_args  =\t%d\n", n_args);
-    fill_options(n_options, &jobs_op, p->argv);
-    if (n_options >= 0 && n_args == 0)
-        print_jobs_by_mask(m_s, jobs_op, n_options);
+    fill_options(n_option, &jobs_op, p->argv);
+    if (n_option >= 0 && n_args == 0) {
+        for (int i = 0; i < MX_JOBS_NUMBER; i++)
+            print_jobs_by_mask(m_s, jobs_op, i);
+    }
     else if (n_args) {
-        for (int j = n_options + 1; p->argv[j] != NULL; j++) {
-            for (int i = 1; i < MX_JOBS_NUMBER; i++) {
+        for (int j = n_option + 1; p->argv[j] != NULL; j++) {
+            for (int i = m_s->max_number_job;  i > 0; i--) {
                 if (m_s->jobs[i] != NULL) {
                     if ((job_id = mx_g_find_job(m_s, (p->argv[j]))) < 1) {
                         mx_error_fg_bg(p->argv[0],": job not found: ",
                                        p->argv[j], "\n");
                         return -1;
                     }
-                    mx_print_job_status(m_s, job_id, 0);
+                    print_jobs_by_mask(m_s, jobs_op, i);
+                    break;
                 }
             }
         }
     }
     p->exit_code = 0;
 //    mx_print_stack(m_s);
-    return exit_code;
+    return p->exit_code;
 }
 
-static void print_jobs_by_mask(t_shell *m_s, t_jobs jobs_op, int n_op) {
-    if (!n_op) {
-        for (int i = 0; i < MX_JOBS_NUMBER; i++) {
-            if (m_s->jobs[i] != NULL)
-                mx_print_job_status(m_s, i, 0);
-        }
-    }
-    else if (jobs_op.l) {
+static void print_jobs_by_mask(t_shell *m_s, t_jobs jobs_op, int i) {
+    if (jobs_op.l) {
         if (jobs_op.r) {
-            for (int i = 0; i < MX_JOBS_NUMBER; i++)
-                if (m_s->jobs[i] != NULL && mx_job_is_running(m_s, i))
-                    mx_print_job_status(m_s, i, 1);
-                }
-                else if (jobs_op.s) {
-                    for (int i = 0; i < MX_JOBS_NUMBER; i++)
-                        if (m_s->jobs[i] != NULL && !mx_job_is_running(m_s, i))
-                            mx_print_job_status(m_s, i, 1);
-                }
-                else {
-                    for (int i = 0; i < MX_JOBS_NUMBER; i++)
-                        if (m_s->jobs[i] != NULL)
-                            mx_print_job_status(m_s, i, 1);
-                }
-    }
-    else if (jobs_op.r && !jobs_op.s) {
-        for (int i = 0; i < MX_JOBS_NUMBER; i++)
             if (m_s->jobs[i] != NULL && mx_job_is_running(m_s, i))
                 mx_print_job_status(m_s, i, 1);
+            }
+            else if (jobs_op.s) {
+                if (m_s->jobs[i] != NULL && !mx_job_is_running(m_s, i))
+                    mx_print_job_status(m_s, i, 1);
+            }
+            else {
+                if (m_s->jobs[i] != NULL)
+                    mx_print_job_status(m_s, i, 1);
+            }
     }
-
+    else if (jobs_op.r && !jobs_op.s) {
+        if (m_s->jobs[i] != NULL && mx_job_is_running(m_s, i))
+            mx_print_job_status(m_s, i, 0);
+    }
     else if (jobs_op.s && !jobs_op.r) {
-        for (int i = 0; i < MX_JOBS_NUMBER; i++)
-            if (m_s->jobs[i] != NULL && !mx_job_is_running(m_s, i))
-                mx_print_job_status(m_s, i, 1);
+        if (m_s->jobs[i] != NULL && !mx_job_is_running(m_s, i))
+            mx_print_job_status(m_s, i, 0);
     }
     else {
-        for (int i = 0; i < MX_JOBS_NUMBER; i++)
-            if (m_s->jobs[i] != NULL)
-                mx_print_job_status(m_s, i, 0);
+        if (m_s->jobs[i] != NULL)
+            mx_print_job_status(m_s, i, 0);
     }
 }
 
@@ -123,3 +115,47 @@ static void fill_options(int n_options, t_jobs *jobs_op, char **args) {
     }
 }
 
+/*
+static void print_jobs_by_mask(t_shell *m_s, t_jobs jobs_op, int n_op) {
+    if (!n_op) {
+        for (int i = 0; i < MX_JOBS_NUMBER; i++) {
+            if (m_s->jobs[i] != NULL)
+                mx_print_job_status(m_s, i, 0);
+        }
+    }
+    else if (jobs_op.l) {
+        if (jobs_op.r) {
+            for (int i = 0; i < MX_JOBS_NUMBER; i++)
+                if (m_s->jobs[i] != NULL && mx_job_is_running(m_s, i))
+                    mx_print_job_status(m_s, i, 1);
+        }
+        else if (jobs_op.s) {
+            for (int i = 0; i < MX_JOBS_NUMBER; i++)
+                if (m_s->jobs[i] != NULL && !mx_job_is_running(m_s, i))
+                    mx_print_job_status(m_s, i, 1);
+        }
+        else {
+            for (int i = 0; i < MX_JOBS_NUMBER; i++)
+                if (m_s->jobs[i] != NULL)
+                    mx_print_job_status(m_s, i, 1);
+        }
+    }
+    else if (jobs_op.r && !jobs_op.s) {
+        for (int i = 0; i < MX_JOBS_NUMBER; i++)
+            if (m_s->jobs[i] != NULL && mx_job_is_running(m_s, i))
+                mx_print_job_status(m_s, i, 1);
+    }
+
+    else if (jobs_op.s && !jobs_op.r) {
+        for (int i = 0; i < MX_JOBS_NUMBER; i++)
+            if (m_s->jobs[i] != NULL && !mx_job_is_running(m_s, i))
+                mx_print_job_status(m_s, i, 1);
+    }
+    else {
+        for (int i = 0; i < MX_JOBS_NUMBER; i++)
+            if (m_s->jobs[i] != NULL)
+                mx_print_job_status(m_s, i, 0);
+    }
+}
+
+*/
