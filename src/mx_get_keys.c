@@ -48,7 +48,7 @@ char *mx_get_keys(t_shell *m_s) {
         if (keycode >= 127)
             mx_edit_command(keycode, &position, &line, m_s);
         else if (keycode < 32)
-            mx_exec_signal(keycode, &line, &position);
+            mx_exec_signal(keycode, &line, &position, m_s);
         else
             add_char(&position, line, keycode, m_s);
         if(keycode != CTRL_C)

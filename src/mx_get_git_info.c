@@ -7,14 +7,17 @@ static void get_git(struct dirent  *ds, char **user, int *flag, char *path) {
         char **arr = mx_strsplit(git, '/');
         int count = 0;
 
-        while (arr[count] != NULL)
-            count++;
-        arr[count - 1][mx_strlen(arr[count - 1]) - 1] = '\0';
-        *user = strdup(arr[count - 1]);
-        (*flag)++;
+        if (arr != NULL) {
+            while (arr[count] != NULL)
+                count++;           
+            arr[count - 1][mx_strlen(arr[count - 1]) - 1] = '\0';
+            if (mx_count_substr(arr[count - 1], "\n") == 0)
+                *user = strdup(arr[count - 1]);
+            (*flag)++;
+            mx_del_strarr(&arr);
+        }
         free(git);
         free(gitpath);
-        mx_del_strarr(&arr);
     }
 }
 
