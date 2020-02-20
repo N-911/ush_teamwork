@@ -26,7 +26,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
             setpgid (pid, m_s->jobs[job_id]->pgid);
         }
     }
-    return p->status >> 8;//WEXITSTATUS(status)
+    return p->status >> 8;  //WEXITSTATUS(status)
 }
 
 

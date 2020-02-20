@@ -32,9 +32,6 @@
 
 #include "libmx/inc/libmx.h"
 
-#define LSH_RL_BUFSIZE 1024  //del ?
-#define LSH_TOK_BUFSIZE 64  //del ?
-
 //  EXIT
 #define MX_EXIT_FAILURE 1
 #define MX_EXIT_SUCCESS 0
@@ -52,6 +49,29 @@
 #define MX_FOREGROUND 1
 #define MX_BACKGROUND 0
 #define MAX_LEN 10
+
+// WAIT
+#define MX_WNOHANG         0x00000001
+#define MX_WUNTRACED       0x00000002
+#define MX_W_INT(w)       (*(int *)&(w))  /* convert union wait to int */
+#define MX_WSTATUS(x)     (MX_W_INT(x) & 0177)
+#define MX_WSTOPPED       0177            /* _WSTATUS if process is stopped */
+#define MX_WSTOPSIG(x)     (MX_W_INT(x) >> 8)
+#define MX_WIFCONTINUED(x) (MX_WSTATUS(x) == MX_WSTOPPED && MX_WSTOPSIG(x) == 0x13)
+#define MX_WIFSTOPPED(x)   (MX_WSTATUS(x) == MX_WSTOPPED && MX_WSTOPSIG(x) != 0x13)
+#define MX_WIFEXITED(x)    (MX_WSTATUS(x) == 0)
+#define MX_WIFSIGNALED(x)  (MX_WSTATUS(x) != MX_WSTOPPED && MX_WSTATUS(x) != 0)
+#define MX_WTERMSIG(x)     (MX_WSTATUS(x))
+#define MX_W_EXITCODE(ret, sig)    ((ret) << 8 | (sig))
+#define MX_W_STOPCODE(sig)         ((sig) << 8 | MX_WSTOPPED)
+#define MX_WEXITED         0x00000004  // [XSI] Processes which have exitted
+#define MX_WCONTINUED      0x00000010  //[XSI] Any child stopped then continued
+#define MX_WNOWAIT         0x00000020  // [XSI] Leave process returned waitable
+#define MX_SIG_DFL         (void (*)(int))0
+#define MX_SIG_IGN         (void (*)(int))1
+#define MX_SIG_HOLD        (void (*)(int))5
+#define MX_SIG_ERR         ((void (*)(int))-1)
+
 
 //      COLORS
 #define BLK   "\x1B[30m"
@@ -141,19 +161,19 @@ enum e_type {
  * For creation Abstract Syntax Tree
  */
 typedef struct s_ast {
-    char **args;            // cmd with args
-    int type;               // type of delim after cmd (last delim ;)
+    char **args;  // cmd with args
+    int type;  // type of delim after cmd (last delim ;)
     struct s_ast *next;
-    struct s_ast *left;     // for redirections
+    struct s_ast *left;  // for redirections
 } t_ast;
 
 /*
  * For redirections
  */
 typedef struct s_redir {
-    char *input_path;       // < <<
-    char *output_path;      // > >>
-    int redir_delim;        // <, <<, >, >> from e_type
+    char *input_path;  // < <<
+    char *output_path;  // > >>
+    int redir_delim;  // <, <<, >, >> from e_type
     struct s_redir *next;
 } t_redir;
 
@@ -227,6 +247,8 @@ typedef struct s_process {
     char *output_path;  // > >>
     int redir_delim;  // <, <<, >, >> from e_type
     t_redir *redirect;  // new
+    int c_input;  // count_redir_input
+    int c_output;  // count_redir_output
     pid_t pid;
     int exit_code;
     char *path;
@@ -235,10 +257,8 @@ typedef struct s_process {
     int foreground;
     int pipe;  // gets in create_job.c
     int delim;  // gets in create_job.c (first - | || &&) (end - ; &)
-    int fd_in;
-    int fd_out;
-    int type;              // COMMAND_BUILTIN = index in m_s->builtin_list; default = 0
-    struct s_process *next;     // next process in pipeline
+    int type;  // COMMAND_BUILTIN = index in m_s->builtin_list; default = 0
+    struct s_process *next;  // next process in pipeline
     pid_t pgid;
     int infile;
     int outfile;
@@ -247,14 +267,14 @@ typedef struct s_process {
 
 // A job is a pipeline of processes.
 typedef struct s_job {
-    int job_id;                 //number in jobs control
-    int job_type;           // 0 if normal, or enum &&, || of previos job
-    char *command;              // command line, used for messages
-    t_process *first_process;     // list of processes in this job
-    pid_t pgid;                 // process group ID
+    int job_id;  // number in jobs control
+    int job_type;  // 0 if normal, or enum &&, || of previos job
+    char *command;  // command line, used for messages
+    t_process *first_process;  // list of processes in this job
+    pid_t pgid;  // process group ID
     int exit_code;
-    int foreground;                  // foreground = 1 or background execution = 0
-    struct termios tmodes;      // saved terminal modes/
+    int foreground;  // foreground = 1 or background execution = 0
+    struct termios tmodes;  // saved terminal modes/
     int infile;
     int outfile;
     int errfile;
