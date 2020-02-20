@@ -217,8 +217,7 @@ typedef struct  s_export {
     struct s_export *next;
 } t_export;
 
-typedef struct		s_stack
-{
+typedef struct		s_stack {
     int			size;  // size = MX_JOBS_NUMBER
     int*		stack;
     int 		top;  // index of last add job
@@ -240,7 +239,6 @@ typedef struct s_env_builtin  {
 typedef struct s_process {
     char *fullpath;  //for execve
     char **argv;    // gets in create_job.c
-    // char **envp;
     char *command;
     char *arg_command;
     char *input_path;  // < <<
@@ -254,7 +252,7 @@ typedef struct s_process {
     char *path;
     char **env;
     int status;  //status RUNNING DONE SUSPENDED CONTINUED TERMINATED
-    int foreground;
+    int foregrd;
     int pipe;  // gets in create_job.c
     int delim;  // gets in create_job.c (first - | || &&) (end - ; &)
     int type;  // COMMAND_BUILTIN = index in m_s->builtin_list; default = 0
@@ -270,10 +268,12 @@ typedef struct s_job {
     int job_id;  // number in jobs control
     int job_type;  // 0 if normal, or enum &&, || of previos job
     char *command;  // command line, used for messages
-    t_process *first_process;  // list of processes in this job
+    t_process *first_pr;  // list of processes in this job
     pid_t pgid;  // process group ID
+    char *path;
+    char **env;
     int exit_code;
-    int foreground;  // foreground = 1 or background execution = 0
+    int foregrd;  // foregrd = 1 or background execution = 0
     struct termios tmodes;  // saved terminal modes/
     int infile;
     int outfile;
@@ -408,15 +408,13 @@ t_job *mx_create_job(t_shell *m_s, t_ast *list);  // create one job from ast
 void mx_ush_loop(t_shell *m_s);  // create ast -> create jobs -> ...
 void mx_launch_job(t_shell *m_s, t_job *job);
 void mx_set_redirec(t_shell  *m_s, t_job * job, t_process *p, int job_id);
-void mx_set_redir_input(t_shell  *m_s, t_job * job, t_process *p, int job_id);
+void mx_set_redir_input(t_shell *m_s, t_job *job, t_process *p, int job_id);
+void mx_set_redir_inp_d(t_job *job, t_process *p);
 void mx_set_redir_output(t_job * job, t_process *p);
 void mx_dup_fd(t_process *p);
-
-int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env);
+int mx_launch_process(t_shell *m_s, t_process *p, int job_id);
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
 void mx_pgid(t_shell *m_s, int job_id, int child_pid);
-
-
 
 
 //      BUILTIN COMMANDS

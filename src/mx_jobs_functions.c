@@ -45,7 +45,7 @@ int mx_job_id_by_pid(t_shell *m_s, int pid) {
 
     for (i = 1; i <= m_s->max_number_job + 1; i++) {
         if (m_s->jobs[i] != NULL) {
-            for (p = m_s->jobs[i]->first_process; p != NULL; p = p->next) {
+            for (p = m_s->jobs[i]->first_pr; p != NULL; p = p->next) {
                 if (p->pid == pid) {
                     return i;
                 }

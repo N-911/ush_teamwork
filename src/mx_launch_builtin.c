@@ -9,21 +9,19 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
     int (*builtin_functions[])(t_shell *m_s, t_process *p) =
          {&mx_env, &mx_export, &mx_unset, &mx_echo, &mx_jobs, &mx_fg, &mx_bg,
          &mx_cd, &mx_pwd, &mx_which, &mx_exit, NULL};
-//    int shell_is_interactive = isatty(STDIN_FILENO);
-//    pid_t child_pid;
 
     p->status = MX_STATUS_RUNNING;
     if (p->type == 4 || p->type == 5 || p->type == 6) {
-        if(!p->pipe && p->foreground && m_s->jobs[job_id]->first_process->next == NULL)
+        if(!p->pipe && p->foregrd && m_s->jobs[job_id]->first_pr->next == NULL)
             mx_remove_job_from_panel(m_s, job_id);  // not destroy!!!
     }
-    if (p->pipe || !p->foreground) {  // if pipe or in foreground -> fork
+    if (p->pipe || !p->foregrd) {  // if pipe or in foregrd -> fork
         buildin_fork(m_s, job_id, builtin_functions, p);
     }
     else
         buildin_std_exec(m_s, builtin_functions, p);
 //    if (p->type == 4 || p->type == 5 || p->type == 6) {
-//        if(!p->pipe && p->foreground && m_s->jobs[job_id]->first_process->next == NULL)
+//        if(!p->pipe && p->foregrd && m_s->jobs[job_id]->first_pr->next == NULL)
 //            mx_destroy_jobs(m_s, job_id);
 //    }
     return p->exit_code;
@@ -32,7 +30,7 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
 static void buildin_fork(t_shell *m_s, int job_id, int (*builtin_functions[])
         (t_shell *m_s, t_process *p), t_process *p) {
     int shell_is_interactive = isatty(STDIN_FILENO);
-    int child_pid = fork();
+    pid_t child_pid = fork();
 
     p->pid = child_pid;
     if (child_pid < 0) {
@@ -48,7 +46,6 @@ static void buildin_fork(t_shell *m_s, int job_id, int (*builtin_functions[])
     }
     else {
         if (shell_is_interactive) {
-            // pid_t pid = child_pid;
             if (m_s->jobs[job_id]->pgid == 0)
                 m_s->jobs[job_id]->pgid = child_pid;
             setpgid (child_pid, m_s->jobs[job_id]->pgid);
@@ -87,7 +84,7 @@ void mx_pgid(t_shell *m_s, int job_id, int child_pid) {
     if (m_s->jobs[job_id]->pgid == 0)
         m_s->jobs[job_id]->pgid = child_pid;
     setpgid(child_pid, m_s->jobs[job_id]->pgid);
-    if (m_s->jobs[job_id]->foreground)
+    if (m_s->jobs[job_id]->foregrd)
         tcsetpgrp(STDIN_FILENO, m_s->jobs[job_id]->pgid);
     signal(SIGINT, MX_SIG_DFL);
     signal(SIGQUIT, MX_SIG_DFL);

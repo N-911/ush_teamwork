@@ -54,10 +54,9 @@ int mx_get_job_status(t_shell *m_s, int job_id, int status) {
 
     if (job_id > MX_JOBS_NUMBER || m_s->jobs[job_id] == NULL)
         return -1;
-    for (p = m_s->jobs[job_id]->first_process; p != NULL; p = p->next) {
+    for (p = m_s->jobs[job_id]->first_pr; p != NULL; p = p->next) {
         if (p->status == status)
             flag = 1;
     }
     return flag;
 }
-

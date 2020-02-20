@@ -9,7 +9,7 @@ static t_process *init_process(void) {
     p->output_path = NULL;
     p->redir_delim = 0;
     p->redirect = NULL;
-    p->foreground = 1;
+    p->foregrd = 1;
     p->pipe = 0;
     p->next = NULL;
     return p;
@@ -42,7 +42,7 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
             mx_redir_push_back(&p->redirect, q->args[0], q->type);
     //
     if (p->delim == FON)
-        p->foreground = 0;
+        p->foregrd = 0;
     if (p->delim == PIPE)
         p->pipe = 1;
     if ((index = mx_builtin_commands_idex(m_s, p->argv[0])) == -1) {
@@ -80,11 +80,11 @@ t_job *mx_create_job(t_shell *m_s, t_ast *list) {
 
     for (t_ast *l = list; l; l = l->next)
         push_process_back(&first_p, m_s, l);
-    new_job->first_process = first_p;
-    new_job->foreground = MX_FOREGROUND;
+    new_job->first_pr = first_p;
+    new_job->foregrd = MX_FOREGROUND;
     for (; first_p != NULL; first_p = first_p->next)
-        if (!first_p->foreground)
-            new_job->foreground = MX_BACKGROUND;
+        if (!first_p->foregrd)
+            new_job->foregrd = MX_BACKGROUND;
     new_job->job_id = -1;
     new_job->pgid = 0;
     new_job->stdin = STDIN_FILENO;

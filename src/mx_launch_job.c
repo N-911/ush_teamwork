@@ -21,8 +21,6 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
     else
         mx_remove_job(m_s, job_id);
 // m_s->exit_code == 0 ? m_s->exit_code = status : 0;
-    //mx_print_color(RED, "m_s->exit_code  ");
-    //mx_print_color(RED, mx_itoa(m_s->exit_code));
     char *exit_status = mx_itoa(m_s->exit_code);
     mx_set_variable(m_s->variables, "?", exit_status);
     free(exit_status);
@@ -30,13 +28,13 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
 
 static int execute_job(t_shell *m_s, t_job * job, int job_id) {
     extern char **environ;  // ?
-    char **env = environ;  // ?
-    char *path = getenv("PATH");  // ?
     int status;
     t_process *p;
     int mypipe[2];
 
-    for (p = m_s->jobs[job_id]->first_process; p; p = p->next) {  // list of process in job
+    job->env = environ;
+    job->path = getenv("PATH");
+    for (p = m_s->jobs[job_id]->first_pr; p; p = p->next) {
         if (m_s->exit_flag == 1 && !(p->type == 10))
             m_s->exit_flag = 0;
         mx_set_redirec(m_s, job, p, job_id);
@@ -60,7 +58,7 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
             status = mx_launch_builtin(m_s, p, job_id);  // fork own buildins
         }
         else
-            status = mx_launch_process(m_s, p, job_id, path, env);  // remove pat and env
+            status = mx_launch_process(m_s, p, job_id);  // remove pat and env
         if (job->infile != job->stdin)
             close(job->infile);
         if (job->outfile != job->stdout)
@@ -75,7 +73,7 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
 static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
     int shell_terminal = STDIN_FILENO;
 
-    if (job->foreground) {
+    if (job->foregrd) {
         tcsetpgrp(STDIN_FILENO, job->pgid);
         if (status == 0)
             status = mx_wait_job(m_s, job_id);

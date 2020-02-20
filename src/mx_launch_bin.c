@@ -17,7 +17,7 @@ int mx_launch_bin(t_process *p, char *path, char **env) {
         perror("env "); 
     else
         waitpid(pid, &status, 0);
-    return status >> 8;//WEXITSTATUS(status);
+    return status >> 8; // WEXITSTATUS(status);
 }
 
 static void child_proc(t_process *p, char *path, char **env, int *status) {

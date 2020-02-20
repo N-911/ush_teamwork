@@ -3,9 +3,9 @@
 static char *check_path(char **arr, char *command);
 static char *get_error(char **name, char *command, int *status);
 static void print_error(char *command, char *error);
-static void child_work(t_shell *m_s, t_process *p, int job_id, char *path, char **env, int child_pid);
+static void child_work(t_shell *m_s, t_process *p, int job_id, int child_pid);
 
-int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env) {
+int mx_launch_process(t_shell *m_s, t_process *p, int job_id) {
 //    int status = 0;
     pid_t child_pid;
     p->status = MX_STATUS_RUNNING;
@@ -16,7 +16,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
         exit(1);
     }
     else if (child_pid == 0)
-        child_work(m_s, p, job_id, path, env, child_pid);
+        child_work(m_s, p, job_id, child_pid);
     else {
         p->pid = child_pid;
         if (shell_is_interactive) {
@@ -30,24 +30,24 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char *
 }
 
 
-static void child_work(t_shell *m_s, t_process *p, int job_id, char *path, char **env, int child_pid) {
-    int shell_is_interactive = isatty(STDIN_FILENO);  //!!
+static void child_work(t_shell *m_s, t_process *p, int job_id, int child_pid) {
+    int shell_is_interactive = isatty(STDIN_FILENO);
 
     if (shell_is_interactive)
         mx_pgid(m_s, job_id, child_pid);
     mx_dup_fd(p);
-    char **arr = mx_strsplit(path, ':');
+    char **arr = mx_strsplit(m_s->jobs[job_id]->path, ':');
     char *command = p->argv[0];
-    path  = check_path(arr, command);
+    m_s->jobs[job_id]->path  = check_path(arr, command);
     mx_del_strarr(&arr);
-    char *error = get_error(&path, command, &p->status);
-    if (execve(path, p->argv, env) < 0) {
+    char *error = get_error(&m_s->jobs[job_id]->path, command, &p->status);
+    if (execve(m_s->jobs[job_id]->path, p->argv, m_s->jobs[job_id]->env) < 0) {
         print_error(command, error);
         free(error);
-        free(path);
+        free(m_s->jobs[job_id]->path);
         _exit(p->status);
     }
-    free(path);
+    free(m_s->jobs[job_id]->path);
     free(error);
     exit(p->status);
 }

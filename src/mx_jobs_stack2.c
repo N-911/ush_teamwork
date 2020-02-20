@@ -25,7 +25,7 @@ void mx_set_last_job(t_shell *m_s) {
     if (last == -1) {
         for (int j = size; j >= 0; j--) {
             if ((mx_get_job_status(m_s, m_s->jobs_stack->stack[j], 0) > 0) &&
-                m_s->jobs[m_s->jobs_stack->stack[j]]->foreground == 0) {
+                m_s->jobs[m_s->jobs_stack->stack[j]]->foregrd == 0) {
                 last = m_s->jobs_stack->stack[j];
                 break;
             }
