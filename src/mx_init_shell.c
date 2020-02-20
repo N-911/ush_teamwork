@@ -1,18 +1,13 @@
 #include "ush.h"
-/* Make sure the shell is running interactively as the foreground job
-   before proceeding. */
 
 static char *get_pwd();
 static char *get_shlvl();
 static void set_shell_defaults(t_shell *m_s);
+static void set_shell_grp(t_shell *m_s);
 
 t_shell *mx_init_shell(int argc, char **argv) {
-    pid_t shell_pgid;
-//  struct termios shell_tmodes;
-    int shell_terminal = STDIN_FILENO;
-    int shell_is_interactive;
+//  struct termios shell_tmodes; // not used?? - del
     t_shell *m_s = (t_shell *) malloc(sizeof(t_shell));
-
     set_shell_defaults(m_s);
     m_s->argc = argc;
     m_s->argv = argv;
@@ -28,16 +23,25 @@ t_shell *mx_init_shell(int argc, char **argv) {
     m_s->prompt_status = 1;
     mx_set_variable(m_s->variables, "PROMPT", "u$h");
     mx_set_variable(m_s->variables, "PROMPT1", "Auditor dlya lohov>");
-    shell_is_interactive = isatty(shell_terminal);  // See if we are running interactively.
+    set_shell_grp(m_s);
 //    mx_terminal_init(m_s);
+    m_s->exit_code = -1;
+    return m_s;
+}
+
+static void set_shell_grp(t_shell *m_s) {
+    pid_t shell_pgid;
+    int shell_terminal = STDIN_FILENO;
+    int shell_is_interactive = isatty(shell_terminal);
+
     if (shell_is_interactive) {
         while (tcgetpgrp(shell_terminal) != (shell_pgid = getpgrp()))
             kill(-shell_pgid, SIGTTIN);
-        signal(SIGINT, SIG_IGN);  // Control-C
-        signal(SIGQUIT, SIG_IGN);  // 'Control-\'
-        signal(SIGTSTP, SIG_IGN);  // Control-Z
-        signal(SIGTTIN, SIG_IGN);
-        signal(SIGTTOU, SIG_IGN);
+        signal(SIGINT, MX_SIG_IGN);  // Control-C
+        signal(SIGQUIT, MX_SIG_IGN);  // 'Control-\'
+        signal(SIGTSTP, MX_SIG_IGN);  // Control-Z
+        signal(SIGTTIN, MX_SIG_IGN);
+        signal(SIGTTOU, MX_SIG_IGN);
         shell_pgid = getpid();
         if (setpgid(shell_pgid, shell_pgid) < 0) {
             perror("Couldn't put the shell in its own process group");
@@ -45,14 +49,13 @@ t_shell *mx_init_shell(int argc, char **argv) {
         }
         tcsetpgrp(shell_terminal, shell_pgid);  // Grab control of the terminal.
         m_s->shell_pgid = shell_pgid;  //  Save default terminal attributes for shell.
-        char *c_shell_pgid = mx_itoa(m_s->shell_pgid);
-        mx_set_variable(m_s->variables, "$", c_shell_pgid);
-        free(c_shell_pgid);
+       char *c_shell_pgid = mx_itoa(m_s->shell_pgid);
+       mx_set_variable(m_s->variables, "$", c_shell_pgid);
+       free(c_shell_pgid);
+        // mx_set_variable(m_s->variables, "$", mx_itoa(m_s->shell_pgid));
         tcgetattr(shell_terminal, &m_s->t_original);
         tcgetattr(shell_terminal, &m_s->tmodes);
     }
-    m_s->exit_code = -1;
-    return m_s;
 }
 
 static char *get_shlvl() {
@@ -76,7 +79,7 @@ static char *get_pwd() {
         free(read_link);
         free(cur_dir);
     }
-    else{
+    else {
         pwd = strdup(cur_dir);
         free(cur_dir);
     }
@@ -103,6 +106,6 @@ static void set_shell_defaults(t_shell *m_s) {
     m_s->history_count = 0;
     m_s->history_size = 1000;
     m_s->history = (char **)malloc(sizeof(char *) * m_s->history_size);
-    for (int i = -1; i < JOBS_NUMBER; ++i)
+    for (int i = -1; i < MX_JOBS_NUMBER; ++i)
         m_s->jobs[i] = NULL;
 }

@@ -4,7 +4,7 @@ void sigchld_handler(int signum) {
     int pid, status, serrno;
     serrno = errno;
     while (1) {
-        pid = waitpid(WAIT_ANY, &status, WNOHANG);
+        pid = waitpid(WAIT_ANY, &status, MX_WNOHANG);
         if (pid < 0) {
             perror("waitpid");
             break;
@@ -28,7 +28,7 @@ void mx_sig_handler(int signal) {
 
 void mx_sig_handler_exit(int sig) {
     // clean all
-    signal(sig, SIG_DFL);
+    signal(sig, MX_SIG_DFL);
     raise(sig);
 }
 

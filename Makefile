@@ -22,11 +22,13 @@ SRC = mx_builtin_commands.c \
     mx_create_job.c \
     mx_init_shell.c \
     mx_jobs_stack.c \
+    mx_jobs_stack2.c \
     mx_jobs_functions.c \
     mx_jobs_functions_2.c \
     mx_jobs_functions_wait.c \
     mx_jobs_functions_print.c \
     mx_launch_job.c \
+    mx_launch_job2.c \
     mx_launch_process.c \
     mx_loop.c \
     mx_normalization.c \
@@ -92,11 +94,13 @@ OBJ = mx_builtin_commands.o \
     mx_create_job.o \
     mx_init_shell.o \
     mx_jobs_stack.o \
+    mx_jobs_stack2.o \
     mx_jobs_functions.o \
     mx_jobs_functions_2.o \
     mx_jobs_functions_wait.o \
     mx_jobs_functions_print.o \
     mx_launch_job.o \
+    mx_launch_job2.o \
     mx_launch_process.o \
     mx_loop.o \
     mx_normalization.o \

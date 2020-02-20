@@ -21,9 +21,18 @@ int mx_insert_job(t_shell *m_s, t_job *job) {
 }
 
 void mx_remove_job(t_shell *m_s, int job_id) {
-    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
+    if (job_id > MX_JOBS_NUMBER || m_s->jobs[job_id] == NULL)
         return;
     mx_destroy_jobs(m_s, job_id);
+    if (job_id == m_s->max_number_job)
+        m_s->max_number_job--;
+    m_s->jobs[job_id] = NULL;
+    mx_pop_from_stack(m_s, job_id);
+}
+
+void mx_remove_job_from_panel(t_shell *m_s, int job_id) {
+    if (job_id > MX_JOBS_NUMBER || m_s->jobs[job_id] == NULL)
+        return;
     if (job_id == m_s->max_number_job)
         m_s->max_number_job--;
     m_s->jobs[job_id] = NULL;
@@ -46,8 +55,3 @@ int mx_job_id_by_pid(t_shell *m_s, int pid) {
     return -1;
 }
 
-int mx_get_pgid_by_job_id(t_shell *m_s, int job_id) {
-    if (job_id > JOBS_NUMBER || m_s->jobs[job_id] == NULL)
-        return -1;
-    return m_s->jobs[job_id]->pgid;
-}

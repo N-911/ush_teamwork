@@ -26,6 +26,7 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
     p->argv = mx_strdup_arr(list->args);
     p->delim = list->type;
     p->command = mx_strdup(list->args[0]);
+//    p->exit_code = 0;
     // old redir
     if (list->left) {
         tmp = list->left;
@@ -80,14 +81,17 @@ t_job *mx_create_job(t_shell *m_s, t_ast *list) {
     for (t_ast *l = list; l; l = l->next)
         push_process_back(&first_p, m_s, l);
     new_job->first_process = first_p;
-    new_job->foreground = FOREGROUND;
+    new_job->foreground = MX_FOREGROUND;
     for (; first_p != NULL; first_p = first_p->next)
         if (!first_p->foreground)
-            new_job->foreground = BACKGROUND;
+            new_job->foreground = MX_BACKGROUND;
     new_job->job_id = -1;
     new_job->pgid = 0;
     new_job->stdin = STDIN_FILENO;
     new_job->stdout = STDOUT_FILENO;
     new_job->stderr = STDERR_FILENO;
+    new_job->infile = new_job->stdin;
+    new_job->outfile = 1;
+    new_job->errfile = 2;
     return new_job;
 }
