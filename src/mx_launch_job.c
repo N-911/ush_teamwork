@@ -34,6 +34,8 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
 
     job->env = environ;
     job->path = getenv("PATH");
+    if (!job->path)
+        job->path = "";
     for (p = m_s->jobs[job_id]->first_pr; p; p = p->next) {
         if (m_s->exit_flag == 1 && !(p->type == 10))
             m_s->exit_flag = 0;
