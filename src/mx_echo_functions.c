@@ -55,7 +55,7 @@ static char *replace_slash(char *str, echo_t *echo_options) {
     char *res = (char *)malloc(mx_strlen(str) + 1);
     int len = 0;
 
-    for (int i = 0; i < mx_strlen(str); i++) {
+    for (int i = 0; i <= mx_strlen(str); i++) {
         if (str[i] == '\\' && str[i + 1] == '\\')
             i++;
         rep_x(&i, &len, res, str);

@@ -4,8 +4,6 @@ static int count_options(char **args);
 static void fill_options(char **args, echo_t *echo_options, int n_options);
 static void edit_argv(int n_options, t_process *p);
 
-
-
 int mx_echo(t_shell *m_s, t_process *p) {
     int exit_code = m_s->exit_code;
     int n_options = count_options(p->argv);

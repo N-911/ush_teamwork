@@ -64,6 +64,7 @@ void mx_ush_loop(t_shell *m_s) {
     while (1) {
         line = get_line(m_s);
         if (line[0] == '\0') {
+            free(line);
             mx_check_jobs(m_s);
             continue;
         }
