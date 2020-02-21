@@ -32,9 +32,6 @@
 
 #include "libmx/inc/libmx.h"
 
-#define LSH_RL_BUFSIZE 1024  //del ?
-#define LSH_TOK_BUFSIZE 64  //del ?
-
 //  EXIT
 #define MX_EXIT_FAILURE 1
 #define MX_EXIT_SUCCESS 0
@@ -52,6 +49,29 @@
 #define MX_FOREGROUND 1
 #define MX_BACKGROUND 0
 #define MAX_LEN 10
+
+// WAIT
+#define MX_WNOHANG         0x00000001
+#define MX_WUNTRACED       0x00000002
+#define MX_W_INT(w)       (*(int *)&(w))  /* convert union wait to int */
+#define MX_WSTATUS(x)     (MX_W_INT(x) & 0177)
+#define MX_WSTOPPED       0177            /* _WSTATUS if process is stopped */
+#define MX_WSTOPSIG(x)     (MX_W_INT(x) >> 8)
+#define MX_WIFCONTINUED(x) (MX_WSTATUS(x) == MX_WSTOPPED && MX_WSTOPSIG(x) == 0x13)
+#define MX_WIFSTOPPED(x)   (MX_WSTATUS(x) == MX_WSTOPPED && MX_WSTOPSIG(x) != 0x13)
+#define MX_WIFEXITED(x)    (MX_WSTATUS(x) == 0)
+#define MX_WIFSIGNALED(x)  (MX_WSTATUS(x) != MX_WSTOPPED && MX_WSTATUS(x) != 0)
+#define MX_WTERMSIG(x)     (MX_WSTATUS(x))
+#define MX_W_EXITCODE(ret, sig)    ((ret) << 8 | (sig))
+#define MX_W_STOPCODE(sig)         ((sig) << 8 | MX_WSTOPPED)
+#define MX_WEXITED         0x00000004  // [XSI] Processes which have exitted
+#define MX_WCONTINUED      0x00000010  //[XSI] Any child stopped then continued
+#define MX_WNOWAIT         0x00000020  // [XSI] Leave process returned waitable
+#define MX_SIG_DFL         (void (*)(int))0
+#define MX_SIG_IGN         (void (*)(int))1
+#define MX_SIG_HOLD        (void (*)(int))5
+#define MX_SIG_ERR         ((void (*)(int))-1)
+
 
 //      COLORS
 #define BLK   "\x1B[30m"
@@ -141,19 +161,19 @@ enum e_type {
  * For creation Abstract Syntax Tree
  */
 typedef struct s_ast {
-    char **args;            // cmd with args
-    int type;               // type of delim after cmd (last delim ;)
+    char **args;  // cmd with args
+    int type;  // type of delim after cmd (last delim ;)
     struct s_ast *next;
-    struct s_ast *left;     // for redirections
+    struct s_ast *left;  // for redirections
 } t_ast;
 
 /*
  * For redirections
  */
 typedef struct s_redir {
-    char *input_path;       // < <<
-    char *output_path;      // > >>
-    int redir_delim;        // <, <<, >, >> from e_type
+    char *input_path;  // < <<
+    char *output_path;  // > >>
+    int redir_delim;  // <, <<, >, >> from e_type
     struct s_redir *next;
 } t_redir;
 
@@ -197,8 +217,7 @@ typedef struct  s_export {
     struct s_export *next;
 } t_export;
 
-typedef struct		s_stack
-{
+typedef struct		s_stack {
     int			size;  // size = MX_JOBS_NUMBER
     int*		stack;
     int 		top;  // index of last add job
@@ -220,25 +239,24 @@ typedef struct s_env_builtin  {
 typedef struct s_process {
     char *fullpath;  //for execve
     char **argv;    // gets in create_job.c
-    // char **envp;
     char *command;
     char *arg_command;
     char *input_path;  // < <<
     char *output_path;  // > >>
     int redir_delim;  // <, <<, >, >> from e_type
     t_redir *redirect;  // new
+    int c_input;  // count_redir_input
+    int c_output;  // count_redir_output
     pid_t pid;
     int exit_code;
     char *path;
     char **env;
     int status;  //status RUNNING DONE SUSPENDED CONTINUED TERMINATED
-    int foreground;
+    int foregrd;
     int pipe;  // gets in create_job.c
     int delim;  // gets in create_job.c (first - | || &&) (end - ; &)
-    int fd_in;
-    int fd_out;
-    int type;              // COMMAND_BUILTIN = index in m_s->builtin_list; default = 0
-    struct s_process *next;     // next process in pipeline
+    int type;  // COMMAND_BUILTIN = index in m_s->builtin_list; default = 0
+    struct s_process *next;  // next process in pipeline
     pid_t pgid;
     int infile;
     int outfile;
@@ -247,14 +265,19 @@ typedef struct s_process {
 
 // A job is a pipeline of processes.
 typedef struct s_job {
-    int job_id;                 //number in jobs control
-    int job_type;           // 0 if normal, or enum &&, || of previos job
-    char *command;              // command line, used for messages
-    t_process *first_process;     // list of processes in this job
-    pid_t pgid;                 // process group ID
+    int job_id;  // number in jobs control
+    int job_type;  // 0 if normal, or enum &&, || of previos job
+    char *command;  // command line, used for messages
+    t_process *first_pr;  // list of processes in this job
+    pid_t pgid;  // process group ID
+    char *path;
+    char **env;
     int exit_code;
-    int foreground;                  // foreground = 1 or background execution = 0
-    struct termios tmodes;      // saved terminal modes/
+    int foregrd;  // foregrd = 1 or background execution = 0
+    struct termios tmodes;  // saved terminal modes/
+    int infile;
+    int outfile;
+    int errfile;
     int stdin;  // standard i/o channels
     int stdout;  // standard i/o channels
     int stderr;  // standard i/o channels
@@ -383,10 +406,16 @@ void termios_restore(t_shell *m_s);
 //      LOOP
 t_job *mx_create_job(t_shell *m_s, t_ast *list);  // create one job from ast
 void mx_ush_loop(t_shell *m_s);  // create ast -> create jobs -> ...
-int mx_launch_process(t_shell *m_s, t_process *p, int job_id, char *path, char **env,
-                      int infile, int outfile, int errfile);
-int mx_builtin_commands_idex(t_shell *m_s, char *command);
 void mx_launch_job(t_shell *m_s, t_job *job);
+void mx_set_redirec(t_shell  *m_s, t_job * job, t_process *p, int job_id);
+void mx_set_redir_input(t_shell *m_s, t_job *job, t_process *p, int job_id);
+void mx_set_redir_inp_d(t_job *job, t_process *p);
+void mx_set_redir_output(t_job * job, t_process *p);
+void mx_dup_fd(t_process *p);
+int mx_launch_process(t_shell *m_s, t_process *p, int job_id);
+int mx_builtin_commands_idex(t_shell *m_s, char *command);
+void mx_pgid(t_shell *m_s, int job_id, int child_pid);
+
 
 //      BUILTIN COMMANDS
 int mx_env(t_shell *m_s, t_process *p);
@@ -412,12 +441,13 @@ void mx_sig_handler(int signal);
 int mx_get_next_job_id(t_shell *m_s);
 int mx_insert_job(t_shell *m_s, t_job *job);
 void mx_remove_job(t_shell *m_s, int job_id);
+void mx_remove_job_from_panel(t_shell *m_s, int job_id);
 int mx_get_proc_count(t_shell *m_s, int job_id, int filter);
 void mx_set_process_status(t_shell *m_s, int pid, int status);
 int mx_set_job_status(t_shell *m_s, int job_id, int status);
 int mx_get_job_status(t_shell *m_s, int job_id, int status);
 void mx_set_last_job(t_shell *m_s);
-int mx_find_job_by_p_name(t_shell *m_s, char *arg);
+int mx_g_find_job(t_shell *m_s, char *arg);
 
 int mx_job_is_running(t_shell *m_s, int job_id);
 

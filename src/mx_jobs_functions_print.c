@@ -17,7 +17,7 @@ int mx_print_job_status(t_shell *m_s, int job_id, int flag) {
         printf("%2c ", 45);  // print -
     else
         printf("%2c ", ' ');
-    for (p = m_s->jobs[job_id]->first_process; p != NULL; p = p->next) {
+    for (p = m_s->jobs[job_id]->first_pr; p != NULL; p = p->next) {
         flag ? printf("%d ", p->pid) : printf("");
         printf("%s", status[p->status]);
         len = mx_strlen(status[p->status]);
@@ -38,7 +38,7 @@ void mx_print_pid_process_in_job(t_shell *m_s, int job_id) {
     }
     else {
         printf("[%d]", job_id);
-        for (p = m_s->jobs[job_id]->first_process; p != NULL; p = p->next) {
+        for (p = m_s->jobs[job_id]->first_pr; p != NULL; p = p->next) {
             printf(" %d", p->pid);
         }
         printf("\n");

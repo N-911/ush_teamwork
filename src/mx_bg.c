@@ -31,7 +31,8 @@ static int bg_get_job_id (t_shell *m_s, t_process *p) {
     if (n_args > 2) {
         mx_printerr("ush: bg: too many arguments\n");
         return -1;
-    } else if (n_args == 1) {
+    }
+    else if (n_args == 1) {
         if ((job_id = m_s->jobs_stack->last) < 1) {
             mx_printerr("bg: no current job\n");
             return -1;
@@ -54,13 +55,13 @@ int mx_check_args(t_shell *m_s, t_process *p) {
         }
     }
     else if (p->argv[1][0] == '%' && !isdigit(p->argv[1][1])) {
-        if ((job_id = mx_find_job_by_p_name(m_s, (p->argv[1] + 1))) < 1) {
-            mx_error_fg_bg(p->argv[0], ": job not found: ", p->argv[1], "\n");
+        if ((job_id = mx_g_find_job(m_s, (p->argv[1] + 1))) < 1) {
+            mx_error_fg_bg(p->argv[0], ": job not found: ", (p->argv[1] + 1), "\n");
             return -1;
         }
     }
     else {
-        if ((job_id = mx_find_job_by_p_name(m_s, p->argv[1])) < 1) {
+        if ((job_id = mx_g_find_job(m_s, p->argv[1])) < 1) {
             mx_error_fg_bg(p->argv[0], ": job not found: ", p->argv[1], "\n");
             return -1;
         }
