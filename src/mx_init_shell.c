@@ -49,10 +49,10 @@ static void set_shell_grp(t_shell *m_s) {
         }
         tcsetpgrp(shell_terminal, shell_pgid);  // Grab control of the terminal.
         m_s->shell_pgid = shell_pgid;  //  Save default terminal attributes for shell.
-//        char *c_shell_pgid = mx_itoa(m_s->shell_pgid);
-//        mx_set_variable(m_s->variables, "$", c_shell_pgid);
-//        free(c_shell_pgid);
-        mx_set_variable(m_s->variables, "$", mx_itoa(m_s->shell_pgid));
+       char *c_shell_pgid = mx_itoa(m_s->shell_pgid);
+       mx_set_variable(m_s->variables, "$", c_shell_pgid);
+       free(c_shell_pgid);
+        // mx_set_variable(m_s->variables, "$", mx_itoa(m_s->shell_pgid));
         tcgetattr(shell_terminal, &m_s->t_original);
         tcgetattr(shell_terminal, &m_s->tmodes);
     }
