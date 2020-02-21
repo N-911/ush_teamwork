@@ -1,6 +1,6 @@
 #include "ush.h"
 /*
- * Get substitution.
+ * Get substitution.           CHECK IF GETS CORRECT STRING
  */
 static char *get_subst(char *s, int *len) {
     char *subst = NULL;
@@ -10,14 +10,14 @@ static char *get_subst(char *s, int *len) {
         i = mx_get_char_index_quote(s, ")", "\'");
         if (i < 0)
             return NULL;
-        subst = mx_strndup(&s[2], i - 1);
-        *len = i;
+        subst = mx_strndup(&s[2], i - 2);
+        *len = i + 1;
     }
     else if (s[0] == '`') {
         i = mx_get_char_index_quote(&s[1], "`", "\'");
         if (i < 0)
             return NULL;
-        subst = mx_strndup(&s[1], i - 1);
+        subst = mx_strndup(&s[1], i);
         *len = i + 1;
     }
     return subst;
@@ -33,6 +33,8 @@ static char *expantion(char *s, int pos) {
     res = mx_strndup(s, pos);
     if ((subst = get_subst(&s[pos], &len))) {
         mx_printerr("u$h: command substitushion doesn't work.\n");
+        mx_printstr(subst);
+        mx_strdel(&subst);
         // res = mx_strjoin_free(res, subst);
     }
     if (s[pos + len + 1])

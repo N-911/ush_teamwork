@@ -9,9 +9,9 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "/Users/trohalska/ush/ush_teamwork/ush",
-            "args": ["inc", "src"],
+            "args": [],
             "stopAtEntry": true,
-            "cwd": "${workspaceFolder}",
+            "cwd": "/Users/trohalska/ush/ush_teamwork",
             "environment": [],
             "externalConsole": true,
             "MIMode": "lldb"
