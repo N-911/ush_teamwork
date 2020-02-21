@@ -14,6 +14,7 @@ static bool check_subsut_result(char **res, char **args, int *i) {
     }
     return false;
 }
+
 /*
  * Parse by USH_TOK_DELIM, subst ~, $, trim'' "" , \
  *
@@ -33,7 +34,6 @@ char **mx_filters(char *arg, t_export *variables) {
 
     for (i = 0, j = 0; args[j] && args[j][0]; i++, j++) {
         res[i] = mx_strdup(args[j]);
-        res[i] = mx_replace_substr(res[i], "$HOME", getenv("HOME"));
         res[i] = mx_subst_tilde(res[i], variables);
         res[i] = mx_substr_dollar(res[i], variables);
         res[i] = mx_subst_command(res[i]);

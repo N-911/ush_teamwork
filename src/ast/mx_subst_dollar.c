@@ -93,15 +93,11 @@ char *mx_substr_dollar(char *s, t_export *variables) {
         else
             break;
     }
+    while (res && (pos = mx_get_char_index_quote(res, "$", MX_QUOTE)) >= 0)
+        res = expantion(res, variables, pos);
     if (!res) {
         mx_printerr("u$h: bad substitution\n");
         return NULL;
     }
-    while ((pos = mx_get_char_index_quote(res, "$", MX_QUOTE)) >= 0)
-        // res = expantion(res, variables, pos);
-        if (!(res = expantion(res, variables, pos))) {
-            mx_printerr("u$h: bad substitution\n");
-            return NULL;
-        }
     return res;
 }
