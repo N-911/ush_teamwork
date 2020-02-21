@@ -39,6 +39,20 @@ SRC = mx_builtin_commands.c \
     mx_terminal.c \
     mx_exit.c \
     mx_clear_all.c \
+    mx_cd_functions.c \
+    mx_cd_functions_1.c \
+    mx_export_functions.c \
+    mx_strdup_from.c \
+    mx_env_functions.c \
+    mx_env_functions_1.c \
+    mx_env_functions_2.c \
+    mx_echo_functions.c \
+    mx_which_functions.c \
+    mx_get_git_info.c \
+    mx_get_keys.c \
+    mx_prompt.c \
+    mx_edit_command.c \
+    mx_exec_signal.c \
     ush_main.c
 
 SRC_PARSER = libmx1.c \
@@ -97,6 +111,20 @@ OBJ = mx_builtin_commands.o \
     mx_terminal.o \
     mx_exit.o \
     mx_clear_all.o \
+    mx_cd_functions.o \
+    mx_cd_functions_1.o \
+    mx_export_functions.o \
+    mx_strdup_from.o \
+    mx_env_functions.o \
+    mx_env_functions_1.o \
+    mx_env_functions_2.o \
+    mx_echo_functions.o \
+    mx_which_functions.o \
+    mx_get_git_info.o \
+    mx_get_keys.o \
+    mx_prompt.o \
+    mx_edit_command.o \
+    mx_exec_signal.o \
     ush_main.o
 
 OBJ_PARSER = libmx1.o \
