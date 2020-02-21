@@ -87,7 +87,7 @@ static char *get_pwd() {
 }
 
 static void set_shell_defaults(t_shell *m_s) {
-    m_s->builtin_list = (char **) malloc(sizeof(char *) * 12);
+    m_s->builtin_list = (char **) malloc(sizeof(char *) * 13);
     m_s->builtin_list[0] = "env";
     m_s->builtin_list[1] = "export";
     m_s->builtin_list[2] = "unset";
@@ -99,7 +99,8 @@ static void set_shell_defaults(t_shell *m_s) {
     m_s->builtin_list[8] = "pwd";
     m_s->builtin_list[9] = "which";
     m_s->builtin_list[10] = "exit";
-    m_s->builtin_list[11] = NULL;
+    m_s->builtin_list[11] = "set";
+    m_s->builtin_list[12] = NULL;
     m_s->max_number_job = 1;
     m_s->exit_flag = 0;
     mx_init_jobs_stack(m_s);

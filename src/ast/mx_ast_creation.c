@@ -67,6 +67,45 @@ void mx_ast_print(t_ast **ast) {
     mx_print_color(YEL, "-----\n");
 }
 
+void mx_del_strarr(char ***arr) {
+    if (arr == NULL)
+        return;
+
+    char ***p = arr;
+    char **pp = *arr;
+    while (**p != NULL) {
+        mx_strdel(*p);
+        (*p)++;
+    }
+    free(pp);
+    *arr = NULL;
+}
+
+// void clear_list(t_ast **list) {
+//     t_ast *q = *list;
+//     t_ast *tmp = NULL;
+
+//     if (!(*list) || !list)
+//         return;
+//     while (q) {
+//         if (q->args) {
+//             // char **arr = q->args;
+//             // for (int i = 0; arr[i]; i++) {
+//             //     if (malloc_size(arr[i]) > 0)
+//             //         mx_strdel(&arr[i]);
+//             // }
+//             free(q->args);
+//         }
+//         if (q->left)
+//             mx_ast_clear_list(&q->left);
+//         tmp = q->next;
+//         free(q);
+//         q = tmp;
+//     }
+//     *list = NULL;
+// }
+
+
 t_ast **mx_ast_creation(char *line, t_shell *m_s) {
     t_ast **ast = NULL;
     t_ast *parsed_line = NULL;
@@ -76,9 +115,12 @@ t_ast **mx_ast_creation(char *line, t_shell *m_s) {
         return NULL;
     }
     if (!(ast = mx_ast_parse(parsed_line)) || !(*ast)) {
+        // mx_ast_clear_list(&parsed_line);
         // mx_printerr("ast is NULL\n");
         return NULL;
     }
+    // print_list(parsed_line);
     mx_ast_clear_list(&parsed_line);
+    // clear_list(&parsed_line);
     return ast;
 }

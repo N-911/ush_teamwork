@@ -8,7 +8,7 @@ static void buildin_fork(t_shell *m_s, int job_id, int (*builtin_functions[])
 int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
     int (*builtin_functions[])(t_shell *m_s, t_process *p) =
          {&mx_env, &mx_export, &mx_unset, &mx_echo, &mx_jobs, &mx_fg, &mx_bg,
-         &mx_cd, &mx_pwd, &mx_which, &mx_exit, NULL};
+         &mx_cd, &mx_pwd, &mx_which, &mx_exit, &mx_set, NULL};
 
     p->status = MX_STATUS_RUNNING;
     if (p->type == 4 || p->type == 5 || p->type == 6) {
