@@ -33,7 +33,7 @@ static void print_pwd(char *dir, int *exit_code,
     t_shell *m_s, pwd_t pwd_options) {
     *exit_code = 0;
     if (pwd_options.P < 0) 
-        printf("%s\n", m_s->pwd); 
+        printf("%s\n", m_s->pwd);
     else 
         printf("%s\n", dir);
     free(dir);

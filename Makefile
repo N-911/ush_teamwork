@@ -55,6 +55,7 @@ SRC = mx_builtin_commands.c \
     mx_prompt.c \
     mx_edit_command.c \
     mx_exec_signal.c \
+    mx_add_option.c \
     ush_main.c
 
 SRC_PARSER = libmx1.c \
@@ -129,6 +130,7 @@ OBJ = mx_builtin_commands.o \
     mx_prompt.o \
     mx_edit_command.o \
     mx_exec_signal.o \
+    mx_add_option.o \
     ush_main.o
 
 OBJ_PARSER = libmx1.o \
@@ -155,7 +157,7 @@ CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
 all: install clean
 
 install:
-	#@make install -sC libmx
+	#@make install -C libmx
 	@cp $(addprefix src/, $(SRC)) .
 	@cp $(addprefix inc/, $(INC)) .
 	@cp $(addprefix src/ast/, $(SRC_PARSER)) .
@@ -165,11 +167,11 @@ install:
 	@mv $(OBJ) $(OBJ_PARSER) ./obj
 
 uninstall: clean
-	#@make uninstall -sC libmx
+	#@make uninstall -C libmx
 	@rm -rf $(NAME)
 
 clean:
-	#@make clean -sC libmx
+	#@make clean -C libmx
 	@rm -rf $(INC)
 	@rm -rf $(SRC) $(SRC_PARSER)
 	@rm -rf $(OBJ) $(OBJ_PARSER)

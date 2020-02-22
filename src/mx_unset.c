@@ -57,16 +57,14 @@ static void unset_or_error(t_shell *m_s, char *arg, int *exit_code) {
 }
 
 int mx_unset(t_shell *m_s, t_process *p) {
-    int n_options = mx_count_options(p->argv, "", "unset",
-     " [name ...] ");
+    int n_options = mx_count_options(p->argv, "", "unset", " [name ...] ");
     int n_args = count_args(p->argv, n_options);
     int i = 0;
     int exit_code = 0;
 
-    if (n_options <  0)
-        return 1;
-    if (n_args == 1) {
-        mx_printerr("unset: not enough arguments\n");
+    if (n_options <  0 || n_args == 1) {
+        if (n_args == 1)
+            mx_printerr("unset: not enough arguments\n");
         return 1;
     }
     else {
