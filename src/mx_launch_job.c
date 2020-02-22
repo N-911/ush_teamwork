@@ -5,10 +5,9 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id);
 static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status);
 
 void mx_launch_job(t_shell *m_s, t_job *job) {
-    setbuf(stdout, NULL);  //небуферизованный режим
+    setbuf(stdout, NULL);
     int status;
     int job_id;
-//    tcsetattr(STDIN_FILENO, TCSANOW, &m_s->t_original);
 
     mx_check_jobs(m_s);
     job_id = mx_insert_job(m_s, job);
