@@ -26,9 +26,6 @@ int mx_jobs(t_shell *m_s, t_process *p) {
     n_args = count_args(p->argv, n_opt);
     mx_set_last_job(m_s);
     fill_options(n_opt, &jobs_op, p->argv);
-    printf (" n_opt %d \n", n_opt);
-    printf (" n_arg %d \n", n_args);
-
     if (n_opt >= 0 && n_args == 0) {
         for (int i = 0; i < MX_JOBS_NUMBER; i++)
             print_jobs_by_mask(m_s, jobs_op, i);
