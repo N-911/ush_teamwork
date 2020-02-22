@@ -33,7 +33,7 @@ static int get_job_type(t_ast **ast, int i) {
     return 0;
 }
 
-static char *get_line(t_shell *m_s) {
+char *mx_get_line(t_shell *m_s) {
     char *line;
     struct termios savetty;
 
@@ -59,15 +59,15 @@ void mx_ush_loop(t_shell *m_s) {
     char *line;
     t_ast **ast = NULL;
     t_job *new_job;
-    
+
     m_s->git = mx_get_git_info();
     while (1) {
-        line = get_line(m_s);
+        line = mx_get_line(m_s);
         if (line[0] == '\0') {
             free(line);
             mx_check_jobs(m_s);
             continue;
-        } 
+        }
         else {
             if ((ast = mx_ast_creation(line, m_s))) {
                 for (int i = 0; ast[i]; i++) {
@@ -81,5 +81,3 @@ void mx_ush_loop(t_shell *m_s) {
         free(line);
     }
 }
-
-

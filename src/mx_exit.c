@@ -34,7 +34,7 @@ static void real_exit(t_shell *m_s, t_process *p) {
 }
 
 int mx_exit(t_shell *m_s, t_process *p) {
-    if (p->argv[1] != NULL && p->argv[2] != NULL) 
+    if (p->argv[1] != NULL && p->argv[2] != NULL)
         mx_printerr("ush: exit: too many arguments\n");
     else if (m_s->jobs_stack->top && m_s->exit_flag == 0) {
         mx_printerr("ush: you have suspended jobs.\n");
@@ -43,6 +43,6 @@ int mx_exit(t_shell *m_s, t_process *p) {
     else {
         real_exit(m_s, p);
     }
-    
     return 1;
+
 }

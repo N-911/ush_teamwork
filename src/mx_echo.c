@@ -17,7 +17,7 @@ static int count_options(char **args) {
 
     for (int i = 1; args[i] != NULL; i++) {
         if (args[i][0] == '-' ) {
-            if (!strchr("neE",args[i][1])) 
+            if (!strchr("neE",args[i][1]))
                 break;
         }
         else
@@ -61,5 +61,3 @@ static void fill_options(char **args, echo_t *echo_options, int n_options) {
 		}
 	}
 }
-			
-

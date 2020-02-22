@@ -12,6 +12,7 @@ SRC = mx_builtin_commands.c \
     mx_echo.c \
     mx_fg.c \
     mx_bg.c \
+    mx_jobs.c \
     mx_set_parametr.c \
     mx_nbr_to_hex.c \
     mx_hex_to_nbr.c \
@@ -33,6 +34,7 @@ SRC = mx_builtin_commands.c \
     mx_loop.c \
     mx_normalization.c \
     mx_push_export.c \
+    mx_set.c \
     mx_set_data.c \
     mx_set_variable.c \
     mx_signal.c \
@@ -72,7 +74,7 @@ SRC_PARSER = libmx1.c \
     mx_subst_dollar.c \
     mx_subst_tilde.c \
     mx_ush_parsed_line.c \
-    mx_ush_read_line.c
+    mx_ush_read_line.c \
 
 OBJ = mx_builtin_commands.o \
     mx_cd.o \
@@ -84,6 +86,7 @@ OBJ = mx_builtin_commands.o \
     mx_echo.o \
     mx_fg.o \
     mx_bg.o \
+    mx_jobs.o \
     mx_set_parametr.o \
     mx_nbr_to_hex.o \
     mx_hex_to_nbr.o \
@@ -105,6 +108,7 @@ OBJ = mx_builtin_commands.o \
     mx_loop.o \
     mx_normalization.o \
     mx_push_export.o \
+    mx_set.o \
     mx_set_data.o \
     mx_set_variable.o \
     mx_signal.o \
@@ -144,7 +148,7 @@ OBJ_PARSER = libmx1.o \
     mx_subst_dollar.o \
     mx_subst_tilde.o \
     mx_ush_parsed_line.o \
-    mx_ush_read_line.o
+    mx_ush_read_line.o \
 
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
 

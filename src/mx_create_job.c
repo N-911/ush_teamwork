@@ -1,16 +1,23 @@
 #include "ush.h"
 
-static t_process *init_process(void) {
+static t_process *init_process(t_ast *list) {
     t_process *p = (t_process *)malloc(sizeof(t_process));
 
     if (!p)
         return NULL;
+    p->argv = mx_strdup_arr(list->args);
+    p->delim = list->type;
+    p->command = mx_strdup(list->args[0]);
     p->input_path = NULL;
     p->output_path = NULL;
     p->redir_delim = 0;
     p->redirect = NULL;
     p->foregrd = 1;
     p->pipe = 0;
+    if (p->delim == FON)
+        p->foregrd = 0;
+    else if (p->delim == PIPE)
+        p->pipe = 1;
     p->next = NULL;
     return p;
 }
@@ -20,14 +27,8 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
     t_ast *tmp;
     int index = 0;
 
-    p = init_process();
-    if (!p)
+    if (!(p = init_process(list)))
         return NULL;
-    p->argv = mx_strdup_arr(list->args);
-    p->delim = list->type;
-    p->command = mx_strdup(list->args[0]);
-//    p->exit_code = 0;
-    // old redir
     if (list->left) {
         tmp = list->left;
         p->redir_delim = tmp->type;
@@ -36,18 +37,8 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
         else if (MX_IS_REDIR_OUTP(tmp->type))
             p->output_path = mx_strdup(tmp->args[0]);
     }
-    // new redirections
-    if (list->left)
-        for (t_ast *q = list->left; q; q = q->next)
-            mx_redir_push_back(&p->redirect, q->args[0], q->type);
-    //
-    if (p->delim == FON)
-        p->foregrd = 0;
-    if (p->delim == PIPE)
-        p->pipe = 1;
-    if ((index = mx_builtin_commands_idex(m_s, p->argv[0])) == -1) {
+    if ((index = mx_builtin_commands_idex(m_s, p->argv[0])) == -1)
         p->type = -1;      //COMMAND_BUILTIN = index;   default = -1
-    }
     else
         p->type = index;
     return p;

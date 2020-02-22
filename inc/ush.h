@@ -54,14 +54,14 @@
 #define MX_WNOHANG         0x00000001
 #define MX_WUNTRACED       0x00000002
 #define MX_W_INT(w)       (*(int *)&(w))  /* convert union wait to int */
-#define MX_WSTATUS(x)     (MX_W_INT(x) & 0177)
+#define MX_WSTAT(x)     (MX_W_INT(x) & 0177)
 #define MX_WSTOPPED       0177            /* _WSTATUS if process is stopped */
 #define MX_WSTOPSIG(x)     (MX_W_INT(x) >> 8)
-#define MX_WIFCONTINUED(x) (MX_WSTATUS(x) == MX_WSTOPPED && MX_WSTOPSIG(x) == 0x13)
-#define MX_WIFSTOPPED(x)   (MX_WSTATUS(x) == MX_WSTOPPED && MX_WSTOPSIG(x) != 0x13)
-#define MX_WIFEXITED(x)    (MX_WSTATUS(x) == 0)
-#define MX_WIFSIGNALED(x)  (MX_WSTATUS(x) != MX_WSTOPPED && MX_WSTATUS(x) != 0)
-#define MX_WTERMSIG(x)     (MX_WSTATUS(x))
+#define MX_WIFCONT(x) (MX_WSTAT(x) == MX_WSTOPPED && MX_WSTOPSIG(x) == 0x13)
+#define MX_WIFSTOPP(x)   (MX_WSTAT(x) == MX_WSTOPPED && MX_WSTOPSIG(x) != 0x13)
+#define MX_WIFEXITED(x)    (MX_WSTAT(x) == 0)
+#define MX_WIFSIGNALED(x)  (MX_WSTAT(x) != MX_WSTOPPED && MX_WSTAT(x) != 0)
+#define MX_WTERMSIG(x)     (MX_WSTAT(x))
 #define MX_W_EXITCODE(ret, sig)    ((ret) << 8 | (sig))
 #define MX_W_STOPCODE(sig)         ((sig) << 8 | MX_WSTOPPED)
 #define MX_WEXITED         0x00000004  // [XSI] Processes which have exitted
@@ -318,9 +318,6 @@ typedef struct s_shell {
 }             t_shell;
 
 
-static volatile sig_atomic_t sigflag; // устанавливается обработчиком  в ненулевое значение
-static sigset_t newmask, oldmask, zeromask;
-
 /*
  * ------------------------------------------------------ Abstract Syntax Tree
  * mx_ast_creation      get parsed_line -> get ast (array of lists);
@@ -370,7 +367,7 @@ char *mx_ush_read_line(void);
 char **mx_filters(char *arg, t_export *variables);
 char *mx_strtok (char *s, const char *delim);
 char **mx_parce_tokens(char *line);
-char *mx_subst_tilde(char *s);
+char *mx_subst_tilde(char *s, t_export *variables);
 char *mx_substr_dollar(char *s, t_export *variables);
 char *mx_subst_command(char *s);
 /*
@@ -434,6 +431,7 @@ int mx_export(t_shell *m_s, t_process *p);
 int mx_unset(t_shell *m_s, t_process *p);
 int mx_which(t_shell *m_s, t_process *p);
 int mx_exit(t_shell *m_s, t_process *p);
+int mx_set(t_shell *m_s, t_process *p);
 
 
 //      SIGNALS
@@ -453,6 +451,7 @@ int mx_set_job_status(t_shell *m_s, int job_id, int status);
 int mx_get_job_status(t_shell *m_s, int job_id, int status);
 void mx_set_last_job(t_shell *m_s);
 int mx_g_find_job(t_shell *m_s, char *arg);
+void mx_dup_close(int inp, int out);
 
 int mx_job_is_running(t_shell *m_s, int job_id);
 
@@ -467,13 +466,14 @@ int mx_job_id_by_pid(t_shell *m_s, int pid);
 int mx_get_pgid_by_job_id(t_shell *m_s, int job_id);
 int mx_job_completed(t_shell *m_s, int job_id);
 
-void mx_print_pid_process_in_job(t_shell *m_s, int id);  // only if foreground execution
+void mx_print_pid_process_in_job(t_shell *m_s, int id);  // if foreg execution
 int mx_print_job_status(t_shell *m_s, int job_id, int flag);
 void mx_print_args_in_line(char **res, const char *delim);
 
 void mx_check_jobs(t_shell *m_s);  //waitpid any process
 int mx_wait_job(t_shell *m_s, int id);  //waitpid process in job group
 void mx_destroy_jobs(t_shell *m_s, int id);  //free job memory
+void mx_destroy_jobs2(t_process *p);
 
 //      OTHER
 void mx_error_fg_bg(char *arg0, char *arg1, char *arg2, char *arg3);
@@ -509,11 +509,13 @@ void mx_set_data(t_env_builtin *env, char *args[]);
 void mx_launch_command( t_process *p, t_env_builtin *env, int *exit_code);
 int mx_count_env_options(char **args, t_env_builtin *env);
 void mx_escape_seq(t_process *p, int i, echo_t echo_options);
-void mx_get_command_info(t_shell *m_s, char *command, int *flag, which_t which_options);
+void mx_get_command_info(t_shell *m_s, char *command, int *flag,
+                         which_t which_options);
 char *mx_get_keys(t_shell *m_s);
 void mx_print_prompt(t_shell *m_s);
 void mx_edit_prompt(t_shell *m_s);
 void mx_edit_command(int keycode, int *position, char **line, t_shell *m_s);
 void mx_exec_signal(int keycode, char **line, int *position, t_shell *m_s);
+char *mx_get_line(t_shell *m_s);
 
 #endif

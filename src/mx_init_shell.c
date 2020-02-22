@@ -6,15 +6,17 @@ static void set_shell_defaults(t_shell *m_s);
 static void set_shell_grp(t_shell *m_s);
 
 t_shell *mx_init_shell(int argc, char **argv) {
-//  struct termios shell_tmodes; // not used?? - del
+    char *shlvl;
+
     t_shell *m_s = (t_shell *) malloc(sizeof(t_shell));
     set_shell_defaults(m_s);
+    mx_init_jobs_stack(m_s);
     m_s->argc = argc;
     m_s->argv = argv;
     m_s->pwd = get_pwd();//PWD for further work
     setenv("PWD", m_s->pwd, 1);
     setenv("OLDPWD", m_s->pwd, 1);
-    char *shlvl = get_shlvl();
+    shlvl = get_shlvl();
     setenv("SHLVL", shlvl, 1);
     free(shlvl);
     m_s->exported = mx_set_export();
@@ -24,7 +26,6 @@ t_shell *mx_init_shell(int argc, char **argv) {
     mx_set_variable(m_s->variables, "PROMPT", "u$h");
     mx_set_variable(m_s->variables, "PROMPT1", "Auditor dlya lohov>");
     set_shell_grp(m_s);
-//    mx_terminal_init(m_s);
     m_s->exit_code = -1;
     return m_s;
 }
@@ -47,8 +48,8 @@ static void set_shell_grp(t_shell *m_s) {
             perror("Couldn't put the shell in its own process group");
             exit(1);
         }
-        tcsetpgrp(shell_terminal, shell_pgid);  // Grab control of the terminal.
-        m_s->shell_pgid = shell_pgid;  //  Save default terminal attributes for shell.
+        tcsetpgrp(shell_terminal, shell_pgid);  // Grab control of the terminal
+        m_s->shell_pgid = shell_pgid;
        char *c_shell_pgid = mx_itoa(m_s->shell_pgid);
        mx_set_variable(m_s->variables, "$", c_shell_pgid);
        free(c_shell_pgid);
@@ -87,11 +88,11 @@ static char *get_pwd() {
 }
 
 static void set_shell_defaults(t_shell *m_s) {
-    m_s->builtin_list = (char **) malloc(sizeof(char *) * 12);
+    m_s->builtin_list = (char **) malloc(sizeof(char *) * 13);
     m_s->builtin_list[0] = "env";
     m_s->builtin_list[1] = "export";
     m_s->builtin_list[2] = "unset";
-    m_s->builtin_list[3] = "echo";  // not full
+    m_s->builtin_list[3] = "echo";
     m_s->builtin_list[4] = "jobs";
     m_s->builtin_list[5] = "fg";
     m_s->builtin_list[6] = "bg";
@@ -99,10 +100,10 @@ static void set_shell_defaults(t_shell *m_s) {
     m_s->builtin_list[8] = "pwd";
     m_s->builtin_list[9] = "which";
     m_s->builtin_list[10] = "exit";
-    m_s->builtin_list[11] = NULL;
+    m_s->builtin_list[11] = "set";
+    m_s->builtin_list[12] = NULL;
     m_s->max_number_job = 1;
     m_s->exit_flag = 0;
-    mx_init_jobs_stack(m_s);
     m_s->history_count = 0;
     m_s->history_size = 1000;
     m_s->history = (char **)malloc(sizeof(char *) * m_s->history_size);

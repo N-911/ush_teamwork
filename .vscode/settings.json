@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "ush.h": "c"
+        "ush.h": "c",
+        "termios.h": "c"
     }
 }

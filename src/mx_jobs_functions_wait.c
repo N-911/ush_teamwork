@@ -17,9 +17,9 @@ void mx_check_jobs(t_shell *m_s) {
            MX_WCONTINUED)) > 0) {
         if (MX_WIFEXITED(status))
             mx_set_process_status(m_s, pid, MX_STATUS_DONE);
-        else if (MX_WIFSTOPPED(status))
+        else if (MX_WIFSTOPP(status))
             mx_set_process_status(m_s, pid, MX_STATUS_SUSPENDED);
-        else if (MX_WIFCONTINUED(status)) {
+        else if (MX_WIFCONT(status)) {
             mx_set_process_status(m_s, pid, MX_STATUS_CONTINUED);
         }
         job_id = mx_job_id_by_pid(m_s, pid);

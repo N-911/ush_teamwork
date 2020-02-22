@@ -67,11 +67,11 @@ static char *replace_slash(char *str, echo_t *echo_options) {
         len++;
     }
     res[len] = '\0';
-    
+
     return res;
 }
 
-			
+
 void mx_escape_seq(t_process *p, int i, echo_t echo_options) {
     char *tmp = replace_slash(p->argv[i], &echo_options);
     char *sequenses[] = {"\\a","\\b","\\f","\\n","\\r","\\t","\\v",NULL};
@@ -89,4 +89,3 @@ void mx_escape_seq(t_process *p, int i, echo_t echo_options) {
         }
     }
 }
-

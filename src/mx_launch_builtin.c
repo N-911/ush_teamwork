@@ -8,22 +8,19 @@ static void buildin_fork(t_shell *m_s, int job_id, int (*builtin_functions[])
 int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
     int (*builtin_functions[])(t_shell *m_s, t_process *p) =
          {&mx_env, &mx_export, &mx_unset, &mx_echo, &mx_jobs, &mx_fg, &mx_bg,
-         &mx_cd, &mx_pwd, &mx_which, &mx_exit, NULL};
+         &mx_cd, &mx_pwd, &mx_which, &mx_exit, &mx_set, NULL};
 
     p->status = MX_STATUS_RUNNING;
-    // if (p->type == 4 || p->type == 5 || p->type == 6) {
-    //     if(!p->pipe && p->foregrd && m_s->jobs[job_id]->first_pr->next == NULL)
-    //         mx_remove_job_from_panel(m_s, job_id);  // not destroy!!!
-    // }
+
+//    if (p->type == 4 || p->type == 5 || p->type == 6) {
+//        if(!p->pipe && p->foregrd && m_s->jobs[job_id]->first_pr->next == NULL)
+//            mx_remove_job_from_panel(m_s, job_id);  // not destroy!!!
+//    }
     if (p->pipe || !p->foregrd) {  // if pipe or in foregrd -> fork
         buildin_fork(m_s, job_id, builtin_functions, p);
     }
     else
         buildin_std_exec(m_s, builtin_functions, p);
-//    if (p->type == 4 || p->type == 5 || p->type == 6) {
-//        if(!p->pipe && p->foregrd && m_s->jobs[job_id]->first_pr->next == NULL)
-//            mx_destroy_jobs(m_s, job_id);
-//    }
     return p->exit_code;
 }
 
@@ -42,6 +39,7 @@ static void buildin_fork(t_shell *m_s, int job_id, int (*builtin_functions[])
             mx_pgid(m_s, job_id, child_pid);
         mx_dup_fd(p); // dup to STD 0 1 2
         p->exit_code = builtin_functions[p->type](m_s, p);
+//        p->status = MX_STATUS_DONE;
         exit(p->exit_code);  // ?
     }
     else {
@@ -50,6 +48,7 @@ static void buildin_fork(t_shell *m_s, int job_id, int (*builtin_functions[])
                 m_s->jobs[job_id]->pgid = child_pid;
             setpgid (child_pid, m_s->jobs[job_id]->pgid);
         }
+//        p->status = MX_STATUS_DONE;
     }
 }
 
@@ -64,10 +63,11 @@ static void buildin_std_exec(t_shell *m_s, int (*builtin_functions[])
             dup2(p->outfile, STDOUT_FILENO);
             close(p->outfile);
         }
-        if (p->infile != STDIN_FILENO) {
-            dup2(p->infile, STDIN_FILENO);
-            close(p->infile);
-        }
+        mx_dup_close(p->infile, STDIN_FILENO);
+//        if (p->infile != STDIN_FILENO) {
+//            dup2(p->infile, STDIN_FILENO);
+//            close(p->infile);
+//        }
     }
     p->exit_code = builtin_functions[p->type](m_s, p);
     p->status = MX_STATUS_DONE;
@@ -92,4 +92,11 @@ void mx_pgid(t_shell *m_s, int job_id, int child_pid) {
     signal(SIGTTIN, MX_SIG_DFL);
     signal(SIGTTOU, MX_SIG_DFL);
     signal(SIGPIPE, mx_sig_h);
+}
+
+void mx_dup_close(int inp, int out) {
+    if (inp != out) {
+        dup2(inp, out);
+        close(inp);
+    }
 }
