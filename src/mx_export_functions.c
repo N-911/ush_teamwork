@@ -61,13 +61,6 @@ static void get_data (char *arg, char **name, char **value, t_export *variables)
     }
 }
 
-static void clear_data(char *name, char *value) {
-    if(name)
-        free(name);
-    if(value)
-        free(value);
-}
-
 void mx_export_or_error(char *arg, t_export *export,
 	t_export *variables, int *exit_code) {
     int flag = check_identifier(arg);
@@ -83,7 +76,7 @@ void mx_export_or_error(char *arg, t_export *export,
             setenv(name, value, 1);
         export_value(export, name, value);
         export_value(variables, name, value);
-        clear_data(name, value);
+        mx_clear_data(name, value);
         *exit_code = 0;
     }
 }

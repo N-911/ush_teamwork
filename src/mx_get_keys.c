@@ -19,19 +19,28 @@ static void add_char(int *position, char *line, int keycode, t_shell *m_s) {
 }
 
 static void print_command(t_shell *m_s, char *line, int position, int max_len) {
-        for (int i = position; i <= mx_strlen(line); i++) {
-            printf (" ");
-        }
-        for (int i = 0; i <= max_len + 2; i++) {
-            printf ("\b\x1b[2K");
-        }
-        printf ("\r");
-        mx_print_prompt(m_s);
-        printf ("%s", line);
-        for (int i = 0; i < mx_strlen(line) - position; i++) {
-            printf ("%c[1D", 27);
-        }
-        fflush (NULL);
+    for (int i = position; i <= mx_strlen(line); i++) {
+        printf (" ");
+    }
+    for (int i = 0; i <= max_len + 2; i++) {
+        printf ("\b\x1b[2K");
+    }
+    printf ("\r");
+    mx_print_prompt(m_s);
+    printf ("%s", line);
+    for (int i = 0; i < mx_strlen(line) - position; i++) {
+        printf ("%c[1D", 27);
+    }
+    fflush (NULL);
+}
+
+static void choose (int *position, char **line, int keycode, t_shell *m_s) {
+    if (keycode >= 127)
+        mx_edit_command(keycode, position, line, m_s);
+    else if (keycode < 32)
+        mx_exec_signal(keycode, line, position, m_s);
+    else
+        add_char(position, *line, keycode, m_s);
 }
 
 char *mx_get_keys(t_shell *m_s) {
@@ -45,12 +54,7 @@ char *mx_get_keys(t_shell *m_s) {
         read_input(&max_len, &keycode, line);
         max_len += mx_strlen(m_s->prompt);
         m_s->git ? max_len += mx_strlen(m_s->git) + 7 : 0;
-        if (keycode >= 127)
-            mx_edit_command(keycode, &position, &line, m_s);
-        else if (keycode < 32)
-            mx_exec_signal(keycode, &line, &position, m_s);
-        else
-            add_char(&position, line, keycode, m_s);
+        choose (&position, &line, keycode, m_s);
         if(keycode != MX_CTRL_C)
             print_command(m_s, line, position, max_len);
     }

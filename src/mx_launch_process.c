@@ -52,26 +52,31 @@ static void child_work(t_shell *m_s, t_process *p, int job_id, int child_pid) {
     exit(p->status);
 }
 
+static void read_dir(char *dir, char *command, int *flag, char **name) {
+    DIR *dptr  = opendir(dir);
+    struct dirent  *ds;
+
+    if (dptr != NULL) {
+        while ((ds = readdir(dptr)) != 0) {
+            if (strcmp(ds->d_name, command) == 0 && command[0] != '.') {
+                (*flag)++;
+                char *tmp = mx_strjoin(dir, "/");
+                *name = mx_strjoin(tmp, command);
+                free(tmp);
+                break;
+            }
+        }
+        closedir(dptr);
+    }
+}
+
 static char *check_path(char **arr, char *command) {
     int i = 0;
     char *name = NULL;
     int flag = 0;
 
     while (arr[i] != NULL && !flag) {
-        DIR *dptr  = opendir(arr[i]);
-        if (dptr != NULL) {
-            struct dirent  *ds;
-            while ((ds = readdir(dptr)) != 0) {
-                if (strcmp(ds->d_name, command) == 0 && command[0] != '.') {
-                    flag++;
-                    char *tmp = mx_strjoin(arr[i], "/");
-                    name = mx_strjoin(tmp, command);
-                    free(tmp);
-                    break;
-                }
-            }
-            closedir(dptr);
-        }
+        read_dir(arr[i], command, &flag, &name);
         i++;
     }
     return name;

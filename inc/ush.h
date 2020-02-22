@@ -314,6 +314,7 @@ typedef struct s_shell {
     int prompt_status;
     t_export *exported;
     t_export *variables;
+    int redir;
 }             t_shell;
 
 
@@ -515,5 +516,11 @@ void mx_print_prompt(t_shell *m_s);
 void mx_edit_prompt(t_shell *m_s);
 void mx_edit_command(int keycode, int *position, char **line, t_shell *m_s);
 void mx_exec_signal(int keycode, char **line, int *position, t_shell *m_s);
+char *mx_get_line(t_shell *m_s);
+int mx_add_option(char **args, int *i, int *n_options,
+    t_env_builtin *env);
+void mx_env_err(int *flag, int *exit_code, char option);
+void mx_print_env_error(char option, char *error);
+void mx_clear_data(char *name, char *value);
 
 #endif

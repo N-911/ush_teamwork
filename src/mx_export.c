@@ -23,6 +23,13 @@ static void print_export(t_export *export) {
     }
 }
 
+void mx_clear_data(char *name, char *value) {
+    if(name)
+        free(name);
+    if(value)
+        free(value);
+}
+
 int mx_export(t_shell *m_s, t_process *p) {
     int n_options = mx_count_options(p->argv, "p", "export",
      " [name[=value] ...] or export -p");

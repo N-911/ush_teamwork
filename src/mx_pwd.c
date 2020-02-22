@@ -24,15 +24,16 @@ static int count_args(char **args, int n_options) {
     for (int i = n_options; args[i] != NULL; i++) {
 		n_args++;
     }
-    if (n_args > 1)
+    if (n_args > 1 && n_options >= 0)
         mx_printerr("ush: pwd: too many arguments\n");
     return n_args;
 }
 
-static void print_pwd(char *dir, int *exit_code, t_shell *m_s, pwd_t pwd_options) {
+static void print_pwd(char *dir, int *exit_code,
+    t_shell *m_s, pwd_t pwd_options) {
     *exit_code = 0;
     if (pwd_options.P < 0) 
-        printf("%s\n", m_s->pwd); 
+        printf("%s\n", m_s->pwd);
     else 
         printf("%s\n", dir);
     free(dir);
