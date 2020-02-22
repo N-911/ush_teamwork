@@ -6,7 +6,6 @@ static void print_error(char *command, char *error);
 static void child_work(t_shell *m_s, t_process *p, int job_id, int child_pid);
 
 int mx_launch_process(t_shell *m_s, t_process *p, int job_id) {
-//    int status = 0;
     pid_t child_pid;
     p->status = MX_STATUS_RUNNING;
     int shell_is_interactive = isatty(STDIN_FILENO);  //!!

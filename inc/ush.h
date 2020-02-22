@@ -285,8 +285,6 @@ typedef struct s_job {
     int stdout;  // standard i/o channels
     int stderr;  // standard i/o channels
     struct s_job *next;  //next job separated by ";" "&&" "||"
-    //char **env;  // ?
-    //char *path;
 }             t_job;
 
 typedef struct s_shell {

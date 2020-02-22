@@ -22,7 +22,7 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
 
 static void buildin_fork(t_shell *m_s, int job_id, int (*builtin_functions[])
         (t_shell *m_s, t_process *p), t_process *p) {
-    int shell_is_interactive = isatty(STDIN_FILENO);
+//    int shell_is_interactive = isatty(STDIN_FILENO);
     pid_t child_pid = fork();
 
     p->pid = child_pid;
@@ -31,14 +31,14 @@ static void buildin_fork(t_shell *m_s, int job_id, int (*builtin_functions[])
         exit(1);
     }
     else if (child_pid == 0) {
-        if (shell_is_interactive)
+        if (isatty(STDIN_FILENO))
             mx_pgid(m_s, job_id, child_pid);
         mx_dup_fd(p); // dup to STD 0 1 2
         p->exit_code = builtin_functions[p->type](m_s, p);
         exit(p->exit_code);
     }
     else {
-        if (shell_is_interactive) {
+        if (isatty(STDIN_FILENO)) {
             if (m_s->jobs[job_id]->pgid == 0)
                 m_s->jobs[job_id]->pgid = child_pid;
             setpgid (child_pid, m_s->jobs[job_id]->pgid);
