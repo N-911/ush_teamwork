@@ -30,7 +30,9 @@ void mx_set_redir_input(t_shell *m_s, t_job *job, t_process *p, int job_id) {
             mx_printerr("ush :");
             perror(p->input_path);
             mx_set_variable(m_s->variables, "?", "1");
-            mx_remove_job(m_s, job_id);
+            job_id--;
+            job_id++;
+            //mx_remove_job(m_s, job_id);
             m_s->redir = 1;
             job->exit_code = 1; // ?
 //                continue;
