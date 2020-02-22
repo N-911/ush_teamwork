@@ -14,7 +14,8 @@ static void reverse_backscape(int *position, char *line) {
 
 void mx_exec_signal(int keycode, char **line, int *position, t_shell *m_s) {
     if (keycode == MX_CTRL_C) {
-        free(*line);
+        // if (*line)
+        //     free(*line);
         for (int i = 0; i < mx_strlen(*line); i++) {
             *line[i] = '\0';
         }

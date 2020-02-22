@@ -11,10 +11,10 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
          &mx_cd, &mx_pwd, &mx_which, &mx_exit, NULL};
 
     p->status = MX_STATUS_RUNNING;
-    if (p->type == 4 || p->type == 5 || p->type == 6) {
-        if(!p->pipe && p->foregrd && m_s->jobs[job_id]->first_pr->next == NULL)
-            mx_remove_job_from_panel(m_s, job_id);  // not destroy!!!
-    }
+    // if (p->type == 4 || p->type == 5 || p->type == 6) {
+    //     if(!p->pipe && p->foregrd && m_s->jobs[job_id]->first_pr->next == NULL)
+    //         mx_remove_job_from_panel(m_s, job_id);  // not destroy!!!
+    // }
     if (p->pipe || !p->foregrd) {  // if pipe or in foregrd -> fork
         buildin_fork(m_s, job_id, builtin_functions, p);
     }

@@ -314,6 +314,7 @@ typedef struct s_shell {
     int prompt_status;
     t_export *exported;
     t_export *variables;
+    int redir;
 }             t_shell;
 
 

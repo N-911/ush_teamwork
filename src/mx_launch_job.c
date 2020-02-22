@@ -37,9 +37,13 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
     if (!job->path)
         job->path = "";
     for (p = m_s->jobs[job_id]->first_pr; p; p = p->next) {
+        int flag = get_flag(p->argv);
         if (m_s->exit_flag == 1 && !(p->type == 10))
             m_s->exit_flag = 0;
+        m_s->redir = 0;
         mx_set_redirec(m_s, job, p, job_id);
+        if (m_s->redir != 0)
+            continue;
         if (p->pipe) {
             if (pipe(mypipe) < 0) {
                 perror("pipe");
@@ -51,7 +55,6 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
         p->infile = job->infile;
         p->outfile = job->outfile;
         p->errfile = job->errfile;
-        int flag = get_flag(p->argv);
         if (flag) {
             status = mx_set_parametr(p->argv, m_s);
             mx_remove_job(m_s, job_id);
@@ -59,8 +62,9 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
         else if (p->type != -1) {
             status = mx_launch_builtin(m_s, p, job_id);  // fork own buildins
         }
-        else
+        else{
             status = mx_launch_process(m_s, p, job_id);  // remove pat and env
+        }
         if (job->infile != job->stdin)
             close(job->infile);
         if (job->outfile != job->stdout)
