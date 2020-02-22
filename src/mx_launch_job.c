@@ -36,7 +36,6 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
     if (!job->path)
         job->path = "";
     for (p = m_s->jobs[job_id]->first_pr; p; p = p->next) {
-        int flag = get_flag(p->argv);
         if (m_s->exit_flag == 1 && !(p->type == 10))
             m_s->exit_flag = 0;
         m_s->redir = 0;
@@ -54,6 +53,9 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
         p->infile = job->infile;
         p->outfile = job->outfile;
         p->errfile = job->errfile;
+        int flag = 0;
+        if (!p->pipe)
+            flag = get_flag(p->argv);
         if (flag) {
             status = mx_set_parametr(p->argv, m_s);
             mx_remove_job(m_s, job_id);

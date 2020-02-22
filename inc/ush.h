@@ -521,5 +521,6 @@ int mx_add_option(char **args, int *i, int *n_options,
     t_env_builtin *env);
 void mx_env_err(int *flag, int *exit_code, char option);
 void mx_print_env_error(char option, char *error);
+void mx_clear_data(char *name, char *value);
 
 #endif
