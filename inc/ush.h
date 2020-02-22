@@ -274,6 +274,7 @@ typedef struct s_job {
     pid_t pgid;  // process group ID
     char *path;
     char **env;
+    int flag;
     int exit_code;
     int foregrd;  // foregrd = 1 or background execution = 0
     struct termios tmodes;  // saved terminal modes/
@@ -409,10 +410,10 @@ void termios_restore(t_shell *m_s);
 t_job *mx_create_job(t_shell *m_s, t_ast *list);  // create one job from ast
 void mx_ush_loop(t_shell *m_s);  // create ast -> create jobs -> ...
 void mx_launch_job(t_shell *m_s, t_job *job);
-void mx_set_redirec(t_shell  *m_s, t_job * job, t_process *p, int job_id);
+int mx_set_redirec(t_shell  *m_s, t_job * job, t_process *p, int job_id);
 void mx_set_redir_input(t_shell *m_s, t_job *job, t_process *p, int job_id);
 void mx_set_redir_inp_d(t_job *job, t_process *p);
-void mx_set_redir_output(t_job * job, t_process *p);
+void mx_set_redir_output(t_shell *m_s, t_job * job, t_process *p);
 void mx_dup_fd(t_process *p);
 int mx_launch_process(t_shell *m_s, t_process *p, int job_id);
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
@@ -473,7 +474,6 @@ void mx_print_args_in_line(char **res, const char *delim);
 void mx_check_jobs(t_shell *m_s);  //waitpid any process
 int mx_wait_job(t_shell *m_s, int id);  //waitpid process in job group
 void mx_destroy_jobs(t_shell *m_s, int id);  //free job memory
-void mx_destroy_jobs2(t_process *p);
 
 //      OTHER
 void mx_error_fg_bg(char *arg0, char *arg1, char *arg2, char *arg3);
@@ -517,5 +517,7 @@ void mx_edit_prompt(t_shell *m_s);
 void mx_edit_command(int keycode, int *position, char **line, t_shell *m_s);
 void mx_exec_signal(int keycode, char **line, int *position, t_shell *m_s);
 char *mx_get_line(t_shell *m_s);
+int mx_get_flag(char **args);
+void mx_sheck_exit(t_shell *m_s, t_process *p);
 
 #endif

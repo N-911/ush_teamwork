@@ -1,8 +1,9 @@
 #include "ush.h"
 
-static int get_flag(char **args);
 static int execute_job(t_shell *m_s, t_job * job, int job_id);
 static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status);
+static void help_execute_job(t_shell *m_s, t_job *job, t_process *p, int job_id);
+static void execute_job_env(t_job *job);
 
 void mx_launch_job(t_shell *m_s, t_job *job) {
     setbuf(stdout, NULL);
@@ -26,54 +27,60 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
 }
 
 static int execute_job(t_shell *m_s, t_job * job, int job_id) {
-    extern char **environ;  // ?
-    int status;
     t_process *p;
     int mypipe[2];
 
-    job->env = environ;
-    job->path = getenv("PATH");
-    if (!job->path)
-        job->path = "";
+    execute_job_env(job);
     for (p = m_s->jobs[job_id]->first_pr; p; p = p->next) {
-        int flag = get_flag(p->argv);
-        if (m_s->exit_flag == 1 && !(p->type == 10))
-            m_s->exit_flag = 0;
-        m_s->redir = 0;
-        mx_set_redirec(m_s, job, p, job_id);
-        if (m_s->redir != 0)
+        mx_sheck_exit(m_s, p);
+        if ((mx_set_redirec(m_s, job, p, job_id)) != 0)
             continue;
         if (p->pipe) {
             if (pipe(mypipe) < 0) {
                 perror("pipe");
                 mx_remove_job(m_s, job_id);
-                exit(1);  // ?
+                exit(1);
             }
             job->outfile = mypipe[1];
         }
-        p->infile = job->infile;
-        p->outfile = job->outfile;
-        p->errfile = job->errfile;
-        if (flag) {
-            status = mx_set_parametr(p->argv, m_s);
-            mx_remove_job(m_s, job_id);
-        }
-        else if (p->type != -1) {
-            status = mx_launch_builtin(m_s, p, job_id);  // fork own buildins
-        }
-        else{
-            status = mx_launch_process(m_s, p, job_id);  // remove pat and env
-        }
-        if (job->infile != job->stdin)
-            close(job->infile);
-        if (job->outfile != job->stdout)
-            close(job->outfile);
+        help_execute_job(m_s, job, p, job_id);
         job->infile = mypipe[0];
-        m_s->exit_code = status;
     }
-    launch_job_help(m_s, job, job_id, status);
-    return status;
+    launch_job_help(m_s, job, job_id, job->exit_code);
+    return job->exit_code;
 }
+
+static void execute_job_env(t_job *job) {
+    extern char **environ;
+
+    job->env = environ;
+    job->path = getenv("PATH");
+    if (!job->path)
+        job->path = "";
+}
+
+static void help_execute_job(t_shell *m_s, t_job *job, t_process *p, int job_id) {
+    p->infile = job->infile;
+    p->outfile = job->outfile;
+    p->errfile = job->errfile;
+    job->flag = 0;
+    if (!p->pipe)
+        job->flag = mx_get_flag(p->argv);
+    if (job->flag) {
+        job->exit_code = mx_set_parametr(p->argv, m_s);
+        mx_remove_job(m_s, job_id);
+    }
+    else if (p->type != -1)
+        job->exit_code = mx_launch_builtin(m_s, p, job_id);  // fork own buildins
+    else
+        job->exit_code = mx_launch_process(m_s, p, job_id);  // remove pat and env
+    if (job->infile != job->stdin)
+        close(job->infile);
+    if (job->outfile != job->stdout)
+        close(job->outfile);
+    m_s->exit_code = job->exit_code;
+}
+
 
 static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
     int shell_terminal = STDIN_FILENO;
@@ -93,16 +100,4 @@ static void launch_job_help (t_shell *m_s, t_job *job, int job_id, int status) {
     else
         mx_print_pid_process_in_job(m_s, job->job_id);
     m_s->exit_code = status;
-}
-
-static int get_flag(char **args) {
-    int flag = 1;
-
-    for (int i = 0; args[i] != NULL; i++) {
-        if (mx_get_char_index(args[i],'=') <= 0) {
-            flag--;
-            break;
-        }
-    }
-    return flag;
 }
