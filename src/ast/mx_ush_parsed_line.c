@@ -79,7 +79,7 @@ t_ast *mx_ush_parsed_line(char *line, t_export *variables) {
         return NULL;
     while (line[i])
         if ((tmp = get_token_and_delim(&line[i], &i, &type))) {
-            if ((args = mx_filters(tmp, variables)))
+            if ((args = mx_filters(tmp, variables)) && *args)
                 mx_ast_push_back(&res, args, type);
             else if (!args || type != SEP)  // works "; ; ;", block "; | ;"
                 return mx_parse_error_ush(type, res);

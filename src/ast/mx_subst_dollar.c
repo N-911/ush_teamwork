@@ -57,12 +57,14 @@ static char *expantion(char *s, t_export *variables, int pos) {
     mx_strdel(&s);
     return res;
 }
-
+/*
+ * Substitutiont dollar from variables inside " ".
+ */
 static char *exp_inside_dblq(char *s, t_export *var, int *i, int *k) {
     int j = 0;
     int pos = 0;
-    char *tmp;
-    char *res = s;
+    char *tmp = NULL;
+    char *res = NULL;
 
     (*i) += *k + 1;
     res = mx_strndup(s, *i);
@@ -70,7 +72,8 @@ static char *exp_inside_dblq(char *s, t_export *var, int *i, int *k) {
     tmp = mx_strndup(&s[*i], j);
     while (tmp && (pos = mx_get_char_index_quote(tmp, "$", "`")) >= 0)
         tmp = expantion(tmp, var, pos);
-    res = mx_strjoin_free(mx_strjoin_free(res, tmp), &s[*i + j]);
+    res = mx_strjoin_free(res, tmp);
+    res = mx_strjoin_free(res, &s[*i + j]);
     (*i) += mx_strlen(tmp) + 1;
     mx_strdel(&tmp);
     mx_strdel(&s);
@@ -88,7 +91,7 @@ char *mx_substr_dollar(char *s, t_export *variables) {
     if (!s || !*s || !variables || mx_strcmp(s, "$") == 0)
         return s;
     while (s[i]) {
-        if ((k = mx_get_char_index_quote(&s[i], "\"", "\'`$")) >= 0)
+        if ((k = mx_get_char_index_quote(&res[i], "\"", "\'`$")) >= 0)
             res = exp_inside_dblq(res, variables, &i, &k);
         else
             break;
