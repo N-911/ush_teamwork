@@ -1,6 +1,6 @@
 #include "ush.h"
 /*
- * Print redirections (one process)
+ * Print redirections (one process).
  */
 static void print_left(t_ast *q) {
     for (t_ast *r = q->left; r; r = r->next) {
@@ -18,7 +18,7 @@ static void print_left(t_ast *q) {
     }
 }
 /*
- * Print one ast-list (one job)
+ * Print one ast-list (one job).
  */
 static void print_list(t_ast *parsed_line) {
     for (t_ast *q = parsed_line; q; q = q->next) {
@@ -33,7 +33,7 @@ static void print_list(t_ast *parsed_line) {
     }
 }
 /*
- * Print array of ast-lists (all jobs)
+ * Print array of ast-lists (all jobs).
  */
 void mx_ast_print(t_ast **ast) {
     char *j = NULL;
@@ -48,19 +48,17 @@ void mx_ast_print(t_ast **ast) {
     mx_print_color(YEL, "-----\n");
 }
 /*
- *  Create ast from parsed_line
+ * Create ast from parsed_line.
  */
 t_ast **mx_ast_creation(char *line, t_shell *m_s) {
     t_ast **ast = NULL;
     t_ast *parsed_line = NULL;
 
     if (!(parsed_line = mx_ush_parsed_line(line, m_s->variables))) {
-        // mx_printerr("parsed_line is NULL\n");
         return NULL;
     }
     if (!(ast = mx_ast_parse(parsed_line)) || !(*ast)) {
         mx_ast_clear_list(&parsed_line);
-        // mx_printerr("ast is NULL\n");
         return NULL;
     }
     mx_ast_clear_list(&parsed_line);

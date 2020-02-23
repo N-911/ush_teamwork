@@ -1,6 +1,6 @@
 #include "ush.h"
 /*
- * Check if prefix is correct login or not
+ * Check if prefix is correct login or not.
  */
 static char *add_login(char *home, char *prefix) {
     char *path = NULL;
@@ -20,7 +20,7 @@ static char *add_login(char *home, char *prefix) {
     return path;
 }
 /*
- * Get value and check if variable does not unset
+ * Get value and check if variable does not unset.
  */
 static char *get_res(char *var, t_export *variables) {
     char *res = NULL;
@@ -37,7 +37,7 @@ static char *get_res(char *var, t_export *variables) {
     return mx_strdup(res);
 }
 /*
- * Prefix - all after ~ and before char '/' or '\0' (example: ~mboiko/)
+ * Prefix - all after ~ and before char '/' or '\0' (example: ~mboiko/).
  */
 static char *get_prefix(char *s, int *sleshpos) {
     char *prefix = NULL;
@@ -54,7 +54,7 @@ static char *get_prefix(char *s, int *sleshpos) {
     return prefix;
 }
 /*
- * Substitutiont tilde in different ways
+ * Substitutiont tilde in different ways.
  */
 static char *expantion(char *s, t_export *v) {
     char *res = NULL;
@@ -77,7 +77,7 @@ static char *expantion(char *s, t_export *v) {
     return res;
 }
 /*
- *  Substitutiont tilde
+ * Substitutiont tilde.
  */
 char *mx_subst_tilde(char *s, t_export *variables) {
     char *res = NULL;

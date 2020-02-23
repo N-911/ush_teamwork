@@ -66,7 +66,7 @@ static char *get_token_and_delim(char *line, int *i, int *type) {
     return tmp;
 }
 /*
- * Get list of all commands and delimeters (operators) -> use filters
+ * Get list of all commands and delimeters (operators) -> use filters.
  */
 t_ast *mx_ush_parsed_line(char *line, t_export *variables) {
     t_ast *res = NULL;

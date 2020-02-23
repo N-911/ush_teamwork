@@ -11,7 +11,7 @@ static int count_args(char **args, int n_options) {
 
 static int check_identifier(char *arg) {
     int flag = 0;
-   
+
     for (int j = 0; j < mx_strlen(arg); j++) {
         if (!isalpha(arg[j]) && !isdigit(arg[j]) && arg[j] != '_') {
             flag++;
@@ -22,7 +22,7 @@ static int check_identifier(char *arg) {
 
 static void delete_name(t_export **list, char *arg) {
     t_export *head = *list;
-    
+
     if (strcmp(head->name, arg) == 0) {
         *list = (*list)->next;
         return;

@@ -1,6 +1,6 @@
 #include "ush.h"
 /*
- * Get end of simple token or quote
+ * Get end of simple token or quote.
  */
 static char *get_end_usual_quote_func(char *s, const char *delim, char *end) {
     while (*s && !(mx_isdelim(*s, (char *)delim))) {
@@ -20,30 +20,30 @@ static char *get_end_usual_quote_func(char *s, const char *delim, char *end) {
     return end;
 }
 /*
- * Get one token (cut it with '\0' in the end)
+ * Get one token (cut it with '\0' in the end).
  */
 static char *strtok_tmp (char *s, const char *delim, char **save_ptr) {
     char *end = NULL;
 
     if (s == NULL)
         s = *save_ptr;
-    s += strspn(s, delim);  // Scan leading delimiters.
+    s += strspn(s, delim);  // Scan leading delimiters
     if (*s == '\0') {
         *save_ptr = s;
         return NULL;
     }
     if (!(end = get_end_usual_quote_func(s, delim, end)))
         return NULL;
-    if (*end == '\0') {  // If it's last token, int tne end of the str.
+    if (*end == '\0') {  // If it's last token, int tne end of the str
         *save_ptr = end;
         return s;
     }
-    *end = '\0';  // Terminate the token.
+    *end = '\0';  // Terminate the token
     *save_ptr = end + 1;
     return s;
 }
 /*
- * Return one token, but save rest of the line in static
+ * Return one token, but save rest of the line in static.
  */
 char *mx_strtok (char *s, const char *delim) {
     static char *olds;
