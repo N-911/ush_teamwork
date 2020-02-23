@@ -11,7 +11,8 @@ static void fill_options(int n_options, which_t *which_options, char **args) {
 
 int mx_which(t_shell *m_s, t_process *p) {
 	which_t which_options = {0, 0};
-	int n_options = mx_count_options(p->argv, "as", "which", " [-as] program ...");
+	int n_options = mx_count_options(p->argv, "as",
+	                       "which", " [-as] program ...");
 	int flag = 0;
 	int exit_code = 0;
 

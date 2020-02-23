@@ -32,7 +32,7 @@ static char *get_error(char **name, char *command, int *status) {
         *name = command;
         struct stat buff;
         if (lstat(*name, &buff) < 0) {
-            error = NULL;//strdup(": No such file or directory\n");
+            error = NULL;
         }
         else {
             if (mx_get_type(buff) == 'd') {
@@ -84,7 +84,7 @@ int mx_launch_bin(t_process *p, char *path, char **env) {
         perror("env "); 
     else
         waitpid(pid, &status, 0);
-    return status >> 8; // WEXITSTATUS(status);
+    return status >> 8;
 }
 
 

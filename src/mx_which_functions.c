@@ -1,7 +1,7 @@
 #include "ush.h"
 
-
-static void check_path(char **arr, char *command, t_list **output, int *flag) {
+static void check_path(char **arr, char *command, t_list **output,
+                       int *flag) {
 	int i = 0;
     char *name = NULL;
 
@@ -23,7 +23,8 @@ static void check_path(char **arr, char *command, t_list **output, int *flag) {
     }
 }
 
-static void check_builtin (char **list, char *command, t_list **output, int *flag) {
+static void check_builtin (char **list, char *command, t_list **output,
+                           int *flag) {
 	for (int j = 0; list[j] != NULL; j++) {
 		if (strcmp(list[j], command) == 0) {
 			char *str = mx_strjoin(command, ": shell built-in command");
@@ -34,7 +35,8 @@ static void check_builtin (char **list, char *command, t_list **output, int *fla
 	}
 }
 
-static void print_path(t_list *output, int flag, char *command, which_t which_options) {
+static void print_path(t_list *output, int flag, char *command,
+                       which_t which_options) {
 	if (!flag){
 		printf("%s not found\n", command);
 	}
@@ -65,7 +67,8 @@ static void mx_clear_list(t_list **list) {
     *list = NULL;
 }
 
-void mx_get_command_info(t_shell *m_s, char *command, int *flag, which_t which_options) {
+void mx_get_command_info(t_shell *m_s, char *command, int *flag,
+                         which_t which_options) {
 	t_list *output= NULL;
 	char **arr = mx_strsplit(getenv("PATH"), ':');
 

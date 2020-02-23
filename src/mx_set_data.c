@@ -1,6 +1,11 @@
 #include "ush.h"
 
-static char *strdup_from(char *str, int index);
+static char *strdup_from(char *str, int index) {
+    for (int i = 0; i <= index; i++) {
+        str++;
+    }
+    return strdup(str);
+}
 
 t_export *mx_set_variables() {
     t_export *variables = NULL;;
@@ -37,12 +42,5 @@ t_export *mx_set_export() {
             free(value);
     }
     return export;
-}
-
-static char *strdup_from(char *str, int index) {
-    for (int i = 0; i <= index; i++) {
-        str++;
-    }
-    return strdup(str);
 }
 

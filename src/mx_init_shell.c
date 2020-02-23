@@ -18,16 +18,15 @@ static void set_shell_grp(t_shell *m_s) {
     if (shell_is_interactive) {
         while (tcgetpgrp(shell_terminal) != (shell_pgid = getpgrp()))
             kill(-shell_pgid, SIGTTIN);
-        signal(SIGINT, MX_SIG_IGN);  // Control-C
-        signal(SIGQUIT, MX_SIG_IGN);  // 'Control-\'
-        signal(SIGTSTP, MX_SIG_IGN);  // Control-Z
+        signal(SIGINT, MX_SIG_IGN);
+        signal(SIGQUIT, MX_SIG_IGN);
+        signal(SIGTSTP, MX_SIG_IGN);
         signal(SIGTTIN, MX_SIG_IGN);
         signal(SIGTTOU, MX_SIG_IGN);
         shell_grp_help(m_s, shell_pgid);
        char *c_shell_pgid = mx_itoa(m_s->shell_pgid);
        mx_set_variable(m_s->variables, "$", c_shell_pgid);
        free(c_shell_pgid);
-        // mx_set_variable(m_s->variables, "$", mx_itoa(m_s->shell_pgid));
         tcgetattr(shell_terminal, &m_s->t_original);
         tcgetattr(shell_terminal, &m_s->tmodes);
     }
@@ -74,7 +73,7 @@ t_shell *mx_init_shell(int argc, char **argv) {
     set_shell_defaults(m_s);
     m_s->argc = argc;
     m_s->argv = argv;
-    m_s->pwd = get_pwd();//PWD for further work
+    m_s->pwd = get_pwd();
     setenv("PWD", m_s->pwd, 1);
     setenv("OLDPWD", m_s->pwd, 1);
     shlvl = mx_get_shlvl();

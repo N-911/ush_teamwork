@@ -19,7 +19,7 @@ static void launch_blow_job(t_shell *m_s, t_ast **ast, t_job *new_job) {
         new_job->job_type = get_job_type(ast, i);
         mx_launch_job(m_s, new_job);
     }
-    mx_ast_clear_all(&ast);  // clear leeks
+    mx_ast_clear_all(&ast);
 }
 
 void mx_ush_loop(t_shell *m_s) {

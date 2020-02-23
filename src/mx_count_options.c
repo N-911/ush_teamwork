@@ -1,7 +1,21 @@
 #include "ush.h"
 
-static void mx_printerr_char(const char c);
-static void print_all(char *command, char *error, char arg);
+static void mx_printerr_char(const char c) {
+    write(2, &c, 1);
+}
+
+static void print_all(char *command, char *error, char arg) {
+    mx_printerr("ush: ");
+    mx_printerr(command);
+    mx_printerr(": -");
+    mx_printerr_char(arg);
+    mx_printerr(": invalid option\n");
+    mx_printerr(command);
+    mx_printerr(": usage: ");
+    mx_printerr(command);
+    mx_printerr(error);
+    mx_printerr(" \n");
+}
 
 int mx_count_options(char **args, char *options, char *command, char *error) {
 	int n_options = 0;
@@ -23,19 +37,3 @@ int mx_count_options(char **args, char *options, char *command, char *error) {
 	return n_options;
 }
 
-static void print_all(char *command, char *error, char arg) {
-	mx_printerr("ush: ");
-	mx_printerr(command);
-	mx_printerr(": -");
-	mx_printerr_char(arg);
-	mx_printerr(": invalid option\n");
-	mx_printerr(command);
-	mx_printerr(": usage: ");
-	mx_printerr(command);
-	mx_printerr(error);
-	mx_printerr(" \n");
-}
-
-static void mx_printerr_char(const char c) {
-    write(2, &c, 1);
-}

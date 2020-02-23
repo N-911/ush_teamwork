@@ -1,27 +1,10 @@
 #include "ush.h"
 
-static void get_data (char *arg, char **name, char **value);
-static char *strdup_from(char *str, int index);
-static void export_value(t_export *export, char *name, char *value);
-
-int mx_set_parametr(char **args, t_shell *m_s) {
-    char *name;
-    char *value;
-
-    for (int i = 0; args[i] != NULL; i++) {  
-        name = NULL;
-        value = NULL;    
-        get_data(args[i], &name, &value);
-        if (value != NULL && name != NULL) {
-            mx_set_variable(m_s->variables, name, value);
-            export_value(m_s->exported, name, value);
-        }
-        if (name)
-            free(name);
-        if (value)
-            free(value);
+static char *strdup_from(char *str, int index) {
+    for (int i = 0; i <= index; i++) {
+        str++;
     }
-    return 0;   
+    return strdup(str);
 }
 
 static void get_data (char *arg, char **name, char **value) {
@@ -29,13 +12,6 @@ static void get_data (char *arg, char **name, char **value) {
  
     *name = strndup(arg,idx);
     *value = strdup_from(arg,idx);
-}
-
-static char *strdup_from(char *str, int index) {
-    for (int i = 0; i <= index; i++) {
-        str++;
-    }
-    return strdup(str);
 }
 
 static void export_value(t_export *export, char *name, char *value) {
@@ -53,3 +29,22 @@ static void export_value(t_export *export, char *name, char *value) {
     }
 }
 
+int mx_set_parametr(char **args, t_shell *m_s) {
+    char *name;
+    char *value;
+
+    for (int i = 0; args[i] != NULL; i++) {
+        name = NULL;
+        value = NULL;
+        get_data(args[i], &name, &value);
+        if (value != NULL && name != NULL) {
+            mx_set_variable(m_s->variables, name, value);
+            export_value(m_s->exported, name, value);
+        }
+        if (name)
+            free(name);
+        if (value)
+            free(value);
+    }
+    return 0;
+}
