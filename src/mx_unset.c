@@ -22,6 +22,7 @@ static int check_identifier(char *arg) {
 
 static void delete_name(t_export **list, char *arg) {
     t_export *head = *list;
+    
     if (strcmp(head->name, arg) == 0) {
         *list = (*list)->next;
         return;

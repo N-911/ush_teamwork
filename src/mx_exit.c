@@ -1,6 +1,7 @@
 #include "ush.h"
 
-static void get_exit_code(t_process *p, int *exit_code, int *flag, int *start) {
+static void get_exit_code(t_process *p, int *exit_code, 
+    int *flag, int *start) {
     if (p->argv[1][0] == '+' || p->argv[1][0] == '-') {
         if (p->argv[1][1] == '\0')
             (*flag)++;
