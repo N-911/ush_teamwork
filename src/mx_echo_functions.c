@@ -32,22 +32,12 @@ static char *replace_substr(char *str,  char *sub, char *replace) {
     return res;
 }
 
-static void rep_x(int *i, int *len, char *res, char *str) {
+static void rep_x(int *i, char *str) {
     if (str[*i] == '\\' && str[*i + 1] == 'e') {
         if (str[*i + 2] != '\\')
             (*i) += 3;
         else
             (*i) += 2;
-    }
-    if (str[*i] == '\\' && str[*i + 1] == 'x') {
-        if (!str[*i + 2])
-            (*i) += 2;
-        else {
-            char rep = mx_hex_to_nbr(strndup(str + *i + 2, 2));
-            res[*len] = rep;
-            (*len)++;
-            i += 4;
-        }
     }
 }
 
@@ -58,7 +48,7 @@ static char *replace_slash(char *str, echo_t *echo_options) {
     for (int i = 0; i <= mx_strlen(str); i++) {
         if (str[i] == '\\' && str[i + 1] == '\\')
             i++;
-        rep_x(&i, &len, res, str);
+        rep_x(&i, str);
         if (str[i] == '\\' && str[i + 1] == 'c') {
             echo_options->n = 1;
             break;

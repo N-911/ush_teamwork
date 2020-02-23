@@ -519,5 +519,6 @@ void mx_print_env_error(char option, char *error);
 void mx_clear_data(char *name, char *value);
 void mx_print_error(char *command, char *error);
 char *mx_get_shlvl();
+unsigned long mx_pow_rec(int n, int pow);
 
 #endif

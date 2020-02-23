@@ -58,7 +58,7 @@ int mx_add_option(char **args, int *i, int *n_options, t_env_builtin *env) {
             flag--;
         }
         else if (args[*i][j] == 'i' || args[*i][j] == '-'
-                || mx_strlen(args[*i]) == 1)
+                 || mx_strlen(args[*i]) == 1)
             env->env_options.i = 1;
         else if (j != mx_strlen(args[*i]))
             mx_env_err(&flag, &exit_code, option);
