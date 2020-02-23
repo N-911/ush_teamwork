@@ -26,7 +26,7 @@ static char *get_error(char **name, char *command, int *status) {
         *name = command;
         struct stat buff;
         if (lstat(*name, &buff) < 0) {
-            error = NULL;//strdup(": No such file or directory\n");
+            error = NULL;
         }
         else {
             if (mx_get_type(buff) == 'd') {
