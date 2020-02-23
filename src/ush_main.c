@@ -1,7 +1,6 @@
 #include "ush.h"
 
 int main(int argc, char **argv) {
-    // Load config files, if any.
     (void)argc;
     (void)argv;
 
@@ -9,4 +8,3 @@ int main(int argc, char **argv) {
     mx_ush_loop(m_s);
     return MX_EXIT_SUCCESS;
 }
-

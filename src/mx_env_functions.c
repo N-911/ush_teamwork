@@ -4,14 +4,15 @@ static void get_data(int i, char **args, t_env_builtin *env) {
     int idx = mx_get_char_index(args[i],'=');
     char *name = strndup(args[i],idx);
     char *value = mx_strdup_from(args[i],idx);
-            
+
     mx_push_export(&env->env_list, name, value);
     free(name);
-    free(value);  
+    free(value);
 }
 
 static void delete_name(t_export **list, char *arg) {
     t_export *head = *list;
+
     if (head != NULL && strcmp(head->name, arg) == 0) {
         *list = (*list)->next;
         return;
@@ -30,7 +31,8 @@ static void delete_name(t_export **list, char *arg) {
     }
 }
 
-static void get_params (t_export *env_params, t_export *env_list, t_env_builtin *env) {
+static void get_params (t_export *env_params, t_export *env_list,
+                        t_env_builtin *env) {
     t_export *head = env_params;
 
     while (head != NULL) {
@@ -51,12 +53,12 @@ void mx_set_data(t_env_builtin *env, char *args[]) {
 
     for (int i = 0; environ[i] != NULL; i++) {
         if (!env->env_options.i) {
-            get_data(i, environ, env);   
+            get_data(i, environ, env);
         }
     }
     get_params(env->env_params, env->env_list, env);
-    for (int i = env->n_options + 1; i <= env->n_options + env->n_variables; i++) {
+    for (int i = env->n_options + 1;
+         i <= env->n_options + env->n_variables; i++) {
         get_data(i, args, env);
     }
 }
-

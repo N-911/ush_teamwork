@@ -38,7 +38,8 @@ void mx_print_prompt(t_shell *m_s) {
         printf("%s", MX_BOLD_MAGENTA);
     printf ("%s", m_s->prompt);
     if (!m_s->prompt_status && m_s->git)
-        printf(" %sgit:(%s%s%s)",MX_BOLD_BLUE, MX_RED, m_s->git, MX_BOLD_BLUE);
+        printf(" %sgit:(%s%s%s)", MX_BOLD_BLUE, MX_RED,
+               m_s->git, MX_BOLD_BLUE);
     if (!m_s->prompt_status)
         printf("%s", MX_RESET);
     printf ("> ");

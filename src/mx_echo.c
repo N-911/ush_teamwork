@@ -45,19 +45,19 @@ static void edit_argv(int n_options, t_process *p) {
 }
 
 static void fill_options(char **args, echo_t *echo_options, int n_options) {
-	for (int i = n_options; i >= 0; i--) {
-		for (int j = mx_strlen(args[i]); j >= 1; j--) {
-			if (args[i][j] == 'n') {
-				echo_options->n = 1;
-			}
-			else if (args[i][j] == 'e') {
-				if (!echo_options->E)
-					echo_options->e = 1;
-			}
-			else if (args[i][j] == 'E') {
-				if (!echo_options->e)
-					echo_options->E = 1;
-			}
-		}
-	}
+    for (int i = n_options; i >= 0; i--) {
+        for (int j = mx_strlen(args[i]); j >= 1; j--) {
+            if (args[i][j] == 'n') {
+                echo_options->n = 1;
+            }
+            else if (args[i][j] == 'e') {
+                if (!echo_options->E)
+                    echo_options->e = 1;
+            }
+            else if (args[i][j] == 'E') {
+                if (!echo_options->e)
+                    echo_options->E = 1;
+            }
+        }
+    }
 }

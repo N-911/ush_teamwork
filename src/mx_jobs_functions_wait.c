@@ -77,7 +77,6 @@ void mx_set_process_status(t_shell *m_s, int pid, int status) {
                     if (m_s->jobs_stack->prev_last && m_s->jobs_stack->last)
                         m_s->jobs_stack->prev_last = m_s->jobs_stack->last;
                     m_s->jobs_stack->last = job_id;
-
                 }
                 break;
             }

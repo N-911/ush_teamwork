@@ -18,7 +18,7 @@ static void add_char(int *position, char *line, int keycode, t_shell *m_s) {
     (*position)++;
 }
 
-static void print_command(t_shell *m_s, char *line, int position, int max_len) {
+static void print_command(t_shell *m_s, char *line, int position, int max_len){
     for (int i = position; i <= mx_strlen(line); i++) {
         printf (" ");
     }
@@ -60,4 +60,3 @@ char *mx_get_keys(t_shell *m_s) {
     }
     return line;
 }
-

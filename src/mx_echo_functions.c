@@ -18,13 +18,13 @@ static char *replace_substr(char *str,  char *sub, char *replace) {
     char *res = str;
     char *buff1 = mx_strnew(mx_strlen(str));
     char *buff2 = mx_strnew(mx_strlen(str));
+
     while(mx_strstr(res,sub) != NULL) {
         int i = mx_get_substr_index(res,sub);
         mx_strncpy(buff1, res, i);
         for(int j = 0; j < i + mx_strlen(sub); j++)
             res++;
         mx_strcpy(buff2,res);
-        //free(res);
         res = get_result(buff1, buff2, replace);
     }
     free(buff1);
@@ -67,7 +67,6 @@ static char *replace_slash(char *str, echo_t *echo_options) {
         len++;
     }
     res[len] = '\0';
-
     return res;
 }
 

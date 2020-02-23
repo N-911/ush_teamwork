@@ -11,7 +11,7 @@ static int count_args(char **args, int n_options) {
 
 static void print_export(t_export *export) {
     t_export *head = export;
-        
+
     while (head != NULL) {
         if (strncmp(head->name,"BASH_FUNC_",10) != 0) {
             printf("export %s", head->name);
@@ -39,12 +39,13 @@ int mx_export(t_shell *m_s, t_process *p) {
 
     if (n_options <  0)
         return 1;
-    if (n_args == 1) 
+    if (n_args == 1)
         print_export(m_s->exported);
     else {
         i = n_options + 1;
         while (p->argv[i] != NULL) {
-            mx_export_or_error(p->argv[i], m_s->exported, m_s->variables, &exit_code);
+            mx_export_or_error(p->argv[i], m_s->exported,
+                               m_s->variables, &exit_code);
             i++;
         }
     }

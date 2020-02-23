@@ -401,7 +401,7 @@ t_shell *mx_init_shell(int argc, char **argv);
 
 //      TERMINAL
 void mx_termios_save(t_shell *m_s);
-void termios_restore(t_shell *m_s);
+void mx_termios_restore(t_shell *m_s);
 
 //      LOOP
 t_job *mx_create_job(t_shell *m_s, t_ast *list);  // create one job from ast

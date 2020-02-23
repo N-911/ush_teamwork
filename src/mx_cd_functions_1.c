@@ -1,12 +1,13 @@
 #include "ush.h"
 
-static void manage_env(char *dir, t_shell *m_s,  cd_t cd_options, int *exit_code) {
+static void manage_env(char *dir, t_shell *m_s,  cd_t cd_options,
+                       int *exit_code) {
     char *link = malloc(1024);
 
     readlink(dir, link, 1024);
     if (cd_options.P == 1 && strcmp(link, "") != 0) {
         free(dir);
-    dir = getcwd(NULL, 1024);
+        dir = getcwd(NULL, 1024);
     }
     free(link);
     setenv("OLDPWD", m_s->pwd, 1);
@@ -43,10 +44,10 @@ static int check_path(char *point, cd_t cd_options) {
     return flag;
 }
 
-void mx_change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code) {
+void mx_change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code){
     char *dir = mx_normalization(point, m_s->pwd);
-    // printf("%s\n", dir);
     int flag = check_path(point, cd_options);
+
     if (!flag) {
         if (chdir(dir) != 0){
             print_error_cd(point);
@@ -55,7 +56,6 @@ void mx_change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code) {
         else
             manage_env(dir, m_s, cd_options, exit_code);
     }
-    //free(dir);
     free(m_s->git);
     m_s->git = mx_get_git_info();
 }

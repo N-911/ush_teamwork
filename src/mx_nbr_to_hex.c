@@ -1,24 +1,5 @@
 #include "ush.h"
 
-static char* math_hex(unsigned long nbr, int len);
-
-char *mx_nbr_to_hex(unsigned long nbr) {
-    unsigned long num = nbr;
-    int len = 0;
-    char *str = NULL;
-
-    if (nbr == 0) {
-        str = mx_strnew(2);
-        *str = '0';
-        return str;
-    }
-    while (num != 0) {
-        num = num / 16;
-        len++;
-    }
-    return math_hex(nbr, len);
-}
-
 static char* math_hex(unsigned long nbr, int len) {
     int ost = 0;
     char *str = NULL;
@@ -35,4 +16,21 @@ static char* math_hex(unsigned long nbr, int len) {
     }
     mx_str_reverse(str);
     return str;
+}
+
+char *mx_nbr_to_hex(unsigned long nbr) {
+    unsigned long num = nbr;
+    int len = 0;
+    char *str = NULL;
+
+    if (nbr == 0) {
+        str = mx_strnew(2);
+        *str = '0';
+        return str;
+    }
+    while (num != 0) {
+        num = num / 16;
+        len++;
+    }
+    return math_hex(nbr, len);
 }
