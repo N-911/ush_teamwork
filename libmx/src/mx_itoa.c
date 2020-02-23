@@ -1,6 +1,10 @@
 #include "libmx.h"
 
-static char *check_zero(char *str_num);
+static char *check_zero(char *str_num) {
+    str_num = mx_strnew(1);
+    str_num[0] = '0';
+    return str_num;
+}
 
 char *mx_itoa(int number) {
     char *str_num = NULL;
@@ -21,12 +25,6 @@ char *mx_itoa(int number) {
         str_num [size - 1] = l % 10  + '0';
         l /= 10;
     }
-    return str_num;
-}
-
-static char *check_zero(char *str_num) {
-    str_num = mx_strnew(1);
-    str_num[0] = '0';
     return str_num;
 }
 
