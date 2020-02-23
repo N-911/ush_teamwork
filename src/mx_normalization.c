@@ -32,7 +32,7 @@ static char **get_arr(char *dir) {
 static char *fill_dir(char **arr) {
     int i = 0;
     char *dir = NULL;
-    
+
     while (arr[i] != NULL) {
         if (strcmp(arr[i], "") != 0) {
             char *tmp = mx_strjoin(dir, "/");
@@ -75,6 +75,5 @@ char *mx_normalization (char *point, char *pwd) {
     char *str = NULL;
 
     str = get_dir(point, pwd);
-    // printf("%s\n", str);
     return str;
 }

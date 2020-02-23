@@ -1,6 +1,6 @@
 #include "ush.h"
 /*
- * Count separators of first lewel (;, && , ||)
+ * Count separators of first lewel (;, && , ||).
  */
 static int count_sep_first_lwl(t_ast *q) {
     int i = 1;
@@ -27,7 +27,7 @@ t_ast *push_redirections(t_ast **q, t_ast **ast) {
     return *q;
 }
 /*
- * Create ast (array of lists) from parsed_line (list)
+ * Create ast (array of lists) from parsed_line (list).
  */
 t_ast **mx_ast_parse(t_ast *parsed_line) {
     t_ast *q = parsed_line;

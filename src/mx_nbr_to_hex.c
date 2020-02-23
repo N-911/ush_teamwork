@@ -46,4 +46,3 @@ char *mx_nbr_to_hex(unsigned long nbr) {
     }
     return math_hex(nbr, len);
 }
-

@@ -44,8 +44,7 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
     return p;
 }
 
-static void push_process_back(t_process **process, t_shell *m_s,
-                              t_ast *list) {
+static void push_process_back(t_process **process, t_shell *m_s, t_ast *list) {
     t_process *tmp;
     t_process *p;
 

@@ -42,7 +42,6 @@ static void launch_help (t_shell *m_s, t_job *job, int job_id, int status) {
             mx_remove_job(m_s, job_id);
         signal(SIGTTOU, MX_SIG_IGN);
         tcsetpgrp(STDIN_FILENO, getpid());
-//        signal(SIGTTOU, SIG_DFL);
         tcgetattr(shell_terminal, &job->tmodes);
         tcsetattr(shell_terminal, TCSADRAIN, &m_s->tmodes);
     }
@@ -91,7 +90,6 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         status = execute_job(m_s, job, job_id);
     else
         mx_remove_job(m_s, job_id);
-// m_s->exit_code == 0 ? m_s->exit_code = status : 0;
     char *exit_status = mx_itoa(m_s->exit_code);
     mx_set_variable(m_s->variables, "?", exit_status);
     free(exit_status);

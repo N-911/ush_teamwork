@@ -40,7 +40,8 @@ static void export_value(t_export *export, char *name, char *value) {
     }
 }
 
-static void get_data (char *arg, char **name, char **value, t_export *variables) {
+static void get_data (char *arg, char **name, char **value,
+                      t_export *variables) {
     int idx = mx_get_char_index(arg,'=');
 
     if (idx < 0)
@@ -62,7 +63,7 @@ static void get_data (char *arg, char **name, char **value, t_export *variables)
 }
 
 void mx_export_or_error(char *arg, t_export *export,
-	t_export *variables, int *exit_code) {
+    t_export *variables, int *exit_code) {
     int flag = check_identifier(arg);
 
     if (flag)
@@ -70,7 +71,7 @@ void mx_export_or_error(char *arg, t_export *export,
     else {
         char *name = NULL;
         char *value = NULL;
-                
+
         get_data(arg, &name, &value, variables);
         if (value != NULL)
             setenv(name, value, 1);
@@ -80,7 +81,3 @@ void mx_export_or_error(char *arg, t_export *export,
         *exit_code = 0;
     }
 }
-
-
-
-

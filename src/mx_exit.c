@@ -1,7 +1,6 @@
 #include "ush.h"
 
-static void get_exit_code(t_process *p, int *exit_code, 
-    int *flag, int *start) {
+static void get_exit_code(t_process *p, int *exit_code, int *flag, int *start){
     if (p->argv[1][0] == '+' || p->argv[1][0] == '-') {
         if (p->argv[1][1] == '\0')
             (*flag)++;
@@ -30,7 +29,7 @@ static void real_exit(t_shell *m_s, t_process *p) {
         get_exit_code(p, &exit_code, &flag, &start);
     }
     mx_clear_all(m_s);
-    system("leaks -q ush");
+    // system("leaks -q ush");
     exit(exit_code);
 }
 
@@ -45,5 +44,4 @@ int mx_exit(t_shell *m_s, t_process *p) {
         real_exit(m_s, p);
     }
     return 1;
-
 }

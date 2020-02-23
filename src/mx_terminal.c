@@ -17,7 +17,7 @@ void mx_termios_save(t_shell *m_s) {
     m_s->custom_terminal = TRUE;
 }
 
-void termios_restore(t_shell *m_s) {
+void mx_termios_restore(t_shell *m_s) {
     if (m_s->custom_terminal == TRUE)
         tcsetattr(STDIN_FILENO, TCSANOW, &m_s->t_original);
 }
