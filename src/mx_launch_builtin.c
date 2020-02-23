@@ -12,7 +12,7 @@ static void buildin_fork(t_shell *m_s, int job_id, int (*builtin_functions[])
     else if (child_pid == 0) {
         if (isatty(STDIN_FILENO))
             mx_pgid(m_s, job_id, child_pid);
-        mx_dup_fd(p);  // dup to STD 0 1 2
+        mx_dup_fd(p);
         p->exit_code = builtin_functions[p->type](m_s, p);
         exit(p->exit_code);
     }
@@ -54,7 +54,7 @@ int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
          &mx_cd, &mx_pwd, &mx_which, &mx_exit, &mx_set, NULL};
 
     p->status = MX_STATUS_RUNNING;
-    if (p->pipe || !p->foregrd) {  // if pipe or in foregrd -> fork
+    if (p->pipe || !p->foregrd) {  // If pipe or in foregrd -> fork
         buildin_fork(m_s, job_id, builtin_functions, p);
     }
     else

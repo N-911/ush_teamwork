@@ -38,7 +38,7 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
             p->output_path = mx_strdup(tmp->args[0]);
     }
     if ((index = mx_builtin_commands_idex(m_s, p->argv[0])) == -1)
-        p->type = -1;      //COMMAND_BUILTIN = index;   default = -1
+        p->type = -1;
     else
         p->type = index;
     return p;

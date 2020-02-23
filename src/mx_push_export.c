@@ -8,16 +8,16 @@ void mx_push_export(t_export **list, void *name, void *value) {
 
     if (!list)
         return;
-    tmp = create_node(name, value); // create new
+    tmp = create_node(name, value);  // Create new
     if (!tmp)
         return;
     p = *list;
-    if (*list == NULL) { // find Null-node
+    if (*list == NULL) {  // Find Null-node
         *list = tmp;
         return;
     }
     else {
-        while (p->next != NULL) // find Null-node
+        while (p->next != NULL)  // Find Null-node
             p = p->next;
         p->next = tmp;
     }
@@ -34,4 +34,3 @@ static t_export *create_node(void *name, void *value) {
     node->next = NULL;
     return node;
 }
-

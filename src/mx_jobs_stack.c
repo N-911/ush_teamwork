@@ -3,7 +3,7 @@
 void mx_init_jobs_stack(t_shell *m_s) {
     t_stack *st = malloc(sizeof(t_stack));
 
-    st->top = -1;  // index of top element -> last_job
+    st->top = -1;
     st->last = -1;
     st->prev_last = -1;
     st->size = MX_JOBS_NUMBER;
