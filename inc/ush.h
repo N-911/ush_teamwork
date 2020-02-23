@@ -462,7 +462,7 @@ int mx_get_pgid_by_job_id(t_shell *m_s, int job_id);
 int mx_job_completed(t_shell *m_s, int job_id);
 
 void mx_print_pid_process_in_job(t_shell *m_s, int id);  // if foreg execution
-int mx_print_job_status(t_shell *m_s, int job_id, int flag);
+void mx_print_job_status(t_shell *m_s, int job_id, int flag);
 void mx_print_args_in_line(char **res, const char *delim);
 
 void mx_check_jobs(t_shell *m_s);  //waitpid any process
