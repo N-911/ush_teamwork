@@ -1,6 +1,6 @@
 #include "ush.h"
 /*
- * Get substitution.           CHECK IF GETS CORRECT STRING
+ * Get substitution.
  */
 static char *get_subst(char *s, int *len) {
     char *subst = NULL;
@@ -36,7 +36,6 @@ static char *expantion(char *s, int pos) {
         mx_strdel(&res);
         mx_strdel(&s);
         return NULL;
-        // res = mx_strjoin_free(res, subst);
     }
     if (s[pos + len + 1])
         res = mx_strjoin_free(res, &s[pos + len + 1]);
@@ -44,7 +43,7 @@ static char *expantion(char *s, int pos) {
     return res;
 }
 /*
- *  Command substitutiont.
+ * Command substitutiont.
  */
 char *mx_subst_command(char *s) {
     char *res = s;

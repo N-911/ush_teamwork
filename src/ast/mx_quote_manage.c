@@ -19,7 +19,7 @@ static void mx_get_char_auditor(char *s, int *ii, char *q) {
     *ii = i;
 }
 /*
- * Get char index outside of the quote
+ * Get char index outside of the quote.
  * search everywhere except ' ', " ", ` `, $( ).
  */
 int mx_get_char_index_quote(char *s, char *c, char *q) {  // q = "\"\'`$"
@@ -66,7 +66,7 @@ static void mx_strtrim_quote_auditor(char *s, char *tmp, int *ii, int *jj) {
     *jj = j;
 }
 /*
- * Trim quote characters
+ * Trim quote characters.
  */
 void mx_strtrim_quote(char **str) {
     char *tmp = NULL;

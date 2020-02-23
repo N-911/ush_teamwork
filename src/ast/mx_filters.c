@@ -1,6 +1,6 @@
 #include "ush.h"
 /*
- * check if result of subst is correct (NULL or '\0')
+ * Check if result of subst is correct (NULL or '\0').
  */
 static bool check_subsut_result(char **res, char **args, int *i) {
     if (!res[*i]) {
@@ -16,15 +16,15 @@ static bool check_subsut_result(char **res, char **args, int *i) {
 }
 
 /*
- * Parse by USH_TOK_DELIM, subst ~, $, trim'' "" , \
+ * Parse by USH_TOK_DELIM, subst ~, $, trim'' "" , \.
  *
- * need scans for word splitting results of parameter expansion
+ * Need scans for word splitting results of parameter expansion
  * and command substitution, that did not double quoted.
  *
- * reterns:
- * subst_tilde      result or res[i] if bad subst
- * substr_dollar    result, '\0' or NULL if bad subst
- * subst_command    '\0' or NULL if bad subst
+ * Reterns:
+ * - subst_tilde      result or res[i] if bad subst;
+ * - substr_dollar    result, '\0' or NULL if bad subst;
+ * - subst_command    '\0' or NULL if bad subst.
  */
 char **mx_filters(char *arg, t_export *variables) {
     int i;

@@ -1,6 +1,6 @@
 #include "ush.h"
 /*
- * Check_quote split by auditor ))))
+ * Check_quote split by auditor.
  */
 static char check_quote_auditor(char *s, int *i) {
     int j = *i;
@@ -22,7 +22,7 @@ static char check_quote_auditor(char *s, int *i) {
     return tmp;
 }
 /*
- *  Check if '', "", ``, () even
+ * Check if '', "", ``, () even.
  */
 static bool check_quote(char *s) {
     char tmp;
@@ -67,7 +67,7 @@ static bool check_parse_auditor(char *line, int i) {
     return false;
 }
 /*
- * Check operator at the end (in there no cmd after operator) .\n ..\n
+ * Check operator at the end (in there no cmd after operator) .\n ..\n.
  */
 static bool check_parse(char *line) {
     int i = 0;

@@ -20,7 +20,7 @@ void mx_ast_clear_list(t_ast **list) {
     *list = NULL;
 }
 /*
- *  Clear array of lists (Abstract Syntax Tree).
+ * Clear array of lists (Abstract Syntax Tree).
  */
 void mx_ast_clear_all(t_ast ***list) {
     t_ast **q = *list;
