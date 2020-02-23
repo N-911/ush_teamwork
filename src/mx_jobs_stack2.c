@@ -1,6 +1,5 @@
 #include "ush.h"
 
-// temp function only for debug
 void mx_print_stack (t_shell *m_s) {
     int job_id;
 
@@ -24,8 +23,8 @@ void mx_set_last_job(t_shell *m_s) {
     }
     if (last == -1) {
         for (int j = size; j >= 0; j--) {
-            if ((mx_get_job_status(m_s, m_s->jobs_stack->stack[j], 0) > 0) &&
-                m_s->jobs[m_s->jobs_stack->stack[j]]->foregrd == 0) {
+            if ((mx_get_job_status(m_s, m_s->jobs_stack->stack[j], 0) > 0)
+                && (m_s->jobs[m_s->jobs_stack->stack[j]]->foregrd == 0)) {
                 last = m_s->jobs_stack->stack[j];
                 break;
             }

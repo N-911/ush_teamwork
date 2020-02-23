@@ -68,9 +68,9 @@ static char *exp_inside_dblq(char *s, t_export *var, int *i, int *k) {
 
     (*i) += *k + 1;
     res = mx_strndup(s, *i);
-    j = mx_get_char_index_quote(&s[*i], "\"", "`");
+    j = mx_get_char_index_quote(&s[*i], "\"", "`$");
     tmp = mx_strndup(&s[*i], j);
-    while (tmp && (pos = mx_get_char_index_quote(tmp, "$", "`")) >= 0)
+    while (tmp && (pos = mx_get_char_index_quote(tmp, "$", "`$")) >= 0)
         tmp = expantion(tmp, var, pos);
     res = mx_strjoin_free(res, tmp);
     res = mx_strjoin_free(res, &s[*i + j]);

@@ -1,6 +1,5 @@
 #include "ush.h"
 
-// function writes number jobs in stack FIFO
 void mx_init_jobs_stack(t_shell *m_s) {
     t_stack *st = malloc(sizeof(t_stack));
 
