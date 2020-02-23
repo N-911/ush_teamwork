@@ -36,3 +36,13 @@ void mx_print_error(char *command, char *error) {
     else
         perror(command);
 }
+
+char *mx_get_shlvl() {
+    char *shlvl = NULL;
+
+    shlvl = getenv("SHLVL");
+    int lvl = atoi(shlvl);
+    lvl++;
+    shlvl = mx_itoa(lvl);
+    return shlvl;
+}

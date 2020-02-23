@@ -434,9 +434,6 @@ int mx_set(t_shell *m_s, t_process *p);
 
 //      SIGNALS
 void mx_sig_h(int signal);
-void mx_sig_handler_exit(int sig);
-void sigchld_handler(int signum);
-void mx_sig_handler(int signal);
 
 //      JOBS
 int mx_get_next_job_id(t_shell *m_s);
@@ -521,5 +518,6 @@ void mx_env_err(int *flag, int *exit_code, char option);
 void mx_print_env_error(char option, char *error);
 void mx_clear_data(char *name, char *value);
 void mx_print_error(char *command, char *error);
+char *mx_get_shlvl();
 
 #endif
