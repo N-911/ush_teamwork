@@ -18,7 +18,7 @@ int mx_job_completed(t_shell *m_s, int job_id) {
     if (job_id > MX_JOBS_NUMBER || m_s->jobs[job_id] == NULL)
         return -1;
     for (p = m_s->jobs[job_id]->first_pr; p != NULL; p = p->next) {
-        if (p->status != MX_STATUS_DONE && p->status != MX_STATUS_TERMINATED) {
+        if (p->status != MX_STATUS_DONE && p->status != MX_STAT_TERMINATED) {
             return 0;
         }
     }

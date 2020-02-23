@@ -26,3 +26,13 @@ void mx_sheck_exit(t_shell *m_s, t_process *p) {
     if (m_s->exit_flag == 1 && !(p->type == 10))
         m_s->exit_flag = 0;
 }
+
+void mx_print_error(char *command, char *error) {
+    mx_printerr("ush: ");
+    if (error) {
+        mx_printerr(command);
+        mx_printerr(error);
+    }
+    else
+        perror(command);
+}

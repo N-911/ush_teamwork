@@ -1,28 +1,7 @@
 #include "ush.h"
 
-static void buildin_std_exec(t_shell *m_s, int (*builtin_functions[])
-                             (t_shell *m_s, t_process *p), t_process *p);
-
 static void buildin_fork(t_shell *m_s, int job_id, int (*builtin_functions[])
-                         (t_shell *m_s, t_process *p), t_process *p);
-
-int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
-    int (*builtin_functions[])(t_shell *m_s, t_process *p) =
-         {&mx_env, &mx_export, &mx_unset, &mx_echo, &mx_jobs, &mx_fg, &mx_bg,
-         &mx_cd, &mx_pwd, &mx_which, &mx_exit, &mx_set, NULL};
-
-    p->status = MX_STATUS_RUNNING;
-    if (p->pipe || !p->foregrd) {  // if pipe or in foregrd -> fork
-        buildin_fork(m_s, job_id, builtin_functions, p);
-    }
-    else
-        buildin_std_exec(m_s, builtin_functions, p);
-    return p->exit_code;
-}
-
-static void buildin_fork(t_shell *m_s, int job_id, int (*builtin_functions[])
-        (t_shell *m_s, t_process *p), t_process *p) {
-//    int shell_is_interactive = isatty(STDIN_FILENO);
+                         (t_shell *m_s, t_process *p), t_process *p) {
     pid_t child_pid = fork();
 
     p->pid = child_pid;
@@ -33,7 +12,7 @@ static void buildin_fork(t_shell *m_s, int job_id, int (*builtin_functions[])
     else if (child_pid == 0) {
         if (isatty(STDIN_FILENO))
             mx_pgid(m_s, job_id, child_pid);
-        mx_dup_fd(p); // dup to STD 0 1 2
+        mx_dup_fd(p);  // dup to STD 0 1 2
         p->exit_code = builtin_functions[p->type](m_s, p);
         exit(p->exit_code);
     }
@@ -69,6 +48,19 @@ static void buildin_std_exec(t_shell *m_s, int (*builtin_functions[])
     }
 }
 
+int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
+    int (*builtin_functions[])(t_shell *m_s, t_process *p) =
+         {&mx_env, &mx_export, &mx_unset, &mx_echo, &mx_jobs, &mx_fg, &mx_bg,
+         &mx_cd, &mx_pwd, &mx_which, &mx_exit, &mx_set, NULL};
+
+    p->status = MX_STATUS_RUNNING;
+    if (p->pipe || !p->foregrd) {  // if pipe or in foregrd -> fork
+        buildin_fork(m_s, job_id, builtin_functions, p);
+    }
+    else
+        buildin_std_exec(m_s, builtin_functions, p);
+    return p->exit_code;
+}
 
 void mx_pgid(t_shell *m_s, int job_id, int child_pid) {
     if (m_s->jobs[job_id]->pgid == 0)

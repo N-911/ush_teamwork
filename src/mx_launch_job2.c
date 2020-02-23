@@ -20,14 +20,14 @@ int mx_set_redirec(t_shell  *m_s, t_job * job, t_process *p, int job_id) {
 
     if (p->input_path) {
         mx_set_redir_input(m_s, job, p, job_id);
-        //mx_set_redir_inp_d(job, p);
+//        mx_set_redir_inp_d(job, p);
     }
     mx_set_redir_output(m_s, job, p);
     return m_s->redir;
 }
 
 void mx_set_redir_input(t_shell *m_s, t_job *job, t_process *p, int job_id) {
-    if (p->redir_delim == R_INPUT) {  // <
+    if (p->redir_delim == R_INPUT) {
         job->infile = open(p->input_path, O_RDONLY, 0666);
         if (job->infile < 0) {
             mx_printerr("ush :");
@@ -35,9 +35,9 @@ void mx_set_redir_input(t_shell *m_s, t_job *job, t_process *p, int job_id) {
             mx_set_variable(m_s->variables, "?", "1");
             job_id--;
             job_id++;
-            //mx_remove_job(m_s, job_id);
+//            mx_remove_job(m_s, job_id);
             m_s->redir = 1;
-            job->exit_code = 1; // ?
+            job->exit_code = 1;
 //                continue;
         }
     }
@@ -65,7 +65,6 @@ void mx_set_redir_inp_d(t_job *job, t_process *p) {
     }
 }
 
-
 void mx_set_redir_output(t_shell *m_s, t_job * job, t_process *p) {
     int flags;
 
@@ -84,4 +83,3 @@ void mx_set_redir_output(t_shell *m_s, t_job * job, t_process *p) {
         lseek(job->outfile, 0, SEEK_END);
     }
 }
-

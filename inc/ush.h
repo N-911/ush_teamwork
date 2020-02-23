@@ -42,10 +42,10 @@
 #define MX_STATUS_DONE 1
 #define MX_STATUS_SUSPENDED 2
 #define MX_STATUS_CONTINUED 3
-#define MX_STATUS_TERMINATED 4
+#define MX_STAT_TERMINATED 4
 #define MX_FILTER_ALL 0
 #define MX_FILTER_DONE 1
-#define MX_FILTER_IN_PROGRESS 2
+#define MX_FILT_IN_PROGR 2
 #define MX_FOREGROUND 1
 #define MX_BACKGROUND 0
 #define MAX_LEN 10
@@ -53,20 +53,20 @@
 // WAIT
 #define MX_WNOHANG         0x00000001
 #define MX_WUNTRACED       0x00000002
-#define MX_W_INT(w)       (*(int *)&(w))  /* convert union wait to int */
+#define MX_W_INT(w)       (*(int *)&(w))  //convert union wait to int
 #define MX_WSTAT(x)     (MX_W_INT(x) & 0177)
-#define MX_WSTOPPED       0177            /* _WSTATUS if process is stopped */
+#define MX_WSTOPPED       0177  //_WSTATUS if process is stopped
 #define MX_WSTOPSIG(x)     (MX_W_INT(x) >> 8)
 #define MX_WIFCONT(x) (MX_WSTAT(x) == MX_WSTOPPED && MX_WSTOPSIG(x) == 0x13)
-#define MX_WIFSTOPP(x)   (MX_WSTAT(x) == MX_WSTOPPED && MX_WSTOPSIG(x) != 0x13)
+#define MX_WIFSTOPP(x)  (MX_WSTAT(x) == MX_WSTOPPED && MX_WSTOPSIG(x) != 0x13)
 #define MX_WIFEXITED(x)    (MX_WSTAT(x) == 0)
 #define MX_WIFSIGNALED(x)  (MX_WSTAT(x) != MX_WSTOPPED && MX_WSTAT(x) != 0)
 #define MX_WTERMSIG(x)     (MX_WSTAT(x))
 #define MX_W_EXITCODE(ret, sig)    ((ret) << 8 | (sig))
 #define MX_W_STOPCODE(sig)         ((sig) << 8 | MX_WSTOPPED)
 #define MX_WEXITED         0x00000004  // [XSI] Processes which have exitted
-#define MX_WCONTINUED      0x00000010  //[XSI] Any child stopped then continued
-#define MX_WNOWAIT         0x00000020  // [XSI] Leave process returned waitable
+#define MX_WCONTINUED      0x00000010  // [XSI] Any child stopped then continu
+#define MX_WNOWAIT         0x00000020  // [XSI] Leave process returned waitabl
 #define MX_SIG_DFL         (void (*)(int))0
 #define MX_SIG_IGN         (void (*)(int))1
 #define MX_SIG_HOLD        (void (*)(int))5
@@ -289,10 +289,10 @@ typedef struct s_job {
 
 typedef struct s_shell {
     int     argc;
-    char    **argv;  // check usage, becouse the same in process    ??????
+    char    **argv;  // check usage, becouse the same in process
     char	**envp;  //not used
     int		exit_code;  //return if exit
-    t_job   *jobs[MX_JOBS_NUMBER];     //arr jobs
+    t_job   *jobs[MX_JOBS_NUMBER];  // arr jobs
     t_stack *jobs_stack;
     int max_number_job;  // number of added jobs + 1
     char **builtin_list;  // buildin functions
@@ -400,7 +400,6 @@ bool mx_check_allocation_error(const void *c);
 t_shell *mx_init_shell(int argc, char **argv);
 
 //      TERMINAL
-void mx_terminal_init(t_shell *m_s);
 void mx_termios_save(t_shell *m_s);
 void termios_restore(t_shell *m_s);
 
@@ -474,7 +473,7 @@ int mx_wait_job(t_shell *m_s, int id);  //waitpid process in job group
 void mx_destroy_jobs(t_shell *m_s, int id);  //free job memory
 
 //      OTHER
-void mx_error_fg_bg(char *arg0, char *arg1, char *arg2, char *arg3);
+void mx_err_j(char *arg0, char *arg1, char *arg2, char *arg3);
 int mx_check_args(t_shell *m_s, t_process *p);  // use in fg and bg
 
 void mx_printstr(const char *s);
@@ -521,5 +520,6 @@ int mx_add_option(char **args, int *i, int *n_options, t_env_builtin *env);
 void mx_env_err(int *flag, int *exit_code, char option);
 void mx_print_env_error(char option, char *error);
 void mx_clear_data(char *name, char *value);
+void mx_print_error(char *command, char *error);
 
 #endif
