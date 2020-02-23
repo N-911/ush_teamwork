@@ -18,9 +18,9 @@ static void set_shell_grp(t_shell *m_s) {
     if (shell_is_interactive) {
         while (tcgetpgrp(shell_terminal) != (shell_pgid = getpgrp()))
             kill(-shell_pgid, SIGTTIN);
-        signal(SIGINT, MX_SIG_IGN);  // Control-C
-        signal(SIGQUIT, MX_SIG_IGN);  // Control-\
-        signal(SIGTSTP, MX_SIG_IGN);  // Control-Z
+        signal(SIGINT, MX_SIG_IGN);
+        signal(SIGQUIT, MX_SIG_IGN);
+        signal(SIGTSTP, MX_SIG_IGN);
         signal(SIGTTIN, MX_SIG_IGN);
         signal(SIGTTOU, MX_SIG_IGN);
         shell_grp_help(m_s, shell_pgid);
