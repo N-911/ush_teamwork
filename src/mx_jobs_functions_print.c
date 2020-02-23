@@ -1,15 +1,17 @@
 #include "ush.h"
 
-static void print_spaces(int number);
+static void print_spaces(int number) {
+    for (int i = 0; i < number; i++) {
+        mx_printchar(' ');
+    }
+}
 
-int mx_print_job_status(t_shell *m_s, int job_id, int flag) {
+void mx_print_job_status(t_shell *m_s, int job_id, int flag) {
     t_process *p;
     int len;
-    const char* status[] = { "running", "done", "suspended",
-                             "continued", "terminated" };
+    const char* status[] = {"running", "done", "suspended",
+                             "continued", "terminated"};
 
-    if (job_id > MX_JOBS_NUMBER || m_s->jobs[job_id] == NULL)
-        return -1;
     printf("[%d] ", job_id);
     if (m_s->jobs_stack->last == job_id)
         printf("%2c ", 43);  // print +
@@ -25,10 +27,8 @@ int mx_print_job_status(t_shell *m_s, int job_id, int flag) {
         mx_print_args_in_line(p->argv, " ");
         (p->next != NULL) ? mx_printstr(" |\n       ") : mx_printstr("\n");
     }
-    return 0;
 }
 
-// output example: [1] 14917    [1] 14917 14918
 void mx_print_pid_process_in_job(t_shell *m_s, int job_id) {
     t_process *p;
 
@@ -42,12 +42,6 @@ void mx_print_pid_process_in_job(t_shell *m_s, int job_id) {
             printf(" %d", p->pid);
         }
         printf("\n");
-    }
-}
-
-static void print_spaces(int number) {
-    for (int i = 0; i < number; i++) {
-        mx_printchar(' ');
     }
 }
 

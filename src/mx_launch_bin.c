@@ -1,43 +1,5 @@
 #include "ush.h"
 
-static char *check_path(char **arr, char *command);
-static char *get_error(char **name, char *command, int *status);
-static void print_error(char *command, char *error);
-static void child_proc(t_process *p, char *path, char **env, int *status) ;
-
-int mx_launch_bin(t_process *p, char *path, char **env) {
-    pid_t pid;
-    int status = 1;
-
-    pid = fork();
-    if (pid == 0) {
-        child_proc(p, path, env, &status);
-    }
-    else if (pid < 0)
-        perror("env "); 
-    else
-        waitpid(pid, &status, 0);
-    return status >> 8; // WEXITSTATUS(status);
-}
-
-static void child_proc(t_process *p, char *path, char **env, int *status) {
-    char *const *envp =  env;
-    char **arr = mx_strsplit(path, ':');
-    char *command = p->argv[0];
-    char *error;
-
-    path  = check_path(arr, command);
-    if(!path)
-        path = strdup(command);
-    error = get_error(&path, command, status);
-    if (execve(path, p->argv, envp) < 0) {
-        print_error(command, error);
-        _exit(*status);
-    }
-    exit(0);
-}
-
-
 static char *check_path(char **arr, char *command) {
     int i = 0;
     char *name = NULL;
@@ -55,7 +17,7 @@ static char *check_path(char **arr, char *command) {
                     break;
                 }
             }
-        closedir(dptr);
+            closedir(dptr);
         }
         i++;
     }
@@ -75,10 +37,10 @@ static char *get_error(char **name, char *command, int *status) {
         else {
             if (mx_get_type(buff) == 'd') {
                 error = strdup(": is a directory\n");
-                *status = 126; 
+                *status = 126;
             }
         }
-    } 
+    }
     return error;
 }
 
@@ -92,3 +54,42 @@ static void print_error(char *command, char *error) {
     else
         perror(command);
 }
+
+static void child_proc(t_process *p, char *path, char **env, int *status) {
+    char *const *envp =  env;
+    char **arr = mx_strsplit(path, ':');
+    char *command = p->argv[0];
+    char *error;
+
+    path  = check_path(arr, command);
+    if(!path)
+        path = strdup(command);
+    error = get_error(&path, command, status);
+    if (execve(path, p->argv, envp) < 0) {
+        print_error(command, error);
+        _exit(*status);
+    }
+    exit(0);
+}
+
+int mx_launch_bin(t_process *p, char *path, char **env) {
+    pid_t pid;
+    int status = 1;
+
+    pid = fork();
+    if (pid == 0) {
+        child_proc(p, path, env, &status);
+    }
+    else if (pid < 0)
+        perror("env "); 
+    else
+        waitpid(pid, &status, 0);
+    return status >> 8; // WEXITSTATUS(status);
+}
+
+
+
+
+
+
+
