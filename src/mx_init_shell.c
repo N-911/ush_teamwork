@@ -85,7 +85,6 @@ t_shell *mx_init_shell(int argc, char **argv) {
     m_s->prompt = strdup("u$h");
     m_s->prompt_status = 1;
     mx_set_variable(m_s->variables, "PROMPT", "u$h");
-    mx_set_variable(m_s->variables, "PROMPT1", "Auditor dlya lohov>");
     set_shell_grp(m_s);
     m_s->exit_code = -1;
     return m_s;
