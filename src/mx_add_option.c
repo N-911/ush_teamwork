@@ -8,7 +8,9 @@ static char *get_option(char c) {
     return option;
 }
 
-static int add_param(char *param, t_export **env_params, char option) {         
+static int add_param(char *param, t_export **env_params, char option) {
+    char *str_option = NULL;
+
     if (param) {
         if (option == 'u' && strchr(param, '=')) {
             mx_printerr("env: unsetenv ");
@@ -16,7 +18,7 @@ static int add_param(char *param, t_export **env_params, char option) {
             mx_printerr(": Invalid argument\n");
             return -1;
         }
-        char *str_option = get_option(option);
+        str_option = get_option(option);
         mx_push_export(env_params, str_option, param);
         free(param);
         free(str_option);
@@ -42,8 +44,7 @@ static char *get_parameter (char **args, int *i, int j, int *n_options) {
     return param;
 }
 
-int mx_add_option(char **args, int *i, int *n_options,
-    t_env_builtin *env) {
+int mx_add_option(char **args, int *i, int *n_options, t_env_builtin *env) {
     int exit_code = 0;
     char option;
     char *param = NULL;

@@ -70,8 +70,12 @@ static void mx_clear_list(t_list **list) {
 void mx_get_command_info(t_shell *m_s, char *command, int *flag,
                          which_t which_options) {
 	t_list *output= NULL;
-	char **arr = mx_strsplit(getenv("PATH"), ':');
+    char *path = getenv("PATH");
+    char **arr = NULL;
 
+    if (!path)
+        path = "";
+	arr = mx_strsplit(path, ':');
 	*flag = 0;
 	check_builtin(m_s->builtin_list, command, &output, flag);
     check_path(arr, command, &output, flag);

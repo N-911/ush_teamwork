@@ -60,7 +60,8 @@ static int count_args(char **args, int n_options) {
 
 int mx_cd(t_shell *m_s, t_process *p) {
 	cd_t cd_options = {0, 0, 0};
-	int n_options = mx_count_options(p->argv, "sLP", "cd", " [-s] [-L|-P] [dir]");
+	int n_options = mx_count_options(p->argv, "sLP", "cd", 
+									" [-s] [-L|-P] [dir]");
 	int n_args = count_args(p->argv, n_options);
 	char *point = NULL;
 	int exit_code = 1;
