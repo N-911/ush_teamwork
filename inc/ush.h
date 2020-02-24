@@ -253,6 +253,8 @@ typedef struct s_process {
     t_redir *redirect;  // New
     int c_input;        // Count_redir_input
     int c_output;       // Count_redir_output
+    int *r_infile;
+    int *r_outfile;
     pid_t pid;
     int exit_code;
     char *path;
@@ -500,5 +502,13 @@ void mx_clear_data(char *name, char *value);
 void mx_print_error(char *command, char *error);
 char *mx_get_shlvl();
 unsigned long mx_pow_rec(int n, int pow);
+void mx_print_fd(t_process *p);
+void mx_print_info(t_shell *m_s, t_job *job, t_process *p, int job_id);
+
+int mx_set_redirections(t_shell *m_s, t_job *job, t_process *p);
+
+void mx_count_redir(t_job *job, t_process *p);
+void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p);
+void mx_set_r_infile(t_shell *m_s, t_job  *job, t_process *p);
 
 #endif

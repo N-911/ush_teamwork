@@ -56,9 +56,12 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
 
     execute_job_env(job);
     for (p = m_s->jobs[job_id]->first_pr; p; p = p->next) {
+        mx_print_info(m_s, job, p, job_id);  ///****************
         mx_sheck_exit(m_s, p);
-        if ((mx_set_redirec(m_s, job, p, job_id)) != 0)
+
+        if ((mx_set_redirections(m_s, job, p)) != 0)
             continue;
+
         if (p->pipe) {
             if (pipe(mypipe) < 0) {
                 perror("pipe");
@@ -67,6 +70,9 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
             }
             job->outfile = mypipe[1];
         }
+
+        mx_print_fd(p);
+
         help_ex_job(m_s, job, p, job_id);
         job->infile = mypipe[0];
     }
