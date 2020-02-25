@@ -3,6 +3,7 @@
  * Read line from stdin except last char ('\n').
  */
 char *mx_ush_read_line(void) {
+	//write(STDOUT_FILENO, "u$h> ", 5);
     char *line = NULL;
     char *res = NULL;
     size_t bufsize = 0;  // have getline allocate a buffer for us

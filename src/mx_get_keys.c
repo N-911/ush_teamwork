@@ -3,7 +3,7 @@
 static void read_input(int *max_len, int *keycode, char *line) {
     *max_len = mx_strlen(line);
     *keycode = 0;
-    read(STDIN_FILENO, keycode, 4);
+    read(0, keycode, 4);
 }
 
 static void add_char(int *position, char *line, int keycode, t_shell *m_s) {

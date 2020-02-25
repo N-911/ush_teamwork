@@ -15,6 +15,7 @@ static struct termios mx_disable_term() {
     return savetty;
 }
 
+
 static void mx_enable_term(struct termios savetty) {
     printf("\n");
     tcsetattr (0, TCSAFLUSH, &savetty);
@@ -23,7 +24,9 @@ static void mx_enable_term(struct termios savetty) {
 char *mx_get_line(t_shell *m_s) {
     char *line;
     struct termios savetty;
-
+    int out = dup(1);
+    
+    dup2(2, 1);
     mx_edit_prompt(m_s);
     savetty = mx_disable_term();
     m_s->line_len = 1024;
@@ -39,5 +42,7 @@ char *mx_get_line(t_shell *m_s) {
     }
     m_s->history_index = m_s->history_count;
     mx_enable_term(savetty);
+    dup2(out, 1);
+    close(out);
     return line;
 }
