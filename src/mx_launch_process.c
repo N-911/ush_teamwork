@@ -58,18 +58,20 @@ static void child_wrk(t_shell *m_s, t_process *p, int job_id, int child_pid) {
     if (shell_is_interactive)
         mx_pgid(m_s, job_id, child_pid);
 
-    if (p->r_infile[0] != STDIN_FILENO) {
-        dup2(p->r_infile[0], STDIN_FILENO);
-//            if (p->r_infile[1])
-//                dup2(p->r_infile[0], p->r_infile[1]);
-        close(p->r_infile[0]);
+
+    for (int i = 0; i < p->c_input; i++) {
+        if (p->r_infile[i] != STDIN_FILENO)
+            dup2(p->r_infile[i], STDIN_FILENO);
     }
-    if (p->r_outfile[0] != STDOUT_FILENO) {
-        dup2(p->r_outfile[0], STDOUT_FILENO);
-        if (p->r_outfile[1])
-            dup2(p->r_outfile[0], p->r_outfile[1]);
-        close(p->r_outfile[0]);
-    }
+//    for (int i = 0; i < p->c_output; i++) {
+//        if (p->r_outfile[i] != STDOUT_FILENO) {
+//            dup2(p->r_outfile[i], STDOUT_FILENO);
+//
+//    }
+            if (p->r_outfile[1]) {
+                dup2(p->r_outfile[0], STDOUT_FILENO);
+                close(p->r_outfile[0]);
+            }
 
 //    mx_dup_fd(p);
 

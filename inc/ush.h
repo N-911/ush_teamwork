@@ -385,6 +385,9 @@ void mx_termios_restore(t_shell *m_s);
 t_job *mx_create_job(t_shell *m_s, t_ast *list);
 void mx_ush_loop(t_shell *m_s);
 void mx_launch_job(t_shell *m_s, t_job *job);
+int mx_execute_job(t_shell *m_s, t_job * job, int job_id);
+void mx_launch_help (t_shell *m_s, t_job *job, int job_id, int status);
+
 int mx_set_redirec(t_shell  *m_s, t_job * job, t_process *p, int job_id);
 void mx_set_redir_input(t_shell *m_s, t_job *job, t_process *p, int job_id);
 void mx_set_redir_inp_d(t_job *job, t_process *p);
@@ -510,5 +513,8 @@ int mx_set_redirections(t_shell *m_s, t_job *job, t_process *p);
 void mx_count_redir(t_job *job, t_process *p);
 void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p);
 void mx_set_r_infile(t_shell *m_s, t_job  *job, t_process *p);
+
+//void mx_read_from_pipe(int fd);
+void mx_read_from_pipe(int fd_pipe, int fd_0, int fd_1);
 
 #endif

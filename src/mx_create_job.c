@@ -14,6 +14,9 @@ static t_process *init_process(t_ast *list) {
     p->redirect = NULL;
     p->foregrd = 1;
     p->pipe = 0;
+    p->infile = STDIN_FILENO;
+    p->outfile = STDOUT_FILENO;
+    p->errfile = STDERR_FILENO;
     if (p->delim == FON)
         p->foregrd = 0;
     else if (p->delim == PIPE)
@@ -29,6 +32,9 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
 
     if (!(p = init_process(list)))
         return NULL;
+    if (list->left)
+        for (t_ast *q = list->left; q; q = q->next)
+            mx_redir_push_back(&p->redirect, q->args[0], q->type);
     if (list->left) {
         tmp = list->left;
         p->redir_delim = tmp->type;

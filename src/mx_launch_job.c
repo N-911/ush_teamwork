@@ -1,5 +1,6 @@
 #include "ush.h"
 
+
 static void execute_job_env(t_job *job) {
     extern char **environ;
 
@@ -9,39 +10,122 @@ static void execute_job_env(t_job *job) {
         job->path = "";
 }
 
-static void help_ex_job(t_shell *m_s, t_job *job, t_process *p, int job_id) {
-    p->r_infile[0] = job->infile;
-    p->r_outfile[0] = job->outfile;
-    p->errfile = job->errfile;
-    job->flag = 0;
+//static void help_ex_job(t_shell *m_s, t_job *job, t_process *p, int job_id) {
+////    p->r_infile[0] = job->infile;
+//    p->r_outfile[0] = job->outfile;
+//    p->errfile = job->errfile;
+//    job->flag = 0;
+//
+//    /////////
+//    mx_print_fd(p);
+//    if (!p->pipe)
+//        job->flag = mx_get_flag(p->argv);
+//    if (job->flag) {
+//        job->exit_code = mx_set_parametr(p->argv, m_s);
+//        mx_remove_job(m_s, job_id);
+//    }
+//    else if (p->type != -1)
+//        job->exit_code = mx_launch_builtin(m_s, p, job_id);
+//    else
+//        job->exit_code = mx_launch_process(m_s, p, job_id);
+//    if (job->infile != job->stdin)
+//        close(job->infile);
+//    if (job->outfile != job->stdout)
+//        close(job->outfile);
+//    m_s->exit_code = job->exit_code;
+//}
 
-    /////////
+void mx_launch_job(t_shell *m_s, t_job *job) {
+    setbuf(stdout, NULL);
+    int status;
+    int job_id;
 
-    mx_print_fd(p);
-    if (!p->pipe)
-        job->flag = mx_get_flag(p->argv);
-    if (job->flag) {
-        job->exit_code = mx_set_parametr(p->argv, m_s);
-        mx_remove_job(m_s, job_id);
-    }
-    else if (p->type != -1)
-        job->exit_code = mx_launch_builtin(m_s, p, job_id);
+    mx_check_jobs(m_s);
+    job_id = mx_insert_job(m_s, job);
+    if (!job->job_type)
+        status = mx_execute_job(m_s, job, job_id);
+    else if (job->job_type == AND && m_s->exit_code == 0)
+        status = mx_execute_job(m_s, job, job_id);
+    else if (job->job_type == OR && m_s->exit_code != 0)
+        status = mx_execute_job(m_s, job, job_id);
     else
-        job->exit_code = mx_launch_process(m_s, p, job_id);
-    if (job->infile != job->stdin)
-        close(job->infile);
-    if (job->outfile != job->stdout)
-        close(job->outfile);
-    m_s->exit_code = job->exit_code;
+        mx_remove_job(m_s, job_id);
+    char *exit_status = mx_itoa(m_s->exit_code);
+    mx_set_variable(m_s->variables, "?", exit_status);
+    free(exit_status);
 }
 
-static void launch_help (t_shell *m_s, t_job *job, int job_id, int status) {
+
+ int mx_execute_job(t_shell *m_s, t_job * job, int job_id) {
+    t_process *p;
+    int mypipe[2];
+
+    execute_job_env(job);
+    for (p = m_s->jobs[job_id]->first_pr; p; p = p->next) {
+
+        mx_print_info(m_s, job, p, job_id);  ///****************
+        mx_sheck_exit(m_s, p);
+        int a;  //////********
+        if ((a = mx_set_redirections(m_s, job, p)) != 0)
+            continue;
+        if (p->pipe) {
+            printf ("pipe\n");
+            if (pipe(mypipe) < 0) {
+                perror("pipe");
+                mx_remove_job(m_s, job_id);
+                exit(1);
+            }
+            job->outfile = mypipe[1];
+            p->r_outfile[0] = job->outfile;
+        }
+        //    p->r_infile[0] = job->infile;
+        job->flag = 0;
+
+        if (p->c_output > 1) {
+            printf ("redir to pipe\n");
+            if (pipe(mypipe) < 0) {
+                perror("pipe");
+                mx_remove_job(m_s, job_id);
+                exit(1);
+            }
+            job->outfile = mypipe[1];
+//            p->r_outfile[0] = job->outfile;
+        }
+
+        mx_print_fd(p);  /////////
+        if (!p->pipe)
+            job->flag = mx_get_flag(p->argv);
+        if (job->flag) {
+            job->exit_code = mx_set_parametr(p->argv, m_s);
+            mx_remove_job(m_s, job_id);
+        }
+        else if (p->type != -1)
+            job->exit_code = mx_launch_builtin(m_s, p, job_id);
+        else
+            job->exit_code = mx_launch_process(m_s, p, job_id);
+
+//        if (p->c_output > 1)
+            mx_read_from_pipe(job->outfile, p->r_outfile[0], p->r_outfile[1]);
+
+        if (job->infile != job->stdin)
+            close(job->infile);
+        if (job->outfile != job->stdout)
+            close(job->outfile);
+        m_s->exit_code = job->exit_code;
+        job->infile = mypipe[0];
+    }
+    mx_launch_help(m_s, job, job_id, job->exit_code);
+    return job->exit_code;
+}
+
+void mx_launch_help (t_shell *m_s, t_job *job, int job_id, int status) {
     int shell_terminal = STDIN_FILENO;
 
     if (job->foregrd) {
         tcsetpgrp(STDIN_FILENO, job->pgid);
         if (status == 0)
             status = mx_wait_job(m_s, job_id);
+
         if (mx_job_completed(m_s, job_id))
             mx_remove_job(m_s, job_id);
         signal(SIGTTOU, MX_SIG_IGN);
@@ -54,51 +138,21 @@ static void launch_help (t_shell *m_s, t_job *job, int job_id, int status) {
     m_s->exit_code = status;
 }
 
-static int execute_job(t_shell *m_s, t_job * job, int job_id) {
-    t_process *p;
-    int mypipe[2];
+void mx_read_from_pipe(int fd_pipe, int fd_0, int fd_1) {
+    int total = 0;
+    char buffer[248];
+    int size = 248;
+    int in = 0;
 
-    execute_job_env(job);
-    for (p = m_s->jobs[job_id]->first_pr; p; p = p->next) {
-        mx_print_info(m_s, job, p, job_id);  ///****************
-        mx_sheck_exit(m_s, p);
-
-        int a;
-
-        if ((a = mx_set_redirections(m_s, job, p)) != 0)
-            continue;
-        if (p->pipe) {
-            if (pipe(mypipe) < 0) {
-                perror("pipe");
-                mx_remove_job(m_s, job_id);
-                exit(1);
-            }
-            job->outfile = mypipe[1];
-        }
-        help_ex_job(m_s, job, p, job_id);
-        job->infile = mypipe[0];
+    int rc = read(fd_pipe, &buffer, 16);
+    while (rc > 0 && size > 0) {
+        size -= rc;
+        in += rc;
+        total += rc;
+        rc = read(fd_pipe, &buffer, 16);
     }
-    launch_help(m_s, job, job_id, job->exit_code);
-    return job->exit_code;
-}
-
-
-void mx_launch_job(t_shell *m_s, t_job *job) {
-    setbuf(stdout, NULL);
-    int status;
-    int job_id;
-
-    mx_check_jobs(m_s);
-    job_id = mx_insert_job(m_s, job);
-    if (!job->job_type)
-        status = execute_job(m_s, job, job_id);
-    else if (job->job_type == AND && m_s->exit_code == 0)
-        status = execute_job(m_s, job, job_id);
-    else if (job->job_type == OR && m_s->exit_code != 0)
-        status = execute_job(m_s, job, job_id);
-    else
-        mx_remove_job(m_s, job_id);
-    char *exit_status = mx_itoa(m_s->exit_code);
-    mx_set_variable(m_s->variables, "?", exit_status);
-    free(exit_status);
+    write (fd_0, buffer, sizeof(buffer));
+    write (fd_1, buffer, sizeof(buffer));
+    close(fd_0);
+    close(fd_1);
 }

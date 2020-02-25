@@ -15,26 +15,7 @@ void mx_dup_fd(t_process *p) {
     }
 }
 
-/*
-int mx_set_redirec(t_shell  *m_s, t_job * job, t_process *p, int job_id) {
-    m_s->redir = 0;
-
-    if (p->input_path) {
-        mx_set_redir_input(m_s, job, p, job_id);
-//        mx_set_redir_inp_d(job, p);
-    }
-    mx_set_redir_output(m_s, job, p);
-    return m_s->redir;
-}
-
-*/
 int mx_set_redirections(t_shell *m_s, t_job *job, t_process *p) {
-    printf ("mx_set_reditr ++++++\n");
-
-
-    if (p->redirect)
-        printf ("######\n");
-
     mx_count_redir(job, p);
     m_s->redir = 0;
 
@@ -49,9 +30,7 @@ void mx_count_redir(t_job *job, t_process *p) {
     t_redir *r;
     p->c_input = 0;
     p->c_output = 0;
-    printf ("+=========\n");
     for (r = p->redirect; r; r = r->next) {
-        printf ("++++++\n");
         if (r->redir_delim == R_INPUT || r->redir_delim == R_INPUT_DBL)
             p->c_input += 1;
         if (r->redir_delim == R_OUTPUT || r->redir_delim == R_OUTPUT_DBL)
@@ -73,6 +52,8 @@ void mx_set_r_infile(t_shell *m_s, t_job  *job, t_process *p) {
 
     p->r_infile = (int *) malloc(sizeof(int) * (p->c_input));
     p->r_infile[0] = job->infile;
+    printf("set_infile\n");
+
     if (p->redirect) {
         for (r = p->redirect, j = 1; r; r = r->next, j++) {
             if (r->redir_delim == R_INPUT) {
@@ -117,11 +98,13 @@ void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p) {
     t_redir *r;
     int j;
 
+    printf("set_r_output \n");
+
     p->r_outfile = (int *) malloc(sizeof(int) * (p->c_output));
     p->r_outfile[0] = job->outfile;
     if (p->redirect) {
         for (r = p->redirect, j = 0; r; r = r->next, j++) {
-            printf("count out redir\n");
+            printf("out redir =  %s\n",r->output_path);
             if (r->redir_delim == R_OUTPUT) {
                 flags = O_WRONLY | O_CREAT | O_TRUNC;
             }
@@ -176,6 +159,22 @@ void mx_print_fd(t_process  *p) {
     printf("\n");
 }
 
+
+
+
+/*
+int mx_set_redirec(t_shell  *m_s, t_job * job, t_process *p, int job_id) {
+    m_s->redir = 0;
+
+    if (p->input_path) {
+        mx_set_redir_input(m_s, job, p, job_id);
+//        mx_set_redir_inp_d(job, p);
+    }
+    mx_set_redir_output(m_s, job, p);
+    return m_s->redir;
+}
+
+*/
 
 
 /*
