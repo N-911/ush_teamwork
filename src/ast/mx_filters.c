@@ -14,7 +14,22 @@ static bool check_subsut_result(char **res, char **args, int *i) {
     }
     return false;
 }
+/*
+ * Get functions and aliases if any.
+ */
+static char **func_alias_tokens(char *line, t_shell *m_s) {
+    char **args = NULL;
 
+    if (mx_strstr(line, "()")) {
+        if (mx_get_functions(line, m_s))
+            return NULL;
+    }
+    else if (mx_strstr(line, "alias")) {
+
+    }
+    args = mx_parce_tokens(line);
+    return args;
+}
 /*
  * Parse by USH_TOK_DELIM, subst ~, $, trim'' "" , \.
  *
@@ -26,16 +41,16 @@ static bool check_subsut_result(char **res, char **args, int *i) {
  * - substr_dollar    result, '\0' or NULL if bad subst;
  * - subst_command    '\0' or NULL if bad subst.
  */
-char **mx_filters(char *arg, t_export *variables) {
+char **mx_filters(char *arg, t_shell *m_s) {
     int i;
     int j;
-    char **args = mx_parce_tokens(arg);
+    char **args = func_alias_tokens(arg, m_s);
     char **res = (char **)malloc((mx_strlen_arr(args) + 1) * sizeof(char *));
 
-    for (i = 0, j = 0; args[j] && args[j][0]; i++, j++) {
+    for (i = 0, j = 0; args && args[j] && args[j][0]; i++, j++) {
         res[i] = mx_strdup(args[j]);
-        res[i] = mx_subst_tilde(res[i], variables);
-        res[i] = mx_substr_dollar(res[i], variables);
+        res[i] = mx_subst_tilde(res[i], m_s->variables);
+        res[i] = mx_substr_dollar(res[i], m_s->variables);
         res[i] = mx_subst_command(res[i]);
         if (check_subsut_result(res, args, &i))
             return NULL;
@@ -43,5 +58,6 @@ char **mx_filters(char *arg, t_export *variables) {
     res[i] = NULL;
     mx_strtrim_quote(res);
     free(args);
+    mx_strdel(&arg);
     return res;
 }

@@ -67,6 +67,7 @@ SRC_PARSER = libmx1.c \
     mx_ast_push_back.c \
     mx_check_parce_errors.c \
     mx_filters.c \
+    mx_get_functions.c \
     mx_parce_tokens.c \
     mx_print_errors.c \
     mx_strtok.c \
@@ -143,6 +144,7 @@ OBJ_PARSER = libmx1.o \
     mx_ast_push_back.o \
     mx_check_parce_errors.o \
     mx_filters.o \
+    mx_get_functions.o \
     mx_parce_tokens.o \
     mx_print_errors.o \
     mx_quote_manage.o \
@@ -156,10 +158,10 @@ OBJ_PARSER = libmx1.o \
 
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
 
-all: install
+all: install clean
 
 install:
-	@make install -C libmx
+	#@make install -C libmx
 	@cp $(addprefix src/, $(SRC)) .
 	@cp $(addprefix inc/, $(INC)) .
 	@cp $(addprefix src/ast/, $(SRC_PARSER)) .
@@ -167,13 +169,14 @@ install:
 	@clang $(CFLAGS) libmx/libmx.a $(OBJ) $(OBJ_PARSER) -o $(NAME)
 	@mkdir -p obj
 	@mv $(OBJ) $(OBJ_PARSER) ./obj
+	@rm -rf $(SRC) $(SRC_PARSER) $(INC)
 
 uninstall: clean
-	@make uninstall -C libmx
+	#@make uninstall -C libmx
 	@rm -rf $(NAME)
 
 clean:
-	@make clean -C libmx
+	#@make clean -C libmx
 	@rm -rf $(INC)
 	@rm -rf $(SRC) $(SRC_PARSER)
 	@rm -rf $(OBJ) $(OBJ_PARSER)

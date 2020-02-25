@@ -68,7 +68,7 @@ static char *get_token_and_delim(char *line, int *i, int *type) {
 /*
  * Get list of all commands and delimeters (operators) -> use filters.
  */
-t_ast *mx_ush_parsed_line(char *line, t_export *variables) {
+t_ast *mx_ush_parsed_line(char *line, t_shell *m_s) {
     t_ast *res = NULL;
     int type = 0;
     int i = 0;
@@ -79,14 +79,11 @@ t_ast *mx_ush_parsed_line(char *line, t_export *variables) {
         return NULL;
     while (line[i])
         if ((tmp = get_token_and_delim(&line[i], &i, &type))) {
-            if ((args = mx_filters(tmp, variables)) && *args)
+            if ((args = mx_filters(tmp, m_s)) && *args)
                 mx_ast_push_back(&res, args, type);
-            else if (!args || type != SEP) {
-                mx_strdel(&tmp);
+            else if (!args || type != SEP)
                 return mx_parse_error_ush(type, res);
-            }
             mx_del_strarr(&args);
-            mx_strdel(&tmp);
         }
     return res;
 }

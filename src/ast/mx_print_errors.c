@@ -13,6 +13,13 @@ bool mx_unmached_error(char c) {
     mx_printerr(".\n");
     return true;
 }
+
+char *mx_syntax_error(char *c) {
+    mx_printerr("u$h: syntax error near unexpected token `");
+    mx_printerr(c);
+    mx_printerr("'\n");
+    return NULL;
+}
 /*
  * Convert int-value in delimeter.
  */
