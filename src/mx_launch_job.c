@@ -10,10 +10,14 @@ static void execute_job_env(t_job *job) {
 }
 
 static void help_ex_job(t_shell *m_s, t_job *job, t_process *p, int job_id) {
-    p->infile = job->infile;
-    p->outfile = job->outfile;
+    p->r_infile[0] = job->infile;
+    p->r_outfile[0] = job->outfile;
     p->errfile = job->errfile;
     job->flag = 0;
+
+    /////////
+
+    mx_print_fd(p);
     if (!p->pipe)
         job->flag = mx_get_flag(p->argv);
     if (job->flag) {
@@ -59,9 +63,10 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
         mx_print_info(m_s, job, p, job_id);  ///****************
         mx_sheck_exit(m_s, p);
 
-        if ((mx_set_redirections(m_s, job, p)) != 0)
-            continue;
+        int a;
 
+        if ((a = mx_set_redirections(m_s, job, p)) != 0)
+            continue;
         if (p->pipe) {
             if (pipe(mypipe) < 0) {
                 perror("pipe");
@@ -70,9 +75,6 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
             }
             job->outfile = mypipe[1];
         }
-
-        mx_print_fd(p);
-
         help_ex_job(m_s, job, p, job_id);
         job->infile = mypipe[0];
     }

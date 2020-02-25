@@ -29,6 +29,12 @@ int mx_set_redirec(t_shell  *m_s, t_job * job, t_process *p, int job_id) {
 
 */
 int mx_set_redirections(t_shell *m_s, t_job *job, t_process *p) {
+    printf ("mx_set_reditr ++++++\n");
+
+
+    if (p->redirect)
+        printf ("######\n");
+
     mx_count_redir(job, p);
     m_s->redir = 0;
 
@@ -41,8 +47,11 @@ int mx_set_redirections(t_shell *m_s, t_job *job, t_process *p) {
 
 void mx_count_redir(t_job *job, t_process *p) {
     t_redir *r;
-
+    p->c_input = 0;
+    p->c_output = 0;
+    printf ("+=========\n");
     for (r = p->redirect; r; r = r->next) {
+        printf ("++++++\n");
         if (r->redir_delim == R_INPUT || r->redir_delim == R_INPUT_DBL)
             p->c_input += 1;
         if (r->redir_delim == R_OUTPUT || r->redir_delim == R_OUTPUT_DBL)
@@ -74,6 +83,7 @@ void mx_set_r_infile(t_shell *m_s, t_job  *job, t_process *p) {
                     mx_printerr("ush :");
                     perror(r->input_path);
                     mx_set_variable(m_s->variables, "?", "1");
+                    m_s->redir = 1;
                     job->exit_code = 1;
                     continue;
                 }
@@ -121,14 +131,14 @@ void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p) {
             if ((p->r_outfile[j] = open(r->output_path, flags, 0666)) < 0) {
                 mx_printerr("ush :");
                 perror(r->output_path);
+                mx_set_variable(m_s->variables, "?", "1");
+                m_s->redir = 1;
+                job->exit_code = 1;
             }
-            mx_set_variable(m_s->variables, "?", "1");
-            m_s->redir = 1;
-            job->exit_code = 1;
             lseek(job->outfile, 0, SEEK_END);
         }
         printf("out redir end %d\n", p->r_outfile[j]);
-        job->outfile = p->r_outfile[0];
+//        job->outfile = p->r_outfile[0];
     }
 }
 
