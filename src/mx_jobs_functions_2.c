@@ -67,3 +67,14 @@ void mx_destroy_jobs(t_shell *m_s, int id) {
     free(m_s->jobs[id]);
 }
 
+//void fdadvise (int fd, off_t offset, off_t len, fadvice_t advice) {
+//#if HAVE_POSIX_FADVISE
+//    ignore_value (posix_fadvise (fd, offset, len, advice));
+//#endif
+//}
+//
+//void fadvise (FILE *fp, fadvice_t advice) {
+//    if (fp)
+//        fdadvise (fileno (fp), 0, 0, advice);
+//}
+//

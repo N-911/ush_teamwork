@@ -104,8 +104,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         else
             job->exit_code = mx_launch_process(m_s, p, job_id);
 
-//        if (p->c_output > 1)
-//            mx_read_from_pipe(job->outfile, p->r_outfile[0], p->r_outfile[1]);
+
 
         if (job->infile != job->stdin)
             close(job->infile);
@@ -138,7 +137,111 @@ void mx_launch_help (t_shell *m_s, t_job *job, int job_id, int status) {
     m_s->exit_code = status;
 }
 
-void mx_read_from_pipe(int fd_pipe, int fd_0, int fd_1) {
+void mx_read_from_pipe(t_process *p) {
+    size_t n_outputs = 0;
+    FILE **descriptors;
+    char buffer[BUFSIZ];
+    ssize_t bytes_read = 0;
+//    bool ok = true;
+    char const *mode_string =  ("rw");
+
+//    setmode(STDIN_FILENO, O_BINARY);
+//    setmode(STDOUT_FILENO, O_BINARY);
+//    fadvise (fd_pipe, FADVISE_SEQUENTIAL);
+
+    /* Set up FILES[0 .. NFILES] and DESCRIPTORS[0 .. NFILES].
+       In both arrays, entry 0 corresponds to standard output.  */
+
+    descriptors = malloc (sizeof (*descriptors) * (p->c_output + 1));
+    descriptors[0] = stdout;
+    n_outputs++;
+    setvbuf (stdout, NULL, _IONBF, 0);
+
+    t_redir *r;
+    int j;
+
+    if (p->redirect) {
+        for (r = p->redirect, j = 1; r; r = r->next, j++) {
+            printf("read from pipe \n");
+//            if (r->redir_delim == R_OUTPUT) {
+//                flags = O_WRONLY | O_CREAT | O_TRUNC;
+//            }
+//            if (r->redir_delim == R_OUTPUT_DBL) {
+//                flags = O_WRONLY | O_CREAT;
+            descriptors[j] = fopen(r->output_path, mode_string);
+            if (descriptors[j] == NULL) {
+                mx_printerr("ush :");
+                perror(r->output_path);
+//                mx_set_variable(m_s->variables, "?", "1");
+//                m_s->redir = 1;
+//                job->exit_code = 1;
+            }
+            else {
+                setvbuf (descriptors[j], NULL, _IONBF, 0);
+                n_outputs++;
+            }
+            printf("read from pipe end\n");
+        }
+    }
+    printf("n_outputs  %zu\n", n_outputs);
+
+    while (n_outputs) {
+        bytes_read = read (p->r_outfile[0], buffer, sizeof buffer);
+        if (bytes_read < 0 && errno == EINTR)
+            continue;
+        if (bytes_read <= 0)
+            break;
+        for (size_t i = 0; i < n_outputs; i++) {
+            if (descriptors[i] && fwrite(buffer, bytes_read, 1, descriptors[i]) != 1) {
+//                int w_errno = errno;
+//                bool fail = errno != EPIPE || (output_error == output_error_exit
+//                                               || output_error == output_error_warn);
+                if (descriptors[i] == stdout)
+                    clearerr(stdout); /* Avoid redundant close_stdout diagnostic.  */
+//                if (fail) {
+//                    error(output_error == output_error_exit
+//                          || output_error == output_error_exit_nopipe,
+//                          w_errno, "%s", quotef(files[i]));
+//                }
+                descriptors[i] = NULL;
+//                if (fail)
+//                    ok = false;
+                n_outputs--;
+            }
+        }
+    }
+    if (bytes_read == -1) {
+        perror("read error");
+//        error (0, errno, _("read error"));
+//        ok = false;
+    }
+    for (int i = 1; i <= p->outfile; i++) {
+        if (descriptors[i] && fclose(descriptors[i]) != 0) {
+            perror("close error\n");
+//            error (0, errno, "%s", quotef (files[i]));
+//            ok = false;
+        }
+    }
+    free (descriptors);
+//    return ok;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ *
+
+
     int total = 0;
     char buffer[248];
     int size = 248;
@@ -155,4 +258,4 @@ void mx_read_from_pipe(int fd_pipe, int fd_0, int fd_1) {
     write (fd_1, buffer, sizeof(buffer));
     close(fd_0);
     close(fd_1);
-}
+ */

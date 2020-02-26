@@ -32,6 +32,52 @@
 
 #include "libmx/inc/libmx.h"
 
+static bool append;
+
+
+#if HAVE_POSIX_FADVISE
+typedef enum {
+  FADVISE_NORMAL =     POSIX_FADV_NORMAL,
+  FADVISE_SEQUENTIAL = POSIX_FADV_SEQUENTIAL,
+  FADVISE_NOREUSE =    POSIX_FADV_NOREUSE,
+  FADVISE_DONTNEED =   POSIX_FADV_DONTNEED,
+  FADVISE_WILLNEED =   POSIX_FADV_WILLNEED,
+  FADVISE_RANDOM =     POSIX_FADV_RANDOM
+} fadvice_t;
+#else
+typedef enum {
+    FADVISE_NORMAL,
+    FADVISE_SEQUENTIAL,
+    FADVISE_NOREUSE,
+    FADVISE_DONTNEED,
+    FADVISE_WILLNEED,
+    FADVISE_RANDOM
+} fadvice_t;
+#endif
+
+
+
+
+
+//static void _GL_ATTRIBUTE_FORMAT ((__printf__, 3, 4))
+//nl_error (int status, int errnum, const char *fmt, ...)
+//{
+//    if (0 < progress_len)
+//    {
+//        fputc ('\n', stderr);
+//        progress_len = 0;
+//    }
+//
+//    va_list ap;
+//    va_start (ap, fmt);
+//    verror (status, errnum, fmt, ap);
+//    va_end (ap);
+//}
+//
+//#define error nl_error
+
+
+
 /*
  * Exit.
  */
@@ -516,6 +562,10 @@ void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p);
 void mx_set_r_infile(t_shell *m_s, t_job  *job, t_process *p);
 
 //void mx_read_from_pipe(int fd);
-void mx_read_from_pipe(int fd_pipe, int fd_0, int fd_1);
+//void mx_read_from_pipe(int fd_pipe, int fd_0, int fd_1);
+void mx_read_from_pipe(t_process *p);
+void fdadvise (int fd, off_t offset, off_t len, fadvice_t advice);
+void fadvise (FILE *fp, fadvice_t advice);
+
 
 #endif
