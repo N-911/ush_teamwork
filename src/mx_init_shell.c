@@ -75,6 +75,7 @@ static void set_shell_defaults(t_shell *m_s) {
 t_shell *mx_init_shell(int argc, char **argv) {
     char *shlvl;
     t_shell *m_s = (t_shell *) malloc(sizeof(t_shell));
+    
     set_shell_defaults(m_s);
     m_s->argc = argc;
     m_s->argv = argv;
