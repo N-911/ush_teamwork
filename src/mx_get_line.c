@@ -1,6 +1,6 @@
 #include "ush.h"
 
-static struct termios mx_disable_term() {
+static struct termios mx_disable_term(void) {
     struct termios savetty;
     struct termios tty;
 
@@ -21,6 +21,17 @@ static void mx_enable_term(struct termios savetty) {
     tcsetattr (0, TCSAFLUSH, &savetty);
 }
 
+static void jynx_maze(t_shell *m_s, char *line) {
+    if (m_s->history_count == m_s->history_size) {
+        m_s->history_size += 1000;
+        m_s->history = (char **)realloc(m_s->history, m_s->history_size);
+    }
+    if (strcmp(line, "") != 0) {
+        m_s->history[m_s->history_count] = strdup(line);
+        m_s->history_count++;
+    }
+}
+
 char *mx_get_line(t_shell *m_s) {
     char *line;
     struct termios savetty;
@@ -32,14 +43,7 @@ char *mx_get_line(t_shell *m_s) {
     m_s->line_len = 1024;
     mx_print_prompt(m_s);
     line = mx_get_keys(m_s);
-    if (m_s->history_count == m_s->history_size) {
-        m_s->history_size += 1000;
-        m_s->history = (char **)realloc(m_s->history, m_s->history_size);
-    }
-    if (strcmp(line, "") != 0) {
-        m_s->history[m_s->history_count] = strdup(line);
-        m_s->history_count++;
-    }
+    jynx_maze(m_s, line);
     m_s->history_index = m_s->history_count;
     mx_enable_term(savetty);
     dup2(out, 1);
