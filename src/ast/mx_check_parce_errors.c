@@ -8,7 +8,9 @@ static char check_quote_auditor(char *s, int *i) {
 
     if (s[j] == '(' && s[j - 1] && s[j - 1] == '$')
         tmp = ')';
-    else if (s[j] == '(' || s[j] == ')') {
+    else if (s[j] == '{' && s[j - 3] && !mx_strncmp(&s[j - 3], "() ", 3))
+        tmp = '}';
+    else if (s[j] == '(' || s[j] == ')' || s[j] == '{') {
         (*i)++;
         return 0;
     }
@@ -30,7 +32,7 @@ static bool check_quote(char *s) {
     for (int i = 0; s[i]; i++) {
         if (s[i] == '\\')
             i++;
-        else if (mx_isdelim(s[i], "`\"()")) {
+        else if (mx_isdelim(s[i], "`\"(){")) {
             tmp = check_quote_auditor(s, &i);
             if (tmp && !s[i])
                 return mx_unmached_error(tmp);

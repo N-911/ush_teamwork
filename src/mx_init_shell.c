@@ -63,6 +63,8 @@ static void set_shell_defaults(t_shell *m_s) {
     m_s->history = (char **)malloc(sizeof(char *) * m_s->history_size);
     for (int i = -1; i < MX_JOBS_NUMBER; ++i)
         m_s->jobs[i] = NULL;
+    m_s->functions = NULL;
+    m_s->aliases = NULL;
     mx_init_jobs_stack(m_s);
 }
 

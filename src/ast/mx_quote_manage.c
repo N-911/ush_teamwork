@@ -28,11 +28,12 @@ int mx_get_char_index_quote(char *s, char *c, char *q) {  // q = "\"\'`$"
     for (int i = 0; s[i]; i++) {
         if (s[i] == '\\')
             i++;
-        else if (mx_isdelim(s[i], q) && !mx_strncmp(&s[i], "$(", 2)) {
-            i++;
+        else if (mx_isdelim(s[i], q) && !mx_strncmp(&s[i], "$(", 2))
             while (s[i] && s[i] != ')')
                 (s[i] == '\\') ? (i += 2) : (i++);
-        }
+        else if (mx_isdelim(s[i], q) && !mx_strncmp(&s[i], "() {", 4))
+            while (s[i] && s[i] != '}')
+                (s[i] == '\\') ? (i += 2) : (i++);
         else if (mx_isdelim(s[i], q) && mx_isdelim(s[i], "`\'\""))
             mx_get_char_auditor(s, &i, q);
         else

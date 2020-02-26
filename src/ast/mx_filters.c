@@ -14,34 +14,64 @@ static bool check_subsut_result(char **res, char **args, int *i) {
     }
     return false;
 }
-
 /*
- * Parse by USH_TOK_DELIM, subst ~, $, trim'' "" , \.
- *
- * Need scans for word splitting results of parameter expansion
- * and command substitution, that did not double quoted.
- *
- * Reterns:
+ * Get functions and aliases if any.
+ */
+static char **func_alias_tokens(char *line, t_shell *m_s) {
+    char **args = NULL;
+
+    if (mx_strstr(line, "()")) {
+        if (mx_get_functions(line, m_s))
+            return NULL;
+    }
+    if (!mx_strncmp(line, "alias", 5)) {
+        mx_get_aliases(line, m_s);
+        return NULL;
+    }
+    args = mx_parce_tokens(line);
+    return args;
+}
+/*
+ * Make substitutions, subst reterns:
  * - subst_tilde      result or res[i] if bad subst;
  * - substr_dollar    result, '\0' or NULL if bad subst;
  * - subst_command    '\0' or NULL if bad subst.
  */
-char **mx_filters(char *arg, t_export *variables) {
+static char **substitutions(char **args, t_shell *m_s) {
     int i;
     int j;
-    char **args = mx_parce_tokens(arg);
-    char **res = (char **)malloc((mx_strlen_arr(args) + 1) * sizeof(char *));
+    char **res = NULL;
 
-    for (i = 0, j = 0; args[j] && args[j][0]; i++, j++) {
+    res = (char **)malloc((mx_strlen_arr(args) + 1) * sizeof(char *));
+    for (i = 0, j = 0; args && args[j] && args[j][0]; i++, j++) {
         res[i] = mx_strdup(args[j]);
-        res[i] = mx_subst_tilde(res[i], variables);
-        res[i] = mx_substr_dollar(res[i], variables);
+        res[i] = mx_subst_tilde(res[i], m_s->variables);
+        res[i] = mx_substr_dollar(res[i], m_s->variables);
         res[i] = mx_subst_command(res[i]);
         if (check_subsut_result(res, args, &i))
             return NULL;
     }
     res[i] = NULL;
+    return res;
+}
+
+/*
+ * Get functions, aliases or parse by USH_TOK_DELIM,
+ * subst ~, $,
+ * trim'' "" , \.
+ *
+ * Need scans for word splitting results of parameter expansion
+ * and command substitution, that did not double quoted.
+ */
+char **mx_filters(char *arg, t_shell *m_s) {
+    char **args;
+    char **res = NULL;
+
+    args = func_alias_tokens(arg, m_s);
+    res = substitutions(args, m_s);
     mx_strtrim_quote(res);
     free(args);
+
+    mx_strdel(&arg);
     return res;
 }

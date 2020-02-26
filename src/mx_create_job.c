@@ -37,6 +37,9 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
         else if (MX_IS_REDIR_OUTP(tmp->type))
             p->output_path = mx_strdup(tmp->args[0]);
     }
+    if (list->left)
+        for (t_ast *q = list->left; q; q = q->next)
+            mx_redir_push_back(&p->redirect, q->args[0], q->type);
     if ((index = mx_builtin_commands_idex(m_s, p->argv[0])) == -1)
         p->type = -1;
     else
