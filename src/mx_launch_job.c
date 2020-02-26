@@ -69,7 +69,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         if ((a = mx_set_redirections(m_s, job, p)) != 0)
             continue;
         if (p->pipe) {
-            printf ("pipe\n");
+//            printf ("pipe\n");
             if (pipe(mypipe) < 0) {
                 perror("pipe");
                 mx_remove_job(m_s, job_id);
@@ -81,16 +81,16 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
         //    p->r_infile[0] = job->infile;
         job->flag = 0;
 
-        if (p->c_output > 1) {
-            printf ("redir to pipe\n");
-            if (pipe(mypipe) < 0) {
-                perror("pipe");
-                mx_remove_job(m_s, job_id);
-                exit(1);
-            }
-            job->outfile = mypipe[1];
-//            p->r_outfile[0] = job->outfile;
-        }
+//        if (p->c_output > 1) {
+//            printf ("redir to pipe\n");
+//            if (pipe(mypipe) < 0) {
+//                perror("pipe");
+//                mx_remove_job(m_s, job_id);
+//                exit(1);
+//            }
+//            job->outfile = mypipe[1];
+////            p->r_outfile[0] = job->outfile;
+//        }
 
         mx_print_fd(p);  /////////
         if (!p->pipe)
@@ -105,7 +105,7 @@ void mx_launch_job(t_shell *m_s, t_job *job) {
             job->exit_code = mx_launch_process(m_s, p, job_id);
 
 //        if (p->c_output > 1)
-            mx_read_from_pipe(job->outfile, p->r_outfile[0], p->r_outfile[1]);
+//            mx_read_from_pipe(job->outfile, p->r_outfile[0], p->r_outfile[1]);
 
         if (job->infile != job->stdin)
             close(job->infile);

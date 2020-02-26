@@ -412,6 +412,7 @@ int mx_unset(t_shell *m_s, t_process *p);
 int mx_which(t_shell *m_s, t_process *p);
 int mx_exit(t_shell *m_s, t_process *p);
 int mx_set(t_shell *m_s, t_process *p);
+int mx_kill(t_shell *m_s, t_process *p);
 
 /*
  * Signals.

@@ -52,7 +52,7 @@ void mx_set_r_infile(t_shell *m_s, t_job  *job, t_process *p) {
 
     p->r_infile = (int *) malloc(sizeof(int) * (p->c_input));
     p->r_infile[0] = job->infile;
-    printf("set_infile\n");
+//    printf("set_infile\n");
 
     if (p->redirect) {
         for (r = p->redirect, j = 1; r; r = r->next, j++) {
@@ -98,13 +98,12 @@ void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p) {
     t_redir *r;
     int j;
 
-    printf("set_r_output \n");
-
+//    printf("set_r_output \n");
     p->r_outfile = (int *) malloc(sizeof(int) * (p->c_output));
     p->r_outfile[0] = job->outfile;
     if (p->redirect) {
         for (r = p->redirect, j = 0; r; r = r->next, j++) {
-            printf("out redir =  %s\n",r->output_path);
+//            printf("out redir =  %s\n",r->output_path);
             if (r->redir_delim == R_OUTPUT) {
                 flags = O_WRONLY | O_CREAT | O_TRUNC;
             }
@@ -120,7 +119,7 @@ void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p) {
             }
             lseek(job->outfile, 0, SEEK_END);
         }
-        printf("out redir end %d\n", p->r_outfile[j]);
+//        printf("out redir end %d\n", p->r_outfile[j]);
 //        job->outfile = p->r_outfile[0];
     }
 }
