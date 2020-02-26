@@ -24,30 +24,31 @@ static char *get_value(char *line, int end) {
     if (!line[i] || mx_strncmp(&line[i], " { ", 3) != 0)
         return usage_err();
     i += 3;
-    end = mx_get_char_index_quote(&line[i], "}", MX_QUOTE);
+    end = mx_get_char_index_quote(&line[i], "}", "\"\'`$");
     if (end <= 0)
         return mx_syntax_error("{");
     value = mx_strndup(&line[i], end);
     return value;
 }
-
 /*
  * Get functions if any.
  */
 bool mx_get_functions(char *line, t_shell *m_s) {
     char *var;
     char *value;
-    int i = mx_get_char_index_quote(line, "(", MX_QUOTE);
-    int end = mx_get_char_index_quote(&line[i], ")", MX_QUOTE);
+    int i = mx_get_char_index_quote(line, "(", "\"\'`$");
 
-    if (end == 1) {
+    if (line[i + 1] && line[i + 1] == ')') {
         if (!(var = get_var(line, i)))
             return true;
         if (!(value = get_value(line, i + 2))) {
             mx_strdel(&var);
             return true;
         }
-        mx_push_export(&m_s->functions, var, value);
+        if (m_s->functions)
+            mx_set_variable(m_s->functions, var, value);
+        else
+            mx_push_export(&m_s->functions, var, value);
         mx_strdel(&var);
         mx_strdel(&value);
         return true;

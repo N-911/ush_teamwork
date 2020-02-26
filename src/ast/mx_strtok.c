@@ -9,12 +9,15 @@ static char *get_end_usual_quote_func(char *s, const char *delim, char *end) {
         else if (*s == '\'')
             s += mx_get_char_index(s + 1, '\'') + 2;
         else if (mx_isdelim(*s, "\""))
-            s += mx_get_char_index_quote(s + 1, "\"", "`") + 2;
+            s += mx_get_char_index_quote(s + 1, "\"", "`$") + 2;
         else if (mx_isdelim(*s, "`"))
-            s += mx_get_char_index_quote(s + 1, "`", "\"\'$") + 2;
+            s += mx_get_char_index_quote(s + 1, "`", "\"\'$(") + 2;
         else if (mx_strncmp(s, "$(", 2) == 0)
-            s += mx_get_char_index_quote(s, ")", "\"\'`") + 3;
-        s++;
+            s += mx_get_char_index_quote(s + 2, ")", MX_QUOTE) + 3;
+        else if (mx_strncmp(s, "() {", 4) == 0)
+            s += mx_get_char_index_quote(s + 4, "}", "\"\'`$") + 5;
+        else
+            s++;
     }
     end = s;
     return end;

@@ -67,6 +67,7 @@ SRC_PARSER = libmx1.c \
     mx_ast_push_back.c \
     mx_check_parce_errors.c \
     mx_filters.c \
+    mx_get_aliases.c \
     mx_get_functions.c \
     mx_parce_tokens.c \
     mx_print_errors.c \
@@ -144,6 +145,7 @@ OBJ_PARSER = libmx1.o \
     mx_ast_push_back.o \
     mx_check_parce_errors.o \
     mx_filters.o \
+    mx_get_aliases.o \
     mx_get_functions.o \
     mx_parce_tokens.o \
     mx_print_errors.o \

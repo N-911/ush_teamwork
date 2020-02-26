@@ -128,7 +128,7 @@
  * Operators and delimeters for parse tokens.
  */
 #define MX_PARSE_DELIM ";|&><"
-#define MX_QUOTE "\"\'`$"
+#define MX_QUOTE "\"\'`$("
 #define MX_DBLQ_EXCEPTIONS "$`\"\\"
 #define MX_USH_TOK_DELIM " \t\r\n\a"
 /*
@@ -328,7 +328,7 @@ typedef struct s_shell {
  * Abstract Syntax Tree.
  */
 t_ast **mx_ast_creation(char *line, t_shell *m_s);
-t_ast *mx_ush_parsed_line(char *line, t_shell *m_s);
+t_ast *mx_ush_parsed_line(t_ast *parsed_line, char *line, t_shell *m_s);
 
 t_ast **mx_ast_parse(t_ast *parsed_line);
 void mx_ast_push_back(t_ast **head, char **args, int type);
@@ -359,6 +359,7 @@ char *mx_substr_dollar(char *s, t_export *variables);
 char *mx_subst_command(char *s);
 
 bool mx_get_functions(char *line, t_shell *m_s);
+void mx_get_aliases(char *line, t_shell *m_s);
 /*
  * Quote manage.
  */
