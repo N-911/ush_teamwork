@@ -13,6 +13,7 @@ SRC = mx_builtin_commands.c \
     mx_fg.c \
     mx_bg.c \
     mx_jobs.c \
+    mx_kill.c \
     mx_set_parametr.c \
     mx_nbr_to_hex.c \
     mx_hex_to_nbr.c \
@@ -89,6 +90,7 @@ OBJ = mx_builtin_commands.o \
     mx_fg.o \
     mx_bg.o \
     mx_jobs.o \
+    mx_kill.o \
     mx_set_parametr.o \
     mx_nbr_to_hex.o \
     mx_hex_to_nbr.o \
