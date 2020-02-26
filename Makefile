@@ -58,7 +58,8 @@ SRC = mx_builtin_commands.c \
     mx_exec_signal.c \
     mx_add_option.c \
     mx_get_line.c \
-    mx_chdir.c\
+    mx_chdir.c \
+    mx_true.c \
     ush_main.c
 
 SRC_PARSER = libmx1.c \
@@ -138,7 +139,8 @@ OBJ = mx_builtin_commands.o \
     mx_exec_signal.o \
     mx_add_option.o \
     mx_get_line.o \
-    mx_chdir.o\
+    mx_chdir.o \
+    mx_true.o \
     ush_main.o
 
 OBJ_PARSER = libmx1.o \

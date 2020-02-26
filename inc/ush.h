@@ -41,7 +41,7 @@
 /*
  * Jobs.
  */
-#define MX_JOBS_NUMBER 100
+#define MX_JOBS_NUMBER 1000
 #define MX_STATUS_RUNNING 0
 #define MX_STATUS_DONE 1
 #define MX_STATUS_SUSPENDED 2
@@ -346,7 +346,7 @@ bool mx_unmached_error(char c);
 t_ast *mx_parse_error_ush(int type, t_ast *res);
 
 void mx_ast_print(t_ast **ast);                     // mx_ast_creation.c
-char *mx_ush_read_line(void);
+char *mx_ush_read_line(t_shell *m_s);
 /*
  * Filters.
  */
@@ -420,6 +420,7 @@ int mx_exit(t_shell *m_s, t_process *p);
 int mx_set(t_shell *m_s, t_process *p);
 int mx_chdir(t_shell *m_s, t_process *p);
 int mx_kill(t_shell *m_s, t_process *p);
+int mx_true(t_shell *m_s, t_process *p);
 
 
 /*
