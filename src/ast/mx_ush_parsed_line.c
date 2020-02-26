@@ -101,6 +101,7 @@ t_ast *mx_ush_parsed_line(t_ast *res, char *line1, t_shell *m_s) {
             if ((args = mx_filters(tmp, m_s)) && *args)
                 func_or_push(&res, args, type, m_s);
             else if (!args || type != SEP) {
+                mx_strdel(&line);
                 return mx_parse_error_ush(type, res);
             }
             mx_del_strarr(&args);
