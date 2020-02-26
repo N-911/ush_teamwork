@@ -48,6 +48,6 @@ void mx_ush_loop(t_shell *m_s) {
             if ((ast = mx_ast_creation(line, m_s)))
                 launch_blow_job(m_s, ast, new_job);
         }
-        free(line);
+        mx_strdel(&line);
     }
 }

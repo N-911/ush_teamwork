@@ -54,7 +54,7 @@ t_ast **mx_ast_creation(char *line, t_shell *m_s) {
     t_ast **ast = NULL;
     t_ast *parsed_line = NULL;
 
-    if (!(parsed_line = mx_ush_parsed_line(line, m_s->variables))) {
+    if (!(parsed_line = mx_ush_parsed_line(parsed_line, line, m_s))) {
         return NULL;
     }
     if (!(ast = mx_ast_parse(parsed_line)) || !(*ast)) {

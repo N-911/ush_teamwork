@@ -54,7 +54,7 @@ static void set_shell_defaults(t_shell *m_s) {
                         "jobs", "fg", "bg", "cd", "pwd", 
                         "which", "exit", "set", "kill", "chdir", NULL};
 
-    m_s->builtin_list = (char **) malloc(sizeof(char *) * 14);
+    m_s->builtin_list = (char **) malloc(sizeof(char *) * 15);
     for (int i = 0; i < 15; i++)
         m_s->builtin_list[i] = b_list[i];
     m_s->max_number_job = 1;
@@ -64,6 +64,8 @@ static void set_shell_defaults(t_shell *m_s) {
     m_s->history = (char **)malloc(sizeof(char *) * m_s->history_size);
     for (int i = -1; i < MX_JOBS_NUMBER; ++i)
         m_s->jobs[i] = NULL;
+    m_s->functions = NULL;
+    m_s->aliases = NULL;
     mx_init_jobs_stack(m_s);
     if (!getenv("PATH"))
         setenv("PATH", "/Users/mlibovych/.brew/bin:/usr/local/bin:\

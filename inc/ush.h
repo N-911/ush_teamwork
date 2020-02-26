@@ -128,7 +128,7 @@
  * Operators and delimeters for parse tokens.
  */
 #define MX_PARSE_DELIM ";|&><"
-#define MX_QUOTE "\"\'`$"
+#define MX_QUOTE "\"\'`$("
 #define MX_DBLQ_EXCEPTIONS "$`\"\\"
 #define MX_USH_TOK_DELIM " \t\r\n\a"
 /*
@@ -319,6 +319,8 @@ typedef struct s_shell {
     int prompt_status;
     t_export *exported;
     t_export *variables;
+    t_export *functions;
+    t_export *aliases;
     int redir;
 }             t_shell;
 
@@ -326,29 +328,38 @@ typedef struct s_shell {
  * Abstract Syntax Tree.
  */
 t_ast **mx_ast_creation(char *line, t_shell *m_s);
-t_ast *mx_ush_parsed_line(char *line, t_export *variables);
+t_ast *mx_ush_parsed_line(t_ast *parsed_line, char *line, t_shell *m_s);
+
 t_ast **mx_ast_parse(t_ast *parsed_line);
 void mx_ast_push_back(t_ast **head, char **args, int type);
 void mx_ast_push_back_redirection(t_ast **head, char **args, int type);
 void mx_ast_clear_list(t_ast **list);
 void mx_ast_clear_all(t_ast ***list);                 // mx_ast_clear_list.c
+
 void mx_redir_push_back(t_redir **head, char *path, int type);
 void mx_redir_clear_list(t_redir **list);
+
 bool mx_check_parce_errors(char *line);
 bool mx_parse_error(char *c, int k);
+char *mx_syntax_error(char *c);
 bool mx_unmached_error(char c);
 t_ast *mx_parse_error_ush(int type, t_ast *res);
+
 void mx_ast_print(t_ast **ast);                     // mx_ast_creation.c
 char *mx_ush_read_line(void);
 /*
  * Filters.
  */
-char **mx_filters(char *arg, t_export *variables);
+char **mx_filters(char *arg, t_shell *m_s);
 char *mx_strtok (char *s, const char *delim);
 char **mx_parce_tokens(char *line);
+
 char *mx_subst_tilde(char *s, t_export *variables);
 char *mx_substr_dollar(char *s, t_export *variables);
 char *mx_subst_command(char *s);
+
+bool mx_get_functions(char *line, t_shell *m_s);
+void mx_get_aliases(char *line, t_shell *m_s);
 /*
  * Quote manage.
  */
