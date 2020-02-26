@@ -1,7 +1,7 @@
 #include "ush.h"
 
 static char *usage_err(void) {
-    mx_printerr("u$h: function usage: func() { ...; }\n");
+    mx_printerr("ush: function usage: func() { ...; }\n");
     return NULL;
 }
 
