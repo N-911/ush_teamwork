@@ -51,7 +51,7 @@ static char *get_pwd() {
 
 static void set_shell_defaults(t_shell *m_s) {
     char *b_list[14] = {"env", "export", "unset", "echo", "jobs", "fg", "bg",
-                        "cd", "pwd", "which", "exit", "set", "mx_kill", NULL};
+                        "cd", "pwd", "which", "exit", "set", "kill", NULL};
 
     m_s->builtin_list = (char **) malloc(sizeof(char *) * 14);
     for (int i = 0; i < 15; i++)
