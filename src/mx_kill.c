@@ -1,84 +1,84 @@
 #include "ush.h"
 
 /*
- * kill PID PID     send signal CONT to PID
- * kill %job_id     send signal CONT to all proc in job
- * kill %sleep      send signal CONT to all proc in job
+ * kill PID PID     send signal KILL PID
+ * kill %job_id     send signal KILL to all proc in job
+ * kill %sleep      send signal KILL to all proc in job
  */
 
 static int count_args(char **args) {
     int n_args = 0;
 
-    for (int i = 1; args[i] != NULL; i++) {
+    for (int i = 1; args[i] != NULL; i++)
         n_args++;
-    }
     return n_args;
 }
 
+static int check_pid(char *s) {
+    for (int j = 0; s[j] != '\0'; j++) {
+        if (!(mx_isdigit(s[j]))) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+static void kill_job(t_shell *m_s, t_process *p, int i) {
+    int job_id;
+    int pgid;
+
+    if ((job_id = mx_check_args(m_s, p)) < 1) {
+        p->exit_code = 1;
+        return;
+    }
+    if ((pgid = mx_get_pgid_by_job_id(m_s, job_id)) < 1) {
+        mx_err_j(p->argv[0], ": ", p->argv[i],": no such job\n");
+        p->exit_code = 1;
+        return;
+    }
+    if (kill(-pgid, SIGTERM) < 0) {
+        mx_err_j(p->argv[0], ": job not found: ", p->argv[i], "\n");
+        p->exit_code = 1;
+    }
+    mx_set_job_status(m_s, job_id, MX_STAT_TERMINATED);
+}
+
+static void kill_pid(t_shell *m_s, t_process *p, int i) {
+    pid_t pid = 0;
+
+    if ((check_pid(p->argv[i])) > 0) {
+        mx_err_j(p->argv[0], " : illegal pid: ", p->argv[i], "\n");
+        p->exit_code = 1;
+        return;
+    }
+    else {
+        pid = atoi(p->argv[i]);
+        if (kill(pid, SIGTERM) < 0) {
+            mx_err_j(p->argv[0], ": illegal pid: ", p->argv[i], "\n");
+            p->exit_code = 1;
+        }
+        mx_set_process_status(m_s, pid, MX_STAT_TERMINATED);
+    }
+}
 
 int mx_kill(t_shell *m_s, t_process *p) {
     p->exit_code = 0;
-    pid_t pgid = 0;
-    int job_id;
     int n_args = 0;
-    (void)m_s;
 
     n_args = count_args(p->argv);
     mx_set_last_job(m_s);
-
-//    if ((job_id = fg_get_job_id(m_s, p)) < 1)
-//        return 1;
-
-
     if (n_args == 0) {
         mx_printerr("ush: kill: not enough arguments\n");
-        p->exit_code = 0;
+        p->exit_code = 1;
     }
     if (n_args) {
         for (int i = 1; i <= n_args; i++) {
-            if (p->argv[i][0] == '%') {
-                if ((job_id = mx_check_args(m_s, p)) < 1) {
-                    p->exit_code = 1;
-                    continue;
-                }
-                if ((pgid = mx_get_pgid_by_job_id(m_s, job_id)) < 1) {
-                    mx_err_j(p->argv[0], ": ", p->argv[i],": no such job\n");
-                    p->exit_code = 1;
-                    continue;
-                }
-//                if (kill(-pgid, SIGCONT) < 0) {
-//                    mx_err_j(p->argv[0], ": job not found: ", p->argv[i], "\n");
-//                    p->exit_code = 1;
-//                }
-                printf("pgid 11111 = %d\n", pgid);
-            }
-//            else if (!(mx_isdigit(p->argv[i][0]))) {
-//               if ((job_id = mx_g_find_job(m_s, p->argv[i])) < 1) {
-//                   mx_err_j(p->argv[0], ": illegal pid: ", p->argv[i], "\n");
-//                   p->exit_code = 1;
-//                   continue;
-//                }
-//                if ((pgid = mx_get_pgid_by_job_id(m_s, job_id)) < 1) {
-//                    mx_err_j(p->argv[0], ": ", p->argv[i],": no such job\n");
-//                    p->exit_code = 1;
-//                    continue;
-//                }
-//                printf("pgid 22222 = %d\n", pgid);
-//            }
-            else {
-               if (!(mx_isdigit(p->argv[i][0]))) {
-                   mx_err_j(p->argv[0], ": illegal pid: ", p->argv[i], "\n");
-                   p->exit_code = 1;
-                   continue;
-               }
-               else {
-                   pgid = atoi(p->argv[i]);
-                   printf("pgid 3333 = %d\n", pgid);
-               }
-            }
+            if (p->argv[i][0] == '%')
+                kill_job(m_s, p, i);
+            else
+                kill_pid(m_s, p, i);
         }
     }
-//
-//    status = mx_kill_send_signal(m_s, p);
     return p->exit_code;
 }
+

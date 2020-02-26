@@ -69,6 +69,7 @@ void mx_pgid(t_shell *m_s, int job_id, int child_pid) {
     if (m_s->jobs[job_id]->foregrd)
         tcsetpgrp(STDIN_FILENO, m_s->jobs[job_id]->pgid);
     signal(SIGINT, MX_SIG_DFL);
+    signal(SIGTERM, MX_SIG_DFL);
     signal(SIGQUIT, MX_SIG_DFL);
     signal(SIGTSTP, MX_SIG_DFL);
     signal(SIGTTIN, MX_SIG_DFL);
