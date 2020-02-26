@@ -68,10 +68,12 @@ char **mx_filters(char *arg, t_shell *m_s) {
     char **res = NULL;
 
     args = func_alias_tokens(arg, m_s);
-    res = substitutions(args, m_s);
+    if (!(res = substitutions(args, m_s))) {
+        mx_strdel(&arg);
+        return NULL;
+    }
     mx_strtrim_quote(res);
     free(args);
-
     mx_strdel(&arg);
     return res;
 }

@@ -61,7 +61,7 @@ static bool check_parse_auditor(char *line, int i) {
             return mx_parse_error(&line[i + 1], 1);
         else if (line[i + 2]) {
             i3 = mx_get_char_index_quote(&line[i + 2],
-                                        MX_PARSE_DELIM, MX_QUOTE);
+                                         MX_PARSE_DELIM, MX_QUOTE);
             if (i3 == 0)
                 return mx_parse_error(&line[i + 2], 1);
         }

@@ -1,4 +1,5 @@
 #include "ush.h"
+
 static void get_data(char *arg, char **name, char **value) {
     int idx = mx_get_char_index(arg, '=');
 

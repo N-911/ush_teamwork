@@ -1,7 +1,7 @@
 #include "ush.h"
 
 bool mx_parse_error(char *c, int k) {
-    mx_printerr("u$h: parse error near `");
+    mx_printerr("ush: parse error near `");
     write(2, c, k);
     mx_printerr("\'\n");
     return true;
@@ -15,7 +15,7 @@ bool mx_unmached_error(char c) {
 }
 
 char *mx_syntax_error(char *c) {
-    mx_printerr("u$h: syntax error near unexpected token `");
+    mx_printerr("ush: syntax error near unexpected token `");
     mx_printerr(c);
     mx_printerr("'\n");
     return NULL;
@@ -50,7 +50,7 @@ t_ast *mx_parse_error_ush(int type, t_ast *res) {
 
     if (type != SEP) {                      // works "; ; ;", block "; | ;"
         delim = get_delim_from_type(type);
-        mx_printerr("u$h: parse error near `");
+        mx_printerr("ush: parse error near `");
         write(2, delim, mx_strlen(delim));
         mx_strdel(&delim);
         mx_printerr("\'\n");
