@@ -50,8 +50,9 @@ static void buildin_std_exec(t_shell *m_s, int (*builtin_functions[])
 
 int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id) {
     int (*builtin_functions[])(t_shell *m_s, t_process *p) =
-         {&mx_env, &mx_export, &mx_unset, &mx_echo, &mx_jobs, &mx_fg, &mx_bg,
-         &mx_cd, &mx_pwd, &mx_which, &mx_exit, &mx_set, &mx_kill, NULL};
+         {&mx_env, &mx_export, &mx_unset, &mx_echo, &mx_jobs, &mx_fg,
+          &mx_bg, &mx_cd, &mx_pwd, &mx_which, &mx_exit, &mx_set,
+          &mx_kill, &mx_chdir, NULL};
 
     p->status = MX_STATUS_RUNNING;
     if (p->pipe || !p->foregrd) {  // If pipe or in foregrd -> fork

@@ -454,6 +454,7 @@ void mx_destroy_jobs(t_shell *m_s, int id);    // Free job memory
 /*
  * Others.
  */
+
 void mx_err_j(char *arg0, char *arg1, char *arg2, char *arg3);
 int mx_check_args(t_shell *m_s, t_process *p);  // Use in fg and bg
 
