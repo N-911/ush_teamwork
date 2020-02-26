@@ -15,7 +15,6 @@ static struct termios mx_disable_term(void) {
     return savetty;
 }
 
-
 static void mx_enable_term(struct termios savetty) {
     printf("\n");
     tcsetattr (0, TCSAFLUSH, &savetty);

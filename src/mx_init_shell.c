@@ -24,9 +24,9 @@ static void set_shell_grp(t_shell *m_s) {
         signal(SIGTTIN, MX_SIG_IGN);
         signal(SIGTTOU, MX_SIG_IGN);
         shell_grp_help(m_s, shell_pgid);
-       char *c_shell_pgid = mx_itoa(m_s->shell_pgid);
-       mx_set_variable(m_s->variables, "$", c_shell_pgid);
-       free(c_shell_pgid);
+        char *c_shell_pgid = mx_itoa(m_s->shell_pgid);
+        mx_set_variable(m_s->variables, "$", c_shell_pgid);
+        free(c_shell_pgid);
         tcgetattr(shell_terminal, &m_s->t_original);
         tcgetattr(shell_terminal, &m_s->tmodes);
     }

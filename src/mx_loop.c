@@ -25,6 +25,7 @@ static void launch_blow_job(t_shell *m_s, t_ast **ast, t_job *new_job) {
 static void check_eof(t_shell *m_s) {
     if (!isatty(0)) {
         mx_clear_all(m_s);
+        //system("leaks -q ush");
         exit(0);
     }
 }
@@ -37,8 +38,6 @@ void mx_ush_loop(t_shell *m_s) {
     getenv("HOME") ? m_s->git = mx_get_git_info() : 0;
     while (1) {
         isatty(0) ? (line = mx_get_line(m_s)) : (line = mx_ush_read_line());
-        //line = mx_ush_read_line();
-        //line = mx_get_line(m_s);
         if (line[0] == '\0') {
             free(line);
             mx_check_jobs(m_s);
