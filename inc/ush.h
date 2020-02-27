@@ -421,6 +421,7 @@ int mx_set(t_shell *m_s, t_process *p);
 int mx_chdir(t_shell *m_s, t_process *p);
 int mx_kill(t_shell *m_s, t_process *p);
 int mx_true(t_shell *m_s, t_process *p);
+int mx_false(t_shell *m_s, t_process *p);
 
 
 /*
