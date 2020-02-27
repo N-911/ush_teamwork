@@ -50,12 +50,12 @@ static char *get_pwd() {
 }
 
 static void set_shell_defaults(t_shell *m_s) {
-    char *b_list[16] = {"env", "export", "unset", "echo", 
-                        "jobs", "fg", "bg", "cd", "pwd", 
-                        "which", "exit", "set", "kill", "chdir", "true", NULL};
+    char *b_list[18] = {"env", "export", "unset", "echo", "jobs", "fg", "bg",
+                        "cd", "pwd", "which", "exit", "set", "kill", "chdir",
+                        "true", "alias", "declare", NULL};
 
-    m_s->builtin_list = (char **) malloc(sizeof(char *) * 15);
-    for (int i = 0; i < 16; i++)
+    m_s->builtin_list = (char **) malloc(sizeof(char *) * 18);
+    for (int i = 0; i < 18; i++)
         m_s->builtin_list[i] = b_list[i];
     m_s->max_number_job = 1;
     m_s->exit_flag = 0;
@@ -75,6 +75,7 @@ static void set_shell_defaults(t_shell *m_s) {
 t_shell *mx_init_shell(int argc, char **argv) {
     char *shlvl;
     t_shell *m_s = (t_shell *) malloc(sizeof(t_shell));
+
     set_shell_defaults(m_s);
     m_s->argc = argc;
     m_s->argv = argv;
