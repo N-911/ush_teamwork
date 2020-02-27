@@ -2,14 +2,22 @@
 /*
  * Read line from stdin except last char ('\n').
  */
-char *mx_ush_read_line(void) {
+char *mx_ush_read_line(t_shell *m_s) {
 	//write(STDOUT_FILENO, "u$h> ", 5);
     char *line = NULL;
     char *res = NULL;
     size_t bufsize = 0;  // have getline allocate a buffer for us
 
-    getline(&line, &bufsize, stdin);
-    res = mx_strndup(line, mx_strlen(line) - 1);
-    mx_strdel(&line);
+    if (getline(&line, &bufsize, stdin) < 0) {
+    	if (!isatty(0)) {
+        mx_clear_all(m_s);
+        //system("leaks -q ush");
+        exit(0);
+    	}
+    }
+    if(line[0] != '\0'){
+    	res = mx_strndup(line, mx_strlen(line) - 1);
+    	mx_strdel(&line);
+    }
     return res;
 }

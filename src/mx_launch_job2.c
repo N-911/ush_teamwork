@@ -53,7 +53,7 @@ void mx_set_redir_inp_d(t_job *job, t_process *p) {
             free(line);
             if (count)
                 write(fd, "\n", 1);
-            line = mx_ush_read_line();
+            //line = mx_ush_read_line();
             count++;
         }
         free(line);

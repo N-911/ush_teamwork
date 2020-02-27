@@ -50,11 +50,12 @@ static char *get_pwd() {
 }
 
 static void set_shell_defaults(t_shell *m_s) {
-    char *b_list[14] = {"env", "export", "unset", "echo", "jobs", "fg", "bg",
-                        "cd", "pwd", "which", "exit", "set", "mx_kill", NULL};
+    char *b_list[16] = {"env", "export", "unset", "echo", 
+                        "jobs", "fg", "bg", "cd", "pwd", 
+                        "which", "exit", "set", "kill", "chdir", "true", NULL};
 
-    m_s->builtin_list = (char **) malloc(sizeof(char *) * 14);
-    for (int i = 0; i < 15; i++)
+    m_s->builtin_list = (char **) malloc(sizeof(char *) * 15);
+    for (int i = 0; i < 16; i++)
         m_s->builtin_list[i] = b_list[i];
     m_s->max_number_job = 1;
     m_s->exit_flag = 0;
@@ -66,6 +67,9 @@ static void set_shell_defaults(t_shell *m_s) {
     m_s->functions = NULL;
     m_s->aliases = NULL;
     mx_init_jobs_stack(m_s);
+    if (!getenv("PATH"))
+        setenv("PATH", "/Users/mlibovych/.brew/bin:/usr/local/bin:\
+                /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki", 1);
 }
 
 t_shell *mx_init_shell(int argc, char **argv) {
@@ -77,7 +81,6 @@ t_shell *mx_init_shell(int argc, char **argv) {
     m_s->pwd = get_pwd();
     setenv("PWD", m_s->pwd, 1);
     setenv("OLDPWD", m_s->pwd, 1);
-    setenv("PATH", "/Users/mlibovych/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki", 1);
     shlvl = mx_get_shlvl();
     setenv("SHLVL", shlvl, 1);
     free(shlvl);

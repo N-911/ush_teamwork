@@ -45,8 +45,9 @@ static void launch_help (t_shell *m_s, t_job *job, int job_id, int status) {
         tcgetattr(shell_terminal, &job->tmodes);
         tcsetattr(shell_terminal, TCSADRAIN, &m_s->tmodes);
     }
-    else
+    else{
         mx_print_pid_process_in_job(m_s, job->job_id);
+    }
     m_s->exit_code = status;
 }
 
