@@ -24,7 +24,8 @@ static char **func_alias_tokens(char *line, t_shell *m_s) {
         if (mx_get_functions(line, m_s))
             return NULL;
     }
-    if (!mx_strncmp(line, "alias", 5)) {
+    if (!mx_strncmp(line, "alias", 5) && line[5] && line[5] == ' '
+        && line[6] && !mx_isdelim(line[6], MX_USH_TOK_DELIM)) {
         mx_get_aliases(line, m_s);
         return NULL;
     }
