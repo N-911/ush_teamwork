@@ -47,7 +47,7 @@ int mx_check_args(t_shell *m_s, t_process *p) {
     int job_id;
 
     if (p->argv[1][0] == '%' && isdigit(p->argv[1][1])) {
-        if ((job_id = atoi(mx_strdup(p->argv[1] + 1))) < 1) {
+        if ((job_id = atoi((p->argv[1] + 1))) < 1) {
             mx_err_j(p->argv[0], ": ", p->argv[1],": no such job\n");
             return -1;
         }

@@ -18,7 +18,7 @@ static int fg_send_signal(t_shell *m_s, t_process *p, int pgid, int job_id) {
     signal(SIGTTOU, MX_SIG_DFL);
     tcgetattr(STDERR_FILENO, &m_s->jobs[job_id]->tmodes);
     tcsetattr(STDIN_FILENO, TCSADRAIN, &m_s->jobs[job_id]->tmodes);
-    return status >> 8;
+    return status;
 }
 
 static int fg_get_job_id (t_shell *m_s, t_process *p) {

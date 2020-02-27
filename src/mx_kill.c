@@ -47,14 +47,15 @@ static void kill_pid(t_shell *m_s, t_process *p, int i) {
     pid_t pid = 0;
 
     if ((check_pid(p->argv[i])) > 0) {
-        mx_err_j(p->argv[0], " : illegal pid: ", p->argv[i], "\n");
+        mx_err_j(p->argv[0], ": illegal pid: ", p->argv[i], "\n");
         p->exit_code = 1;
         return;
     }
     else {
         pid = atoi(p->argv[i]);
         if (kill(pid, SIGTERM) < 0) {
-            mx_err_j(p->argv[0], ": illegal pid: ", p->argv[i], "\n");
+            mx_err_j(p->argv[0], ": kill ", p->argv[i],
+                     " failed: no such process\n");
             p->exit_code = 1;
         }
         mx_set_process_status(m_s, pid, MX_STAT_TERMINATED);
