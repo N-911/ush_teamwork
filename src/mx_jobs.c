@@ -46,7 +46,7 @@ static void help_jobs(t_shell *m_s, t_process *p, t_jobs jobs_op, int n_opt) {
                 if ((job_id = mx_g_find_job(m_s, (p->argv[j]))) < 1) {
                     mx_err_j(p->argv[0], ": job not found: ",
                              p->argv[j], "\n");
-                    p->exit_code = 2;
+                    p->exit_code = 1;
                     break;
                 }
                 print_jobs_by_mask(m_s, jobs_op, i);

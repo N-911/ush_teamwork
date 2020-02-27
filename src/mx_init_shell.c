@@ -54,7 +54,7 @@ static void set_shell_defaults(t_shell *m_s) {
                         "jobs", "fg", "bg", "cd", "pwd", 
                         "which", "exit", "set", "kill", "chdir", "true", NULL};
 
-    m_s->builtin_list = (char **) malloc(sizeof(char *) * 15);
+    m_s->builtin_list = (char **) malloc(sizeof(char *) * 16);
     for (int i = 0; i < 16; i++)
         m_s->builtin_list[i] = b_list[i];
     m_s->max_number_job = 1;

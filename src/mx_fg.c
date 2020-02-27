@@ -5,7 +5,7 @@ static int fg_send_signal(t_shell *m_s, t_process *p, int pgid, int job_id) {
 
     if (kill(-pgid, SIGCONT) < 0) {
         mx_err_j("fg", ": job not found: ", p->argv[1], "\n");
-        return -1;
+        return 1;
     }
     tcsetpgrp(STDIN_FILENO, pgid);
     mx_set_job_status(m_s, job_id, MX_STATUS_CONTINUED);
@@ -51,10 +51,10 @@ int mx_fg(t_shell *m_s, t_process *p) {
 
     mx_set_last_job(m_s);
     if ((job_id = fg_get_job_id(m_s, p)) < 1)
-        return -1;
+        return 1;
     if ((pgid = mx_get_pgid_by_job_id(m_s, job_id)) < 1) {
         mx_err_j(p->argv[0], ": ", p->argv[1],": no such job\n");
-        return -1;
+        return 1;
     }
     status = fg_send_signal(m_s, p, pgid, job_id);
     return status;
