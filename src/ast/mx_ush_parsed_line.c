@@ -1,71 +1,5 @@
 #include "ush.h"
 /*
- * Convert delimeter in int-value.
- */
-static int get_type(char *delim) {
-    if (MX_IS_SEP(delim))
-        return SEP;
-    else if (MX_IS_FON(delim))
-        return FON;
-    else if (MX_IS_AND(delim))
-        return AND;
-    else if (MX_IS_OR(delim))
-        return OR;
-    else if (MX_IS_PIPE(delim))
-        return PIPE;
-    else if (MX_IS_R_INPUT(delim))
-        return R_INPUT;
-    else if (MX_IS_R_INPUT_DBL(delim))
-        return R_INPUT_DBL;
-    else if (MX_IS_R_OUTPUT(delim))
-        return R_OUTPUT;
-    else if (MX_IS_R_OUTPUT_DBL(delim))
-        return R_OUTPUT_DBL;
-    return NUL;
-}
-
-/*
- * Get delimeter like a string and convert in int-value.
- */
-static int get_delim(char *line, int *pos) {
-    char *delim = NULL;
-    int type = 0;
-
-    if (line[0] && mx_isdelim(line[0], MX_PARSE_DELIM)) {
-        if (line[1] && mx_isdelim(line[1], MX_PARSE_DELIM))
-            delim = mx_strndup(line, 2);
-        else
-            delim = mx_strndup(line, 1);
-    }
-    type = get_type(delim);
-    if (delim)
-        *pos += mx_strlen(delim);
-    mx_strdel(&delim);
-    return type;
-}
-/*
- * Get one command and delimeter after it.
- */
-static char *get_token_and_delim(char *line, int *i, int *type) {
-    int pos = 0;
-    char *tmp = NULL;
-
-    if ((pos = mx_get_char_index_quote(&line[pos],
-                                       MX_PARSE_DELIM, MX_QUOTE)) > 0) {
-        tmp = mx_strndup(line, pos);
-        *type = get_delim(line + pos, &pos);
-        *i += pos;
-    }
-    else if (pos == 0)        // In case >> << < >
-        (*i)++;
-    else {
-        tmp = mx_strdup(line);
-        *type = SEP;
-        *i += mx_strlen(line);
-    }
-    return tmp;
-}
-/*
  * Substitution functions.
  */
 static void func_or_push(t_ast **res, char **args, int type, t_shell *m_s) {
@@ -73,20 +7,29 @@ static void func_or_push(t_ast **res, char **args, int type, t_shell *m_s) {
 
     for (q = m_s->functions; q; q = q->next)
         if (mx_strcmp(args[0], q->name) == 0) {
-            *res = mx_ush_parsed_line(*res, q->value, m_s);
+            *res = mx_ush_parsed_line(*res, q->value, m_s, type);
             return;
         }
     for (q = m_s->aliases; q; q = q->next)
         if (mx_strcmp(args[0], q->name) == 0) {
-            *res = mx_ush_parsed_line(*res, q->value, m_s);
+            *res = mx_ush_parsed_line(*res, q->value, m_s, type);
             return;
         }
     mx_ast_push_back(res, args, type);
 }
+
+static void if_recurcion_func_or_alias(t_ast **res, int old_t) {
+    if (old_t) {
+        t_ast *q = *res;
+        while (q->next)
+            q = q->next;
+        q->type = old_t;
+    }
+}
 /*
  * Get list of all commands and delimeters (operators) -> use filters.
  */
-t_ast *mx_ush_parsed_line(t_ast *res, char *line1, t_shell *m_s) {
+t_ast *mx_ush_parsed_line(t_ast *res, char *line1, t_shell *m_s, int old_t) {
     int type = 0;
     int i = 0;
     char *tmp = NULL;
@@ -97,15 +40,14 @@ t_ast *mx_ush_parsed_line(t_ast *res, char *line1, t_shell *m_s) {
         return NULL;
     line = mx_strdup(line1);
     while (line[i])
-        if ((tmp = get_token_and_delim(&line[i], &i, &type))) {
+        if ((tmp = mx_get_token_and_delim(&line[i], &i, &type))) {
             if ((args = mx_filters(tmp, m_s)) && *args)
                 func_or_push(&res, args, type, m_s);
-            else if (!args || type != SEP) {
-                mx_strdel(&line);
-                return mx_parse_error_ush(type, res);
-            }
+            else if (!args || type != SEP)
+                return mx_parse_error_ush(type, res, line);
             mx_del_strarr(&args);
         }
     mx_strdel(&line);
+    if_recurcion_func_or_alias(&res, old_t);
     return res;
 }

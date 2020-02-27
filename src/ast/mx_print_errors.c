@@ -45,7 +45,7 @@ static char *get_delim_from_type(int type) {
     return NULL;
 }
 
-t_ast *mx_parse_error_ush(int type, t_ast *res) {
+t_ast *mx_parse_error_ush(int type, t_ast *res, char *line) {
     char *delim;
 
     if (type != SEP) {                      // works "; ; ;", block "; | ;"
@@ -56,5 +56,6 @@ t_ast *mx_parse_error_ush(int type, t_ast *res) {
         mx_printerr("\'\n");
     }
     mx_ast_clear_list(&res);
+    mx_strdel(&line);
     return NULL;
 }

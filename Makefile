@@ -72,6 +72,7 @@ SRC_PARSER = libmx1.c \
     mx_filters.c \
     mx_get_aliases.c \
     mx_get_functions.c \
+    mx_get_token_and_delim.c \
     mx_parce_tokens.c \
     mx_print_errors.c \
     mx_strtok.c \
@@ -153,6 +154,7 @@ OBJ_PARSER = libmx1.o \
     mx_filters.o \
     mx_get_aliases.o \
     mx_get_functions.o \
+    mx_get_token_and_delim.o \
     mx_parce_tokens.o \
     mx_print_errors.o \
     mx_quote_manage.o \
