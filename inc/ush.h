@@ -328,7 +328,10 @@ typedef struct s_shell {
  * Abstract Syntax Tree.
  */
 t_ast **mx_ast_creation(char *line, t_shell *m_s);
-t_ast *mx_ush_parsed_line(t_ast *parsed_line, char *line, t_shell *m_s);
+t_ast *mx_ush_parsed_line(t_ast *res, char *line, t_shell *m_s, int old_t);
+char *mx_get_token_and_delim(char *line, int *i, int *type);
+char **mx_parce_tokens(char *line);
+char *mx_strtok (char *s, const char *delim);
 
 t_ast **mx_ast_parse(t_ast *parsed_line);
 void mx_ast_push_back(t_ast **head, char **args, int type);
@@ -343,7 +346,7 @@ bool mx_check_parce_errors(char *line);
 bool mx_parse_error(char *c, int k);
 char *mx_syntax_error(char *c);
 bool mx_unmached_error(char c);
-t_ast *mx_parse_error_ush(int type, t_ast *res);
+t_ast *mx_parse_error_ush(int type, t_ast *res, char *line);
 
 void mx_ast_print(t_ast **ast);                     // In mx_ast_creation.c
 char *mx_ush_read_line(t_shell *m_s);
@@ -351,8 +354,6 @@ char *mx_ush_read_line(t_shell *m_s);
  * Filters.
  */
 char **mx_filters(char *arg, t_shell *m_s);
-char *mx_strtok (char *s, const char *delim);
-char **mx_parce_tokens(char *line);
 
 char *mx_subst_tilde(char *s, t_export *variables);
 char *mx_substr_dollar(char *s, t_export *variables);
