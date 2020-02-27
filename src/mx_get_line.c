@@ -35,8 +35,9 @@ char *mx_get_line(t_shell *m_s) {
     char *line;
     struct termios savetty;
     int out = dup(1);
-    
-    dup2(2, 1);
+    int tty = open("/dev/tty", O_WRONLY);
+
+    dup2(tty, 1);
     mx_edit_prompt(m_s);
     savetty = mx_disable_term();
     m_s->line_len = 1024;
@@ -47,5 +48,6 @@ char *mx_get_line(t_shell *m_s) {
     mx_enable_term(savetty);
     dup2(out, 1);
     close(out);
+    close(tty);
     return line;
 }

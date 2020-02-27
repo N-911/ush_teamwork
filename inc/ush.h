@@ -161,7 +161,7 @@ enum e_type {
     R_OUTPUT,       // <
     R_OUTPUT_DBL,   // <<
     NUL
-} t_type;
+}   t_type;
 /*
  * For creation Abstract Syntax Tree.
  */
