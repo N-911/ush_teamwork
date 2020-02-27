@@ -42,7 +42,7 @@ static void find_git(int *flag, char **path, char **user) {
     free(tmp);
 }
 
-char *mx_get_git_info() {
+char *mx_get_git_info(void) {
     char *user = NULL;
     int flag = 0;
     char *path = strdup(".");

@@ -10,7 +10,7 @@ char *mx_go_somewere(t_process *p, int n_options) {
     return point;
 }
 
-char *mx_go_back() {
+char *mx_go_back(void) {
     char *point = NULL;
 
     if (getenv("OLDPWD"))
@@ -20,7 +20,7 @@ char *mx_go_back() {
     return point;
 }
 
-char *mx_go_home() {
+char *mx_go_home(void) {
     char *point = NULL;
 
     if (getenv("HOME"))
