@@ -107,11 +107,11 @@
  * Keyboards.
  */
 #define MX_INPUT_SIZE  1024
-#define MX_K_LEFT      4479771  // edit keys
+#define MX_K_LEFT      4479771  // Edit keys
 #define MX_K_RIGHT     4414235
 #define MX_K_HOME      4741915
 #define MX_K_END       4610843
-#define MX_K_UP        4283163  // history keys
+#define MX_K_UP        4283163  // History keys
 #define MX_K_DOWN      4348699
 #define MX_P_UP        2117425947
 #define MX_P_DOWN      2117491483
@@ -290,7 +290,7 @@ typedef struct s_job {
     int stdin;              // Standard i/o channels
     int stdout;             // Standard i/o channels
     int stderr;             // Standard i/o channels
-    struct s_job *next;     //Next job separated by ";" "&&" "||"
+    struct s_job *next;     // Next job separated by ";" "&&" "||"
 }             t_job;
 
 typedef struct s_shell {
@@ -328,13 +328,16 @@ typedef struct s_shell {
  * Abstract Syntax Tree.
  */
 t_ast **mx_ast_creation(char *line, t_shell *m_s);
-t_ast *mx_ush_parsed_line(t_ast *parsed_line, char *line, t_shell *m_s);
+t_ast *mx_ush_parsed_line(t_ast *res, char *line, t_shell *m_s, int old_t);
+char *mx_get_token_and_delim(char *line, int *i, int *type);
+char **mx_parce_tokens(char *line);
+char *mx_strtok (char *s, const char *delim);
 
 t_ast **mx_ast_parse(t_ast *parsed_line);
 void mx_ast_push_back(t_ast **head, char **args, int type);
 void mx_ast_push_back_redirection(t_ast **head, char **args, int type);
 void mx_ast_clear_list(t_ast **list);
-void mx_ast_clear_all(t_ast ***list);                 // mx_ast_clear_list.c
+void mx_ast_clear_all(t_ast ***list);                 // In mx_ast_clear_list.c
 
 void mx_redir_push_back(t_redir **head, char *path, int type);
 void mx_redir_clear_list(t_redir **list);
@@ -343,16 +346,14 @@ bool mx_check_parce_errors(char *line);
 bool mx_parse_error(char *c, int k);
 char *mx_syntax_error(char *c);
 bool mx_unmached_error(char c);
-t_ast *mx_parse_error_ush(int type, t_ast *res);
+t_ast *mx_parse_error_ush(int type, t_ast *res, char *line);
 
-void mx_ast_print(t_ast **ast);                     // mx_ast_creation.c
+void mx_ast_print(t_ast **ast);                     // In mx_ast_creation.c
 char *mx_ush_read_line(t_shell *m_s);
 /*
  * Filters.
  */
 char **mx_filters(char *arg, t_shell *m_s);
-char *mx_strtok (char *s, const char *delim);
-char **mx_parce_tokens(char *line);
 
 char *mx_subst_tilde(char *s, t_export *variables);
 char *mx_substr_dollar(char *s, t_export *variables);
@@ -421,6 +422,8 @@ int mx_set(t_shell *m_s, t_process *p);
 int mx_chdir(t_shell *m_s, t_process *p);
 int mx_kill(t_shell *m_s, t_process *p);
 int mx_true(t_shell *m_s, t_process *p);
+int mx_alias(t_shell *m_s, t_process *p);           // In mx_set.c
+int mx_declare(t_shell *m_s, t_process *p);         // In mx_set.c
 int mx_false(t_shell *m_s, t_process *p);
 
 

@@ -2,9 +2,13 @@
 
 static void get_data(char *arg, char **name, char **value) {
     int idx = mx_get_char_index(arg, '=');
+    int len = 0;
 
     *name = mx_strndup(arg, idx);
-    *value = mx_strndup(&arg[idx + 2], mx_strlen(&arg[idx + 2]) - 1);
+    if (arg[idx + 1] == '\"') {
+        len = mx_strlen(&arg[idx + 2]);
+        *value = mx_strndup(&arg[idx + 2], len - 1);
+    }
 }
 /*
  * Get aliases if any.
@@ -17,7 +21,7 @@ void mx_get_aliases(char *line, t_shell *m_s) {
         char *value = NULL;
 
         get_data(args[i], &name, &value);
-        if (value && name) {
+        if (value && name && mx_strcmp(value, name)) {
             if (m_s->aliases)
                 mx_set_variable(m_s->aliases, name, value);
             else

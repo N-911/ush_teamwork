@@ -29,14 +29,14 @@ int mx_bg(t_shell *m_s, t_process *p) {
 
     mx_set_last_job(m_s);
     if ((job_id = bg_get_job_id(m_s, p)) < 1)
-        return -1;
+        return 1;
     if ((pgid = mx_get_pgid_by_job_id(m_s, job_id)) < 1) {
         mx_err_j(p->argv[0], ": ", p->argv[1],": no such job\n");
-        return -1;
+        return 1;
     }
     if (kill(-pgid, SIGCONT) < 0) {
         mx_err_j(p->argv[0], ": job not found: ", p->argv[1], "\n");
-        return -1;
+        return 1;
     }
     mx_set_job_status(m_s, job_id, MX_STATUS_CONTINUED);
     mx_print_job_status(m_s, job_id, 0);
@@ -47,7 +47,7 @@ int mx_check_args(t_shell *m_s, t_process *p) {
     int job_id;
 
     if (p->argv[1][0] == '%' && isdigit(p->argv[1][1])) {
-        if ((job_id = atoi(mx_strdup(p->argv[1] + 1))) < 1) {
+        if ((job_id = atoi((p->argv[1] + 1))) < 1) {
             mx_err_j(p->argv[0], ": ", p->argv[1],": no such job\n");
             return -1;
         }
