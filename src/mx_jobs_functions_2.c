@@ -40,14 +40,16 @@ int mx_job_is_running(t_shell *m_s, int job_id) {
 
 int mx_g_find_job(t_shell *m_s, char *arg) {
     int i;
+    int a;
     t_process *p;
 
-    for (i = m_s->max_number_job; i > 0 ; i--) {
-        if (m_s->jobs[i] == NULL)
+    for (i = m_s->jobs_stack->top; i > 0 ; i--) {
+        a = m_s->jobs_stack->stack[i];
+        if (m_s->jobs[a] == NULL)
             continue;
-        for (p = m_s->jobs[i]->first_pr; p != NULL; p = p->next) {
-            if ((mx_strcmp(p->argv[0], arg)) == 0)
-                return i;
+        for (p = m_s->jobs[a]->first_pr; p != NULL; p = p->next) {
+            if ((strncmp(p->argv[0], arg, strlen(arg))) == 0)
+                return a;
         }
     }
     return -1;

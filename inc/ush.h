@@ -453,6 +453,7 @@ void mx_init_jobs_stack(t_shell *m_s);
 void mx_push_to_stack (t_shell *m_s, int job);
 void mx_pop_from_stack(t_shell * m_s, int job);
 bool mx_get_from_stack(t_shell *m_s, int job_id);
+bool mx_get_from_stack2(t_shell *m_s, int job_id, int i);
 void mx_print_stack (t_shell *m_s);
 
 int mx_job_id_by_pid(t_shell *m_s, int pid);

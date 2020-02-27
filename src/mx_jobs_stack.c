@@ -47,6 +47,15 @@ bool mx_get_from_stack(t_shell *m_s, int job_id) {
     return false;
 }
 
+
+bool mx_get_from_stack2(t_shell *m_s, int job_id, int i) {
+    if ((m_s->jobs_stack->top - i) >= 0) {
+        if (job_id == m_s->jobs_stack->stack[m_s->jobs_stack->top - 1])
+            return true;
+    }
+    return false;
+}
+
 int mx_get_job_status(t_shell *m_s, int job_id, int status) {
     t_process *p;
     int flag = 0;
