@@ -32,7 +32,7 @@ static int check_path(char *point, cd_t cd_options) {
     char *read_link = realpath(point, NULL);
 
     if (cd_options.s) {
-        if(read_link && strcmp(point, read_link) != 0){
+        if(read_link && strcmp(point, read_link) != 0) {
             mx_printerr("ush: cd: ");
             mx_printerr(point);
             mx_printerr(": Not a directory");
@@ -49,13 +49,15 @@ void mx_change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code){
     int flag = check_path(point, cd_options);
 
     if (!flag) {
-        if (chdir(dir) != 0){
+        if (chdir(dir) != 0) {
             print_error_cd(point);
             free(dir);
         }
         else
             manage_env(dir, m_s, cd_options, exit_code);
     }
+    else
+        free(dir);
     free(m_s->git);
     if (getenv("HOME"))
         m_s->git = mx_get_git_info();
