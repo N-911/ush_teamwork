@@ -43,7 +43,7 @@ int mx_g_find_job(t_shell *m_s, char *arg) {
     int a;
     t_process *p;
 
-    for (i = m_s->jobs_stack->top; i > 0 ; i--) {
+    for (i = m_s->jobs_stack->top; i >= 0 ; i--) {
         a = m_s->jobs_stack->stack[i];
         if (m_s->jobs[a] == NULL)
             continue;
