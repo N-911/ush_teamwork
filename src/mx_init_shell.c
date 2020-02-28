@@ -49,6 +49,27 @@ static char *get_pwd() {
     return pwd;
 }
 
+static void set_path(t_shell *m_s) {
+    char *cur_dir = getcwd(NULL, 256);
+    char *path = NULL;
+    char *tmp = NULL;
+
+    m_s->kernal = strdup(cur_dir);
+    if (!getenv("PATH"))
+        path = strdup("/Users/mlibovych/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki");
+    else
+        path = strdup(getenv("PATH"));
+    tmp = mx_strjoin(path, ":");
+    free(path);
+    path = mx_strjoin(tmp, cur_dir);
+    free(tmp);
+    setenv("PATH", path, 1);
+    free(path);
+    free(cur_dir);
+}
+
+
+
 static void set_shell_defaults(t_shell *m_s) {
     char *b_list[19] = {"env", "export", "unset", "echo", "jobs", "fg", "bg",
                         "cd", "pwd", "which", "exit", "set", "kill", "chdir",
@@ -70,6 +91,7 @@ static void set_shell_defaults(t_shell *m_s) {
     if (!getenv("PATH"))
         setenv("PATH", "/Users/mlibovych/.brew/bin:/usr/local/bin:\
                 /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki", 1);
+    set_path(m_s);
 }
 
 t_shell *mx_init_shell(int argc, char **argv) {

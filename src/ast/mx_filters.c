@@ -48,7 +48,7 @@ static char **substitutions(char **args, t_shell *m_s) {
         res[i] = mx_strdup(args[j]);
         res[i] = mx_subst_tilde(res[i], m_s->variables);
         res[i] = mx_substr_dollar(res[i], m_s->variables);
-        res[i] = mx_subst_command(res[i]);
+        res[i] = mx_subst_command(res[i], m_s);
         if (check_subsut_result(res, args, &i))
             return NULL;
     }

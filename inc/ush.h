@@ -322,6 +322,7 @@ typedef struct s_shell {
     t_export *functions;
     t_export *aliases;
     int redir;
+    char *kernal;
 }             t_shell;
 
 /*
@@ -357,7 +358,7 @@ char **mx_filters(char *arg, t_shell *m_s);
 
 char *mx_subst_tilde(char *s, t_export *variables);
 char *mx_substr_dollar(char *s, t_export *variables);
-char *mx_subst_command(char *s);
+char *mx_subst_command(char *s, t_shell *m_s);
 
 bool mx_get_functions(char *line, t_shell *m_s);
 void mx_get_aliases(char *line, t_shell *m_s);
