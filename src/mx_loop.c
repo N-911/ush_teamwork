@@ -22,14 +22,6 @@ static void launch_blow_job(t_shell *m_s, t_ast **ast, t_job *new_job) {
     mx_ast_clear_all(&ast);
 }
 
-// static void check_eof(t_shell *m_s) {
-//     if (!isatty(0)) {
-//         mx_clear_all(m_s);
-//         //system("leaks -q ush");
-//         exit(0);
-//     }
-// }
-
 void mx_ush_loop(t_shell *m_s) {
     char *line;
     t_ast **ast = NULL;

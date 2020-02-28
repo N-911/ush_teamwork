@@ -1,6 +1,6 @@
 #include "ush.h"
 
-static void execute_job_env(t_job *job) {
+static void execute_job_env (t_job *job) {
     extern char **environ;
 
     job->env = environ;
@@ -9,7 +9,7 @@ static void execute_job_env(t_job *job) {
         job->path = "";
 }
 
-static void help_ex_job(t_shell *m_s, t_job *job, t_process *p, int job_id) {
+static void help_ex_job (t_shell *m_s, t_job *job, t_process *p, int job_id) {
     p->infile = job->infile;
     p->outfile = job->outfile;
     p->errfile = job->errfile;
@@ -51,7 +51,7 @@ static void launch_help (t_shell *m_s, t_job *job, int job_id, int status) {
     m_s->exit_code = status;
 }
 
-static int execute_job(t_shell *m_s, t_job * job, int job_id) {
+static int execute_job (t_shell *m_s, t_job * job, int job_id) {
     t_process *p;
     int mypipe[2];
 
@@ -75,8 +75,7 @@ static int execute_job(t_shell *m_s, t_job * job, int job_id) {
     return job->exit_code;
 }
 
-
-void mx_launch_job(t_shell *m_s, t_job *job) {
+void mx_launch_job (t_shell *m_s, t_job *job) {
     setbuf(stdout, NULL);
     int status;
     int job_id;
