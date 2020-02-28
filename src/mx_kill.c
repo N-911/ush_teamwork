@@ -1,11 +1,5 @@
 #include "ush.h"
 
-/*
- * kill PID PID     send signal KILL PID
- * kill %job_id     send signal KILL to all proc in job
- * kill %sleep      send signal KILL to all proc in job
- */
-
 static int count_args(char **args) {
     int n_args = 0;
 
@@ -82,4 +76,3 @@ int mx_kill(t_shell *m_s, t_process *p) {
     }
     return p->exit_code;
 }
-

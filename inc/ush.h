@@ -129,7 +129,7 @@
  */
 #define MX_PARSE_DELIM ";|&><"
 #define MX_QUOTE "\"\'`$("
-#define MX_DBLQ_EXCEPTIONS "$`\"\\"
+#define MX_DBLQ_EXCEPTIONS "$`\"\\!"
 #define MX_USH_TOK_DELIM " \t\r\n\a"
 /*
  * Macroces for recognizing delimeters.
@@ -322,6 +322,7 @@ typedef struct s_shell {
     t_export *functions;
     t_export *aliases;
     int redir;
+    char *kernal;
 }             t_shell;
 
 /*
@@ -357,7 +358,7 @@ char **mx_filters(char *arg, t_shell *m_s);
 
 char *mx_subst_tilde(char *s, t_export *variables);
 char *mx_substr_dollar(char *s, t_export *variables);
-char *mx_subst_command(char *s);
+char *mx_subst_command(char *s, t_shell *m_s);
 
 bool mx_get_functions(char *line, t_shell *m_s);
 void mx_get_aliases(char *line, t_shell *m_s);
@@ -478,8 +479,8 @@ void mx_printstr(const char *s);
 void mx_printerr(const char *s);
 char *mx_normalization (char *point, char *pwd);
 void mx_push_export(t_export **list, void *name, void *value);
-t_export *mx_set_variables();
-t_export *mx_set_export();
+t_export *mx_set_variables(void);
+t_export *mx_set_export(void);
 int mx_count_options(char **args, char *options, char *command, char *error);
 void mx_set_variable(t_export *export, char *name, char *value);
 char mx_get_type(struct stat file_stat);
@@ -489,11 +490,11 @@ char *mx_nbr_to_hex(unsigned long nbr);
 unsigned long mx_hex_to_nbr(const char *hex);
 
 int mx_launch_builtin(t_shell *m_s, t_process *p, int job_id);
-char *mx_get_git_info();
+char *mx_get_git_info(void);
 void mx_clear_all(t_shell *m_s);
 char *mx_go_somewere(t_process *p, int n_options);
-char *mx_go_back();
-char *mx_go_home();
+char *mx_go_back(void);
+char *mx_go_home(void);
 void mx_change_dir(char *point, cd_t cd_options, t_shell *m_s, int *exit_code);
 char *mx_strdup_from(char *str, int index);
 void mx_export_or_error(char *arg, t_export *export,
@@ -518,7 +519,8 @@ void mx_env_err(int *flag, int *exit_code, char option);
 void mx_print_env_error(char option, char *error);
 void mx_clear_data(char *name, char *value);
 void mx_print_error(char *command, char *error);
-char *mx_get_shlvl();
+char *mx_get_shlvl(void);
 unsigned long mx_pow_rec(int n, int pow);
+void mx_launch_blow_job(t_shell *m_s, t_ast **ast, t_job *new_job);
 
 #endif

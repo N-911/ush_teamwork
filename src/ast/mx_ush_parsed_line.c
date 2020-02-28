@@ -41,6 +41,7 @@ t_ast *mx_ush_parsed_line(t_ast *res, char *line1, t_shell *m_s, int old_t) {
     line = mx_strdup(line1);
     while (line[i])
         if ((tmp = mx_get_token_and_delim(&line[i], &i, &type))) {
+            // tmp = mx_subst_command(tmp);
             if ((args = mx_filters(tmp, m_s)) && *args)
                 func_or_push(&res, args, type, m_s);
             else if (!args || type != SEP)

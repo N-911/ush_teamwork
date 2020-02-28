@@ -13,7 +13,7 @@ static int get_job_type(t_ast **ast, int i) {
     return 0;
 }
 
-static void launch_blow_job(t_shell *m_s, t_ast **ast, t_job *new_job) {
+void mx_launch_blow_job(t_shell *m_s, t_ast **ast, t_job *new_job) {
     for (int i = 0; ast[i]; i++) {
         new_job = mx_create_job(m_s, ast[i]);
         new_job->job_type = get_job_type(ast, i);
@@ -37,7 +37,7 @@ void mx_ush_loop(t_shell *m_s) {
         }
         else {
             if ((ast = mx_ast_creation(line, m_s))){
-                launch_blow_job(m_s, ast, new_job);
+                mx_launch_blow_job(m_s, ast, new_job);
             }
         }
         mx_strdel(&line);

@@ -16,7 +16,7 @@ char *mx_ush_read_line(t_shell *m_s) {
     	}
     }
     if(line[0] != '\0'){
-    	res = mx_strndup(line, mx_strlen(line) - 1);
+    	res = mx_strndup(line, mx_strlen(line));
     	mx_strdel(&line);
     }
     return res;

@@ -37,7 +37,7 @@ void mx_print_error(char *command, char *error) {
         perror(command);
 }
 
-char *mx_get_shlvl() {
+char *mx_get_shlvl(void) {
     char *shlvl = NULL;
     int lvl;
 

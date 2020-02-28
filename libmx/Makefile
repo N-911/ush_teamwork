@@ -13,7 +13,8 @@ OBJ = mx_memcpy.o mx_printstr_color.o mx_strsplit.o mx_pow.o mx_realloc.o mx_bub
 
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
 
-all: install clean
+all: install
+
 install:
 	@cp $(SRCS) .
 	@cp $(INCI) .

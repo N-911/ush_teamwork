@@ -179,7 +179,6 @@ install:
 	@clang $(CFLAGS) libmx/libmx.a $(OBJ) $(OBJ_PARSER) -o $(NAME)
 	@mkdir -p obj
 	@mv $(OBJ) $(OBJ_PARSER) ./obj
-	@rm -rf $(SRC) $(SRC_PARSER) $(INC)
 
 uninstall: clean
 	#@make uninstall -C libmx
