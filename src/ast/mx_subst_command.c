@@ -50,8 +50,12 @@ char *exec_subshell(char *substr, t_shell *m_s) {
     else {
         waitpid(pid, &status, 0);
         str = mx_file_to_str("ttt");
-        if (str && str[mx_strlen(str) - 1] == '\n')
-            str[mx_strlen(str) - 1] = '\0';
+        if (str) {
+            char *tmp = strdup(str);
+            free(str);
+            str = strndup(tmp,mx_strlen(tmp) - 1);
+            free(tmp);
+        }
         remove("ttt");
         remove("fff");
     }
@@ -61,16 +65,17 @@ char *exec_subshell(char *substr, t_shell *m_s) {
 /*
  * Combine new string.
  */
+
 static char *expantion(char *s, int pos, t_shell *m_s) {
     char *res = NULL;
     int len = 0;
-    char *subst;
+    char *subst = NULL;
 
     res = mx_strndup(s, pos);
     if ((subst = get_subst(&s[pos], &len))) {
         subst = exec_subshell(subst, m_s);
         res = mx_strjoin_free(res, subst);
-        // mx_strdel(&subst);
+        //mx_strdel(&subst);
     }
     if (s[pos + len + 1])
         res = mx_strjoin_free(res, &s[pos + len + 1]);
