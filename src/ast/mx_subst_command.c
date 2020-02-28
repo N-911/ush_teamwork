@@ -22,6 +22,28 @@ static char *get_subst(char *s, int *len) {
     }
     return subst;
 }
+
+char *exec_subshell(char *substr) {
+    t_ast **ast = NULL;
+    // t_job *new_job = NULL;
+    char *argv[] = {"./ush", NULL};
+    t_shell *m_s = mx_init_shell(1, argv);
+    m_s->variables = NULL;
+
+    if (substr[0] != '\0') {
+        if ((ast = mx_ast_creation(substr, m_s))){
+            mx_ast_print(ast);
+
+            // launch_blow_job(m_s, ast, new_job);
+
+            // mx_strdel(&substr);
+            return "SUBS";
+        }
+    }
+    // mx_strdel(&substr);
+    return "FAIL";
+}
+
 /*
  * Combine new string.
  */
@@ -32,10 +54,9 @@ static char *expantion(char *s, int pos) {
 
     res = mx_strndup(s, pos);
     if ((subst = get_subst(&s[pos], &len))) {
-        mx_strdel(&subst);
-        mx_strdel(&res);
-        mx_strdel(&s);
-        return NULL;
+        subst = exec_subshell(subst);
+        res = mx_strjoin_free(res, subst);
+        // mx_strdel(&subst);
     }
     if (s[pos + len + 1])
         res = mx_strjoin_free(res, &s[pos + len + 1]);

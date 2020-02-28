@@ -129,7 +129,7 @@
  */
 #define MX_PARSE_DELIM ";|&><"
 #define MX_QUOTE "\"\'`$("
-#define MX_DBLQ_EXCEPTIONS "$`\"\\"
+#define MX_DBLQ_EXCEPTIONS "$`\"\\!"
 #define MX_USH_TOK_DELIM " \t\r\n\a"
 /*
  * Macroces for recognizing delimeters.

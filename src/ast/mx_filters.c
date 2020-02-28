@@ -68,6 +68,8 @@ char **mx_filters(char *arg, t_shell *m_s) {
     char **args;
     char **res = NULL;
 
+    if (!arg)
+        return NULL;
     args = func_alias_tokens(arg, m_s);
     if (!(res = substitutions(args, m_s))) {
         mx_strdel(&arg);

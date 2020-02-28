@@ -5,7 +5,7 @@
 static char *get_end_usual_quote_func(char *s, const char *delim, char *end) {
     while (*s && !(mx_isdelim(*s, (char *)delim))) {
         if (*s == '\\')
-            s++;
+            s += 2;
         else if (*s == '\'')
             s += mx_get_char_index(s + 1, '\'') + 2;
         else if (mx_isdelim(*s, "\""))

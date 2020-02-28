@@ -70,7 +70,7 @@ static char *exp_inside_dblq(char *s, t_export *var, int *i, int *k) {
     res = mx_strndup(s, *i);
     j = mx_get_char_index_quote(&s[*i], "\"", "`$");
     tmp = mx_strndup(&s[*i], j);
-    while (tmp && (pos = mx_get_char_index_quote(tmp, "$", "`$")) >= 0)
+    while (tmp && (pos = mx_get_char_index_quote(tmp, "$", NULL)) >= 0)
         tmp = expantion(tmp, var, pos);
     res = mx_strjoin_free(res, tmp);
     res = mx_strjoin_free(res, &s[*i + j]);
@@ -96,7 +96,7 @@ char *mx_substr_dollar(char *s, t_export *variables) {
         else
             break;
     }
-    while (res && (pos = mx_get_char_index_quote(res, "$", MX_QUOTE)) >= 0)
+    while (res && (pos = mx_get_char_index_quote(res, "$", "\"\'`$")) >= 0)
         res = expantion(res, variables, pos);
     if (!res) {
         mx_printerr("u$h: bad substitution\n");
