@@ -33,7 +33,9 @@ char *exec_subshell(char *substr, t_shell *m_s) {
     int n;
     int fd1[2];
     int fd2[2];
-    char buf[BUFSIZ];
+    int bufsize = 1024;
+    char *tmp = (char *)malloc(256);
+    char *buf = (char *)malloc(bufsize);
 
     if (pipe(fd1) < 0 || pipe(fd2) < 0) {
         perror("pipe");
@@ -50,7 +52,14 @@ char *exec_subshell(char *substr, t_shell *m_s) {
     else if (pid > 0) {  // Parent
         close(fd1[0]);
         close(fd2[1]);
-        n = read(fd2[0], buf, BUFSIZ);
+        while(read(fd2[0], tmp, 1) > 0) {
+            n++;
+            // if (n >= bufsize) {
+            //     bufsize +=1024;
+            //     buf = realloc(buf, bufsize);
+            // }
+            buf = mx_strjoin(buf, tmp);
+        }
         waitpid(pid, &status, MX_WNOHANG | MX_WUNTRACED | MX_WCONTINUED);
         buf[n - 1] = '\0';
 //        printf("res parent line = %s, %d|\n", buf, n);
