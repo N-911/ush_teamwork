@@ -29,109 +29,51 @@ char *exec_subshell(char *substr, t_shell *m_s) {
     int status;
     char *path = mx_strjoin(m_s->kernal, "/ush");
     extern char **environ;
-
-    printf("substr = %s\n", substr);
-    printf ("1@@@@@@@@@\n");
+    int n;
     int fd1[2];
     int fd2[2];
-    int MAXLINE = 1024;
-    char line[MAXLINE];
-//    (void)substr;
+    char buf[BUFSIZ];
 
     if (pipe(fd1) < 0 || pipe(fd2) < 0) {
         perror("pipe");
         exit(1);
     }
+    n = strlen(substr) + 1;
+    if (write(fd1[1], substr, n) != n)
+        perror("error write to pipe");
+    close(fd1[1]);
 
     if ((pid = fork()) < 0) {
-        perror("ошибка вызова функции fork");
+        perror("error fork");
     }
-    else if (pid > 0) {
+    else if (pid > 0) {  // Parent
         close(fd1[0]);
         close(fd2[1]);
-        printf ("1  parent @@@@@@@@@\n");
-
-//        char *line = NULL;
-//        size_t linecap = 0;
-        int a;
-        int n = strlen(substr);
-
-//        if (getline(&line, &substr, fd1[1]) < 0)
-//            perror("ошибка записи в канал");
-
-        if (write(fd1[1], substr, n) != n)
-            perror("ошибка записи в канал");
-
-
-        if ((a = read(fd2[0], &line, MAXLINE)) < 0)
-            perror("ошибка чтения из канала");
-//        line[a] = '\0';
-
-        printf("res parent line = %s\n", line);
+        n = read(fd2[0], buf, BUFSIZ);
         waitpid(pid, &status, MX_WNOHANG | MX_WUNTRACED | MX_WCONTINUED);
-        if (ferror(stdin))
-            perror("ошибка получения данных со стандартного ввода");
-//        wait(NULL);
-        printf ("11  parent @@@@@@@@@\n");
-
-//        exit(0);
+        buf[n - 1] = '\0';
+//        printf("res parent line = %s, %d|\n", buf, n);
+        close(fd2[0]);
     }
     else {
-        printf ("2  child @@@@@@@@@\n");
-        close(fd1[1]);
-        close(fd2[0]);
-        int  b;
-        if ((b = read(fd1[0], line, MAXLINE)) < 0)
-            perror("ошибка чтения из канала");
-
-        line[b] = '\0';
-        printf("res child line = %s\n", line);
-
-
         if (fd1[0] != STDIN_FILENO) {
             if (dup2(fd1[0], STDIN_FILENO) != STDIN_FILENO)
-                perror("ошибка вызова функции dup2 для stdin");
+                perror("error dup2 stdin");
             close(fd1[0]);
         }
         if (fd2[1] != STDOUT_FILENO) {
             if (dup2(fd2[1], STDOUT_FILENO) != STDOUT_FILENO)
-                perror("ошибка вызова функции dup2 для stdout");
+                perror("error dup2 stdout");
             close(fd2[1]);
         }
-
-        printf ("\n22  child @@@@@@@@@\n");
         if (execve(path, NULL, environ) < 0) {
             perror("ush ");
-            exit(0);
+            _exit(EXIT_SUCCESS);
         }
-        exit(0);
+        exit(EXIT_SUCCESS);
     }
-    return strdup(line);
+    return strdup(buf);
 }
-
-
-/*
-void read_from_pipe (int file) {
-    FILE *stream;
-    int c;
-    stream = fdopen (file, 'r');
-    while ((c = fgetc (stream)) != EOF)
-        putchar (c);
-    fclose (stream);
-}
-
-
-
-void write_to_pipe (int file) {
-    FILE *stream;
-    stream = fdopen (file, 'w');
-    fprintf (stream, 'hello, world!\n');
-    fprintf (stream, 'goodbye, world!\n');
-    fclose (stream);
-}
-
-
-*/
 
 
 /*
