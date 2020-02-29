@@ -6,6 +6,7 @@ void mx_clear_all(t_shell *m_s) {
     mx_clear_export(m_s->functions);
     mx_clear_export(m_s->aliases);
     mx_del_strarr(&m_s->history);
+    free(m_s->kernal);
     free(m_s->pwd);
 }
 

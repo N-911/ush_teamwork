@@ -35,7 +35,8 @@ t_export *mx_set_export(void) {
         char *name = strndup(environ[i],idx);
         char *value = strdup_from(environ[i],idx);
 
-        mx_push_export(&export, name, value);
+        if(strcmp(name, "_") != 0)
+            mx_push_export(&export, name, value);
         if (name)
             free(name);
         if (value)

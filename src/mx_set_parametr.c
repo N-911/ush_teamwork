@@ -14,7 +14,7 @@ static void get_data (char *arg, char **name, char **value) {
     *value = strdup_from(arg,idx);
 }
 
-static void export_value(t_export *export, char *name, char *value) {
+void mx_export_value(t_export *export, char *name, char *value) {
     t_export *head = export;
 
     while (head != NULL) {
@@ -39,7 +39,7 @@ int mx_set_parametr(char **args, t_shell *m_s) {
         get_data(args[i], &name, &value);
         if (value != NULL && name != NULL) {
             mx_set_variable(m_s->variables, name, value);
-            export_value(m_s->exported, name, value);
+            mx_export_value(m_s->exported, name, value);
         }
         if (name)
             free(name);

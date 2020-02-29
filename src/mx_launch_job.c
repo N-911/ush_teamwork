@@ -58,6 +58,8 @@ static int execute_job (t_shell *m_s, t_job * job, int job_id) {
     execute_job_env(job);
     for (p = m_s->jobs[job_id]->first_pr; p; p = p->next) {
         mx_sheck_exit(m_s, p);
+        mx_set_variable(m_s->variables, "_", p->argv[0]);
+        setenv("_", p->argv[0], 1);
         if ((mx_set_redirec(m_s, job, p, job_id)) != 0)
             continue;
         if (p->pipe) {
