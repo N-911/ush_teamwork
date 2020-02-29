@@ -23,6 +23,8 @@ int mx_get_flag(char **args) {
 }
 
 void mx_sheck_exit(t_shell *m_s, t_process *p) {
+    mx_set_variable(m_s->variables, "_", p->argv[0]);
+    setenv("_", p->argv[0], 1);
     if (m_s->exit_flag == 1 && !(p->type == 10))
         m_s->exit_flag = 0;
 }

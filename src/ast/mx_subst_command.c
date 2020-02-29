@@ -56,8 +56,10 @@ char *exec_subshell(char *substr, t_shell *m_s) {
             memcpy(&res[test], buf,  n_read);
             test += n_read;
         }
-        if (test > 0)
-            res[test - 1] = 0;
+        if (test > 0) {
+            if (res[test - 1] == '\n')
+                res[test - 1] = 0;
+        }
 //        n_read = read(fd2[0], buf, BUFSIZ);
 //        buf[n_read - 1] = '\0';
         waitpid(pid, &status, MX_WNOHANG | MX_WUNTRACED | MX_WCONTINUED);
