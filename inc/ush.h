@@ -523,4 +523,5 @@ char *mx_get_shlvl(void);
 unsigned long mx_pow_rec(int n, int pow);
 void mx_launch_blow_job(t_shell *m_s, t_ast **ast, t_job *new_job);
 
+void mx_dup2_fd(int *fd1, int *fd2);
 #endif

@@ -29,7 +29,7 @@ static void real_exit(t_shell *m_s, t_process *p) {
         get_exit_code(p, &exit_code, &flag, &start);
     }
     mx_clear_all(m_s);
-    // system("leaks -q ush");
+     system("leaks -q ush");
     exit(exit_code);
 }
 
