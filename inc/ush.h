@@ -41,7 +41,7 @@
 /*
  * Jobs.
  */
-#define MX_JOBS_NUMBER 1000
+#define MX_JOBS_NUMBER 10000
 #define MX_STATUS_RUNNING 0
 #define MX_STATUS_DONE 1
 #define MX_STATUS_SUSPENDED 2
@@ -524,4 +524,5 @@ unsigned long mx_pow_rec(int n, int pow);
 void mx_launch_blow_job(t_shell *m_s, t_ast **ast, t_job *new_job);
 void mx_export_value(t_export *export, char *name, char *value);
 
+void mx_dup2_fd(int *fd1, int *fd2);
 #endif

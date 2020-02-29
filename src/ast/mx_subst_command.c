@@ -24,67 +24,71 @@ static char *get_subst(char *s, int *len) {
 }
 
 
-//PIPE_BUF.
 char *exec_subshell(char *substr, t_shell *m_s) {
     pid_t pid;
     int status;
     char *path = mx_strjoin(m_s->kernal, "/ush");
     extern char **environ;
-    int n;
+    int len;
     int fd1[2];
     int fd2[2];
-    int bufsize = 1024;
-    char *tmp = (char *)malloc(256);
-    char *buf = (char *)malloc(bufsize);
+    char buf[BUFSIZ];
+    size_t n_read = 0;
+    char *res = NULL;
 
     if (pipe(fd1) < 0 || pipe(fd2) < 0) {
         perror("pipe");
         exit(1);
     }
-    n = strlen(substr) + 1;
-    if (write(fd1[1], substr, n) != n)
+    len = strlen(substr) + 1;
+    if (write(fd1[1], substr, len) != len)
         perror("error write to pipe");
     close(fd1[1]);
-
     if ((pid = fork()) < 0) {
         perror("error fork");
     }
     else if (pid > 0) {  // Parent
         close(fd1[0]);
         close(fd2[1]);
-        while(read(fd2[0], tmp, 1) > 0) {
-            n++;
-            // if (n >= bufsize) {
-            //     bufsize +=1024;
-            //     buf = realloc(buf, bufsize);
-            // }
-            buf = mx_strjoin(buf, tmp);
+        int test = 0;
+        while ((n_read = read(fd2[0], buf, BUFSIZ)) > 0) {
+            res = realloc(res, test + n_read + 1);
+            memcpy(&res[test], buf,  n_read);
+            test += n_read;
         }
+        if (test > 0)
+            res[test - 1] = 0;
+//        n_read = read(fd2[0], buf, BUFSIZ);
+//        buf[n_read - 1] = '\0';
         waitpid(pid, &status, MX_WNOHANG | MX_WUNTRACED | MX_WCONTINUED);
-        buf[n - 1] = '\0';
-//        printf("res parent line = %s, %d|\n", buf, n);
+        m_s->exit_code = status;
         close(fd2[0]);
     }
     else {
-        if (fd1[0] != STDIN_FILENO) {
-            if (dup2(fd1[0], STDIN_FILENO) != STDIN_FILENO)
-                perror("error dup2 stdin");
-            close(fd1[0]);
-        }
-        if (fd2[1] != STDOUT_FILENO) {
-            if (dup2(fd2[1], STDOUT_FILENO) != STDOUT_FILENO)
-                perror("error dup2 stdout");
-            close(fd2[1]);
-        }
+        mx_dup2_fd(fd1, fd2);
         if (execve(path, NULL, environ) < 0) {
             perror("ush ");
             _exit(EXIT_SUCCESS);
         }
         exit(EXIT_SUCCESS);
     }
-    return strdup(buf);
+    mx_strdel(&path);
+//    return strdup(buf);
+    return res;
 }
 
+void mx_dup2_fd(int *fd1, int *fd2) {
+    if (fd1[0] != STDIN_FILENO) {
+        if (dup2(fd1[0], STDIN_FILENO) != STDIN_FILENO)
+            perror("error dup2 stdin");
+        close(fd1[0]);
+    }
+    if (fd2[1] != STDOUT_FILENO) {
+        if (dup2(fd2[1], STDOUT_FILENO) != STDOUT_FILENO)
+            perror("error dup2 stdout");
+        close(fd2[1]);
+    }
+}
 
 /*
  * Combine new string.
@@ -106,9 +110,11 @@ static char *expantion(char *s, int pos, t_shell *m_s) {
     mx_strdel(&s);
     return res;
 }
+
 /*
  * Command substitutiont.
  */
+
 char *mx_subst_command(char *s, t_shell *m_s) {
     char *res = s;
     int pos = 0;
@@ -163,3 +169,4 @@ char *exec_subshell(char *substr, t_shell *m_s) {
     return str;
 }
 */
+
