@@ -23,40 +23,60 @@ static char *get_subst(char *s, int *len) {
     return subst;
 }
 
+
+//PIPE_BUF.
 char *exec_subshell(char *substr, t_shell *m_s) {
-    char *str = NULL;
     pid_t pid;
-    int status = 1;
+    int status;
     char *path = mx_strjoin(m_s->kernal, "/ush");
     extern char **environ;
-    
-    pid = fork();
-    if (pid == 0) {
-        int fd = open("fff", O_RDWR | O_CREAT | O_TRUNC, 0666);
-        int out = open("ttt", O_RDWR | O_CREAT | O_TRUNC, 0666);
-        write(fd, substr, mx_strlen(substr));
-        close(fd);
-        fd = open("fff", O_RDWR, 0666);
-        dup2 (fd, 0);
-        dup2 (out, 1);
+    int n;
+    int fd1[2];
+    int fd2[2];
+    char buf[BUFSIZ];
+
+    if (pipe(fd1) < 0 || pipe(fd2) < 0) {
+        perror("pipe");
+        exit(1);
+    }
+    n = strlen(substr) + 1;
+    if (write(fd1[1], substr, n) != n)
+        perror("error write to pipe");
+    close(fd1[1]);
+
+    if ((pid = fork()) < 0) {
+        perror("error fork");
+    }
+    else if (pid > 0) {  // Parent
+        close(fd1[0]);
+        close(fd2[1]);
+        n = read(fd2[0], buf, BUFSIZ);
+        waitpid(pid, &status, MX_WNOHANG | MX_WUNTRACED | MX_WCONTINUED);
+        buf[n - 1] = '\0';
+//        printf("res parent line = %s, %d|\n", buf, n);
+        close(fd2[0]);
+    }
+    else {
+        if (fd1[0] != STDIN_FILENO) {
+            if (dup2(fd1[0], STDIN_FILENO) != STDIN_FILENO)
+                perror("error dup2 stdin");
+            close(fd1[0]);
+        }
+        if (fd2[1] != STDOUT_FILENO) {
+            if (dup2(fd2[1], STDOUT_FILENO) != STDOUT_FILENO)
+                perror("error dup2 stdout");
+            close(fd2[1]);
+        }
         if (execve(path, NULL, environ) < 0) {
             perror("ush ");
-            exit(status);
+            _exit(EXIT_SUCCESS);
         }
-        exit(0);
+        exit(EXIT_SUCCESS);
     }
-    else if (pid < 0)
-        perror("ush "); 
-    else {
-        waitpid(pid, &status, 0);
-        str = mx_file_to_str("ttt");
-        if (str && str[mx_strlen(str) - 1] == '\n')
-            str[mx_strlen(str) - 1] = '\0';
-        remove("ttt");
-        remove("fff");
-    }
-    return str;
+    return strdup(buf);
+
 }
+
 
 /*
  * Combine new string.
@@ -93,3 +113,40 @@ char *mx_subst_command(char *s, t_shell *m_s) {
         }
     return res;
 }
+
+/*
+char *exec_subshell(char *substr, t_shell *m_s) {
+    char *str = NULL;
+    pid_t pid;
+    int status = 1;
+    char *path = mx_strjoin(m_s->kernal, "/ush");
+    extern char **environ;
+
+    pid = fork();
+    if (pid == 0) {
+        int fd = open("fff", O_RDWR | O_CREAT | O_TRUNC, 0666);
+        int out = open("ttt", O_RDWR | O_CREAT | O_TRUNC, 0666);
+        write(fd, substr, mx_strlen(substr));
+        close(fd);
+        fd = open("fff", O_RDWR, 0666);
+        dup2 (fd, 0);
+        dup2 (out, 1);
+        if (execve(path, NULL, environ) < 0) {
+            perror("ush ");
+            exit(status);
+        }
+        exit(0);
+    }
+    else if (pid < 0)
+        perror("ush ");
+    else {
+        waitpid(pid, &status, 0);
+        str = mx_file_to_str("ttt");
+        if (str && str[mx_strlen(str) - 1] == '\n')
+            str[mx_strlen(str) - 1] = '\0';
+        remove("ttt");
+        remove("fff");
+    }
+    return str;
+}
+*/
