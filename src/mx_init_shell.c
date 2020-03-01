@@ -56,7 +56,7 @@ static void set_path(t_shell *m_s) {
 
     m_s->kernal = strdup(cur_dir);
     if (!getenv("PATH"))
-        path = strdup("/Users/mlibovych/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki");
+        path = strdup("/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki");
     else
         path = strdup(getenv("PATH"));
     tmp = mx_strjoin(path, ":");

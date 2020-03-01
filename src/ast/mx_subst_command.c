@@ -37,7 +37,8 @@ static char *expantion(char *s, int pos, t_shell *m_s) {
     if ((subst = get_subst(&s[pos], &len))) {
         subst = mx_run_subshell(subst, m_s);
         res = mx_strjoin_free(res, subst);
-        //mx_strdel(&subst);
+        if(subst)
+            mx_strdel(&subst);
     }
     if (s[pos + len + 1])
         res = mx_strjoin_free(res, &s[pos + len + 1]);

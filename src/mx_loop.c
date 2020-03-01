@@ -23,7 +23,7 @@ void mx_launch_blow_job(t_shell *m_s, t_ast **ast, t_job *new_job) {
 }
 
 void mx_ush_loop(t_shell *m_s) {
-    char *line;
+    char *line = NULL;
     t_ast **ast = NULL;
     t_job *new_job = NULL;
 
