@@ -16,7 +16,7 @@ static int fg_send_signal(t_shell *m_s, t_process *p, int pgid, int job_id) {
     signal(SIGTTOU, MX_SIG_IGN);
     tcsetpgrp(STDIN_FILENO, getpid());
     signal(SIGTTOU, MX_SIG_DFL);
-    tcgetattr(STDERR_FILENO, &m_s->jobs[job_id]->tmodes);
+    tcgetattr(STDIN_FILENO, &m_s->jobs[job_id]->tmodes);
     tcsetattr(STDIN_FILENO, TCSADRAIN, &m_s->jobs[job_id]->tmodes);
     return status;
 }
