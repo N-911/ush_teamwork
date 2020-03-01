@@ -4,8 +4,12 @@ static char *subshell_parent(t_shell *m_s, int *fd1, int *fd2, int pid) {
     size_t n_read = 0;
     size_t sum_read = 0;
     char buf[BUFSIZ];
-    char *res = NULL;
     int status;
+    char *res = NULL;
+    char *token;
+    size_t len_token;
+    size_t sum_len = 0;
+    char *tokens = NULL;
 
     close(fd1[0]);
     close(fd2[1]);
@@ -21,7 +25,31 @@ static char *subshell_parent(t_shell *m_s, int *fd1, int *fd2, int pid) {
     waitpid(pid, &status, MX_WNOHANG | MX_WUNTRACED | MX_WCONTINUED);
     m_s->exit_code = status;
     close(fd2[0]);
-    return res;
+
+
+    printf("res %s\n", res);
+
+
+    token = mx_strtok(res, MX_USH_TOK_DELIM);
+    while (token != NULL) {
+        len_token = strlen(token);
+
+        printf("len_tok - %zu\n", len_token);
+
+        tokens = realloc(tokens, len_token + 1);
+
+        strcat((tokens + len_token)), " ");
+        sum_len += len_token;
+
+        strcat((tokens + sum_len), token);
+        token = mx_strtok(NULL, MX_USH_TOK_DELIM);
+    }
+    printf("sum_len - %zu\n", sum_len);
+    tokens[sum_len] = '\0';
+    printf("tokens - %s\n", tokens);
+
+
+    return tokens;
 }
 
 static char *exec_subshell (t_shell *m_s, int *fd1, int *fd2) {
