@@ -525,4 +525,5 @@ void mx_launch_blow_job(t_shell *m_s, t_ast **ast, t_job *new_job);
 void mx_export_value(t_export *export, char *name, char *value);
 
 void mx_dup2_fd(int *fd1, int *fd2);
+char *mx_run_subshell(char *substr, t_shell *m_s);
 #endif
