@@ -33,11 +33,11 @@ static void edit_argv(int n_options, t_process *p) {
 
     fill_options(p->argv, &echo_options, n_options);
     for(int i = n_options + 1; p->argv[i] != NULL; i++) {
-        if (!echo_options.E) {
+        if (!echo_options.E && strstr(p->argv[i], "\\")) {
             mx_escape_seq(p, i, echo_options);
         }
         printf("%s",p->argv[i]);
-        if(strstr(p->argv[i],"\\c"))
+        if (strstr(p->argv[i],"\\c"))
             break;
         if (p->argv[i + 1])
             mx_printstr(" ");

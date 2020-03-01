@@ -25,7 +25,6 @@ static char *subshell_parent(t_shell *m_s, int *fd1, int *fd2, int pid) {
 }
 
 static char *exec_subshell (t_shell *m_s, int *fd1, int *fd2) {
-    char *path = mx_strjoin(m_s->kernal, "/ush");
     extern char **environ;
     pid_t pid;
     char *res = NULL;
@@ -37,13 +36,12 @@ static char *exec_subshell (t_shell *m_s, int *fd1, int *fd2) {
         res = subshell_parent(m_s, fd1, fd2, pid);
     else {  // Work child
         mx_dup2_fd(fd1, fd2);
-        if (execve(path, NULL, environ) < 0) {
+        if (execve(m_s->kernal, NULL, environ) < 0) {
             perror("ush ");
             _exit(EXIT_SUCCESS);
         }
         exit(EXIT_SUCCESS);
     }
-    mx_strdel(&path);
     return res;
 }
 

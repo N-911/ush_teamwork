@@ -10,6 +10,7 @@ char *mx_ush_read_line(t_shell *m_s) {
 
     if (getline(&line, &bufsize, stdin) < 0) {
     	if (!isatty(0)) {
+            m_s->exit_code = 0;
             mx_clear_all(m_s);
             //system("leaks -q ush");
             exit(0);

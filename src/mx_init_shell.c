@@ -52,17 +52,12 @@ static char *get_pwd(void) {
 static void set_path(t_shell *m_s) {
     char *cur_dir = getcwd(NULL, 256);
     char *path = NULL;
-    char *tmp = NULL;
 
-    m_s->kernal = strdup(cur_dir);
+    m_s->kernal = mx_strjoin(cur_dir, "/ush");
     if (!getenv("PATH"))
         path = strdup("/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki");
     else
         path = strdup(getenv("PATH"));
-    tmp = mx_strjoin(path, ":");
-    free(path);
-    path = mx_strjoin(tmp, cur_dir);
-    free(tmp);
     setenv("PATH", path, 1);
     free(path);
     free(cur_dir);

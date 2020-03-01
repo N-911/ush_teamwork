@@ -1,6 +1,7 @@
 #include "ush.h"
 
 void mx_clear_all(t_shell *m_s) {
+    //mx_printstr("\0");
     mx_clear_export(m_s->exported);
     mx_clear_export(m_s->variables);
     mx_clear_export(m_s->functions);

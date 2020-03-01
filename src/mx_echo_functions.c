@@ -70,8 +70,8 @@ void mx_escape_seq(t_process *p, int i, echo_t echo_options) {
     p->argv[i] = strdup(tmp);
     free(tmp);
     for (int j = 0; sequenses[j] != NULL; j++) {
-        if (strstr(p->argv[i],sequenses[j])){
-            char *tmp = replace_substr(p->argv[i],sequenses[j], escape[j]);
+        if (strstr(p->argv[i],sequenses[j])) {
+            tmp = replace_substr(p->argv[i],sequenses[j], escape[j]);
             free(p->argv[i]);
             p->argv[i] = strdup(tmp);
             free(tmp);
