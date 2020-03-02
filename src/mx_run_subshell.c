@@ -1,11 +1,39 @@
 #include "ush.h"
 
+char *mx_subs_output(char **res) {
+    size_t len_token;
+    size_t sum_len = 0;
+    char *token;
+    char *tokens = NULL;
+
+    token = mx_strtok(*res, MX_USH_TOK_DELIM);
+    while (token != NULL) {
+        len_token = strlen(token);
+        if (sum_len == 0) {
+            tokens = realloc(tokens, len_token + 1);  // total
+            strcpy(tokens, token);
+            sum_len += (len_token + 1);
+        }
+        else {
+            tokens = realloc(tokens, sum_len + len_token + 3);
+            strcat((tokens), " ");
+            strcat((tokens), token);
+            sum_len += (len_token + 3);
+        }
+        token = mx_strtok(NULL, MX_USH_TOK_DELIM);
+    }
+    if (tokens)
+        tokens[sum_len] = '\0';
+    mx_strdel(res);
+    return tokens;
+}
+
 static char *subshell_parent(t_shell *m_s, int *fd1, int *fd2, int pid) {
     size_t n_read = 0;
     size_t sum_read = 0;
     char buf[BUFSIZ];
-    char *res = NULL;
     int status;
+    char *res = NULL;
 
     close(fd1[0]);
     close(fd2[1]);
@@ -21,7 +49,7 @@ static char *subshell_parent(t_shell *m_s, int *fd1, int *fd2, int pid) {
     waitpid(pid, &status, MX_WNOHANG | MX_WUNTRACED | MX_WCONTINUED);
     m_s->exit_code = status;
     close(fd2[0]);
-    return res;
+    return mx_subs_output(&res);
 }
 
 static char *exec_subshell (t_shell *m_s, int *fd1, int *fd2) {

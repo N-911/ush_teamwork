@@ -526,4 +526,5 @@ void mx_export_value(t_export *export, char *name, char *value);
 
 void mx_dup2_fd(int *fd1, int *fd2);
 char *mx_run_subshell(char *substr, t_shell *m_s);
+char *mx_subs_output(char **res);
 #endif
