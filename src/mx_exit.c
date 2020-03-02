@@ -21,7 +21,7 @@ static void get_exit_code(t_process *p, int *exit_code, int *flag, int *start){
 }
 
 static void real_exit(t_shell *m_s, t_process *p) {
-    int exit_code = 0;
+    int exit_code = m_s->exit_code;
     int flag = 0;
     int start = 0;
 
