@@ -11,7 +11,7 @@ static char *get_subst(char *s, int *len) {
         if (i < 0)
             return NULL;
         subst = mx_strndup(&s[2], i - 2);
-        *len = i + 1;
+        *len = i;
     }
     else if (s[0] == '`') {
         i = mx_get_char_index_quote(&s[1], "`", "\'");
