@@ -563,7 +563,8 @@ void mx_set_r_infile(t_shell *m_s, t_job  *job, t_process *p);
 
 //void mx_read_from_pipe(int fd);
 //void mx_read_from_pipe(int fd_pipe, int fd_0, int fd_1);
-void mx_read_from_pipe(t_process *p);
+//void mx_read_from_pipe(t_process *p);
+void mx_read_from_pipe(t_process *p, int fd_redir);
 void fdadvise (int fd, off_t offset, off_t len, fadvice_t advice);
 void fadvise (FILE *fp, fadvice_t advice);
 

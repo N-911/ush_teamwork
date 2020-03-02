@@ -41,6 +41,9 @@ void mx_count_redir(t_job *job, t_process *p) {
         p->c_input++;
     if (p->c_output == 0)
         p->c_output++;
+    if (!p->pipe && p->outfile != STDOUT_FILENO)
+        p->c_output++;
+
     printf("\x1B[32m p->redirect->c_input = %d \x1B[0m  \n", p->c_input);
     printf("\x1B[32m p->redirect->c_output = %d \x1B[0m  \n", p->c_output);
 }
@@ -102,7 +105,7 @@ void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p) {
     p->r_outfile = (int *) malloc(sizeof(int) * (p->c_output));
     p->r_outfile[0] = job->outfile;
     if (p->redirect) {
-        for (r = p->redirect, j = 0; r; r = r->next, j++) {
+        for (r = p->redirect, j = 1; r; r = r->next, j++) {
 //            printf("out redir =  %s\n",r->output_path);
             if (r->redir_delim == R_OUTPUT) {
                 flags = O_WRONLY | O_CREAT | O_TRUNC;

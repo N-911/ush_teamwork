@@ -69,10 +69,10 @@ static void child_wrk(t_shell *m_s, t_process *p, int job_id, int child_pid) {
 //
 //        }
 //    }
-//            if (p->r_outfile[1]) {
-//                dup2(p->r_outfile[0], STDOUT_FILENO);
-//                close(p->r_outfile[0]);
-//            }
+            if (p->r_outfile[0] != STDOUT_FILENO) {
+                dup2(p->r_outfile[0], STDOUT_FILENO);
+                close(p->r_outfile[0]);
+            }
 
 //    mx_dup_fd(p);
 
@@ -112,8 +112,7 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id) {
             setpgid (pid, m_s->jobs[job_id]->pgid);
         }
 ///////////////
-        if (p->c_output > 1)
-            mx_read_from_pipe(p);
+
 
     }
     return p->status >> 8;
