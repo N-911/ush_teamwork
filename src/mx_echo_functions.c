@@ -15,20 +15,22 @@ static char *get_result(char *buff1, char *buff2,  char *replace) {
 }
 
 static char *replace_substr(char *str,  char *sub, char *replace) {
-    char *res = str;
-    char *buff1 = mx_strnew(mx_strlen(str));
-    char *buff2 = mx_strnew(mx_strlen(str));
+    char *res = strdup(str);
+    char *buff1;// = mx_strnew(mx_strlen(str));
+    char *buff2;// = mx_strnew(mx_strlen(str));
+    int i = 0;
 
     while(mx_strstr(res,sub) != NULL) {
-        int i = mx_get_substr_index(res,sub);
-        mx_strncpy(buff1, res, i);
-        for(int j = 0; j < i + mx_strlen(sub); j++)
-            res++;
-        mx_strcpy(buff2,res);
+        i = mx_get_substr_index(res,sub);
+        buff1 = strndup(res, i);
+        buff2 = mx_strdup_from(res, i + mx_strlen(sub) - 1);
+        free(res);
         res = get_result(buff1, buff2, replace);
+        free(buff1);
+        free(buff2);
     }
-    free(buff1);
-    free(buff2);
+    // free(buff1);
+    // free(buff2);
     return res;
 }
 
