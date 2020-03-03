@@ -33,7 +33,7 @@ static char *subshell_parent(t_shell *m_s, int *fd1, int *fd2, int pid) {
     size_t sum_read = 0;
     char buf[BUFSIZ];
     int status;
-    char *res = NULL;
+    char *res = mx_strnew(1);
 
     close(fd1[0]);
     close(fd2[1]);
@@ -44,8 +44,9 @@ static char *subshell_parent(t_shell *m_s, int *fd1, int *fd2, int pid) {
     }
     if (sum_read > 0) {
         if (res[sum_read - 1] == '\n')
-            res[sum_read - 1] = 0;
+            res[sum_read - 1] = '\0';
     }
+    res[sum_read] = '\0';
     waitpid(pid, &status, MX_WNOHANG | MX_WUNTRACED | MX_WCONTINUED);
     m_s->exit_code = status;
     close(fd2[0]);
