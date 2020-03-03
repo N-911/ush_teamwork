@@ -40,7 +40,7 @@ static char *expantion(char *s, int pos, t_shell *m_s) {
         if(subst)
             mx_strdel(&subst);
     }
-    if (s[pos + len + 1]) 
+    if (s[pos + len + 1])
         res = mx_strjoin_free(res, &s[pos + len + 1]);
     mx_strdel(&s);
     return res;
@@ -63,4 +63,3 @@ char *mx_subst_command(char *s, t_shell *m_s) {
         }
     return res;
 }
-
