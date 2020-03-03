@@ -221,6 +221,7 @@ typedef struct s_ast {
  * For redirections.
  */
 typedef struct s_redir {
+    int mypipe_redir[2];
     char *input_path;   // < <<
     char *output_path;  // > >>
     int redir_delim;    // <, <<, >, >> from e_type
@@ -440,6 +441,10 @@ void mx_set_redir_inp_d(t_job *job, t_process *p);
 void mx_set_redir_output(t_shell *m_s, t_job * job, t_process *p);
 void mx_dup_fd(t_process *p);
 int mx_launch_process(t_shell *m_s, t_process *p, int job_id);
+//int mx_launch_process(t_shell *m_s, t_process *p, int job_id, int fd);
+
+//int mx_launch_process(t_shell *m_s, t_process *p, int job_id, int *mypipe_redir);
+
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
 void mx_pgid(t_shell *m_s, int job_id, int child_pid);
 
@@ -564,9 +569,13 @@ void mx_set_r_infile(t_shell *m_s, t_job  *job, t_process *p);
 //void mx_read_from_pipe(int fd);
 //void mx_read_from_pipe(int fd_pipe, int fd_0, int fd_1);
 //void mx_read_from_pipe(t_process *p);
-void mx_read_from_pipe(t_process *p, int fd_redir);
+void mx_read_from_pipe(t_process *p);
+
+//void mx_read_from_pipe(t_process *p, int fd_redir);
 void fdadvise (int fd, off_t offset, off_t len, fadvice_t advice);
 void fadvise (FILE *fp, fadvice_t advice);
+
+void mx_print_ps();
 
 
 #endif

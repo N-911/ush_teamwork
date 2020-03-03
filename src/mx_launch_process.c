@@ -57,25 +57,27 @@ static void child_wrk(t_shell *m_s, t_process *p, int job_id, int child_pid) {
 
     if (shell_is_interactive)
         mx_pgid(m_s, job_id, child_pid);
-
-
+    mx_print_ps();
     for (int i = 0; i < p->c_input; i++) {
         if (p->r_infile[i] != STDIN_FILENO)
             dup2(p->r_infile[i], STDIN_FILENO);
     }
-//    for (int i = 0; i < p->c_output; i++) {
-//        if (p->r_outfile[i] != STDOUT_FILENO) {
-//            dup2(p->r_outfile[i], STDOUT_FILENO);
-//
-//        }
-//    }
-            if (p->r_outfile[0] != STDOUT_FILENO) {
-                dup2(p->r_outfile[0], STDOUT_FILENO);
-                close(p->r_outfile[0]);
-            }
-
-//    mx_dup_fd(p);
-
+    if (p->c_output > 1) {
+        if (p->redirect->mypipe_redir[1] > 0) {
+            printf("redirect > 1\n");
+            dup2(p->redirect->mypipe_redir[1], STDOUT_FILENO);
+            close(p->redirect->mypipe_redir[1]);
+            close(p->redirect->mypipe_redir[0]);
+        }
+    }
+   else {
+        if (p->r_outfile[0] != STDOUT_FILENO) {
+//                close(STDOUT_FILENO);
+//                fcntl(p->r_outfile[0], F_DUPFD_CLOEXEC, STDOUT_FILENO);
+            dup2(p->r_outfile[0], STDOUT_FILENO);
+            close(p->r_outfile[0]);
+        }
+    }
     char **arr = mx_strsplit(m_s->jobs[job_id]->path, ':');
     char *command = p->argv[0];
     m_s->jobs[job_id]->path  = check_path(arr, command);
@@ -96,13 +98,18 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id) {
     pid_t child_pid;
     p->status = MX_STATUS_RUNNING;
     int shell_is_interactive = isatty(STDIN_FILENO);
+    int mypipe_redir[2];
+
     child_pid = fork();
     if (child_pid < 0) {
         perror("error fork");
         exit(1);
     }
-    else if (child_pid == 0)
+    else if (child_pid == 0) {
+        if (mypipe_redir[0])
+            close(mypipe_redir[0]);
         child_wrk(m_s, p, job_id, child_pid);
+    }
     else {
         p->pid = child_pid;
         if (shell_is_interactive) {
@@ -111,9 +118,10 @@ int mx_launch_process(t_shell *m_s, t_process *p, int job_id) {
                 m_s->jobs[job_id]->pgid = pid;
             setpgid (pid, m_s->jobs[job_id]->pgid);
         }
-///////////////
-
-
+        if (p->c_output > 1) {
+            close(p->redirect->mypipe_redir[1]);
+            mx_read_from_pipe(p);
+        }
     }
     return p->status >> 8;
 }

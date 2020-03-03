@@ -36,14 +36,12 @@ void mx_count_redir(t_job *job, t_process *p) {
         if (r->redir_delim == R_OUTPUT || r->redir_delim == R_OUTPUT_DBL)
             p->c_output += 1;
     }
-//    if (p->pipe)
+    if (p->pipe)
+        p->c_output++;
     if (job->infile != STDOUT_FILENO)
         p->c_input++;
     if (p->c_output == 0)
         p->c_output++;
-    if (!p->pipe && p->outfile != STDOUT_FILENO)
-        p->c_output++;
-
     printf("\x1B[32m p->redirect->c_input = %d \x1B[0m  \n", p->c_input);
     printf("\x1B[32m p->redirect->c_output = %d \x1B[0m  \n", p->c_output);
 }
@@ -99,13 +97,16 @@ void mx_set_r_infile(t_shell *m_s, t_job  *job, t_process *p) {
 void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p) {
     int flags;
     t_redir *r;
-    int j;
+    int j = 0;
 
 //    printf("set_r_output \n");
     p->r_outfile = (int *) malloc(sizeof(int) * (p->c_output));
     p->r_outfile[0] = job->outfile;
+
+    if (p->pipe)
+        j = 1;
     if (p->redirect) {
-        for (r = p->redirect, j = 1; r; r = r->next, j++) {
+        for (r = p->redirect; r; r = r->next, j++) {
 //            printf("out redir =  %s\n",r->output_path);
             if (r->redir_delim == R_OUTPUT) {
                 flags = O_WRONLY | O_CREAT | O_TRUNC;
@@ -123,11 +124,9 @@ void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p) {
             lseek(job->outfile, 0, SEEK_END);
         }
 //        printf("out redir end %d\n", p->r_outfile[j]);
-//        job->outfile = p->r_outfile[0];
     }
+
 }
-
-
 
 
 void mx_print_info(t_shell *m_s, t_job *job, t_process *p, int job_id) {
@@ -161,7 +160,13 @@ void mx_print_fd(t_process  *p) {
     printf("\n");
 }
 
+void mx_print_ps() {
+    printf("\x1B[33:");
+    printf("PID=%ld; PPID=%ld, PGID=%ld; SID=%ld \n", (long)getpid(), (long)getppid(),
+           (long)getpgrp(), (long)getsid(0));
+    printf("\x1B[0m ");
 
+}
 
 
 /*
