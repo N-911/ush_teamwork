@@ -170,10 +170,10 @@ OBJ_PARSER = libmx1.o \
 
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
 
-all: install clean
+all: install
 
 install:
-	#@make install -C libmx
+	@make install -C libmx
 	@cp $(addprefix src/, $(SRC)) .
 	@cp $(addprefix inc/, $(INC)) .
 	@cp $(addprefix src/ast/, $(SRC_PARSER)) .
@@ -183,11 +183,11 @@ install:
 	@mv $(OBJ) $(OBJ_PARSER) ./obj
 
 uninstall: clean
-	#@make uninstall -C libmx
+	@make uninstall -C libmx
 	@rm -rf $(NAME)
 
 clean:
-	#@make clean -C libmx
+	@make clean -C libmx
 	@rm -rf $(INC)
 	@rm -rf $(SRC) $(SRC_PARSER)
 	@rm -rf $(OBJ) $(OBJ_PARSER)
