@@ -36,7 +36,7 @@ static void launch_help (t_shell *m_s, t_job *job, int job_id, int status) {
 
     if (job->foregrd) {
         tcsetpgrp(STDIN_FILENO, job->pgid);
-        if (status == 0)
+        if (status >= 0)
             status = mx_wait_job(m_s, job_id);
         if (mx_job_completed(m_s, job_id))
             mx_remove_job(m_s, job_id);
