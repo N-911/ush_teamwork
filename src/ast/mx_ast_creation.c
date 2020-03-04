@@ -15,6 +15,10 @@ static void print_left(t_ast *q) {
             mx_printstr(">> ");
         if (r->args)
             mx_print_strarr_in_line(r->args, " ");
+        else if (r->token) {
+            mx_printstr(q->token);
+            mx_printstr("\n");
+        }
     }
 }
 /*
@@ -25,6 +29,10 @@ static void print_list(t_ast *parsed_line) {
         mx_printstr("proc  == ");
         if (q->args)
             mx_print_strarr_in_line(q->args, " ");
+        else if (q->token) {
+            mx_printstr(q->token);
+            mx_printstr("\n");
+        }
         if (q->left)
             print_left(q);
         mx_printstr("delim == ");

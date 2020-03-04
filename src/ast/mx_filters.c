@@ -20,15 +20,16 @@ static bool check_subsut_result(char **res, char **args, int *i) {
 static char **func_alias_tokens(char *line, t_shell *m_s) {
     char **args = NULL;
 
-    if (mx_strstr(line, "()")) {
-        if (mx_get_functions(line, m_s))
-            return NULL;
-    }
-    if (!mx_strncmp(line, "alias", 5) && line[5] && line[5] == ' '
-        && line[6] && !mx_isdelim(line[6], MX_USH_TOK_DELIM)) {
-        mx_get_aliases(line, m_s);
-        return NULL;
-    }
+    if (m_s) {}
+    // if (mx_strstr(line, "()")) {
+    //     if (mx_get_functions(line, m_s))
+    //         return NULL;
+    // }
+    // if (!mx_strncmp(line, "alias", 5) && line[5] && line[5] == ' '
+    //     && line[6] && !mx_isdelim(line[6], MX_USH_TOK_DELIM)) {
+    //     mx_get_aliases(line, m_s);
+    //     return NULL;
+    // }
     args = mx_parce_tokens(line);
     return args;
 }
@@ -80,3 +81,13 @@ char **mx_filters(char *arg, t_shell *m_s) {
     mx_strdel(&arg);
     return res;
 }
+
+// char **mx_filter_handler(char *arg, t_shell *m_s) {
+//     char **args = NULL;
+
+//     if ((args = mx_filters(arg, m_s)) && *args)
+//         func_or_push(&res, args, type, m_s);
+//     else if (!args || type != SEP)
+//         return mx_parse_error_ush(type, res, line);
+//     mx_del_strarr(&args);
+// }

@@ -47,7 +47,8 @@ static t_process *create_process(t_shell *m_s, t_ast *list) {
     return p;
 }
 
-static void push_process_back(t_process **process, t_shell *m_s, t_ast *list) {
+void mx_push_process_back(t_process **process,
+                                 t_shell *m_s, t_ast *list) {
     t_process *tmp;
     t_process *p;
 
@@ -68,12 +69,28 @@ static void push_process_back(t_process **process, t_shell *m_s, t_ast *list) {
     }
 }
 
+void mx_clear_process(t_process *p) {
+    mx_del_strarr(&p->argv);
+    mx_strdel(&p->command);
+    mx_strdel(&p->input_path);
+    mx_strdel(&p->output_path);
+    mx_redir_clear_list(&p->redirect);
+    free(p);
+}
+
 t_job *mx_create_job(t_shell *m_s, t_ast *list) {
-    t_job *new_job = (t_job *) malloc(sizeof(t_job));
+    t_job *new_job;
     t_process *first_p = NULL;
 
-    for (t_ast *l = list; l; l = l->next)
-        push_process_back(&first_p, m_s, l);
+    for (t_ast *l = list; l; l = l->next) {
+        if ((l->args = mx_filters(l->token, m_s)) && *(l->args))
+            mx_push_process_back(&first_p, m_s, l);
+        else {
+            mx_clear_process(first_p);
+            return NULL;
+        }
+    }
+    new_job = (t_job *) malloc(sizeof(t_job));
     new_job->first_pr = first_p;
     new_job->foregrd = MX_FOREGROUND;
     for (; first_p != NULL; first_p = first_p->next)

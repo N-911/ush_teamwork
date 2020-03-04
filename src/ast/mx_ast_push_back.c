@@ -1,27 +1,28 @@
 #include "ush.h"
 
-static t_ast *ast_create_node(char **args, int type) {
+static t_ast *ast_create_node(char *arg, int type) {
     t_ast *q;
 
-    if (!args)
+    if (!arg)
         return NULL;
     q = (t_ast *)malloc(sizeof(t_ast));
     if (!q)
         return NULL;
-    q->args = mx_strdup_arr(args);
+    q->args = NULL;
+    q->token = mx_strdup(arg);
     q->type = type;
     q->next = NULL;
     q->left = NULL;
     return q;
 }
 
-void mx_ast_push_back(t_ast **head, char **args, int type) {
+void mx_ast_push_back(t_ast **head, char *arg, int type) {
     t_ast *q;
     t_ast *p;
 
-    if (!head || !args)
+    if (!head || !arg)
         return;
-    q = ast_create_node(args, type);
+    q = ast_create_node(arg, type);
     if (!q)
         return;
     p = *head;
@@ -36,10 +37,10 @@ void mx_ast_push_back(t_ast **head, char **args, int type) {
     }
 }
 
-void mx_ast_push_back_redirection(t_ast **head, char **args, int type) {
+void mx_ast_push_back_redirection(t_ast **head, char *arg, int type) {
     t_ast *p;
 
-    if (!head || !args)
+    if (!head || !arg)
         return;
     p = *head;
     if (*head == NULL) {
@@ -49,6 +50,6 @@ void mx_ast_push_back_redirection(t_ast **head, char **args, int type) {
     else {
         while (p->next != NULL)
             p = p->next;
-        mx_ast_push_back(&p->left, args, type);
+        mx_ast_push_back(&p->left, arg, type);
     }
 }
