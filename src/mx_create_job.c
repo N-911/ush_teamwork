@@ -85,7 +85,7 @@ t_job *mx_create_job(t_shell *m_s, t_ast *list) {
     new_job->stdout = STDOUT_FILENO;
     new_job->stderr = STDERR_FILENO;
     new_job->infile = new_job->stdin;
-    new_job->outfile = 1;
-    new_job->errfile = 2;
+    new_job->outfile = new_job->stdout;
+    new_job->errfile = new_job->stderr;
     return new_job;
 }
