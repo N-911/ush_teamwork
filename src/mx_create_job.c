@@ -24,22 +24,20 @@ static t_process *init_process(t_ast *list) {
 
 static t_process *create_process(t_shell *m_s, t_ast *list) {
     t_process *p;
-    t_ast *tmp;
+    t_ast *t = list->left;
     int index = 0;
 
     if (!(p = init_process(list)))
         return NULL;
-    if (list->left) {
-        tmp = list->left;
-        p->redir_delim = tmp->type;
-        if (MX_IS_REDIR_INP(tmp->type))
-            p->input_path = mx_strdup(tmp->args[0]);
-        else if (MX_IS_REDIR_OUTP(tmp->type))
-            p->output_path = mx_strdup(tmp->args[0]);
-    }
-    if (list->left)
+    if (list->left && (t->args = mx_filters(t->token, m_s)) && *(t->args)) {
+        p->redir_delim = t->type;
+        if (MX_IS_REDIR_INP(t->type))
+            p->input_path = mx_strdup(t->args[0]);
+        else if (MX_IS_REDIR_OUTP(t->type))
+            p->output_path = mx_strdup(t->args[0]);
         for (t_ast *q = list->left; q; q = q->next)
             mx_redir_push_back(&p->redirect, q->args[0], q->type);
+    }
     if ((index = mx_builtin_commands_idex(m_s, p->argv[0])) == -1)
         p->type = -1;
     else
@@ -70,6 +68,8 @@ void mx_push_process_back(t_process **process,
 }
 
 void mx_clear_process(t_process *p) {
+    if (!p)
+        return;
     mx_del_strarr(&p->argv);
     mx_strdel(&p->command);
     mx_strdel(&p->input_path);
@@ -89,6 +89,7 @@ t_job *mx_create_job(t_shell *m_s, t_ast *list) {
             mx_clear_process(first_p);
             return NULL;
         }
+
     }
     new_job = (t_job *) malloc(sizeof(t_job));
     new_job->first_pr = first_p;

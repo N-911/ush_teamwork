@@ -20,16 +20,15 @@ static bool check_subsut_result(char **res, char **args, int *i) {
 static char **func_alias_tokens(char *line, t_shell *m_s) {
     char **args = NULL;
 
-    if (m_s) {}
-    // if (mx_strstr(line, "()")) {
-    //     if (mx_get_functions(line, m_s))
-    //         return NULL;
-    // }
-    // if (!mx_strncmp(line, "alias", 5) && line[5] && line[5] == ' '
-    //     && line[6] && !mx_isdelim(line[6], MX_USH_TOK_DELIM)) {
-    //     mx_get_aliases(line, m_s);
-    //     return NULL;
-    // }
+    if (mx_strstr(line, "()")) {
+        if (mx_get_functions(line, m_s))
+            return NULL;
+    }
+    if (!mx_strncmp(line, "alias", 5) && line[5] && line[5] == ' '
+        && line[6] && !mx_isdelim(line[6], MX_USH_TOK_DELIM)) {
+        mx_get_aliases(line, m_s);
+        return NULL;
+    }
     args = mx_parce_tokens(line);
     return args;
 }
@@ -45,7 +44,7 @@ static char **substitutions(char **args, t_shell *m_s) {
     char **res = NULL;
 
     res = (char **)malloc((mx_strlen_arr(args) + 1) * sizeof(char *));
-    for (i = 0, j = 0; args && args[j] && args[j][0]; i++, j++) {
+    for (i = 0, j = 0; args[j] && args[j][0]; i++, j++) {
         res[i] = mx_strdup(args[j]);
         res[i] = mx_subst_tilde(res[i], m_s->variables);
         res[i] = mx_substr_dollar(res[i], m_s->variables);
@@ -60,6 +59,7 @@ static char **substitutions(char **args, t_shell *m_s) {
 /*
  * Get functions, aliases or parse by USH_TOK_DELIM,
  * subst ~, $,
+ *
  * trim'' "" , \.
  *
  * Need scans for word splitting results of parameter expansion
@@ -71,23 +71,14 @@ char **mx_filters(char *arg, t_shell *m_s) {
 
     if (!arg)
         return NULL;
-    args = func_alias_tokens(arg, m_s);
-    if (!(res = substitutions(args, m_s))) {
-        mx_strdel(&arg);
-        return NULL;
+    if ((args = func_alias_tokens(arg, m_s))) {
+        if (!(res = substitutions(args, m_s))) {
+            mx_strdel(&arg);
+            return NULL;
+        }
+        mx_strtrim_quote(res);
+        free(args);
     }
-    mx_strtrim_quote(res);
-    free(args);
     mx_strdel(&arg);
     return res;
 }
-
-// char **mx_filter_handler(char *arg, t_shell *m_s) {
-//     char **args = NULL;
-
-//     if ((args = mx_filters(arg, m_s)) && *args)
-//         func_or_push(&res, args, type, m_s);
-//     else if (!args || type != SEP)
-//         return mx_parse_error_ush(type, res, line);
-//     mx_del_strarr(&args);
-// }
