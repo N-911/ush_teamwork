@@ -10,10 +10,8 @@ static char check_quote_auditor(char *s, int *i) {
         tmp = ')';
     else if (s[j] == '{' && s[j - 3] && !mx_strncmp(&s[j - 3], "() ", 3))
         tmp = '}';
-    else if (s[j] == '(' || s[j] == ')' || s[j] == '{') {
-        (*i)++;
+    else if (s[j] == '(' || s[j] == ')' || s[j] == '{')
         return 0;
-    }
     else
         tmp = s[j];
     j++;
