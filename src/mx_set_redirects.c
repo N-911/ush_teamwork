@@ -1,5 +1,15 @@
 #include "ush.h"
 
+static int set_flag(int redir_delim) {
+    int flags = 0;
+
+    if (redir_delim == R_OUTPUT)
+        flags = O_WRONLY | O_CREAT | O_TRUNC;
+    if (redir_delim == R_OUTPUT_DBL)
+        flags = O_WRONLY | O_CREAT;
+    return flags;
+}
+
 int mx_set_redirections(t_shell *m_s, t_job *job, t_process *p) {
     mx_count_redir(p);
     m_s->redir = 0;
@@ -31,7 +41,9 @@ void mx_count_redir(t_process *p) {
         p->c_input++;
     if (p->c_output == 0)
         p->c_output++;
+    p->r_outfile = (int *) realloc(p->r_outfile, sizeof(int) * (p->c_output));
 }
+
 
 
 void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p) {
@@ -40,25 +52,16 @@ void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p) {
     int j = 0;
     int fd;
 
-//    p->r_outfile = (int *) malloc(sizeof(int) * (p->c_output));
-    p->r_outfile = (int *) realloc(p->r_outfile, sizeof(int) * (p->c_output));
     p->r_outfile[0] = job->outfile;
     if (p->redirect) {
         for (r = p->redirect; r; r = r->next) {
             if (r->output_path) {
-                if (r->redir_delim == R_OUTPUT) {
-                    flags = O_WRONLY | O_CREAT | O_TRUNC;
-                }
-                if (r->redir_delim == R_OUTPUT_DBL) {
-                    flags = O_WRONLY | O_CREAT;
-                }
+                 flags = set_flag(r->redir_delim);
                 if ((fd = open(r->output_path, flags, 0666)) < 0) {
                     mx_printerr("ush :");
                     perror(r->output_path);
-//                    mx_set_variable(m_s->variables, "?", "1");
                     m_s->redir = 1;
                     continue;
-//                    job->exit_code = 1;
                 }
                 p->r_outfile[j] = fd;
                 lseek(p->r_outfile[j], 0, SEEK_END);
@@ -68,22 +71,4 @@ void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p) {
     }
     job->outfile = p->r_outfile[0];
 }
-
-//static int open_in_path(t_job *job, t_process *p, t_redir *r, int flags) {
-//    int fd;
-//    int status_redir = 0;
-//
-//    if ((fd = open(r->input_path, flags, 0666)) < 0 ) {
-//        mx_printerr("ush :");
-//        perror(r->input_path);
-//        // mx_set_variable(m_s->variables, "?", "1");
-//        status_redir = 1;
-//        job->exit_code = 1;
-//    }
-//    return status_redir;
-//}
-
-
-
-
 

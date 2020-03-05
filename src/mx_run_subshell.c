@@ -10,7 +10,7 @@ char *mx_subs_output(char **res) {
     while (token != NULL) {
         len_token = strlen(token);
         if (sum_len == 0) {
-            tokens = realloc(tokens, len_token + 1);  // total
+            tokens = realloc(tokens, len_token + 1);
             strcpy(tokens, token);
             sum_len += (len_token + 1);
         }
