@@ -55,13 +55,14 @@ static void launch_help (t_shell *m_s, t_job *job, int job_id, int status) {
 static int execute_job (t_shell *m_s, t_job * job, int job_id) {
     t_process *p;
     int mypipe[2];
-//    int a;
 
     execute_job_env(job);
     for (p = m_s->jobs[job_id]->first_pr; p; p = p->next) {
         mx_sheck_exit(m_s, p);
-        if ((mx_set_redirections(m_s, job, p)) != 0)
-            continue;
+        if ((mx_set_redirections(m_s, job, p)) != 0) {
+            mx_remove_job(m_s, job_id);
+            break;
+        }
         if (p->pipe) {
             if (pipe(mypipe) < 0) {
                 perror("pipe");
