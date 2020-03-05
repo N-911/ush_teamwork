@@ -76,8 +76,9 @@ static void child_wrk(t_shell *m_s, t_process *p, int job_id, int child_pid) {
 
 int mx_launch_process(t_shell *m_s, t_process *p, int job_id) {
     pid_t child_pid;
-    p->status = MX_STATUS_RUNNING;
     int shell_is_interactive = isatty(STDIN_FILENO);
+
+    p->status = MX_STATUS_RUNNING;
     child_pid = fork();
     if (child_pid < 0) {
         perror("error fork");

@@ -24,6 +24,7 @@ static void help_ex_job (t_shell *m_s, t_job *job, t_process *p, int job_id) {
         job->exit_code = mx_launch_builtin(m_s, p, job_id);
     else
         job->exit_code = mx_launch_process(m_s, p, job_id);
+
     if (job->infile != job->stdin)
         close(job->infile);
     if (job->outfile != job->stdout)
@@ -54,11 +55,12 @@ static void launch_help (t_shell *m_s, t_job *job, int job_id, int status) {
 static int execute_job (t_shell *m_s, t_job * job, int job_id) {
     t_process *p;
     int mypipe[2];
+//    int a;
 
     execute_job_env(job);
     for (p = m_s->jobs[job_id]->first_pr; p; p = p->next) {
         mx_sheck_exit(m_s, p);
-        if ((mx_set_redirec(m_s, job, p, job_id)) != 0)
+        if ((mx_set_redirections(m_s, job, p)) != 0)
             continue;
         if (p->pipe) {
             if (pipe(mypipe) < 0) {
@@ -67,6 +69,7 @@ static int execute_job (t_shell *m_s, t_job * job, int job_id) {
                 exit(1);
             }
             job->outfile = mypipe[1];
+            p->r_outfile[0] = job->outfile;
         }
         help_ex_job(m_s, job, p, job_id);
         job->infile = mypipe[0];

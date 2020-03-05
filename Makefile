@@ -35,6 +35,7 @@ SRC = mx_builtin_commands.c \
     mx_loop.c \
     mx_normalization.c \
     mx_push_export.c \
+    mx_push_process_back.c \
     mx_set.c \
     mx_set_data.c \
     mx_set_variable.c \
@@ -61,6 +62,7 @@ SRC = mx_builtin_commands.c \
     mx_chdir.c \
     mx_true.c \
     mx_run_subshell.c \
+    mx_set_redirects.c \
     ush_main.c
 
 SRC_PARSER = libmx1.c \
@@ -118,6 +120,7 @@ OBJ = mx_builtin_commands.o \
     mx_loop.o \
     mx_normalization.o \
     mx_push_export.o \
+    mx_push_process_back.o \
     mx_set.o \
     mx_set_data.o \
     mx_set_variable.o \
@@ -144,6 +147,7 @@ OBJ = mx_builtin_commands.o \
     mx_chdir.o \
     mx_true.o \
     mx_run_subshell.o \
+    mx_set_redirects.o \
     ush_main.o
 
 OBJ_PARSER = libmx1.o \

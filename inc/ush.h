@@ -156,10 +156,10 @@ enum e_type {
     AND,            // &&
     OR,             // ||
     PIPE,           // |
-    R_INPUT,        // >
-    R_INPUT_DBL,    // >>
-    R_OUTPUT,       // <
-    R_OUTPUT_DBL,   // <<
+    R_INPUT,        // <
+    R_INPUT_DBL,    // <<
+    R_OUTPUT,       // >
+    R_OUTPUT_DBL,   // >>
     NUL
 }   t_type;
 /*
@@ -167,6 +167,7 @@ enum e_type {
  */
 typedef struct s_ast {
     char **args;
+    char *token;
     int type;
     struct s_ast *next;
     struct s_ast *left;
@@ -175,6 +176,7 @@ typedef struct s_ast {
  * For redirections.
  */
 typedef struct s_redir {
+    int mypipe_redir[2];
     char *input_path;   // < <<
     char *output_path;  // > >>
     int redir_delim;    // <, <<, >, >> from e_type
@@ -253,6 +255,8 @@ typedef struct s_process {
     t_redir *redirect;  // New
     int c_input;        // Count_redir_input
     int c_output;       // Count_redir_output
+    int *r_infile;
+    int *r_outfile;
     pid_t pid;
     int exit_code;
     char *path;
@@ -335,8 +339,8 @@ char **mx_parce_tokens(char *line);
 char *mx_strtok (char *s, const char *delim);
 
 t_ast **mx_ast_parse(t_ast *parsed_line);
-void mx_ast_push_back(t_ast **head, char **args, int type);
-void mx_ast_push_back_redirection(t_ast **head, char **args, int type);
+void mx_ast_push_back(t_ast **head, char *arg, int type);
+void mx_ast_push_back_redirection(t_ast **head, char *arg, int type);
 void mx_ast_clear_list(t_ast **list);
 void mx_ast_clear_all(t_ast ***list);                 // In mx_ast_clear_list.c
 
@@ -391,15 +395,28 @@ void mx_termios_save(t_shell *m_s);
 void mx_termios_restore(t_shell *m_s);
 
 /*
- * Loop.
+ * Loopmx_red_in(.
  */
-t_job *mx_create_job(t_shell *m_s, t_ast *list);
 void mx_ush_loop(t_shell *m_s);
+t_job *mx_create_job(t_shell *m_s, t_ast *list);
+void mx_push_process_back(t_process **process, t_shell *m_s, t_ast *list);
+void mx_clear_process(t_process *p);
 void mx_launch_job(t_shell *m_s, t_job *job);
-int mx_set_redirec(t_shell  *m_s, t_job * job, t_process *p, int job_id);
-void mx_set_redir_input(t_shell *m_s, t_job *job, t_process *p, int job_id);
-void mx_set_redir_inp_d(t_job *job, t_process *p);
-void mx_set_redir_output(t_shell *m_s, t_job * job, t_process *p);
+
+
+int mx_set_redirections(t_shell *m_s, t_job *job, t_process *p);
+void mx_count_redir(t_process *p);
+void mx_set_r_infile(t_shell *m_s, t_job  *job, t_process *p);
+void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p);
+
+//void mx_red_in(t_shell *m_s, t_job *job, t_process *p, t_redir *r, int j);
+//void mx_red_in_d(t_shell *m_s, t_job *job, t_process *p, t_redir *r, int j);
+
+int mx_red_in(t_job *job, t_process *p, t_redir *r, int j);
+int mx_red_in_d(t_job *job, t_process *p, t_redir *r, int j);
+
+//void mx_set_redir_inp_d(t_job *job, t_process *p);
+//void mx_set_redir_output(t_shell *m_s, t_job * job, t_process *p);
 void mx_dup_fd(t_process *p);
 int mx_launch_process(t_shell *m_s, t_process *p, int job_id);
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
@@ -521,10 +538,13 @@ void mx_clear_data(char *name, char *value);
 void mx_print_error(char *command, char *error);
 char *mx_get_shlvl(void);
 unsigned long mx_pow_rec(int n, int pow);
-void mx_launch_blow_job(t_shell *m_s, t_ast **ast, t_job *new_job);
 void mx_export_value(t_export *export, char *name, char *value);
 
 void mx_dup2_fd(int *fd1, int *fd2);
 char *mx_run_subshell(char *substr, t_shell *m_s);
 char *mx_subs_output(char **res);
+
+
+void mx_print_fd(t_process  *p);
+
 #endif

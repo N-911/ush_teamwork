@@ -44,12 +44,11 @@ static char **substitutions(char **args, t_shell *m_s) {
     char **res = NULL;
 
     res = (char **)malloc((mx_strlen_arr(args) + 1) * sizeof(char *));
-    for (i = 0, j = 0; args && args[j] && args[j][0]; i++, j++) {
+    for (i = 0, j = 0; args[j] && args[j][0]; i++, j++) {
         res[i] = mx_strdup(args[j]);
         res[i] = mx_subst_tilde(res[i], m_s->variables);
         res[i] = mx_substr_dollar(res[i], m_s->variables);
         res[i] = mx_subst_command(res[i], m_s);
-        //printf("%s\n", res[i]);
         if (check_subsut_result(res, args, &i))
             return NULL;
     }
@@ -60,6 +59,7 @@ static char **substitutions(char **args, t_shell *m_s) {
 /*
  * Get functions, aliases or parse by USH_TOK_DELIM,
  * subst ~, $,
+ *
  * trim'' "" , \.
  *
  * Need scans for word splitting results of parameter expansion
@@ -71,13 +71,14 @@ char **mx_filters(char *arg, t_shell *m_s) {
 
     if (!arg)
         return NULL;
-    args = func_alias_tokens(arg, m_s);
-    if (!(res = substitutions(args, m_s))) {
-        mx_strdel(&arg);
-        return NULL;
+    if ((args = func_alias_tokens(arg, m_s))) {
+        if (!(res = substitutions(args, m_s))) {
+            mx_strdel(&arg);
+            return NULL;
+        }
+        mx_strtrim_quote(res);
+        free(args);
     }
-    mx_strtrim_quote(res);
-    free(args);
     mx_strdel(&arg);
     return res;
 }
