@@ -19,7 +19,7 @@ t_ast *push_redirections(t_ast **q, t_ast **ast) {
 
     tmp_type = (*q)->type;
     for (; c && MX_IS_REDIRECTION(tmp_type); c = c->next, (*q) = (*q)->next) {
-        mx_ast_push_back_redirection(ast, c->args, tmp_type);
+        mx_ast_push_back_redirection(ast, c->token, tmp_type);
         tmp_type = c->type;
     }
     for (c = *ast; c->next; c = c->next) {}
@@ -37,7 +37,7 @@ t_ast **mx_ast_parse(t_ast *parsed_line) {
 
     ast[i] = NULL;
     for (; q; q = q->next) {
-        mx_ast_push_back(&ast[i], q->args, q->type);
+        mx_ast_push_back(&ast[i], q->token, q->type);
         if (MX_IS_REDIRECTION(q->type))
             q = push_redirections(&q, &ast[i]);
         if (MX_IS_SEP_FIRST_LWL(q->type) || q->type == NUL)

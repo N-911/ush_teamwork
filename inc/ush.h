@@ -156,10 +156,10 @@ enum e_type {
     AND,            // &&
     OR,             // ||
     PIPE,           // |
-    R_INPUT,        // >
-    R_INPUT_DBL,    // >>
-    R_OUTPUT,       // <
-    R_OUTPUT_DBL,   // <<
+    R_INPUT,        // <
+    R_INPUT_DBL,    // <<
+    R_OUTPUT,       // >
+    R_OUTPUT_DBL,   // >>
     NUL
 }   t_type;
 /*
@@ -167,6 +167,7 @@ enum e_type {
  */
 typedef struct s_ast {
     char **args;
+    char *token;
     int type;
     struct s_ast *next;
     struct s_ast *left;
@@ -338,8 +339,8 @@ char **mx_parce_tokens(char *line);
 char *mx_strtok (char *s, const char *delim);
 
 t_ast **mx_ast_parse(t_ast *parsed_line);
-void mx_ast_push_back(t_ast **head, char **args, int type);
-void mx_ast_push_back_redirection(t_ast **head, char **args, int type);
+void mx_ast_push_back(t_ast **head, char *arg, int type);
+void mx_ast_push_back_redirection(t_ast **head, char *arg, int type);
 void mx_ast_clear_list(t_ast **list);
 void mx_ast_clear_all(t_ast ***list);                 // In mx_ast_clear_list.c
 
@@ -396,8 +397,10 @@ void mx_termios_restore(t_shell *m_s);
 /*
  * Loopmx_red_in(.
  */
-t_job *mx_create_job(t_shell *m_s, t_ast *list);
 void mx_ush_loop(t_shell *m_s);
+t_job *mx_create_job(t_shell *m_s, t_ast *list);
+void mx_push_process_back(t_process **process, t_shell *m_s, t_ast *list);
+void mx_clear_process(t_process *p);
 void mx_launch_job(t_shell *m_s, t_job *job);
 
 
@@ -535,7 +538,6 @@ void mx_clear_data(char *name, char *value);
 void mx_print_error(char *command, char *error);
 char *mx_get_shlvl(void);
 unsigned long mx_pow_rec(int n, int pow);
-void mx_launch_blow_job(t_shell *m_s, t_ast **ast, t_job *new_job);
 void mx_export_value(t_export *export, char *name, char *value);
 
 void mx_dup2_fd(int *fd1, int *fd2);

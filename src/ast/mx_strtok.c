@@ -15,7 +15,7 @@ static char *get_end_usual_quote_func(char *s, const char *delim, char *end) {
         else if (mx_strncmp(s, "$(", 2) == 0)
             s += mx_get_char_index_quote(s + 2, ")", MX_QUOTE) + 3;
         else if (mx_strncmp(s, "() {", 4) == 0)
-            s += mx_get_char_index_quote(s + 4, "}", "\"\'`$") + 5;
+            s += mx_get_char_index_quote(s + 4, "}", MX_QUOTE) + 5;
         else
             s++;
     }

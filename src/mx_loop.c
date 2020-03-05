@@ -13,11 +13,14 @@ static int get_job_type(t_ast **ast, int i) {
     return 0;
 }
 
-void mx_launch_blow_job(t_shell *m_s, t_ast **ast, t_job *new_job) {
+static void launch_blow_job(t_shell *m_s, t_ast **ast) {
+    t_job *new_job = NULL;
+
     for (int i = 0; ast[i]; i++) {
-        new_job = mx_create_job(m_s, ast[i]);
-        new_job->job_type = get_job_type(ast, i);
-        mx_launch_job(m_s, new_job);
+        if ((new_job = mx_create_job(m_s, ast[i]))) {
+            new_job->job_type = get_job_type(ast, i);
+            mx_launch_job(m_s, new_job);
+        }
     }
     mx_ast_clear_all(&ast);
 }
@@ -25,7 +28,6 @@ void mx_launch_blow_job(t_shell *m_s, t_ast **ast, t_job *new_job) {
 void mx_ush_loop(t_shell *m_s) {
     char *line = NULL;
     t_ast **ast = NULL;
-    t_job *new_job = NULL;
 
     getenv("HOME") ? m_s->git = mx_get_git_info() : 0;
     while (1) {
@@ -35,10 +37,9 @@ void mx_ush_loop(t_shell *m_s) {
             mx_check_jobs(m_s);
             continue;
         }
-        else {
-            if ((ast = mx_ast_creation(line, m_s))){
-                mx_launch_blow_job(m_s, ast, new_job);
-            }
+        else if ((ast = mx_ast_creation(line, m_s))) {
+            // mx_ast_print(ast);
+            launch_blow_job(m_s, ast);
         }
         mx_strdel(&line);
     }
