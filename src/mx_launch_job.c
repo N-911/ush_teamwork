@@ -24,7 +24,6 @@ static void help_ex_job (t_shell *m_s, t_job *job, t_process *p, int job_id) {
         job->exit_code = mx_launch_builtin(m_s, p, job_id);
     else
         job->exit_code = mx_launch_process(m_s, p, job_id);
-
     if (job->infile != job->stdin)
         close(job->infile);
     if (job->outfile != job->stdout)
@@ -73,17 +72,17 @@ static int execute_job (t_shell *m_s, t_job * job, int job_id) {
             job->outfile = mypipe[1];
             p->r_outfile[0] = job->outfile;
         }
-        mx_print_fd(p);
         help_ex_job(m_s, job, p, job_id);
         job->infile = mypipe[0];
     }
     launch_help(m_s, job, job_id, job->exit_code);
-    return job->exit_code;
+    return job->exit_code
+    ;
 }
 
 void mx_launch_job (t_shell *m_s, t_job *job) {
     setbuf(stdout, NULL);
-    int status;
+    int status = 0;
     int job_id;
 
     mx_check_jobs(m_s);
@@ -96,6 +95,8 @@ void mx_launch_job (t_shell *m_s, t_job *job) {
         status = execute_job(m_s, job, job_id);
     else
         mx_remove_job(m_s, job_id);
+//    printf(" staus = %d\n", status);
+//    printf(" m_s->exit_code = %d\n", m_s->exit_code);
     char *exit_status = mx_itoa(m_s->exit_code);
     mx_set_variable(m_s->variables, "?", exit_status);
     free(exit_status);

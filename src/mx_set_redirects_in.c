@@ -4,7 +4,8 @@ void mx_set_r_infile(t_shell *m_s, t_job *job, t_process *p) {
     t_redir *r;
     int j = 0;
 
-    p->r_infile = (int *) malloc(sizeof(int) * (p->c_input));
+//    p->r_infile = (int *) malloc(sizeof(int) * (p->c_input));
+    p->r_infile = (int *) realloc(p->r_infile, sizeof(int) * (p->c_input));
     p->r_infile[0] = job->infile;
     if (p->redirect) {
         for (r = p->redirect; r; r = r->next) {
@@ -17,8 +18,6 @@ void mx_set_r_infile(t_shell *m_s, t_job *job, t_process *p) {
                 j++;
             }
         }
-//        if (m_s->redir == 1)
-//            mx_set_variable(m_s->variables, "?", "1");
         job->infile = p->r_infile[0];
     }
 }
@@ -31,7 +30,6 @@ int mx_red_in(t_job *job, t_process *p, char *input_path, int j) {
     if ((fd = open(input_path, O_RDONLY, 0666)) < 0) {
         mx_printerr("ush :");
         perror(input_path);
-//        mx_set_variable(m_s->variables, "?", "1");
         status_redir = 1;
         job->exit_code = 1;
         return status_redir;
@@ -49,7 +47,6 @@ int mx_red_in_d(t_job *job, t_process *p, char *input_path, int j) {
     if ((fd = open(input_path, O_RDWR | O_CREAT | O_TRUNC, 0666)) < 0 ) {
         mx_printerr("ush :");
         perror(input_path);
-//        mx_set_variable(m_s->variables, "?", "1");
         status_redir = 1;
         job->exit_code = 1;
         return status_redir;

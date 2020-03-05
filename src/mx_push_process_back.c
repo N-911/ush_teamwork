@@ -14,6 +14,8 @@ static t_process *init_process(t_ast *list) {
     p->redirect = NULL;
     p->foregrd = 1;
     p->pipe = 0;
+    p->r_infile = (int *) malloc(sizeof(int) * 1);
+    p->r_outfile = (int *) malloc(sizeof(int) * 1);
     if (p->delim == FON)
         p->foregrd = 0;
     else if (p->delim == PIPE)
@@ -80,5 +82,9 @@ void mx_clear_process(t_process *p) {
     mx_strdel(&p->input_path);
     mx_strdel(&p->output_path);
     mx_redir_clear_list(&p->redirect);
+    if (p->r_infile)
+        free(p->r_infile);
+    if(p->r_outfile)
+        free(p->r_outfile);
     free(p);
 }
