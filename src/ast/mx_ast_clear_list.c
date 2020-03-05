@@ -9,6 +9,8 @@ void mx_ast_clear_list(t_ast **list) {
     if (!(*list) || !list)
         return;
     while (q) {
+        if (q->token)
+            free(q->token);
         if (q->args)
             mx_del_strarr(&q->args);
         if (q->left)

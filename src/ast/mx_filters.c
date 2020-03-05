@@ -79,6 +79,6 @@ char **mx_filters(char *arg, t_shell *m_s) {
         mx_strtrim_quote(res);
         free(args);
     }
-    mx_strdel(&arg);
+    //mx_strdel(&arg);
     return res;
 }

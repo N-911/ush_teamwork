@@ -7,7 +7,7 @@ int mx_set_redirections(t_shell *m_s, t_job *job, t_process *p) {
     mx_set_r_infile(m_s, job, p);
     mx_set_r_outfile(m_s, job, p);
     p->errfile = job->errfile;
-    printf (" m_s->redir %d\n", m_s->redir);
+    //printf (" m_s->redir %d\n", m_s->redir);
     if (m_s->redir == 1) {
         m_s->exit_code = 1;
         job->exit_code = 1;

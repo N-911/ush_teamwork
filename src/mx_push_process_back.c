@@ -80,6 +80,9 @@ void mx_clear_process(t_process *p) {
     mx_strdel(&p->input_path);
     mx_strdel(&p->output_path);
     mx_redir_clear_list(&p->redirect);
-    //free(p->r_infile);
+    if (p->r_infile)
+        free(p->r_infile);
+    if (p->r_outfile)
+        free(p->r_outfile);
     free(p);
 }
