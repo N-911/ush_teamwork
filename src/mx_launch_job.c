@@ -60,8 +60,9 @@ static int execute_job (t_shell *m_s, t_job * job, int job_id) {
     for (p = m_s->jobs[job_id]->first_pr; p; p = p->next) {
         mx_sheck_exit(m_s, p);
         if ((mx_set_redirections(m_s, job, p)) != 0) {
-            mx_remove_job(m_s, job_id);
-            break;
+            p->status = MX_STATUS_DONE;
+            p->exit_code = 1;
+            continue;
         }
         if (p->pipe) {
             if (pipe(mypipe) < 0) {
@@ -72,6 +73,7 @@ static int execute_job (t_shell *m_s, t_job * job, int job_id) {
             job->outfile = mypipe[1];
             p->r_outfile[0] = job->outfile;
         }
+        mx_print_fd(p);
         help_ex_job(m_s, job, p, job_id);
         job->infile = mypipe[0];
     }

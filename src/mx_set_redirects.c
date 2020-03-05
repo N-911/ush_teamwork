@@ -38,6 +38,7 @@ void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p) {
     int flags = 0;
     t_redir *r;
     int j = 0;
+    int fd;
 
     p->r_outfile = (int *) malloc(sizeof(int) * (p->c_output));
     p->r_outfile[0] = job->outfile;
@@ -50,13 +51,15 @@ void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p) {
                 if (r->redir_delim == R_OUTPUT_DBL) {
                     flags = O_WRONLY | O_CREAT;
                 }
-                if ((p->r_outfile[j] = open(r->output_path, flags, 0666)) < 0) {  ///??
+                if ((fd = open(r->output_path, flags, 0666)) < 0) {  ///??
                     mx_printerr("ush :");
                     perror(r->output_path);
 //                    mx_set_variable(m_s->variables, "?", "1");
                     m_s->redir = 1;
+                    continue;
 //                    job->exit_code = 1;
                 }
+                p->r_outfile[j] = fd;
                 lseek(p->r_outfile[j], 0, SEEK_END);
                 j++;
             }
