@@ -44,10 +44,6 @@ int mx_red_in(t_job *job, t_process *p, t_redir *r, int j) {
     int status_redir = 0;
     int fd;
 
-//    printf(" <\n ");
-//        printf("r->input_path   = %s\n", r->input_path);
-    printf("p->r_infile[0] start = p->r_infile[%d]\n", p->r_infile[0]);
-
     if ((fd = open(r->input_path, O_RDONLY, 0666)) < 0) {
         mx_printerr("ush :");
         perror(r->input_path);
@@ -56,7 +52,6 @@ int mx_red_in(t_job *job, t_process *p, t_redir *r, int j) {
         job->exit_code = 1;
     }
     p->r_infile[j] = fd;
-    printf("p->r_infile[0] end  = p->r_infile[%d]\n", p->r_infile[0]);
     return status_redir;
 }
 
@@ -65,10 +60,7 @@ int mx_red_in_d(t_job *job, t_process *p, t_redir *r, int j) {
     int fd;
     char *line;
     int count;
-//    int flags =  O_RDWR | O_CREAT | O_TRUNC;
 
-//    printf(" << \n ");
-//    printf("r->input_path = %s\n", r->input_path);
     if ((fd = open(r->input_path, O_RDWR | O_CREAT | O_TRUNC, 0666)) < 0 ) {
         mx_printerr("ush :");
         perror(r->input_path);

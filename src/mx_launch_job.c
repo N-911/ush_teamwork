@@ -29,23 +29,6 @@ static void help_ex_job (t_shell *m_s, t_job *job, t_process *p, int job_id) {
         close(job->infile);
     if (job->outfile != job->stdout)
         close(job->outfile);
-
-//    if ( p->c_input > 1) {
-//        for (int i = 1; i < p->c_input; i++) {
-//            if (p->r_infile[i] != STDIN_FILENO) {
-//                dup2(p->r_infile[i], STDIN_FILENO);
-//                close(p->r_infile[i]);
-//            }
-//        }
-//    }
-//    if (p->c_output > 1) {
-//        for (int j = 1; j < p->c_output; j++) {
-//            if (p->r_outfile[j] != STDOUT_FILENO) {
-//                dup2(p->r_outfile[j], STDOUT_FILENO);
-//                close(p->r_outfile[j]);
-//            }
-//        }
-//    }
     m_s->exit_code = job->exit_code;
 }
 
@@ -72,14 +55,13 @@ static void launch_help (t_shell *m_s, t_job *job, int job_id, int status) {
 static int execute_job (t_shell *m_s, t_job * job, int job_id) {
     t_process *p;
     int mypipe[2];
-    int a;
+//    int a;
 
     execute_job_env(job);
     for (p = m_s->jobs[job_id]->first_pr; p; p = p->next) {
         mx_sheck_exit(m_s, p);
-        if ((a = mx_set_redirections(m_s, job, p)) != 0)
+        if ((mx_set_redirections(m_s, job, p)) != 0)
             continue;
-
         if (p->pipe) {
             if (pipe(mypipe) < 0) {
                 perror("pipe");
@@ -89,7 +71,6 @@ static int execute_job (t_shell *m_s, t_job * job, int job_id) {
             job->outfile = mypipe[1];
             p->r_outfile[0] = job->outfile;
         }
-        mx_print_fd(p);  ////////////////////////////////
         help_ex_job(m_s, job, p, job_id);
         job->infile = mypipe[0];
     }

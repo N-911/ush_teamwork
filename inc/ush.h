@@ -405,7 +405,7 @@ void mx_launch_job(t_shell *m_s, t_job *job);
 
 
 int mx_set_redirections(t_shell *m_s, t_job *job, t_process *p);
-void mx_count_redir(t_job *job, t_process *p);
+void mx_count_redir(t_process *p);
 void mx_set_r_infile(t_shell *m_s, t_job  *job, t_process *p);
 void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p);
 
