@@ -57,34 +57,19 @@ static void child_wrk(t_shell *m_s, t_process *p, int job_id, int child_pid) {
 
     if (shell_is_interactive)
         mx_pgid(m_s, job_id, child_pid);
-//    mx_dup_fd(p);
-//    for (int i = 0; i < p->c_input; i++) {
-//        if (p->r_infile[i] != STDIN_FILENO) {
-//            dup2(p->r_infile[i], STDIN_FILENO);
-//            close(p->r_infile[i]);
-//        }
+    mx_dup_fd(p);
+//    if (p->r_infile[0] != STDIN_FILENO) {
+//        dup2(p->r_infile[0], STDIN_FILENO);
+//        close(p->r_infile[0]);
 //    }
-//    for (int j = 0; j < p->c_output; j++) {
-//        if (p->r_outfile[j] != STDOUT_FILENO) {
-//            dup2(p->r_outfile[j], STDOUT_FILENO);
-//            close(p->r_outfile[j]);
-//        }
+//    if (p->r_outfile[0] != STDOUT_FILENO) {
+//        dup2(p->r_outfile[0], STDOUT_FILENO);
+//        close(p->r_outfile[0]);
 //    }
-    if (p->r_infile[0] != STDIN_FILENO) {
-        dup2(p->r_infile[0], STDIN_FILENO);
-        close(p->r_infile[0]);
-    }
-    if (p->r_outfile[0] != STDOUT_FILENO) {
-        dup2(p->r_outfile[0], STDOUT_FILENO);
-        close(p->r_outfile[0]);
-    }
-
-    if (p->errfile != STDERR_FILENO) {
-        dup2(p->errfile, STDERR_FILENO);
-        close(p->errfile);
-    }
-//    mx_print_fd(p);  ////////////////////////////////
-
+//    if (p->errfile != STDERR_FILENO) {
+//        dup2(p->errfile, STDERR_FILENO);
+//        close(p->errfile);
+//    }
     char **arr = mx_strsplit(m_s->jobs[job_id]->path, ':');
     char *command = p->argv[0];
     m_s->jobs[job_id]->path  = check_path(arr, command);

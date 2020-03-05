@@ -29,6 +29,23 @@ static void help_ex_job (t_shell *m_s, t_job *job, t_process *p, int job_id) {
         close(job->infile);
     if (job->outfile != job->stdout)
         close(job->outfile);
+
+//    if ( p->c_input > 1) {
+//        for (int i = 1; i < p->c_input; i++) {
+//            if (p->r_infile[i] != STDIN_FILENO) {
+//                dup2(p->r_infile[i], STDIN_FILENO);
+//                close(p->r_infile[i]);
+//            }
+//        }
+//    }
+//    if (p->c_output > 1) {
+//        for (int j = 1; j < p->c_output; j++) {
+//            if (p->r_outfile[j] != STDOUT_FILENO) {
+//                dup2(p->r_outfile[j], STDOUT_FILENO);
+//                close(p->r_outfile[j]);
+//            }
+//        }
+//    }
     m_s->exit_code = job->exit_code;
 }
 

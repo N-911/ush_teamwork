@@ -61,6 +61,7 @@ SRC = mx_builtin_commands.c \
     mx_chdir.c \
     mx_true.c \
     mx_run_subshell.c \
+    mx_set_redirects.c \
     ush_main.c
 
 SRC_PARSER = libmx1.c \
@@ -144,6 +145,7 @@ OBJ = mx_builtin_commands.o \
     mx_chdir.o \
     mx_true.o \
     mx_run_subshell.o \
+    mx_set_redirects.o \
     ush_main.o
 
 OBJ_PARSER = libmx1.o \

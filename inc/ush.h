@@ -394,7 +394,7 @@ void mx_termios_save(t_shell *m_s);
 void mx_termios_restore(t_shell *m_s);
 
 /*
- * Loop.
+ * Loopmx_red_in(.
  */
 t_job *mx_create_job(t_shell *m_s, t_ast *list);
 void mx_ush_loop(t_shell *m_s);
@@ -406,8 +406,11 @@ void mx_count_redir(t_job *job, t_process *p);
 void mx_set_r_infile(t_shell *m_s, t_job  *job, t_process *p);
 void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p);
 
-void mx_red_in(t_shell *m_s, t_job *job, t_process *p, t_redir *r, int j);
-void mx_red_in_d(t_shell *m_s, t_job *job, t_process *p, t_redir *r, int j);
+//void mx_red_in(t_shell *m_s, t_job *job, t_process *p, t_redir *r, int j);
+//void mx_red_in_d(t_shell *m_s, t_job *job, t_process *p, t_redir *r, int j);
+
+int mx_red_in(t_job *job, t_process *p, t_redir *r, int j);
+int mx_red_in_d(t_job *job, t_process *p, t_redir *r, int j);
 
 //void mx_set_redir_inp_d(t_job *job, t_process *p);
 //void mx_set_redir_output(t_shell *m_s, t_job * job, t_process *p);
