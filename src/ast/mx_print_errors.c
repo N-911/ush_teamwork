@@ -35,13 +35,13 @@ static char *get_delim_from_type(int type) {
     else if (type == PIPE)
         return mx_strdup("|");
     else if (type == R_INPUT)
-        return mx_strdup(">");
-    else if (type == R_INPUT_DBL)
-        return mx_strdup(">>");
-    else if (type == R_OUTPUT)
         return mx_strdup("<");
-    else if (type == R_OUTPUT_DBL)
+    else if (type == R_INPUT_DBL)
         return mx_strdup("<<");
+    else if (type == R_OUTPUT)
+        return mx_strdup(">");
+    else if (type == R_OUTPUT_DBL)
+        return mx_strdup(">>");
     return NULL;
 }
 

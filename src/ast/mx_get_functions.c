@@ -24,7 +24,7 @@ static char *get_value(char *line, int end) {
     if (!line[i] || mx_strncmp(&line[i], " { ", 3) != 0)
         return usage_err();
     i += 3;
-    end = mx_get_char_index_quote(&line[i], "}", "\"\'`$");
+    end = mx_get_char_index_quote(&line[i], "}", "\"\'`$(");
     if (end <= 0)
         return mx_syntax_error("{");
     value = mx_strndup(&line[i], end);

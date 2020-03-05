@@ -156,10 +156,10 @@ enum e_type {
     AND,            // &&
     OR,             // ||
     PIPE,           // |
-    R_INPUT,        // >
-    R_INPUT_DBL,    // >>
-    R_OUTPUT,       // <
-    R_OUTPUT_DBL,   // <<
+    R_INPUT,        // <
+    R_INPUT_DBL,    // <<
+    R_OUTPUT,       // >
+    R_OUTPUT_DBL,   // >>
     NUL
 }   t_type;
 /*

@@ -38,7 +38,7 @@ void mx_ush_loop(t_shell *m_s) {
             continue;
         }
         else if ((ast = mx_ast_creation(line, m_s))) {
-            // mx_ast_p rint(ast);
+            // mx_ast_print(ast);
             launch_blow_job(m_s, ast);
         }
         mx_strdel(&line);
