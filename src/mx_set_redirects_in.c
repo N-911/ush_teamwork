@@ -4,7 +4,7 @@ void mx_set_r_infile(t_shell *m_s, t_job *job, t_process *p) {
     t_redir *r;
     int j = 0;
 
-    //p->r_infile = (int *) malloc(sizeof(int) * (p->c_input));
+    p->r_infile = (int *) malloc(sizeof(int) * (p->c_input));
     p->r_infile[0] = job->infile;
     if (p->redirect) {
         for (r = p->redirect; r; r = r->next) {
