@@ -63,6 +63,7 @@ t_ast *mx_ush_parsed_line(t_ast *res, char *line1, t_shell *m_s, int old_t) {
                 func_or_push(&res, tmp, type, m_s);
             else if (type != SEP)
                 return mx_parse_error_ush(type, res, line);
+            free(tmp);
         }
     mx_strdel(&line);
     if_recurcion_func_or_alias(&res, old_t);

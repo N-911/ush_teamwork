@@ -9,7 +9,7 @@ static t_ast *ast_create_node(char *arg, int type) {
     if (!q)
         return NULL;
     q->args = NULL;
-    q->token = mx_strdup(arg);
+    q->token = strdup(arg);
     q->type = type;
     q->next = NULL;
     q->left = NULL;
