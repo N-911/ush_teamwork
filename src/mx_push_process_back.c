@@ -14,6 +14,8 @@ static t_process *init_process(t_ast *list) {
     p->redirect = NULL;
     p->foregrd = 1;
     p->pipe = 0;
+    p->r_infile = (int *) malloc(sizeof(int) * 1);
+    p->r_outfile = (int *) malloc(sizeof(int) * 1);
     if (p->delim == FON)
         p->foregrd = 0;
     else if (p->delim == PIPE)

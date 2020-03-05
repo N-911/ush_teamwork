@@ -412,8 +412,11 @@ void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p);
 //void mx_red_in(t_shell *m_s, t_job *job, t_process *p, t_redir *r, int j);
 //void mx_red_in_d(t_shell *m_s, t_job *job, t_process *p, t_redir *r, int j);
 
-int mx_red_in(t_job *job, t_process *p, t_redir *r, int j);
-int mx_red_in_d(t_job *job, t_process *p, t_redir *r, int j);
+int mx_red_in(t_job *job, t_process *p, char *input_path, int j);
+int mx_red_in_d(t_job *job, t_process *p, char *input_path, int j);
+
+//int mx_red_in(t_job *job, t_process *p, t_redir *r, int j);
+//int mx_red_in_d(t_job *job, t_process *p, t_redir *r, int j);
 
 //void mx_set_redir_inp_d(t_job *job, t_process *p);
 //void mx_set_redir_output(t_shell *m_s, t_job * job, t_process *p);
