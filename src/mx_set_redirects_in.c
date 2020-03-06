@@ -12,7 +12,7 @@ void mx_set_r_infile(t_shell *m_s, t_job *job, t_process *p) {
                 if (r->redir_delim == R_INPUT)
                     m_s->redir = mx_red_in(job, p, r->input_path, j);
                 if (r->redir_delim == R_INPUT_DBL) {
-                    m_s->redir = mx_red_in_d(job, p, r->input_path, j);
+                    // m_s->redir = mx_red_in_d(job, p, r->input_path, j);
                 }
                 j++;
             }
