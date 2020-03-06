@@ -100,7 +100,7 @@ char *mx_substr_dollar(char *s, t_export *variables) {
     while (res && (pos = mx_get_char_index_quote(res, "$", "\"\'`$")) >= 0)
         res = expantion(res, variables, pos);
     if (!res) {
-        mx_printerr("u$h: bad substitution\n");
+        mx_printerr("ush: bad substitution\n");
         return NULL;
     }
     return res;
