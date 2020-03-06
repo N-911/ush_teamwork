@@ -44,8 +44,6 @@ void mx_count_redir(t_process *p) {
     p->r_outfile = (int *) realloc(p->r_outfile, sizeof(int) * (p->c_output));
 }
 
-
-
 void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p) {
     int flags = 0;
     t_redir *r;
@@ -71,4 +69,3 @@ void mx_set_r_outfile(t_shell *m_s, t_job *job, t_process *p) {
     }
     job->outfile = p->r_outfile[0];
 }
-

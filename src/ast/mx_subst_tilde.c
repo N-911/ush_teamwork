@@ -1,41 +1,5 @@
 #include "ush.h"
 /*
- * Check if prefix is correct login or not.
- */
-
-static char *replace(char *str) {
-    char *res = NULL;
-    int len = 0;
-
-    for(int i = mx_strlen(str) - 1; i > 0; i--) {
-        if (str[i] == '/')
-            break;
-        len++;
-    }
-    res = strndup(str, mx_strlen(str) - len);
-    return res;
-}
-
-static char *add_login(char *home, char *prefix) {
-    char *path = NULL;
-    int i = mx_get_char_index_reverse(home, '/');
-    struct stat buff;
-    struct passwd *pw = getpwuid(getuid());
-
-    if (!home || !*home) {
-        path = replace(pw->pw_dir);
-    }
-    else
-        path = mx_strndup(home, i + 1);
-    path = mx_strjoin_free(path, prefix);
-    if (lstat(path, &buff) != 0) {
-        mx_strdel(&path);
-        return NULL;
-    }
-    mx_strdel(&home);
-    return path;
-}
-/*
  * Get value and check if variable does not unset.
  */
 static char *get_res(char *var, t_export *variables) {
@@ -88,7 +52,7 @@ static char *expantion(char *s, t_export *v) {
     else if (mx_strcmp(prefix, "-") == 0)
         res = get_res("OLDPWD", v);
     else
-        res = add_login(get_res("HOME", v), prefix);
+        res = mx_add_login(get_res("HOME", v), prefix);
     if (res && sleshpos >= 0)
         res = mx_strjoin_free(res, &s[sleshpos + 1]);
     mx_strdel(&prefix);

@@ -32,14 +32,12 @@ void mx_ush_loop(t_shell *m_s) {
     getenv("HOME") ? m_s->git = mx_get_git_info() : 0;
     while (1) {
         isatty(0) ? (line = mx_get_line(m_s)) : (line = mx_ush_read_line(m_s));
-        // printf("%s\n", line);
         if (line[0] == '\0') {
             free(line);
             mx_check_jobs(m_s);
             continue;
         }
         else if ((ast = mx_ast_creation(line, m_s))) {
-            // mx_ast_print(ast);
             launch_blow_job(m_s, ast);
         }
         mx_strdel(&line);
