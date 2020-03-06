@@ -32,7 +32,6 @@ static void k_down(t_shell *m_s, char **line, int *position) {
     }
 }
 
-
 void mx_edit_command(int keycode, int *position, char **line, t_shell *m_s) {
     if (keycode == MX_K_LEFT)
         *position > 0 ? (*position)-- : 0;
@@ -51,4 +50,3 @@ void mx_edit_command(int keycode, int *position, char **line, t_shell *m_s) {
     else if (keycode == MX_BACKSCAPE)
         backscape(position, *line);
 }
-

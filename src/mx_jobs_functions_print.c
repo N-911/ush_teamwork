@@ -14,9 +14,9 @@ void mx_print_job_status(t_shell *m_s, int job_id, int flag) {
 
     printf("[%d] ", job_id);
     if (m_s->jobs_stack->last == job_id)
-        printf("%2c ", 43);  // print +
+        printf("%2c ", 43);  // Print +
     else if (m_s->jobs_stack->prev_last == job_id)
-        printf("%2c ", 45);  // print -
+        printf("%2c ", 45);  // Print -
     else
         printf("%2c ", ' ');
     for (p = m_s->jobs[job_id]->first_pr; p != NULL; p = p->next) {

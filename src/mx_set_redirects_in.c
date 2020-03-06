@@ -55,10 +55,9 @@ int mx_red_in_d(t_job *job, t_process *p, char *input_path, int j) {
     while (strcmp(line, input_path) != 0) {
         p->pipe ? printf("pipe heredoc> ") : printf("heredoc> ");
         write(fd, line, mx_strlen(line));
-        free(line);  ////////////////////
+        free(line);
         if (count)
             write(fd, "\n", 1);
-//        line = mx_ush_read_line(m_s);
         count++;
     }
     free(line);
@@ -67,6 +66,3 @@ int mx_red_in_d(t_job *job, t_process *p, char *input_path, int j) {
     remove(input_path);
     return status_redir;
 }
-
-
-

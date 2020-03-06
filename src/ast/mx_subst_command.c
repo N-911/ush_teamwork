@@ -22,12 +22,9 @@ static char *get_subst(char *s, int *len) {
     }
     return subst;
 }
-
-
 /*
  * Combine new string.
  */
-
 static char *expantion(char *s, int pos, t_shell *m_s) {
     char *res = NULL;
     int len = 0;
@@ -45,11 +42,9 @@ static char *expantion(char *s, int pos, t_shell *m_s) {
     mx_strdel(&s);
     return res;
 }
-
 /*
  * Command substitutiont.
  */
-
 char *mx_subst_command(char *s, t_shell *m_s) {
     char *res = s;
     int pos = 0;

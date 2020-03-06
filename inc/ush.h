@@ -31,13 +31,11 @@
 #include <termios.h>
 
 #include "libmx/inc/libmx.h"
-
 /*
  * Exit.
  */
 #define MX_EXIT_FAILURE 1
 #define MX_EXIT_SUCCESS 0
-
 /*
  * Jobs.
  */
@@ -53,7 +51,6 @@
 #define MX_FOREGROUND 1
 #define MX_BACKGROUND 0
 #define MAX_LEN 10
-
 /*
  * Wait.
  */
@@ -77,7 +74,6 @@
 #define MX_SIG_IGN          (void (*)(int))1
 #define MX_SIG_HOLD         (void (*)(int))5
 #define MX_SIG_ERR          ((void (*)(int))-1)
-
 /*
  * Colors.
  */
@@ -102,7 +98,6 @@
 #define MX_BOLD_CYAN "\x1B[1;36m"
 #define MX_BOLD_RED "\x1B[[1;31m"
 #define MX_BOLD_BLUE "\x1B[1;34m"
-
 /*
  * Keyboards.
  */
@@ -122,7 +117,6 @@
 #define MX_BACKSCAPE   127
 #define MX_TAB         9
 #define MX_ENTER       10
-
 /*
  * Abstract Syntax Tree.
  * Operators and delimeters for parse tokens.
@@ -223,8 +217,6 @@ typedef struct  s_export {
     struct s_export *next;
 }               t_export;
 
-
-
 typedef struct  s_stack {
     int         size;       // Size = MX_JOBS_NUMBER
     int*        stack;
@@ -232,7 +224,6 @@ typedef struct  s_stack {
     int         last;       // Current job gor fg
     int         prev_last;
 }              t_stack;
-
 
 typedef struct s_env_builtin  {
     env_t env_options;
@@ -272,7 +263,6 @@ typedef struct s_process {
     int outfile;
     int errfile;
 }             t_process;
-
 /*
  * A job is a pipeline of processes.
  */
@@ -328,7 +318,6 @@ typedef struct s_shell {
     int redir;
     char *kernal;
 }             t_shell;
-
 /*
  * Abstract Syntax Tree.
  */
@@ -342,7 +331,7 @@ t_ast **mx_ast_parse(t_ast *parsed_line);
 void mx_ast_push_back(t_ast **head, char *arg, int type);
 void mx_ast_push_back_redirection(t_ast **head, char *arg, int type);
 void mx_ast_clear_list(t_ast **list);
-void mx_ast_clear_all(t_ast ***list);                 // In mx_ast_clear_list.c
+void mx_ast_clear_all(t_ast ***list);               // In mx_ast_clear_list.c
 
 void mx_redir_push_back(t_redir **head, char *path, int type);
 void mx_redir_clear_list(t_redir **list);
@@ -361,6 +350,7 @@ char *mx_ush_read_line(t_shell *m_s);
 char **mx_filters(char *arg, t_shell *m_s);
 
 char *mx_subst_tilde(char *s, t_export *variables);
+char *mx_add_login(char *home, char *prefix);
 char *mx_substr_dollar(char *s, t_export *variables);
 char *mx_subst_command(char *s, t_shell *m_s);
 
@@ -384,25 +374,24 @@ void mx_print_color(char *macros, char *str);
 int mx_get_char_index_reverse(const char *str, char c);
 bool mx_isdelim (char c, char *delim);
 bool mx_check_allocation_error(const void *c);
-
-
+/*
+ * Init shell.
+ */
 t_shell *mx_init_shell(int argc, char **argv);
-
+void mx_set_shell_grp(t_shell *m_s);
 /*
  * Terminal.
  */
 void mx_termios_save(t_shell *m_s);
 void mx_termios_restore(t_shell *m_s);
-
 /*
- * Loopmx_red_in(.
+ * Loop.
  */
 void mx_ush_loop(t_shell *m_s);
 t_job *mx_create_job(t_shell *m_s, t_ast *list);
 void mx_push_process_back(t_process **process, t_shell *m_s, t_ast *list);
 void mx_clear_process(t_process *p);
 void mx_launch_job(t_shell *m_s, t_job *job);
-
 
 int mx_set_redirections(t_shell *m_s, t_job *job, t_process *p);
 void mx_count_redir(t_process *p);
@@ -420,11 +409,11 @@ int mx_red_in_d(t_job *job, t_process *p, char *input_path, int j);
 
 //void mx_set_redir_inp_d(t_job *job, t_process *p);
 //void mx_set_redir_output(t_shell *m_s, t_job * job, t_process *p);
+
 void mx_dup_fd(t_process *p);
 int mx_launch_process(t_shell *m_s, t_process *p, int job_id);
 int mx_builtin_commands_idex(t_shell *m_s, char *command);
 void mx_pgid(t_shell *m_s, int job_id, int child_pid);
-
 /*
  * Builtin commands.
  */
@@ -446,13 +435,10 @@ int mx_true(t_shell *m_s, t_process *p);
 int mx_alias(t_shell *m_s, t_process *p);           // In mx_set.c
 int mx_declare(t_shell *m_s, t_process *p);         // In mx_set.c
 int mx_false(t_shell *m_s, t_process *p);
-
-
 /*
  * Signals.
  */
 void mx_sig_h(int signal);
-
 /*
  * Jobs.
  */
@@ -546,7 +532,6 @@ void mx_export_value(t_export *export, char *name, char *value);
 void mx_dup2_fd(int *fd1, int *fd2);
 char *mx_run_subshell(char *substr, t_shell *m_s);
 char *mx_subs_output(char **res);
-
 
 void mx_print_fd(t_process  *p);
 

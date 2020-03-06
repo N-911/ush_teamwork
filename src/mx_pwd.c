@@ -47,9 +47,10 @@ int mx_pwd(t_shell *m_s, t_process *p) {
     int exit_code = 1;
 
     fill_options(n_options, &pwd_options, p->argv);
-    if (n_options <  0 || n_args > 1) return 1;
+    if (n_options <  0 || n_args > 1)
+        return 1;
     dir = getcwd(NULL, 1024);
-    if(dir != NULL) {
+    if (dir != NULL) {
         print_pwd(dir, &exit_code, m_s, pwd_options);
     }
     else

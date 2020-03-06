@@ -22,6 +22,7 @@ SRC = mx_builtin_commands.c \
     mx_launch_builtin.c \
     mx_count_options.c \
     mx_create_job.c \
+    mx_init_shell2.c \
     mx_init_shell.c \
     mx_jobs_stack.c \
     mx_jobs_stack2.c \
@@ -85,6 +86,7 @@ SRC_PARSER = libmx1.c \
     mx_subst_command.c \
     mx_subst_dollar.c \
     mx_subst_tilde.c \
+    mx_subst_tilde_add_login.c \
     mx_ush_parsed_line.c \
     mx_ush_read_line.c \
 
@@ -108,6 +110,7 @@ OBJ = mx_builtin_commands.o \
     mx_launch_builtin.o \
     mx_count_options.o \
     mx_create_job.o \
+    mx_init_shell2.o \
     mx_init_shell.o \
     mx_jobs_stack.o \
     mx_jobs_stack2.o \
@@ -171,6 +174,7 @@ OBJ_PARSER = libmx1.o \
     mx_subst_command.o \
     mx_subst_dollar.o \
     mx_subst_tilde.o \
+    mx_subst_tilde_add_login.o \
     mx_ush_parsed_line.o \
     mx_ush_read_line.o \
 

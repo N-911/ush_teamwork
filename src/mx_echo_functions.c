@@ -16,8 +16,8 @@ static char *get_result(char *buff1, char *buff2,  char *replace) {
 
 static char *replace_substr(char *str,  char *sub, char *replace) {
     char *res = strdup(str);
-    char *buff1;// = mx_strnew(mx_strlen(str));
-    char *buff2;// = mx_strnew(mx_strlen(str));
+    char *buff1;
+    char *buff2;
     int i = 0;
 
     while(mx_strstr(res,sub) != NULL) {
@@ -29,8 +29,6 @@ static char *replace_substr(char *str,  char *sub, char *replace) {
         free(buff1);
         free(buff2);
     }
-    // free(buff1);
-    // free(buff2);
     return res;
 }
 
@@ -61,7 +59,6 @@ static char *replace_slash(char *str, echo_t *echo_options) {
     res[len] = '\0';
     return res;
 }
-
 
 void mx_escape_seq(t_process *p, int i, echo_t echo_options) {
     char *tmp = replace_slash(p->argv[i], &echo_options);

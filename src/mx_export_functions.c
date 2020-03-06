@@ -52,6 +52,7 @@ static void get_data (char *arg, char **name, char **value,
     }
     if (*value == NULL) {
         t_export *head = variables;
+
         while (head != NULL) {
             if (strcmp(head->name, *name) == 0) {
                 *value = strdup(head->value);
