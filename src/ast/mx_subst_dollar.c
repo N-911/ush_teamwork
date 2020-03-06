@@ -16,7 +16,7 @@ static char *get_var(char *s, int *v_len) {
         *v_len = mx_strlen(var) + 2;
     }
     else {
-        while (s[i] && !mx_isspace(s[i]) && (isalpha(s[i]) || isdigit(s[i])))
+        while (s[i] && !mx_isspace(s[i]) && (isalpha(s[i]) || isdigit(s[i])) )
             i++;
         if (i != 0)
             var = mx_strndup(s, i);
@@ -50,8 +50,9 @@ static char *expantion(char *s, t_export *variables, int pos) {
             res = mx_strjoin_free(res, value);
         mx_strdel(&var);
     }
-    else
-        mx_strdel(&res);
+    else{
+        res = mx_strjoin_free(res, "");
+    }
     if (res && s[pos + v_len + 1])
         res = mx_strjoin_free(res, &s[pos + v_len + 1]);
     mx_strdel(&s);
