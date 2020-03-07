@@ -36,8 +36,13 @@ static void launch_help (t_shell *m_s, t_job *job, int job_id, int status) {
 
     if (job->foregrd) {
         tcsetpgrp(STDIN_FILENO, job->pgid);
-        if (status >= 0)
+        if (status > 0) {
             status = mx_wait_job(m_s, job_id);
+        }
+        else if (status == 0) {
+            status = mx_wait_job(m_s, job_id);
+            m_s->exit_code = status;
+        }
         if (mx_job_completed(m_s, job_id))
             mx_remove_job(m_s, job_id);
         signal(SIGTTOU, MX_SIG_IGN);
@@ -48,7 +53,15 @@ static void launch_help (t_shell *m_s, t_job *job, int job_id, int status) {
     else{
         mx_print_pid_process_in_job(m_s, job->job_id);
     }
-    m_s->exit_code = status;
+}
+
+static void m_pipe(t_shell *m_s, t_job * job, int mypipe[2], int job_id) {
+    if (pipe(mypipe) < 0) {
+        perror("pipe");
+        mx_remove_job(m_s, job_id);
+        exit(1);
+    }
+    job->outfile = mypipe[1];
 }
 
 static int execute_job (t_shell *m_s, t_job * job, int job_id) {
@@ -63,13 +76,8 @@ static int execute_job (t_shell *m_s, t_job * job, int job_id) {
             p->exit_code = 1;
             continue;
         }
-        if (p->pipe) {
-            if (pipe(mypipe) < 0) {
-                perror("pipe");
-                mx_remove_job(m_s, job_id);
-                exit(1);
-            }
-            job->outfile = mypipe[1];
+        if (p->pipe){
+            m_pipe(m_s, job, mypipe, job_id);
             p->r_outfile[0] = job->outfile;
         }
         help_ex_job(m_s, job, p, job_id);
@@ -94,8 +102,8 @@ void mx_launch_job (t_shell *m_s, t_job *job) {
         status = execute_job(m_s, job, job_id);
     else
         mx_remove_job(m_s, job_id);
+    !m_s->exit_code ? m_s->exit_code = status : 0;
     char *exit_status = mx_itoa(m_s->exit_code);
     mx_set_variable(m_s->variables, "?", exit_status);
-    m_s->exit_code = status;
     free(exit_status);
 }
