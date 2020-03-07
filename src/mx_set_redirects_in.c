@@ -36,33 +36,3 @@ int mx_red_in(t_job *job, t_process *p, char *input_path, int j) {
     p->r_infile[j] = fd;
     return status_redir;
 }
-
-int mx_red_in_d(t_job *job, t_process *p, char *input_path, int j) {
-    int status_redir = 0;
-    int fd;
-    char *line;
-    int count;
-
-    if ((fd = open(input_path, O_RDWR | O_CREAT | O_TRUNC, 0666)) < 0 ) {
-        mx_printerr("ush :");
-        perror(input_path);
-        status_redir = 1;
-        job->exit_code = 1;
-        return status_redir;
-    }
-    line = strdup("");
-    count = 0;
-    while (strcmp(line, input_path) != 0) {
-        p->pipe ? printf("pipe heredoc> ") : printf("heredoc> ");
-        write(fd, line, mx_strlen(line));
-        free(line);
-        if (count)
-            write(fd, "\n", 1);
-        count++;
-    }
-    free(line);
-    close(fd);
-    p->r_infile[j] = open(input_path, O_RDONLY, 0666);
-    remove(input_path);
-    return status_redir;
-}

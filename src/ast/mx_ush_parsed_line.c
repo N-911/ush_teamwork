@@ -8,13 +8,13 @@ static void func_or_push(t_ast **res, char *arg, int type, t_shell *m_s) {
     char *args0 = mx_strtok(tmp, MX_USH_TOK_DELIM);
 
     for (q = m_s->functions; q; q = q->next)
-        if (mx_strcmp(args0, q->name) == 0) {
+        if (mx_strcmp(args0, q->name) == 0 && !mx_strstr(q->value, args0)) {
             mx_strdel(&tmp);
             *res = mx_ush_parsed_line(*res, q->value, m_s, type);
             return;
         }
     for (q = m_s->aliases; q; q = q->next)
-        if (mx_strcmp(args0, q->name) == 0) {
+        if (mx_strcmp(args0, q->name) == 0 && !mx_strstr(q->value, args0)) {
             mx_strdel(&tmp);
             *res = mx_ush_parsed_line(*res, q->value, m_s, type);
             return;
