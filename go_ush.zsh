@@ -144,12 +144,26 @@ diff    <(echo 'ls ~/Desktop' | /bin/bash) \
 diff    <(echo 'ls ~m' | /bin/bash) \
         <(echo 'ls ~m' | ./ush)
 
+diff    <(echo 'echo `whoami`' | /bin/bash) \
+        <(echo 'echo `whoami`' | ./ush)
 
+diff    <(echo 'echo "$(echo -n "Ave"), $(echo -n "mo")!"' | /bin/bash) \
+        <(echo 'echo "$(echo -n "Ave"), $(echo -n "mo")!"' | ./ush)
 
+diff    <(echo 'echo "The user ${USER} is on a ${SHLVL} shell"' | /bin/bash) \
+        <(echo 'echo "The user ${USER} is on a ${SHLVL} shell"' | ./ush)
 
+diff    <(echo 'echo $PATH' | /bin/bash) \
+        <(echo 'echo $PATH' | ./ush)
+
+# diff    <(echo 'export d1="Hello," d2="World!"; echo "\$f1 = $d1"' | /bin/bash) \
+#         <(echo 'echo $PATH' | ./ush)
 
 
 
 echo
 #echo Test: ls -l
 #diff -q <(ls -l) <(./uls -l)
+
+
+echo 'export UNIT=location UFK=p2p ucode=cbl ; echo "\$var1 = $UNIT, \$var2 = $UFK, \$var3 = $ucode" ; unset UNIT UFK ucode ; echo "\$var1 = $UNIT, \$var2 = $UFK, \$var3 = $ucode" ; exit' | ./ush
