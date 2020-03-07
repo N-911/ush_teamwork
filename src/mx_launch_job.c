@@ -55,6 +55,15 @@ static void launch_help (t_shell *m_s, t_job *job, int job_id, int status) {
     }
 }
 
+static void m_pipe(t_shell *m_s, t_job * job, int mypipe[2], int job_id) {
+    if (pipe(mypipe) < 0) {
+        perror("pipe");
+        mx_remove_job(m_s, job_id);
+        exit(1);
+    }
+    job->outfile = mypipe[1];
+}
+
 static int execute_job (t_shell *m_s, t_job * job, int job_id) {
     t_process *p;
     int mypipe[2];
@@ -67,13 +76,8 @@ static int execute_job (t_shell *m_s, t_job * job, int job_id) {
             p->exit_code = 1;
             continue;
         }
-        if (p->pipe) {
-            if (pipe(mypipe) < 0) {
-                perror("pipe");
-                mx_remove_job(m_s, job_id);
-                exit(1);
-            }
-            job->outfile = mypipe[1];
+        if (p->pipe){
+            m_pipe(m_s, job, mypipe, job_id);
             p->r_outfile[0] = job->outfile;
         }
         help_ex_job(m_s, job, p, job_id);
