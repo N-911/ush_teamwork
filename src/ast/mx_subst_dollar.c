@@ -16,7 +16,8 @@ static char *get_var(char *s, int *v_len) {
         *v_len = mx_strlen(var) + 2;
     }
     else {
-        while (s[i] && !mx_isspace(s[i]) && !mx_isdelim(s[i], "\'`\\,.:"))
+        while (s[i] && !mx_isspace(s[i]) && (isalpha(s[i])
+               || isdigit(s[i]) || s[i] == '?' || s[i] =='_'))
             i++;
         if (i != 0)
             var = mx_strndup(s, i);

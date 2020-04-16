@@ -183,7 +183,8 @@ CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
 all: install clean
 
 install:
-	#@make install -C libmx
+	@printf "\x1b[32;1m... ush created ...\x1b[0m\n"
+	@make install -C libmx
 	@cp $(addprefix src/, $(SRC)) .
 	@cp $(addprefix inc/, $(INC)) .
 	@cp $(addprefix src/ast/, $(SRC_PARSER)) .
@@ -193,11 +194,11 @@ install:
 	@mv $(OBJ) $(OBJ_PARSER) ./obj
 
 uninstall: clean
-	#@make uninstall -C libmx
+	@make uninstall -C libmx
 	@rm -rf $(NAME)
 
 clean:
-	#@make clean -C libmx
+	@make clean -C libmx
 	@rm -rf $(INC)
 	@rm -rf $(SRC) $(SRC_PARSER)
 	@rm -rf $(OBJ) $(OBJ_PARSER)

@@ -37,6 +37,8 @@ diff    <(echo 'echo Tratata     ta ta' | /bin/bash) \
 diff    <(echo 'echo -n "\a"' | /bin/bash) \
         <(echo 'echo -n "\a"' | ./ush)
 
+echo "\x1B[31mcheck flag -E\x1B[0m"
+
 #diff <(echo 'echo "T \n m \t s \v work correctly."' | /bin/bash)
 #    <(echo 'echo "T \n m \t s \v work correctly."' | ./ush)
 
@@ -91,20 +93,17 @@ echo 'cd dir\ \`\\name; touch \"\$\(\\\)\`file\ name; ls; pwd' | ./ush
 echo 'rm -rf  dir\ \`\\name' | ./ush
 
 echo
-echo "\x1B[36m----"env"\x1B[0m" ---- "\x1B[31mручна перевірка\x1B[0m" 'env -i ./ush'
-
-# echo 'env' | ./ush
-# echo
-# echo 'env -i emacs; echo $?' | ./ush
-# echo 'env -u TERM emacs; echo $?' | ./ush
-# echo 'env -P / ls' | ./ush
+echo "\x1B[36m----"env"\x1B[0m" ---- "\x1B[31mручна перевірка\x1B[0m"
+echo 'env -i emacs; echo $?' | ./ush
+echo 'env -u TERM emacs; echo $?' | ./ush
+echo 'env -P / date' | ./ush
 
 echo
-echo "\x1B[36m----"which"\x1B[0m" ---- "\x1B[31mручна перевірка\x1B[0m"
+echo "\x1B[36m----"which"\x1B[0m"
 
-# echo 'which -s something; echo $?' | ./ush
-# echo 'which -s env; echo $?' | ./ush
-# echo 'which -a pwd?' | ./ush
+echo 'which -s something; echo $?' | ./ush
+echo 'which -s env; echo $?' | ./ush
+echo 'which -a pwd' | ./ush
 
 echo
 echo "\x1B[36m----"export, unset"\x1B[0m"
@@ -156,14 +155,21 @@ diff    <(echo 'echo "The user ${USER} is on a ${SHLVL} shell"' | /bin/bash) \
 diff    <(echo 'echo $PATH' | /bin/bash) \
         <(echo 'echo $PATH' | ./ush)
 
-# diff    <(echo 'export d1="Hello," d2="World!"; echo "\$f1 = $d1"' | /bin/bash) \
-#         <(echo 'echo $PATH' | ./ush)
+echo
+echo "\x1B[36m----"Expansions hard"\x1B[0m"
 
+diff    <(echo 'unset HOME; ls ~' | /bin/bash) \
+        <(echo 'unset HOME; ls ~' | ./ush)
 
+diff    <(echo 'unset USER; echo $USER' | /bin/bash) \
+        <(echo 'unset USER; echo $USER' | ./ush)
+
+diff    <(echo 'export d1="Hello," d2="World!"; echo "\$f1 = $d1, \$f2 = $d2"; unset d1 d2; echo "\$f1 = $d1, \$f2 = $d2"' | /bin/bash) \
+        <(echo 'export d1="Hello," d2="World!"; echo "\$f1 = $d1, \$f2 = $d2"; unset d1 d2; echo "\$f1 = $d1, \$f2 = $d2"' | ./ush)
 
 echo
-#echo Test: ls -l
-#diff -q <(ls -l) <(./uls -l)
-
-
-echo 'export UNIT=location UFK=p2p ucode=cbl ; echo "\$var1 = $UNIT, \$var2 = $UFK, \$var3 = $ucode" ; unset UNIT UFK ucode ; echo "\$var1 = $UNIT, \$var2 = $UFK, \$var3 = $ucode" ; exit' | ./ush
+echo "\x1B[36m----"extra check"\x1B[0m"
+echo 'env -i ./ush
+env -i env
+ls -R / with signals, in comm subst
+'
